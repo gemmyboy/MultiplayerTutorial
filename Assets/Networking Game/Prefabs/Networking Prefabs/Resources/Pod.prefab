@@ -108,7 +108,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140626}
   m_LocalRotation: {x: .707106769, y: -5.33850759e-08, z: -5.3385083e-08, w: .707106888}
-  m_LocalPosition: {x: 50, y: 500, z: 50}
+  m_LocalPosition: {x: 17.4148006, y: 3.74029517, z: -20.6353378}
   m_LocalScale: {x: 1, y: 1, z: .5}
   m_Children:
   - {fileID: 440628}
@@ -193,8 +193,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: .5}
-  m_Center: {x: 0, y: -0, z: -.779999971}
+  m_Size: {x: 1, y: 1, z: .829999983}
+  m_Center: {x: 0, y: -0, z: -.689999998}
 --- !u!82 &8240626
 AudioSource:
   m_ObjectHideFlags: 1
@@ -474,7 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe3dfb0aaf2655c45846ae97c55285ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  downwardVelocity: 25
+  downwardVelocity: 45
   crash: {fileID: 8300000, guid: d7ebfaf57db4b4e4dada69bb316fe3a7, type: 3}
   sources: []
   rushingAir: {fileID: 19840626}

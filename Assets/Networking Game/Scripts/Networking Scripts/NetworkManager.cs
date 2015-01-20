@@ -135,36 +135,25 @@ public class NetworkManager : PunBehaviour
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     #region Photon
-    public override void OnJoinedRoom()
-    {
-        //CreatePlayerObject();
-        Debug.Log("Sexy Momma");
-        Vector3 position = new Vector3(-2, 500, 0);
-        position.x += Random.Range(25f, 50f);
-        position.z += Random.Range(25f, 50f);
-        PhotonNetwork.Instantiate("Pod", position, Quaternion.identity, 0);
-    }
-
+    public GameObject pod;
     void OnLevelWasLoaded(int level)
     {
         if (level == 1)
         {
-            Debug.Log("Sexy Momma");
-            Vector3 position = new Vector3(-2, 500, 0);
+            Vector3 position = new Vector3(0, 500, 0);
             position.x += Random.Range(5f, 95f);
             position.z += Random.Range(5f, 95f);
+
             Quaternion pieceRotation = Quaternion.AngleAxis(270, Vector3.left);
-            PhotonNetwork.Instantiate("Pod", position, pieceRotation, 0);
+            pod = PhotonNetwork.Instantiate("Pod", position, pieceRotation, 0) as GameObject;
+            //CreatePlayerObject();
         }
     }
 
     private void CreatePlayerObject()
     {
-        Vector3 position = new Vector3(-2, 0, 0);
-        position.x += Random.Range(-3f, 3f);
-        position.z += Random.Range(-4f, 4f);
-
-        GameObject newPlayerObject = PhotonNetwork.Instantiate("Robot Kyle Mecanim", position, Quaternion.identity, 0);
+        GameObject newPlayerObject = PhotonNetwork.Instantiate("Robot Kyle Mecanim", pod.transform.position + Vector3.up, Quaternion.identity, 0);
+        newPlayerObject.transform.parent = pod.transform;
         m_AnimatorView = newPlayerObject.GetComponent<PhotonAnimatorView>();
     }
     #endregion
