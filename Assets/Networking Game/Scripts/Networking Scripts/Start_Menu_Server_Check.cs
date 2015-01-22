@@ -19,7 +19,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     public GameObject RefreshButton;
     public GameObject preFabButton;
     public GameObject ErrorButton;
-    public GameObject GameLabel;
 
     public GameObject refreshWindow;
     public GameObject ConnectingRoomWindow;
@@ -46,6 +45,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     //bools for checking connection and list
     public bool checkedList = false;
     public bool connected = false;
+    public bool gameStarted = false;
 
     //Used to control if the game can only be started by the Server hoster
     public GameObject StartTheGameButton;
@@ -170,10 +170,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         gameName = RoomNameField.GetComponent<InputField>().text;
     }
 
-    public void ChangePort(GameObject portField)
-    {
-        port = int.Parse(portField.GetComponent<InputField>().text);
-    }
     public void ChangeConnections(int value)
     {
         connections = value;
@@ -202,8 +198,14 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     public void OnJoinedRoom()
     {
         Debug.Log("OnJoinedRoom");
-        pm.closeWindow(RefreshListAnimator);
-        pm.OpenPanel(ConnectingToRoomAnimator);
+        if(gameStarted){
+            Application.LoadLevel(SceneNameGame);
+        }
+        else
+        {
+            pm.closeWindow(RefreshListAnimator);
+            pm.OpenPanel(ConnectingToRoomAnimator);
+        }
     }
 
 
@@ -222,7 +224,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     public void OnCreatedRoom()
     {
         Debug.Log("OnCreatedRoom");
-        //PhotonNetwork.LoadLevel(SceneNameGame);
     }
 
     public void OnDisconnectedFromPhoton()
@@ -250,6 +251,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
 
     public void StartTheGame()
     {
+        gameStarted = true;
         PhotonNetwork.LoadLevel(SceneNameGame);
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -315,8 +317,14 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     }
     public void ServerButtonClick(RoomInfo roomInfo)
     {
-        PhotonNetwork.JoinRoom(roomInfo.name);
-        pm.CloseCurrent();
+        if(roomInfo.playerCount < roomInfo.maxPlayers){
+            PhotonNetwork.JoinRoom(roomInfo.name);
+            pm.CloseCurrent();
+        }
+        else
+        {
+            this.ErrorDialog = "Room is full. Please wait for a player to leave.";
+        }
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //For Failure to join PhotonNetwork. 
@@ -335,7 +343,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         if (String.IsNullOrEmpty(PhotonNetwork.playerName))
         {
             PhotonNetwork.playerName = PlayerPrefs.GetString("playerName", PhotonNetwork.playerName);
-            
         }
     }
 }

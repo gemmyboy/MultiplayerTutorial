@@ -144,16 +144,22 @@ public class NetworkManager : PunBehaviour
             position.x += Random.Range(5f, 95f);
             position.z += Random.Range(5f, 95f);
 
-            Quaternion pieceRotation = Quaternion.AngleAxis(270, Vector3.left);
-            pod = PhotonNetwork.Instantiate("Pod", position, pieceRotation, 0) as GameObject;
-            //CreatePlayerObject();
+            //Quaternion pieceRotation = Quaternion.AngleAxis(270, Vector3.left);
+            //Debug.Log("Yes");
+            //pod = PhotonNetwork.Instantiate("Pod", position, pieceRotation, 0) as GameObject;
+            //pod.GetComponent<FallingShip>().spawnShockWave();
+            CreatePlayerObject();
         }
     }
 
     private void CreatePlayerObject()
     {
-        GameObject newPlayerObject = PhotonNetwork.Instantiate("Robot Kyle Mecanim", pod.transform.position + Vector3.up, Quaternion.identity, 0);
-        newPlayerObject.transform.parent = pod.transform;
+        Vector3 position = new Vector3(0, 5, 0);
+        position.x += Random.Range(5f, 95f);
+        position.z += Random.Range(5f, 95f);
+
+        GameObject newPlayerObject = PhotonNetwork.Instantiate("Robot Kyle Mecanim",position, Quaternion.identity, 0);
+        //newPlayerObject.transform.parent = pod.transform;
         m_AnimatorView = newPlayerObject.GetComponent<PhotonAnimatorView>();
     }
     #endregion

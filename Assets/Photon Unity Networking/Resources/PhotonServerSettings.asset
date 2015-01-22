@@ -35,4 +35,5 @@ MonoBehaviour:
   - RequestForPickupTimes
   - TaggedPlayer
   - fixLabel
+  - UpdateParticleSystem
   DisableAutoOpenWizard: 0

@@ -764,6 +764,7 @@ GameObject:
   - 143: {fileID: 14300000}
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11423086}
   m_Layer: 0
   m_Name: Robot Kyle RPG
   m_TagString: Player
@@ -1547,6 +1548,17 @@ MonoBehaviour:
   BackwardSpeed: 4
   StrafeSpeed: 5
   RotateSpeed: 110
+--- !u!114 &11423086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0042f461850a4b479ae784eb9f9c24e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

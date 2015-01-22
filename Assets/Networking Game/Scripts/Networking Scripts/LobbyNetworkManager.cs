@@ -9,7 +9,6 @@ using System.Linq;
 public class LobbyNetworkManager : Photon.MonoBehaviour {
 
     GameObject label;
-    public bool gameStarted = false;
     public int previousPlayerAmount = 0;
     int i = 0;
 

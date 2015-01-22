@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-public class FallingShip : MonoBehaviour {
+using Photon;
+public class FallingShip : PunBehaviour {
     public float downwardVelocity;
 
     public AudioClip crash;
@@ -14,7 +14,6 @@ public class FallingShip : MonoBehaviour {
     public bool Crashed = false;
 	void Start () {
         rigidbody.AddForce(Vector3.down*downwardVelocity,ForceMode.VelocityChange);
-        Instantiate(shockWave,transform.position + Vector3.up * 10,transform.rotation);
 	}
 
     void Update()
@@ -42,5 +41,15 @@ public class FallingShip : MonoBehaviour {
         foreach(AudioSource source in sources){
             Destroy(source);
         }
+    }
+
+    public void spawnShockWave()
+    {
+        Instantiate(shockWave, transform.position + Vector3.up * 10, transform.rotation);
+    }
+
+    public void spawnPod()
+    {
+
     }
 }

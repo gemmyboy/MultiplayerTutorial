@@ -383,7 +383,7 @@ StateMachine:
       second:
       - {fileID: 110170435}
   m_MotionSetCount: 1
-  m_AnyStatePosition: {x: 50, y: 20, z: 0}
+  m_AnyStatePosition: {x: 252, y: 36, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
 --- !u!1107 &110700002
 StateMachine:

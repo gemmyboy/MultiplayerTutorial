@@ -8266,7 +8266,6 @@ MonoBehaviour:
   RefreshButton: {fileID: 54934078}
   preFabButton: {fileID: 100004, guid: 05a81c3d5091440058129444d28322f3, type: 2}
   ErrorButton: {fileID: 2064796639}
-  GameLabel: {fileID: 141824, guid: ac1527039c0182f44a9c8a75d0e7b809, type: 2}
   refreshWindow: {fileID: 1012318582}
   ConnectingRoomWindow: {fileID: 1824121273}
   canvas: {fileID: 557638307}

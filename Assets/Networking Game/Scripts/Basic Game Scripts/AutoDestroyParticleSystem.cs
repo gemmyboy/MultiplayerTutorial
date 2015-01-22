@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-public class AutoDestroyParticleSystem : MonoBehaviour {
+using Photon;
+public class AutoDestroyParticleSystem : PunBehaviour {
     public ParticleSystem particleSystem;
 	// Use this for initialization
 	void Start () {
@@ -11,7 +11,18 @@ public class AutoDestroyParticleSystem : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	    if(particleSystem.isStopped){
-            Destroy(particleSystem.gameObject);
+            if(photonView.isMine){
+                if (particleSystem.GetComponent<PhotonView>() != null)
+                {
+                    Debug.Log("Online particle");
+                    PhotonNetwork.Destroy(particleSystem.gameObject);
+                }
+                else
+                {
+                    Debug.Log("Just particle");
+                    Destroy(particleSystem.gameObject);
+                }
+            }
         }
 	}
 }
