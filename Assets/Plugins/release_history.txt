@@ -8,6 +8,15 @@ http://doc.exitgames.com
 http://forum.exitgames.com
 
 
+*** Version 4.0.0.8 (14. January 2015 - rev2765)
+    Fixed: Serialization of custom types with nested Serialize-calls. In this case, re-using a specific memory stream breaks it.
+
+
+*** Version 4.0.0.7 (12. January 2015 - rev2763)
+    Fixed: Serialization of arrays of custom-types.
+Chat API
+    Internal: Changed code for UserID from 7 to 225. The latter is used in LoadBalancing, too, so we want to re-use the code here.
+
 *** Version 4.0.0.6 (05. December 2014 - rev2758)
     Added: ChatApi and LoadBalancingApi folders to Unity SDK. They are needed in any Photon project with Unity. When updating, copy and paste the files over existing ones and make sure to replace the assembly-files, too.
     Changed: Protocol to save more memory or re-use it. The idea is to have less Garbage Collection (primarily for Unity/PUN and custom types).
@@ -21,7 +30,6 @@ http://forum.exitgames.com
 LoadBalancing
     ADDED: LoadBalancingClient.OpJoinOrCreateRoom overload which has lobby as parameter. If a room gets created, this defines in which lobby it belongs.
     CHANGED: LoadBalancingPeer: Added new error code PluginMismatch, documentation for Plugins parameter code.
-
 
 *** Version 4.0.0.5 (23. September 2014 - rev2738)
     Updated: AddFriends and RemoveFriends doc.

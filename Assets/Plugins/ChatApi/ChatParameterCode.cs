@@ -25,13 +25,13 @@ namespace ExitGames.Client.Photon.Chat
         public const byte Sender = 5;
         /// <summary>(6) Not used.</summary>
         public const byte ChannelUserCount = 6;
-        /// <summary>(7) Name of user to send a (private) message to.</summary>
-        public const byte UserId = 7;
+        /// <summary>(225) Name of user to send a (private) message to.</summary><remarks>The code is used in LoadBalancing and copied over here.</remarks>
+        public const byte UserId = 225;
         /// <summary>(8) Id of a message.</summary>
         public const byte MsgId = 8;
         /// <summary>(9) Not used.</summary>
         public const byte MsgIds = 9;
-        /// <summary>(221) Secret token to identify an authorized user.</summary>
+        /// <summary>(221) Secret token to identify an authorized user.</summary><remarks>The code is used in LoadBalancing and copied over here.</remarks>
         public const byte Secret = 221;
         /// <summary>(15) Subscribe operation result parameter. A bool[] with result per channel.</summary>
         public const byte SubscribeResults = 15;
