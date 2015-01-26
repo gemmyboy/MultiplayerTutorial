@@ -36,4 +36,9 @@ MonoBehaviour:
   - TaggedPlayer
   - fixLabel
   - UpdateParticleSystem
+  - StartGameCountdown
+  - PlayCountDown
+  - fadeScreen
+  - FixScreen
+  - closePanelForPlayers
   DisableAutoOpenWizard: 0

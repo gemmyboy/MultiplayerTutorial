@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: e6c51b1063b2b0349b554028eb2c56bc
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - simulationShader: {fileID: 7200000, guid: acecb764f5dda404da988bbcc97c02ae, type: 3}
+  - lightingShader: {fileID: 7200000, guid: e34868b9e31b2ea47a63e7c53c2b155d, type: 3}
+  - volumeLightShader: {fileID: 4800000, guid: 6f5e8c8de4f7bb64c9f655d9a4e92826, type: 3}
+  - noiseTexture: {fileID: 2800000, guid: 4f1d6a8cf8e724f4c9173b676db0b53e, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

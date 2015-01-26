@@ -1,0 +1,41 @@
+﻿#pragma kernel SelfShadowing
+
+RWTexture3D<float>	_OpacityMapRW;
+
+float4 _RecipDimensions;
+float4 _HalfVoxel;
+float4 _MarchDirectionTS_density;
+
+#define COMPUTE_SHADER_INCLUDE 
+#include "../Resources/Shaders/Fluidity.cginc"
+
+[numthreads(8, 8, 8)]
+void SelfShadowing( uint3 idx : SV_DispatchThreadID )
+{ 
+	float3 uvw = mad( idx, _RecipDimensions.xyz, _HalfVoxel.xyz );
+
+	float nearD, farD;
+	IntersectBox( uvw, _MarchDirectionTS_density.xyz, nearD, farD );
+
+	const float3 endPoint = mad( _MarchDirectionTS_density.xyz, farD, uvw );
+
+	const float kStepSize = 0.05f;
+	const uint kMaxLightSteps = 32;
+	const uint numSteps = min(kMaxLightSteps, uint( farD / kStepSize ) );
+
+	const float3 stepAmount = (endPoint - uvw) / numSteps;
+
+	float lightRecieved = 1.0f;  
+
+	uint stepsTaken = 0;
+	while( stepsTaken++ < numSteps && lightRecieved > 0 )
+	{
+		const float opacity = ColourAtPos( uvw, 1 ).a;
+
+		lightRecieved *= saturate( 1.0f - opacity * _MarchDirectionTS_density.w );
+
+		uvw += stepAmount;
+	}
+
+	_OpacityMapRW[idx] = lightRecieved;
+}

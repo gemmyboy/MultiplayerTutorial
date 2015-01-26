@@ -16,7 +16,7 @@ public class SpawnParticleSystem : PunBehaviour {
                 PhotonNetwork.Instantiate("ExplosionSmoke1", transform.position, transform.rotation, 0);
                 audio.PlayOneShot(sound);
             }
-            Ray ray = camera.ScreenPointToRay(new Vector3(200, 200, 0));
+            Ray ray = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
             Debug.DrawRay(ray.origin, ray.direction * 10, Color.yellow);
         }
 	}

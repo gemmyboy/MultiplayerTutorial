@@ -45,7 +45,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     //bools for checking connection and list
     public bool checkedList = false;
     public bool connected = false;
-    public bool gameStarted = false;
 
     //Used to control if the game can only be started by the Server hoster
     public GameObject StartTheGameButton;
@@ -198,14 +197,8 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     public void OnJoinedRoom()
     {
         Debug.Log("OnJoinedRoom");
-        if(gameStarted){
-            Application.LoadLevel(SceneNameGame);
-        }
-        else
-        {
-            pm.closeWindow(RefreshListAnimator);
-            pm.OpenPanel(ConnectingToRoomAnimator);
-        }
+        pm.closeWindow(RefreshListAnimator);
+        pm.OpenPanel(ConnectingToRoomAnimator);
     }
 
 
@@ -217,7 +210,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
 
     public void OnPhotonJoinRoomFailed()
     {
-        this.ErrorDialog = "Error: Can't join room (full or unknown room name).";
+        this.ErrorDialog = "Error: Can't join room (full or game is Starting. Please Wait).";
         Debug.Log("OnPhotonJoinRoomFailed got called. This can happen if the room is not existing or full or closed.");
     }
     //Room Created
@@ -248,11 +241,17 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     {
         PhotonNetwork.LeaveRoom();
     }
-
+    //START THE GAMMMMMME
     public void StartTheGame()
     {
-        gameStarted = true;
-        PhotonNetwork.LoadLevel(SceneNameGame);
+        photonView.RPC("closePanelForPlayers",PhotonTargets.All);
+        PhotonNetwork.room.open = false;
+        StartCoroutine(ShootOffPods());
+    }
+    [RPC]
+    void closePanelForPlayers()
+    {
+        pm.CloseCurrent();
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -275,7 +274,13 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             {
                 ServerButton = Instantiate(preFabButton, refreshWindow.transform.position, refreshWindow.transform.rotation) as GameObject;
                 ServerButton.name = "ServerButton";
-                ServerButton.GetComponentInChildren<Text>().text = roomInfo.name + " " + roomInfo.playerCount + "/" + roomInfo.maxPlayers;
+                if(roomInfo.open == false){
+                    ServerButton.GetComponentInChildren<Text>().text = roomInfo.name + " " + roomInfo.playerCount + "/" + roomInfo.maxPlayers + "(Starting)";
+                }
+                else
+                {
+                    ServerButton.GetComponentInChildren<Text>().text = roomInfo.name + " " + roomInfo.playerCount + "/" + roomInfo.maxPlayers;
+                }
             //    //Fix Button Position
                 fixButton(ServerButton,i);
             //    //Adding an Event Trigger
@@ -344,5 +349,44 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         {
             PhotonNetwork.playerName = PlayerPrefs.GetString("playerName", PhotonNetwork.playerName);
         }
+    }
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //Create a dummy pod after game has started
+    GameObject dummyPod;
+    IEnumerator ShootOffPods()
+    {
+        int i = 0;
+        Quaternion pieceRotation = Quaternion.AngleAxis(270, Vector3.left);
+        foreach (PhotonPlayer player in PhotonNetwork.playerList)
+        {
+            Vector3 position = new Vector3(Camera.main.transform.position.x - 5 + (i * 3), Camera.main.transform.position.y, Camera.main.transform.position.z + 20);
+            dummyPod = PhotonNetwork.Instantiate("DummyPod", position, pieceRotation, 0);
+            i++;
+        }
+        yield return new WaitForSeconds(13.0f);
+        PhotonNetwork.room.open = false;
+        PhotonNetwork.LoadLevel(SceneNameGame);
+
+    }
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //creating a fade out for when the game starts
+    public void fadeOut()
+    {
+        StartCoroutine(fadeScreen());
+    }
+
+    IEnumerator fadeScreen()
+    {
+        yield return new WaitForSeconds(10.0f);
+        GameObject screenFade = PhotonNetwork.InstantiateSceneObject("FadeScreen", canvas.transform.position, canvas.transform.rotation, 0,null);
+        photonView.RPC("FixScreen", PhotonTargets.All);
+    }
+
+    [RPC]
+    public void FixScreen()
+    {
+        GameObject screenFade = GameObject.Find("FadeScreen(Clone)");
+        screenFade.transform.parent = canvas.transform;
+        screenFade.transform.localScale = new Vector3(1, 1, 1);
     }
 }

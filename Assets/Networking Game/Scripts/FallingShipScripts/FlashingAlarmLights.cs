@@ -12,10 +12,10 @@ public class FlashingAlarmLights : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if(pointLight.intensity >= 0 && !increaseLight){
-            pointLight.intensity -= .01f;
+            pointLight.intensity -= .03f;
         }
         if(pointLight.intensity <= 3 && increaseLight){
-            pointLight.intensity += .01f;
+            pointLight.intensity += .03f;
         }
 
         if (pointLight.intensity <= 0)

@@ -766,6 +766,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 114: {fileID: 11423086}
   - 82: {fileID: 8208056}
+  - 114: {fileID: 11459142}
   m_Layer: 0
   m_Name: Robot Kyle RPG
   m_TagString: Player
@@ -1619,6 +1620,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sound: {fileID: 8300000, guid: d7ebfaf57db4b4e4dada69bb316fe3a7, type: 3}
+--- !u!114 &11459142
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b08552a50b91dab4ababdcd612e51ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
