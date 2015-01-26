@@ -29,6 +29,14 @@ namespace Fluidity
 
             sim.jaccobiIterations = 5;
 
+            if(Input.GetKey(KeyCode.W)){
+                thrust += 10f;
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                thrust -= 10f;
+            }
+            thrust = Mathf.Clamp(thrust, 0, 200);
             if (thrust < 100)
             {
                 sim.reactionSpeed = 1.75f;
