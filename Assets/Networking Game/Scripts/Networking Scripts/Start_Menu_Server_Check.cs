@@ -13,7 +13,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     public string gameName = "";
     public int port = 0;
     public int connections;
-    public string passwordToServer = "";
 
     public GameObject StartButton;
     public GameObject RefreshButton;
@@ -28,6 +27,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
 
     //Used to open windows via scripting
     public Animator LoginAnimator;
+    public Animator MainMenu;
     public Animator ConnectingToRoomAnimator;
     public Animator NetworkAnimator;
     public Animator RefreshListAnimator;
@@ -112,17 +112,23 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             return;
         }
         //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        if (!connected)
+        //Lets generate a random name...gotta wait a second. takes some time for the connection to go through to register other players
+        if (PhotonNetwork.connected && !connected)
         {
             pm.OpenPanel(LoginAnimator);
             connected = true;
+            // generate a name for this player, if none is assigned yet
+            if (String.IsNullOrEmpty(PhotonNetwork.playerName))
+            {
+                if (String.IsNullOrEmpty(PlayerPrefs.GetString("playerName"))){
+                    PhotonNetwork.playerName = "Guest" + PhotonNetwork.countOfPlayers;
+                }else{
+                    PhotonNetwork.playerName = PlayerPrefs.GetString("playerName", PhotonNetwork.playerName);
+                }
+                //Change the PlaceHolder to the Generated Players name for the menu
+            }
+            inputNamePlaceHolder.GetComponent<InputField>().text = PhotonNetwork.playerName;
         }
-        //Lets generate a random name...gotta wait a second. takes some time for the connection to go through to register other players
-        if(PhotonNetwork.connected){
-            StartCoroutine(ChangeName());
-        }
-        //Change the PlaceHolder to the Randomly Generated Players name for the menu
-        inputNamePlaceHolder.GetComponent<Text>().text = PhotonNetwork.playerName;
         //Change the Text to the Number of rooms there are for the menu
         if (ListLabel.GetComponentInChildren<Text>() != null)
         {
@@ -161,8 +167,18 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     //The text fields that are in creating a server
     public void ChangePlayerName(InputField inputName)
     {
+
         PhotonNetwork.playerName = inputName.text;
         PlayerPrefs.SetString("playerName", PhotonNetwork.playerName);
+    }
+    public void CheckIfEmpty(InputField inputName)
+    {
+        if (inputName.text == "")
+        {
+            this.ErrorDialog = "Invalid name. Please Enter Valid Input";
+        }else{
+            pm.OpenPanel(MainMenu);
+        }
     }
 
     public void ChangeRoomName(GameObject RoomNameField)
@@ -173,11 +189,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     public void ChangeConnections(int value)
     {
         connections = value;
-    }
-
-    public void ChangePasswordToServer(GameObject passwordField)
-    {
-        passwordToServer = passwordField.GetComponent<InputField>().text;
     }
     //--------------------------------------------------------------------------------------------------
     //Starting the server
@@ -348,6 +359,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         // generate a name for this player, if none is assigned yet
         if (String.IsNullOrEmpty(PhotonNetwork.playerName))
         {
+            Debug.Log(PlayerPrefs.GetString("playerName", PhotonNetwork.playerName));
             PhotonNetwork.playerName = PlayerPrefs.GetString("playerName", PhotonNetwork.playerName);
         }
     }
