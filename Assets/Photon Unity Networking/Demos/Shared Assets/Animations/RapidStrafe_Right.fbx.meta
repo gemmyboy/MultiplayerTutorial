@@ -161,7 +161,8 @@ ModelImporter:
     400152: Spine
     400154: TongueBack
     400156: TongueTip
-    7400000: RapidStrafe_Right
+    7400000: runStarfeRight
+    7400002: _60_a_U1_M_P_RapidStrafe_90HipsLeftFaceFwd__Fb_p90_No_0_PJ_5
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -180,18 +181,18 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: RapidStrafe_Right
+      name: runStarfeRight
       takeName: _60_a_U1_M_P_RapidStrafe_90HipsLeftFaceFwd__Fb_p90_No_0_PJ_5
-      firstFrame: 160
-      lastFrame: 178
+      firstFrame: 140
+      lastFrame: 160
       wrapMode: 0
-      orientationOffsetY: 0
+      orientationOffsetY: 4
       level: 0
       cycleOffset: 0
       loop: 0
       loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
+      loopBlend: 1
+      loopBlendOrientation: 1
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
