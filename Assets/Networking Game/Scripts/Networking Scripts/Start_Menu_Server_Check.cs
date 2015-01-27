@@ -27,7 +27,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     public GameObject FailureButton;
 
     //Used to open windows via scripting
-    public Animator MainMenu;
+    public Animator LoginAnimator;
     public Animator ConnectingToRoomAnimator;
     public Animator NetworkAnimator;
     public Animator RefreshListAnimator;
@@ -114,7 +114,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         if (!connected)
         {
-            pm.OpenPanel(MainMenu);
+            pm.OpenPanel(LoginAnimator);
             connected = true;
         }
         //Lets generate a random name...gotta wait a second. takes some time for the connection to go through to register other players
@@ -155,6 +155,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
                 StartTheGameButton.SetActive(true);
             }
         }
+
     }
     //--------------------------------------------------------------------------------------------------
     //The text fields that are in creating a server
