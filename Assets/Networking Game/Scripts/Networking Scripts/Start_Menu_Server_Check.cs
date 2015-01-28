@@ -48,6 +48,8 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
 
     //Used to control if the game can only be started by the Server hoster
     public GameObject StartTheGameButton;
+    //used for the start of the game. which mode to use
+    public string gameMode = "";
     //---------------------------------------------------------------------------------------
     //Used for Connections
     private bool connectFailed = false;
@@ -67,7 +69,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             errorDialog = value;
             if (!String.IsNullOrEmpty(value))
             {
-                timeToClearDialog = Time.time + 4.0f;
+                timeToClearDialog = Time.time + 1.5f;
             }
         }
     }
@@ -190,13 +192,22 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     {
         connections = value;
     }
+
+    public void ChangeGameMode(string gameMode)
+    {
+        this.gameMode = gameMode;
+    }
     //--------------------------------------------------------------------------------------------------
     //Starting the server
     public void StartServer()
     {
         if(gameName == ""){
             this.ErrorDialog = "Please Enter a Room Name";
-        }else{
+        }
+        else if(gameMode == ""){
+            this.ErrorDialog = "Please Select a Game Mode";
+        }
+        else{
             //string[] roomPropsInLobby = { "map", "ai" };
             //Hashtable customRoomProperties = new Hashtable() { { "map", 1 } };
             PhotonNetwork.CreateRoom(this.gameName, new RoomOptions() { maxPlayers = connections }, null);
