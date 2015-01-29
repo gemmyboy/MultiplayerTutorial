@@ -17,7 +17,9 @@ public class Start_Screen_Sound : MonoBehaviour {
     [RPC]
     void PlayCountDown()
     {
-        audio.PlayOneShot(countdown);
+        audio.clip = countdown;
+        audio.volume = 1;
+        audio.Play();
     }
 
 }

@@ -7663,7 +7663,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 5cd75971fbff9dd44b7f706c2e31bc11, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .300000012
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -8663,7 +8663,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 26a34c085720c82448e8f27df992c65b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: .400000006
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -8762,6 +8762,7 @@ MonoBehaviour:
   connected: 0
   StartTheGameButton: {fileID: 871808165}
   gameMode: 
+  teams: []
 --- !u!114 &705136059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21162,7 +21163,7 @@ Animator:
   m_GameObject: {fileID: 1747188012}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 70f6547f3a18b454eab48f496287474a, type: 2}
+  m_Controller: {fileID: 9100000, guid: 932bfa4282260604dbaa4108bda3e572, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -22096,6 +22097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b826fb1785f0f624bba78a471b906b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropDownMenu: {fileID: 151352, guid: 3db71c66beb6b7b499f38c6e3f6d3c52, type: 2}
   previousPlayerAmount: 0
 --- !u!1 &1839737116
 GameObject:

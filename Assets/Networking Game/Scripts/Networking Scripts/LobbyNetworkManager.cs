@@ -9,6 +9,7 @@ using System.Linq;
 public class LobbyNetworkManager : Photon.MonoBehaviour {
 
     GameObject label;
+    public GameObject dropDownMenu;
     public int previousPlayerAmount = 0;
     int i = 0;
 
@@ -24,6 +25,8 @@ public class LobbyNetworkManager : Photon.MonoBehaviour {
                     previousPlayerAmount += 1;
                     i++;
                     fixLabel(player);
+                    GameObject dropMenu = Instantiate(dropDownMenu,label.transform.position,Quaternion.identity) as GameObject;
+                    fixDropDown(dropMenu);
                 }
             }
         }
@@ -44,6 +47,13 @@ public class LobbyNetworkManager : Photon.MonoBehaviour {
 
     }
 
+    void fixDropDown(GameObject menu)
+    {
+        menu.transform.parent = gameObject.transform;
+        menu.transform.localScale = new Vector3(1, 1, 1);
+        menu.transform.rotation = new Quaternion(0, 0, 0, 0);
+        menu.GetComponentInChildren<RectTransform>().localPosition = new Vector3(450, 100, 0);
+    }
     public void DeleteLabels()
     {
         GameObject[] objects = GameObject.FindGameObjectsWithTag("Respawn");

@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using Random = UnityEngine.Random;
 using System;
 using ExitGames.Client.Photon;
+using System.Collections.Generic;
 public class Start_Menu_Server_Check : Photon.MonoBehaviour
 {
     private bool isRefreshingHostList = false;
@@ -428,17 +429,21 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //This is only for omega tanks. We need to split the teams up. Or we could use it for FFO. it doesnt matter
+    public List<string> teams;
     public void setUpTeams()
     {
-        string[] team = new string[] { "Red", "Blue", "Green", "Yellow" };
+        teams = new List<string>() { "Red", "Blue", "Green", "Yellow" };
         ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
-        int i = 0;
+        int j = 4;
+        int rndTeam;
         foreach (PhotonPlayer player in PhotonNetwork.playerList)
         {
-            hash.Add("Team", team[i]);
+            rndTeam = Random.Range(0, j);
+            Debug.Log(rndTeam);
+            hash.Add("Team", teams[rndTeam]);
+            teams.RemoveAt(rndTeam);
             PhotonNetwork.player.SetCustomProperties(hash);
-            PhotonNetwork.player.SetTeam(PunTeams.Team.blue);
-            i++;
+            j--;
         }
     }
 }
