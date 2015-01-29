@@ -8736,7 +8736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameName: 
   port: 0
-  connections: 2
+  connections: 1
   StartButton: {fileID: 1387689732}
   RefreshButton: {fileID: 54934078}
   preFabButton: {fileID: 100004, guid: 05a81c3d5091440058129444d28322f3, type: 2}
@@ -18253,8 +18253,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 566158469}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: .375}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: .5, y: .5}

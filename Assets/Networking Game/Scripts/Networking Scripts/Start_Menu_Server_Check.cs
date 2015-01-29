@@ -54,7 +54,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     //Used for Connections
     private bool connectFailed = false;
     public static readonly string SceneNameMenu = "start_menu";
-    public static readonly string SceneNameGame = "testing";
+    public static readonly string SceneNameGame = "OmegaTankScene";
 
     private string errorDialog;
     private double timeToClearDialog;
@@ -195,7 +195,16 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
 
     public void ChangeGameMode(string gameMode)
     {
-        this.gameMode = gameMode;
+        if (gameMode == "OmegaTank")
+        {
+            this.gameMode = "OmegaTank";
+            Start_Menu_Server_Check.SceneNameGame.Replace(SceneNameGame,"OmegaTankScene");
+        }
+        else
+        {
+            this.gameMode = "testing";
+            Start_Menu_Server_Check.SceneNameGame.Replace(SceneNameGame, "testing");
+        }
     }
     //--------------------------------------------------------------------------------------------------
     //Starting the server
@@ -211,6 +220,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             //string[] roomPropsInLobby = { "map", "ai" };
             //Hashtable customRoomProperties = new Hashtable() { { "map", 1 } };
             PhotonNetwork.CreateRoom(this.gameName, new RoomOptions() { maxPlayers = connections }, null);
+            
         }
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -269,6 +279,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     {
         photonView.RPC("closePanelForPlayers",PhotonTargets.All);
         PhotonNetwork.room.open = false;
+        setUpTeams();
         StartCoroutine(ShootOffPods());
     }
     [RPC]
@@ -412,5 +423,22 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         GameObject screenFade = GameObject.Find("FadeScreen(Clone)");
         screenFade.transform.parent = canvas.transform;
         screenFade.transform.localScale = new Vector3(1, 1, 1);
+    }
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //This is only for omega tanks. We need to split the teams up. Or we could use it for FFO. it doesnt matter
+    public void setUpTeams()
+    {
+        string[] team = new string[] { "Red", "Blue", "Green", "Yellow" };
+        ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
+        int i = 0;
+        foreach (PhotonPlayer player in PhotonNetwork.playerList)
+        {
+            hash.Add("Team", team[i]);
+            PhotonNetwork.player.SetCustomProperties(hash);
+            PhotonNetwork.player.SetTeam(PunTeams.Team.blue);
+            i++;
+        }
     }
 }
