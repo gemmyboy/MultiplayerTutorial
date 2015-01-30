@@ -51,6 +51,8 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     public GameObject StartTheGameButton;
     //used for the start of the game. which mode to use
     public string gameMode = "";
+    //Rebuilding the lobby when host leaves
+    public List<int> currentPlayerLabels;
     //---------------------------------------------------------------------------------------
     //Used for Connections
     private bool connectFailed = false;
@@ -89,6 +91,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
 
         // if you wanted more debug out, turn this on:
         // PhotonNetwork.logLevel = NetworkLogLevel.Full;
+        currentPlayerLabels = new List<int>();
     }
     void Update()
     {
@@ -108,8 +111,8 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             if (this.connectFailed)
             {
                 connectingText.GetComponent<Text>().text = "Connection failed. Check setup and use Setup Wizard to fix configuration.";
-                connectingText.GetComponent<Text>().text = String.Format("Server: {0}", new object[] { PhotonNetwork.ServerAddress });
-                connectingText.GetComponent<Text>().text = "AppId: " + PhotonNetwork.PhotonServerSettings.AppID;
+                connectingText.GetComponent<Text>().text += String.Format("Server: {0}", new object[] { PhotonNetwork.ServerAddress });
+                connectingText.GetComponent<Text>().text += "AppId: " + PhotonNetwork.PhotonServerSettings.AppID;
                 FailureButton.SetActive(true);
             }
             return;
@@ -220,8 +223,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         else{
             //string[] roomPropsInLobby = { "map", "ai" };
             //Hashtable customRoomProperties = new Hashtable() { { "map", 1 } };
-            PhotonNetwork.CreateRoom(this.gameName, new RoomOptions() { maxPlayers = connections }, null);
-            
+            PhotonNetwork.CreateRoom(this.gameName, new RoomOptions() { maxPlayers = connections }, null); 
         }
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -233,19 +235,18 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         Debug.Log("OnJoinedRoom");
         pm.closeWindow(RefreshListAnimator);
         pm.OpenPanel(ConnectingToRoomAnimator);
+        createLabelForPlayer();
     }
 
 
     public void OnPhotonCreateRoomFailed()
     {
         this.ErrorDialog = "Error: Can't create room (room name maybe already used).";
-        Debug.Log("OnPhotonCreateRoomFailed got called. This can happen if the room exists (even if not visible). Try another room name.");
     }
 
     public void OnPhotonJoinRoomFailed()
     {
         this.ErrorDialog = "Error: Can't join room (full or game is Starting. Please Wait).";
-        Debug.Log("OnPhotonJoinRoomFailed got called. This can happen if the room is not existing or full or closed.");
     }
     //Room Created
     public void OnCreatedRoom()
@@ -273,6 +274,16 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
 
     public void DisconnectFromRoom()
     {
+        i = 0;
+        currentPlayerLabels.Clear();
+        if(PhotonNetwork.playerList.Length > 1){
+            PhotonNetwork.SetMasterClient(chooseRandomPlayer());
+            photonView.RPC("rebuildLabelLobby", PhotonTargets.Others);
+        }
+        else
+        {
+            Destroy(dropMenu);
+        }
         PhotonNetwork.LeaveRoom();
     }
     //START THE GAMMMMMME
@@ -335,6 +346,83 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         button.transform.localScale = new Vector3(1, 1, 1);
         button.GetComponent<RectTransform>().localPosition = new Vector3(0, (-80 * i) + 30, 0);
     }
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //Creating the label and assigning it the right spot
+    public void createLabelForPlayer(){
+        GameObject label = PhotonNetwork.Instantiate("GameLabel", ConnectingRoomWindow.transform.position, Quaternion.identity, 0);
+        int view = label.GetPhotonView().viewID;
+        photonView.RPC("fixLabel", PhotonTargets.AllBuffered, new object[] { PhotonNetwork.player, view });
+        if (PhotonNetwork.player.isMasterClient)
+        {
+            createDropDownMenu();
+        }
+    }
+    //number to represent where the label is placed
+    int i = 0;
+    //Fixing the label so everyone can see
+    [RPC]
+    public void fixLabel(PhotonPlayer player, int view)
+    {
+        PhotonView[] views = FindObjectsOfType<PhotonView>();
+        foreach (PhotonView vie in views)
+        {
+            if (vie.viewID == view)
+            {
+                currentPlayerLabels.Add(vie.viewID);
+                GameObject obj = vie.gameObject;
+                obj.transform.parent = ConnectingRoomWindow.transform;
+                obj.transform.localScale = new Vector3(1, 1, 1);
+                obj.GetComponentInChildren<RectTransform>().localPosition = new Vector3(0, (-50 * i) + 120, 0);
+                obj.transform.rotation = new Quaternion(0, 0, 0, 0);
+                if (player.isMasterClient)
+                {
+                    obj.GetComponentInChildren<Text>().text = (i + 1) + ". " + vie.owner.name + " - Master";
+                }
+                else
+                {
+                    obj.GetComponentInChildren<Text>().text = (i + 1) + ". " + vie.owner.name + " - Client";
+                }
+                i++;
+            }
+        }
+    }
+    //for when a player leaves and this needs to be handled
+    [RPC]
+    public void rebuildLabelLobby()
+    {
+        Debug.Log(PhotonNetwork.isMasterClient);
+        int j = 0;
+        PhotonView[] views = FindObjectsOfType<PhotonView>();
+        foreach (PhotonView vie in views)
+        {
+            if (vie.viewID == currentPlayerLabels[j])
+            {
+                Debug.Log(vie.owner);
+                photonView.RPC("fixLabel", PhotonTargets.AllBuffered, new object[] { vie.owner, vie.viewID });
+                j++;
+            }
+        }
+    }
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //Making the drop down menu
+    GameObject dropMenu;
+    public void createDropDownMenu()
+    {
+        dropMenu = PhotonNetwork.InstantiateSceneObject("DropDownButtonMenu", ConnectingRoomWindow.transform.position, Quaternion.identity, 0, null);
+        photonView.RPC("fixDropDown", PhotonTargets.AllBuffered);
+    }
+    //Fixing the drop down menu for everyone
+    [RPC]
+    void fixDropDown()
+    {
+        dropMenu = GameObject.Find("DropDownButtonMenu(Clone)");
+        dropMenu.transform.parent = ConnectingRoomWindow.transform;
+        dropMenu.transform.localScale = new Vector3(1, 1, 1);
+        dropMenu.transform.rotation = new Quaternion(0, 0, 0, 0);
+        dropMenu.GetComponentInChildren<RectTransform>().localPosition = new Vector3(450, 100, 0);
+    }
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //checking to see if the tag is this------------------------------
     public int checkLabels()
     {
         GameObject[] objects = GameObject.FindGameObjectsWithTag("Server_Label");
@@ -344,6 +432,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         }
         return i;
     }
+    //Clear the join game buttons
     public void ClearButtons()
     {
         GameObject[] objects = GameObject.FindGameObjectsWithTag("Server_Button");
@@ -355,6 +444,21 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             }
         }
     }
+    //Deleting player labels
+    public void DeleteLabels()
+    {
+        GameObject[] objects = GameObject.FindGameObjectsWithTag("Server_Label");
+        if (objects == null)
+        {
+            return;
+        }
+        i = 0;
+        foreach (GameObject obj in objects)
+        {
+            Destroy(obj);
+        }
+    }
+    //Represent a buttonclick for the server join game button
     public void ServerButtonClick(RoomInfo roomInfo)
     {
         if(roomInfo.playerCount < roomInfo.maxPlayers){
@@ -439,11 +543,50 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         foreach (PhotonPlayer player in PhotonNetwork.playerList)
         {
             rndTeam = Random.Range(0, j);
-            Debug.Log(rndTeam);
             hash.Add("Team", teams[rndTeam]);
             teams.RemoveAt(rndTeam);
             PhotonNetwork.player.SetCustomProperties(hash);
             j--;
         }
+    }
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //We are making the drop down menu for our players choice of who to play
+    GameObject[] labels;
+    [RPC]
+    public void ChangeColor(GameObject button)
+    {
+
+        labels = GameObject.FindGameObjectsWithTag("Server_Label");
+        foreach(GameObject obj in labels){
+            if(obj.GetComponent<PhotonView>().isMine)
+            {
+                Debug.Log(PhotonNetwork.player + obj.name);
+                //Get the string we have to change its value every press
+                string oldText = obj.GetComponentInChildren<Text>().text;
+                //get the last index
+                int lastChar = oldText.LastIndexOf(oldText);
+                //make new string and replace
+                obj.GetComponentInChildren<Text>().text.Replace(oldText,oldText + button.GetComponentInChildren<Text>().text);
+                //change color of the label
+                obj.GetComponentInChildren<Image>().color = button.GetComponentInChildren<Image>().color;
+            }
+        }
+    }
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //Select a random photon player to become master
+    public PhotonPlayer chooseRandomPlayer()
+    {
+        int randCounter = 0;
+        int randNum = Random.Range(0,PhotonNetwork.playerList.Length);
+        foreach(PhotonPlayer player in PhotonNetwork.playerList){
+            if(player != PhotonNetwork.masterClient && randNum == randCounter){
+                Debug.Log(player);
+                return player;
+            }
+            randCounter++;
+        }
+        return null;
     }
 }

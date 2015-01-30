@@ -7293,9 +7293,9 @@ RectTransform:
   - {fileID: 1412054273}
   - {fileID: 2105443689}
   - {fileID: 202435381}
+  - {fileID: 1747188013}
   - {fileID: 679887388}
   - {fileID: 2064796640}
-  - {fileID: 1747188013}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
@@ -7750,12 +7750,12 @@ MonoBehaviour:
   group: 0
   prefixBackup: -1
   observed: {fileID: 0}
-  synchronization: 3
+  synchronization: 0
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 579180479}
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 3
   instantiationId: 3
@@ -8590,7 +8590,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 557638313}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!114 &679887389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8762,6 +8762,7 @@ MonoBehaviour:
   connected: 0
   StartTheGameButton: {fileID: 871808165}
   gameMode: 
+  currentPlayerLabels: 
   teams: []
 --- !u!114 &705136059
 MonoBehaviour:
@@ -13061,7 +13062,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22400004, guid: 05a81c3d5091440058129444d28322f3, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 05a81c3d5091440058129444d28322f3, type: 2}
       propertyPath: m_Navigation.m_Mode
@@ -16558,7 +16559,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22400002, guid: a93c012dd9ef6454fa7d140e976926f7, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a93c012dd9ef6454fa7d140e976926f7, type: 2}
@@ -20071,7 +20072,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22400004, guid: 05a81c3d5091440058129444d28322f3, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 05a81c3d5091440058129444d28322f3, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -21128,7 +21129,6 @@ GameObject:
   - 95: {fileID: 1747188014}
   - 223: {fileID: 1747188016}
   - 114: {fileID: 1747188015}
-  - 114: {fileID: 1747188017}
   m_Layer: 5
   m_Name: ConnectingToRoom
   m_TagString: Flashing_Window
@@ -21148,10 +21148,10 @@ RectTransform:
   m_Children:
   - {fileID: 1824121274}
   m_Father: {fileID: 557638313}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -200, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!95 &1747188014
@@ -21202,30 +21202,6 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!114 &1747188017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1747188012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  prefixBackup: -1
-  observed: {fileID: 0}
-  synchronization: 3
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 1747188013}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 1
-  instantiationId: 1
 --- !u!1 &1748252060
 GameObject:
   m_ObjectHideFlags: 0
@@ -22007,6 +21983,7 @@ GameObject:
   - 114: {fileID: 1824121276}
   - 114: {fileID: 1824121275}
   - 114: {fileID: 1824121279}
+  - 114: {fileID: 1824121280}
   m_Layer: 5
   m_Name: ConnectingWindow
   m_TagString: ConnectingWindow
@@ -22092,13 +22069,37 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1824121273}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b826fb1785f0f624bba78a471b906b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dropDownMenu: {fileID: 151352, guid: 3db71c66beb6b7b499f38c6e3f6d3c52, type: 2}
   previousPlayerAmount: 0
+--- !u!114 &1824121280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1824121273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 1
+  instantiationId: 1
 --- !u!1 &1839737116
 GameObject:
   m_ObjectHideFlags: 0
@@ -25050,7 +25051,7 @@ RectTransform:
   m_Children:
   - {fileID: 734512933}
   m_Father: {fileID: 557638313}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -26474,7 +26475,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22437686, guid: 8914a2a1ea91914408d2b4ba1dc55c2c, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 22437686, guid: 8914a2a1ea91914408d2b4ba1dc55c2c, type: 2}
       propertyPath: m_AnchoredPosition.x

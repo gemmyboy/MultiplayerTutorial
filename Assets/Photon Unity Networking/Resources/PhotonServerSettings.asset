@@ -41,4 +41,7 @@ MonoBehaviour:
   - fadeScreen
   - FixScreen
   - closePanelForPlayers
+  - ChangeColor
+  - fixDropDown
+  - rebuildLabelLobby
   DisableAutoOpenWizard: 0
