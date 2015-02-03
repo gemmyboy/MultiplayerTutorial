@@ -33,7 +33,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     public Animator NetworkAnimator;
     public Animator RefreshListAnimator;
     public PanelManager pm;
-    public LobbyNetworkManager lobbyManager;
     //Displaying labels and placeholders via PhotonNetworking
     public GameObject inputNamePlaceHolder;
     public GameObject displayPlayersOnlineLabel;
@@ -268,21 +267,26 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     public void OnLeftRoom()
     {
         Debug.Log("Disconnected From Room");
-        lobbyManager.previousPlayerAmount = 0;
         pm.OpenPanel(NetworkAnimator);
     }
 
     public void DisconnectFromRoom()
     {
-        i = 0;
-        currentPlayerLabels.Clear();
         if(PhotonNetwork.playerList.Length > 1){
-            PhotonNetwork.SetMasterClient(chooseRandomPlayer());
-            photonView.RPC("rebuildLabelLobby", PhotonTargets.Others);
+            if(PhotonNetwork.player.isMasterClient){
+                PhotonNetwork.Destroy(dropMenu); 
+                PhotonNetwork.SetMasterClient(chooseRandomPlayer());
+                i = 0;
+                photonView.RPC("rebuildLabelLobby", PhotonTargets.Others);
+            }
+            else
+            {
+                photonView.RPC("rebuildLabelLobby", PhotonTargets.Others);
+            }
         }
         else
         {
-            Destroy(dropMenu);
+            PhotonNetwork.Destroy(dropMenu);
         }
         PhotonNetwork.LeaveRoom();
     }
@@ -351,38 +355,39 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     public void createLabelForPlayer(){
         GameObject label = PhotonNetwork.Instantiate("GameLabel", ConnectingRoomWindow.transform.position, Quaternion.identity, 0);
         int view = label.GetPhotonView().viewID;
-        photonView.RPC("fixLabel", PhotonTargets.AllBuffered, new object[] { PhotonNetwork.player, view });
+        photonView.RPC("fixLabel", PhotonTargets.AllBuffered, new object[] { PhotonNetwork.player,view});
         if (PhotonNetwork.player.isMasterClient)
         {
             createDropDownMenu();
         }
     }
     //number to represent where the label is placed
-    int i = 0;
+    int i = 1;
     //Fixing the label so everyone can see
     [RPC]
-    public void fixLabel(PhotonPlayer player, int view)
+    public void fixLabel(PhotonPlayer player,int view)
     {
         PhotonView[] views = FindObjectsOfType<PhotonView>();
         foreach (PhotonView vie in views)
         {
             if (vie.viewID == view)
             {
-                currentPlayerLabels.Add(vie.viewID);
+                //currentPlayerLabels.Add(vie.viewID);
                 GameObject obj = vie.gameObject;
                 obj.transform.parent = ConnectingRoomWindow.transform;
                 obj.transform.localScale = new Vector3(1, 1, 1);
-                obj.GetComponentInChildren<RectTransform>().localPosition = new Vector3(0, (-50 * i) + 120, 0);
                 obj.transform.rotation = new Quaternion(0, 0, 0, 0);
                 if (player.isMasterClient)
                 {
+                    obj.GetComponentInChildren<RectTransform>().localPosition = new Vector3(0, 120, 0);
                     obj.GetComponentInChildren<Text>().text = (i + 1) + ". " + vie.owner.name + " - Master";
                 }
                 else
                 {
-                    obj.GetComponentInChildren<Text>().text = (i + 1) + ". " + vie.owner.name + " - Client";
+                    obj.GetComponentInChildren<RectTransform>().localPosition = new Vector3(0, (-50 * i) + 120, 0);
+                    obj.GetComponentInChildren<Text>().text = (i+1) + ". " + vie.owner.name + " - Client";
+                    i++;
                 }
-                i++;
             }
         }
     }
@@ -390,18 +395,10 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     [RPC]
     public void rebuildLabelLobby()
     {
-        Debug.Log(PhotonNetwork.isMasterClient);
-        int j = 0;
-        PhotonView[] views = FindObjectsOfType<PhotonView>();
-        foreach (PhotonView vie in views)
-        {
-            if (vie.viewID == currentPlayerLabels[j])
-            {
-                Debug.Log(vie.owner);
-                photonView.RPC("fixLabel", PhotonTargets.AllBuffered, new object[] { vie.owner, vie.viewID });
-                j++;
-            }
-        }
+        DeleteLabels();
+        //currentPlayerLabels.Clear();
+        i = 1;
+        createLabelForPlayer();
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Making the drop down menu
@@ -455,7 +452,9 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         i = 0;
         foreach (GameObject obj in objects)
         {
-            Destroy(obj);
+            if(obj.GetComponent<PhotonView>().isMine){
+                PhotonNetwork.Destroy(obj);
+            }
         }
     }
     //Represent a buttonclick for the server join game button
@@ -556,7 +555,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     public void ChangeColor(GameObject button)
     {
 
-        labels = GameObject.FindGameObjectsWithTag("Server_Label");
+        labels = GameObject.FindGameObjectsWithTag("DropDownButton");
         foreach(GameObject obj in labels){
             if(obj.GetComponent<PhotonView>().isMine)
             {
