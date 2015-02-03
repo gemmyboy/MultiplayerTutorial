@@ -50,8 +50,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     public GameObject StartTheGameButton;
     //used for the start of the game. which mode to use
     public string gameMode = "";
-    //Rebuilding the lobby when host leaves
-    public List<int> currentPlayerLabels;
     //---------------------------------------------------------------------------------------
     //Used for Connections
     private bool connectFailed = false;
@@ -90,7 +88,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
 
         // if you wanted more debug out, turn this on:
         // PhotonNetwork.logLevel = NetworkLogLevel.Full;
-        currentPlayerLabels = new List<int>();
     }
     void Update()
     {
@@ -295,7 +292,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     {
         photonView.RPC("closePanelForPlayers",PhotonTargets.All);
         PhotonNetwork.room.open = false;
-        setUpTeams();
+        //setUpTeams();
         StartCoroutine(ShootOffPods());
     }
     [RPC]
@@ -380,7 +377,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
                 if (player.isMasterClient)
                 {
                     obj.GetComponentInChildren<RectTransform>().localPosition = new Vector3(0, 120, 0);
-                    obj.GetComponentInChildren<Text>().text = (i + 1) + ". " + vie.owner.name + " - Master";
+                    obj.GetComponentInChildren<Text>().text = "1. " + vie.owner.name + " - Master";
                 }
                 else
                 {
@@ -396,7 +393,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     public void rebuildLabelLobby()
     {
         DeleteLabels();
-        //currentPlayerLabels.Clear();
         i = 1;
         createLabelForPlayer();
     }
@@ -533,41 +529,38 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //This is only for omega tanks. We need to split the teams up. Or we could use it for FFO. it doesnt matter
     public List<string> teams;
-    public void setUpTeams()
+    public void setUpTeams_FOF()
     {
-        teams = new List<string>() { "Red", "Blue", "Green", "Yellow" };
+        //setup list and hash
+        teams = new List<string>() { "Skulls", "Tiger", "Wolves", "Angel" };
         ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
-        int j = 4;
-        int rndTeam;
-        foreach (PhotonPlayer player in PhotonNetwork.playerList)
-        {
-            rndTeam = Random.Range(0, j);
-            hash.Add("Team", teams[rndTeam]);
-            teams.RemoveAt(rndTeam);
-            PhotonNetwork.player.SetCustomProperties(hash);
-            j--;
-        }
+        //add the team to the hash
+        //hash.Add("Team", teams[]);
+        PhotonNetwork.player.SetCustomProperties(hash);
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //We are making the drop down menu for our players choice of who to play
     GameObject[] labels;
+    public Color buttonColor;
     [RPC]
-    public void ChangeColor(GameObject button)
+    public void ChangeColor(int labelView, int myButtonView)
     {
-
-        labels = GameObject.FindGameObjectsWithTag("DropDownButton");
-        foreach(GameObject obj in labels){
-            if(obj.GetComponent<PhotonView>().isMine)
+        PhotonView[] views = FindObjectsOfType<PhotonView>();
+        foreach (PhotonView vie in views)
+        {
+            if (vie.viewID == myButtonView)
             {
-                Debug.Log(PhotonNetwork.player + obj.name);
-                //Get the string we have to change its value every press
-                string oldText = obj.GetComponentInChildren<Text>().text;
-                //get the last index
-                int lastChar = oldText.LastIndexOf(oldText);
-                //make new string and replace
-                obj.GetComponentInChildren<Text>().text.Replace(oldText,oldText + button.GetComponentInChildren<Text>().text);
-                //change color of the label
-                obj.GetComponentInChildren<Image>().color = button.GetComponentInChildren<Image>().color;
+                buttonColor = vie.GetComponentInChildren<Image>().color;
+            }
+        }
+
+        foreach (PhotonView vie in views)
+        {
+            if(vie.viewID == labelView){
+                vie.GetComponentInChildren<Image>().color = buttonColor;
+                if(vie.isMine){
+                    setUpTeams_FOF();
+                }
             }
         }
     }

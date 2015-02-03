@@ -9,20 +9,40 @@ using System.Collections.Generic;
 public class addListener : MonoBehaviour {
     Start_Menu_Server_Check networkCheck;
     public List<GameObject> buttons;
-    public PhotonView view;
+
+    public PhotonView otherView;
+    PhotonView myView;
+
+    int myLabelViewID;
+    int myButtonViewID;
+
     void Start()
     {
-        view = GameObject.Find("NetworkManager").GetComponent<PhotonView>();
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("DropDownButton");
-        foreach(GameObject obj in objs){
-            buttons.Add(obj);
-        }
-        networkCheck = FindObjectOfType<Start_Menu_Server_Check>();
-        gameObject.GetComponent<Button>().onClick.AddListener(delegate {  view.RPC("ChangeColor",PhotonTargets.AllBuffered);});
+        setUp();
+        //call RPC function
+        gameObject.GetComponent<Button>().onClick.AddListener(delegate { otherView.RPC("ChangeColor", PhotonTargets.AllBuffered, myLabelViewID, myButtonViewID); });
     }
 
-    void OnClick()
+    public void setUp()
     {
-        
+        //set up variables
+        otherView = GameObject.Find("NetworkManager").GetComponent<PhotonView>();
+        networkCheck = FindObjectOfType<Start_Menu_Server_Check>();
+        myView = GetComponent<PhotonView>();
+
+        //Get the button view
+        myButtonViewID = myView.viewID;
+
+        //find the label viewID we want to change and send it to the RPC function in Start_Menu_Server_Check
+        PhotonView[] views = FindObjectsOfType<PhotonView>();
+        foreach (PhotonView vie in views)
+        {
+            //Debug.Log(vie.name);
+            if (vie.isMine && vie.name == "GameLabel(Clone)")
+            {
+                myLabelViewID = vie.viewID;
+            }
+        }
+
     }
 }
