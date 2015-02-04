@@ -42,7 +42,7 @@ public class DropDownMenu : MonoBehaviour {
         }
         if (wantToClose)
         {
-            anim.gameObject.SetActive(false);
+            Destroy(anim.gameObject);
         }
 
     }

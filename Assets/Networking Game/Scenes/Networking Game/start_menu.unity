@@ -8763,6 +8763,8 @@ MonoBehaviour:
   gameMode: 
   teams: []
   buttonColor: {r: 0, g: 0, b: 0, a: 0}
+  myLabelViewID: 0
+  myButtonViewID: 0
 --- !u!114 &705136059
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -542,6 +542,9 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     //We are making the drop down menu for our players choice of who to play
     GameObject[] labels;
     public Color buttonColor;
+
+    public int myLabelViewID;
+    public int myButtonViewID;
     [RPC]
     public void ChangeColor(int labelView, int myButtonView)
     {
@@ -551,6 +554,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             if (vie.viewID == myButtonView)
             {
                 buttonColor = vie.GetComponentInChildren<Image>().color;
+                Debug.Log(buttonColor);
             }
         }
 
