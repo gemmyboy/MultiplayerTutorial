@@ -45,4 +45,10 @@ public class addListener : MonoBehaviour {
         }
 
     }
+
+    void OnClick()
+    {
+        gameObject.SendMessageUpwards("CloseMenu",SendMessageOptions.RequireReceiver);
+        GetComponent<Animator>().enabled = false;
+    }
 }

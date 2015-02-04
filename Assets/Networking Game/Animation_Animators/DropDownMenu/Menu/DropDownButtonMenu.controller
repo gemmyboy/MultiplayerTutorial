@@ -244,6 +244,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+  - m_Name: Closing
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 3
     m_Name: Base Layer
@@ -290,6 +296,30 @@ Transition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: isOpen
+    m_EventTreshold: 0
+    m_ExitTime: .75
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1101 &110145964
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110290034}
+  m_DstState: {fileID: 110248040}
+  m_TransitionDuration: .25
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: Closing
+    m_EventTreshold: 0
+    m_ExitTime: .75
+  - m_ConditionMode: 5
+    m_ConditionEvent: Closing
     m_EventTreshold: 0
     m_ExitTime: .75
   m_Atomic: 1
@@ -384,13 +414,14 @@ StateMachine:
       second:
       - {fileID: 110131844}
     data:
-      first: {fileID: 110251022}
-      second:
-      - {fileID: 110100370}
-    data:
       first: {fileID: 110290034}
       second:
       - {fileID: 110146528}
+      - {fileID: 110145964}
+    data:
+      first: {fileID: 110251022}
+      second:
+      - {fileID: 110100370}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: -12, y: 36, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

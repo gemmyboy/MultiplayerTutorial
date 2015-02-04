@@ -18,4 +18,33 @@ public class DropDownMenu : MonoBehaviour {
             anim.SetBool("isOpen", true);
         }
     }
+
+    public void CloseMenu()
+    {
+        GetComponent<Animator>().SetBool("isOpen",false);
+        GetComponent<Animator>().SetBool("Closing", true);
+        StartCoroutine(DisablePanelDeleyed(gameObject.GetComponent<Animator>()));
+
+    }
+
+    public IEnumerator DisablePanelDeleyed(Animator anim)
+    {
+        bool closedStateReached = false;
+        bool wantToClose = true;
+        while (!closedStateReached && wantToClose)
+        {
+            if (!anim.IsInTransition(0))
+                closedStateReached = anim.GetCurrentAnimatorStateInfo(0).IsName("Closed");
+
+            wantToClose = anim.GetBool("Closing");
+
+            yield return new WaitForEndOfFrame();
+        }
+        if (wantToClose)
+        {
+            anim.gameObject.SetActive(false);
+        }
+
+    }
+
 }
