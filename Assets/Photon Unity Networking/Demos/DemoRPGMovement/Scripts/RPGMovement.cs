@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Photon;
+
 [RequireComponent( typeof( CharacterController ) )]
-public class RPGMovement : PunBehaviour 
+public class RPGMovement : MonoBehaviour 
 {
     public float ForwardSpeed;
     public float BackwardSpeed;
@@ -18,6 +18,7 @@ public class RPGMovement : PunBehaviour
     float m_AnimatorSpeed;
     Vector3 m_CurrentMovement;
     float m_CurrentTurnSpeed;
+
     void Start() 
     {
         m_CharacterController = GetComponent<CharacterController>();

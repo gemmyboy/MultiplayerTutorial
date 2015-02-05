@@ -13,3 +13,5 @@ EditorBuildSettings:
     path: Assets/Networking Game/Scenes/OmegaTankScene.unity
   - enabled: 1
     path: Assets/Physics Based Tank Controller/Scene/Demo Scene.unity
+  - enabled: 1
+    path: Assets/Photon Unity Networking/Demos/DemoRPGMovement/DemoRPGMovement-Scene.unity
