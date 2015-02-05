@@ -50,6 +50,8 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     public GameObject StartTheGameButton;
     //used for the start of the game. which mode to use
     public string gameMode = "";
+    //Photon View ID for the label you own
+    public int myLabelViewID;
     //---------------------------------------------------------------------------------------
     //Used for Connections
     private bool connectFailed = false;
@@ -351,8 +353,8 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     //Creating the label and assigning it the right spot
     public void createLabelForPlayer(){
         GameObject label = PhotonNetwork.Instantiate("GameLabel", ConnectingRoomWindow.transform.position, Quaternion.identity, 0);
-        int view = label.GetPhotonView().viewID;
-        photonView.RPC("fixLabel", PhotonTargets.AllBuffered, new object[] { PhotonNetwork.player,view});
+        myLabelViewID = label.GetPhotonView().viewID;
+        photonView.RPC("fixLabel", PhotonTargets.AllBuffered, new object[] { PhotonNetwork.player, myLabelViewID });
         if (PhotonNetwork.player.isMasterClient)
         {
             createDropDownMenu();
@@ -543,15 +545,14 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     GameObject[] labels;
     public Color buttonColor;
 
-    public int myLabelViewID;
-    public int myButtonViewID;
     [RPC]
-    public void ChangeColor(int labelView, int myButtonView)
+    public void ChangeColor(int myButtonViewID)
     {
+        Debug.Log(myButtonViewID);
         PhotonView[] views = FindObjectsOfType<PhotonView>();
         foreach (PhotonView vie in views)
         {
-            if (vie.viewID == myButtonView)
+            if (vie.viewID == myButtonViewID)
             {
                 buttonColor = vie.GetComponentInChildren<Image>().color;
                 Debug.Log(buttonColor);
@@ -560,10 +561,11 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
 
         foreach (PhotonView vie in views)
         {
-            if(vie.viewID == labelView){
+            if (vie.viewID == myLabelViewID)
+            {
                 vie.GetComponentInChildren<Image>().color = buttonColor;
                 if(vie.isMine){
-                    setUpTeams_FOF();
+                    //setUpTeams_FOF();
                 }
             }
         }

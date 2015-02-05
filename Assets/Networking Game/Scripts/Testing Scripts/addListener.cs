@@ -13,10 +13,13 @@ public class addListener : MonoBehaviour {
     public PhotonView otherView;
     PhotonView myView;
 
+    void Start()
+    {
+        otherView = GameObject.Find("NetworkManager").GetComponent<PhotonView>();
+    }
     public void setUp()
     {
         ////set up variables
-        //otherView = GameObject.Find("NetworkManager").GetComponent<PhotonView>();
         //networkCheck = FindObjectOfType<Start_Menu_Server_Check>();
         //myView = GetComponent<PhotonView>();
 
@@ -36,10 +39,11 @@ public class addListener : MonoBehaviour {
 
     }
 
-    void OnClick()
+    public void onClick()
     {
+        Debug.Log(gameObject.GetComponent<PhotonView>().viewID);
         //Send the message to change the color of that shit
-        otherView.RPC("ChangeColor", PhotonTargets.AllBuffered);
+        //otherView.RPC("ChangeColor", PhotonTargets.AllBuffered,GetComponent<PhotonView>().viewID);
         //we need to close that menu yo
         gameObject.SendMessageUpwards("CloseMenu",SendMessageOptions.RequireReceiver);
         GetComponent<Animator>().enabled = false;
