@@ -132,7 +132,7 @@ public class MainFixedCam : MonoBehaviour {
 			cams = GetComponentsInChildren<Camera>();
 			for(int i = 0; i < cams.Length; i ++){
 				Gizmos.matrix = cams[i].transform.localToWorldMatrix;
-				Gizmos.color = new Color(1, 0, 0, 0.5F);
+				Gizmos.color = new Color(1, 1, 0, 0.5F);
 				Gizmos.DrawCube(Vector3.zero,new Vector3(distanceLimit * 2, distanceLimit / 2, distanceLimit * 2));
 			}
 		}
