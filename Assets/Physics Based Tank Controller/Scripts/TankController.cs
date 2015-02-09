@@ -95,7 +95,7 @@
             SetStiffness();
 
             if (WheelSlipPrefab)
-                //SmokeInit();
+                SmokeInit();
 
             dynamicCOM = new GameObject("Dynamic Com").transform;
             dynamicCOM.parent = transform;
