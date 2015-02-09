@@ -3,28 +3,11 @@ using System.Collections;
 
 public class ThirdPersonNetwork : Photon.MonoBehaviour
 {
-    ThirdPersonCamera cameraScript;
-    ThirdPersonController controllerScript;
+    TankController controllerScript;
 
     void Awake()
     {
-        cameraScript = GetComponent<ThirdPersonCamera>();
-        controllerScript = GetComponent<ThirdPersonController>();
-
-         if (photonView.isMine)
-        {
-            //MINE: local player, simply enable the local scripts
-            cameraScript.enabled = true;
-            controllerScript.enabled = true;
-        }
-        else
-        {           
-            cameraScript.enabled = false;
-
-            controllerScript.enabled = true;
-            controllerScript.isControllable = false;
-        }
-
+        controllerScript = GetComponent<TankController>();
         gameObject.name = gameObject.name + photonView.viewID;
     }
 
@@ -33,14 +16,12 @@ public class ThirdPersonNetwork : Photon.MonoBehaviour
         if (stream.isWriting)
         {
             //We own this player: send the others our data
-            stream.SendNext((int)controllerScript._characterState);
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation); 
         }
         else
         {
             //Network player, receive data
-            controllerScript._characterState = (CharacterState)(int)stream.ReceiveNext();
             correctPlayerPos = (Vector3)stream.ReceiveNext();
             correctPlayerRot = (Quaternion)stream.ReceiveNext();
         }

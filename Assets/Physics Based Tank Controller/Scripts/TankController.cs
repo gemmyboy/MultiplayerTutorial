@@ -95,7 +95,7 @@
             SetStiffness();
 
             if (WheelSlipPrefab)
-                SmokeInit();
+                //SmokeInit();
 
             dynamicCOM = new GameObject("Dynamic Com").transform;
             dynamicCOM.parent = transform;
@@ -263,7 +263,7 @@
             Engine();
             ShiftGears();
             Bools();
-            SmokeInstantiateRate();
+            //SmokeInstantiateRate();
 
             Speed = rigidbody.velocity.magnitude * 3.6f;
 

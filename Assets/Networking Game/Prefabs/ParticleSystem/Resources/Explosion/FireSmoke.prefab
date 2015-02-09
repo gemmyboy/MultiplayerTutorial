@@ -8,22 +8,18 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
-  - 114: {fileID: 11400000}
   - 114: {fileID: 11400016}
+  - 114: {fileID: 11400022}
+  - 114: {fileID: 11400020}
+  - 114: {fileID: 11400018}
   - 114: {fileID: 11400014}
-  - 114: {fileID: 11400010}
-  - 114: {fileID: 11400008}
-  - 114: {fileID: 11400006}
   m_Layer: 0
-  m_Name: Explosion (Detonator)
+  m_Name: FireSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1002 &100001
-EditorExtensionImpl:
-  serializedVersion: 6
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -31,15 +27,52 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 506.279907, y: 89.4920273, z: 188.221771}
+  m_LocalPosition: {x: 569.375916, y: 0, z: 385.95755}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!1002 &400001
-EditorExtensionImpl:
-  serializedVersion: 6
---- !u!114 &11400000
+--- !u!114 &11400014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8966b5c4c1545d741a2a90a4a01e7f83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  on: 1
+  detonatorControlled: 1
+  startSize: 1
+  size: 10
+  explodeDelayMin: 0
+  explodeDelayMax: 0
+  startDuration: 2
+  duration: .200000003
+  timeScale: 1.09906089
+  startDetail: 1
+  detail: 1
+  startColor:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  color:
+    r: 1
+    g: .795753896
+    b: .53725493
+    a: .751387954
+  startLocalPosition: {x: 0, y: 0, z: 0}
+  localPosition: {x: 0, y: 0, z: 0}
+  startForce: {x: 0, y: 0, z: 0}
+  force: {x: 0, y: 0, z: 20}
+  startVelocity: {x: 0, y: 0, z: 0}
+  velocity: {x: 0, y: 0, z: 100}
+  detailThreshold: 0
+  intensity: 1
+--- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -50,19 +83,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4007f1233a9b74fa9be42583fafba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 50
+  size: 15
   color:
     r: 1
-    g: .473427951
-    b: .132352948
-    a: .545098066
+    g: .558620691
+    b: 0
+    a: .4627451
   explodeOnStart: 1
   duration: 3.2971828
   detail: 1
-  upwardsBias: 0
+  upwardsBias: 3
   destroyTime: 7
-  useWorldSpace: 1
-  direction: {x: 0, y: 0, z: 0}
+  useWorldSpace: 0
+  direction: {x: 0, y: 0, z: 100}
   fireballAMaterial: {fileID: 0}
   fireballBMaterial: {fileID: 0}
   smokeAMaterial: {fileID: 0}
@@ -79,53 +112,7 @@ MonoBehaviour:
   autoCreateLight: 0
   autoCreateForce: 0
   autoCreateHeatwave: 0
---- !u!1002 &11400001
-EditorExtensionImpl:
-  serializedVersion: 6
---- !u!1002 &11400003
-EditorExtensionImpl:
-  serializedVersion: 6
---- !u!114 &11400006
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8966b5c4c1545d741a2a90a4a01e7f83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  on: 1
-  detonatorControlled: 0
-  startSize: 1
-  size: 1
-  explodeDelayMin: 0
-  explodeDelayMax: 0
-  startDuration: 2
-  duration: 2
-  timeScale: 1.09906089
-  startDetail: 1
-  detail: 1
-  startColor:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  color:
-    r: 1
-    g: .712966621
-    b: .527047276
-    a: .75203383
-  startLocalPosition: {x: 0, y: 0, z: 0}
-  localPosition: {x: 0, y: 0, z: 0}
-  startForce: {x: 0, y: 0, z: 0}
-  force: {x: 0, y: 0, z: 0}
-  startVelocity: {x: 0, y: 0, z: 0}
-  velocity: {x: 0, y: 0, z: 0}
-  detailThreshold: 0
-  intensity: 1
---- !u!114 &11400008
+--- !u!114 &11400018
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -137,13 +124,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   on: 1
-  detonatorControlled: 0
+  detonatorControlled: 1
   startSize: 1
   size: 1
   explodeDelayMin: 0
   explodeDelayMax: 0
   startDuration: 1
-  duration: 1
+  duration: .200000003
   timeScale: 1.09906089
   startDetail: 1
   detail: 1
@@ -153,60 +140,19 @@ MonoBehaviour:
     b: 0
     a: 1
   color:
-    r: .545098066
-    g: .258064657
-    b: .0721453354
-    a: .75203383
+    r: .4627451
+    g: .258498996
+    b: 0
+    a: .751387954
   startLocalPosition: {x: 0, y: 0, z: 0}
   localPosition: {x: 0, y: 0, z: 0}
   startForce: {x: 0, y: 0, z: 0}
-  force: {x: 0, y: 0, z: 0}
+  force: {x: 0, y: 0, z: 20}
   startVelocity: {x: 0, y: 0, z: 0}
-  velocity: {x: 0, y: 0, z: 0}
+  velocity: {x: 0, y: 0, z: 100}
   detailThreshold: 0
-  glowMaterial: {fileID: 2100000, guid: b4d8055067ce04d4c98367d69c10b358, type: 2}
---- !u!114 &11400010
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 745312967000e3c449713c45a6a516f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  on: 1
-  detonatorControlled: 0
-  startSize: 1
-  size: 1
-  explodeDelayMin: 0
-  explodeDelayMax: 0
-  startDuration: .25
-  duration: .25
-  timeScale: 1.09906089
-  startDetail: 1
-  detail: 1
-  startColor:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  color:
-    r: 1
-    g: .712966621
-    b: .527047276
-    a: .75203383
-  startLocalPosition: {x: 0, y: 0, z: 0}
-  localPosition: {x: 0, y: 0, z: 0}
-  startForce: {x: 0, y: 0, z: 0}
-  force: {x: 0, y: 0, z: 0}
-  startVelocity: {x: 0, y: 0, z: 0}
-  velocity: {x: 0, y: 0, z: 0}
-  detailThreshold: 0
-  shockwaveMaterial: {fileID: 0}
-  renderMode: 0
---- !u!114 &11400014
+  glowMaterial: {fileID: 0}
+--- !u!114 &11400020
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -220,7 +166,7 @@ MonoBehaviour:
   on: 1
   detonatorControlled: 0
   startSize: 1
-  size: 1
+  size: .349999994
   explodeDelayMin: 0
   explodeDelayMax: 0
   startDuration: 8
@@ -234,22 +180,22 @@ MonoBehaviour:
     b: .5
     a: .5
   color:
-    r: .772549033
-    g: .485515624
-    b: .29959631
-    a: .524582863
+    r: .731372535
+    g: .527126431
+    b: .268627465
+    a: .482760489
   startLocalPosition: {x: 0, y: 0, z: 0}
   localPosition: {x: 0, y: 0, z: 0}
   startForce: {x: 0, y: 0, z: 0}
   force: {x: 0, y: 0, z: 0}
   startVelocity: {x: 3, y: 3, z: 3}
-  velocity: {x: 1, y: 1, z: 1}
+  velocity: {x: 1, y: 1, z: 100}
   detailThreshold: 0
-  smokeAMaterial: {fileID: 0}
-  smokeBMaterial: {fileID: 0}
+  smokeAMaterial: {fileID: 2100000, guid: 36aa334bd0865ca459c9b3dfbbaf7198, type: 2}
+  smokeBMaterial: {fileID: 2100000, guid: f892253ab15f74115b6d10bd736b2e29, type: 2}
   drawSmokeA: 1
   drawSmokeB: 1
---- !u!114 &11400016
+--- !u!114 &11400022
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -261,13 +207,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   on: 1
-  detonatorControlled: 0
+  detonatorControlled: 1
   startSize: 1
-  size: 1
+  size: .5
   explodeDelayMin: 0
   explodeDelayMax: 0
   startDuration: 3
-  duration: 3
+  duration: .200000003
   timeScale: 1.09906089
   startDetail: 1
   detail: 1
@@ -278,15 +224,15 @@ MonoBehaviour:
     a: .5
   color:
     r: 1
-    g: .45048818
-    b: .0721453354
-    a: .524582863
+    g: .485757828
+    b: 0
+    a: .482760489
   startLocalPosition: {x: 0, y: 0, z: 0}
   localPosition: {x: 0, y: 0, z: 0}
   startForce: {x: 0, y: 0, z: 0}
   force: {x: 0, y: 0, z: 0}
   startVelocity: {x: 60, y: 60, z: 60}
-  velocity: {x: 20, y: 20, z: 20}
+  velocity: {x: 12, y: 12, z: 150}
   detailThreshold: 0
   fireballAMaterial: {fileID: 0}
   fireballBMaterial: {fileID: 0}
@@ -306,6 +252,3 @@ Prefab:
   m_RootGameObject: {fileID: 100000}
   m_IsPrefabParent: 1
   m_IsExploded: 1
---- !u!1002 &100100001
-EditorExtensionImpl:
-  serializedVersion: 6
