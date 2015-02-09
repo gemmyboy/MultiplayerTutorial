@@ -560,8 +560,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     [RPC]
     public void ChangeColor(int myButtonViewID, int LabelView)
     {
-        Debug.Log("Label: " + LabelView);
-        Debug.Log("Button: " + myButtonViewID);
         Color buttonColor = Color.blue;
 
         PhotonView[] views = FindObjectsOfType<PhotonView>();
