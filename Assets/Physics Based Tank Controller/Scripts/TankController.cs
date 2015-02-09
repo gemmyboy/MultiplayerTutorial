@@ -252,18 +252,14 @@
 	}
 
 	void Update(){
-        if (m_PhotonView.isMine)
-        {
-            WheelAlign();
-        }
-
+            //WheelAlign();
 	}
 		
 	void  FixedUpdate (){
 
         if (m_PhotonView.isMine)
         {
-            AnimateGears();
+            //AnimateGears();
             Engine();
             ShiftGears();
             Bools();
@@ -426,55 +422,64 @@
 	}
 
 	void  WheelAlign (){
+        if (m_PhotonView.isMine)
+        {
+            RaycastHit hit;
+            WheelHit CorrespondingGroundHit;
 
-		RaycastHit hit;
-		WheelHit CorrespondingGroundHit;
-		
-			
-			//Right Wheels Transform.
-		for(int k = 0; k < WheelColliders_R.Length; k++){
-			
-			Vector3 ColliderCenterPoint = WheelColliders_R[k].transform.TransformPoint( WheelColliders_R[k].center );
-			
-			if ( Physics.Raycast( ColliderCenterPoint, -WheelColliders_R[k].transform.up, out hit, (WheelColliders_R[k].suspensionDistance + WheelColliders_R[k].radius) * transform.localScale.y) ) {
-				WheelTransform_R[k].transform.position = hit.point + (WheelColliders_R[k].transform.up * WheelColliders_R[k].radius) * transform.localScale.y;
-				TrackBoneTransform_R[k].transform.position = hit.point + (WheelColliders_R[k].transform.up * trackOffset) * transform.localScale.y;
-			}else{
-				WheelTransform_R[k].transform.position = ColliderCenterPoint - (WheelColliders_R[k].transform.up * WheelColliders_R[k].suspensionDistance) * transform.localScale.y;
-				TrackBoneTransform_R[k].transform.position = ColliderCenterPoint - (WheelColliders_R[k].transform.up * (WheelColliders_R[k].suspensionDistance + WheelColliders_R[k].radius - trackOffset)) * transform.localScale.y;
-			}
-			
-			WheelTransform_R[k].transform.rotation = WheelColliders_R[k].transform.rotation * Quaternion.Euler( RotationValueR[Mathf.CeilToInt((WheelColliders_R.Length) / 2)], 0, 0);
-			RotationValueR[k] += WheelColliders_R[k].rpm * ( 6 ) * Time.deltaTime;
-			WheelColliders_R[k].GetGroundHit( out CorrespondingGroundHit );
-			
-		}
-		
-		//Left Wheels Transform.
-		for(int i = 0; i < WheelColliders_L.Length; i++){
-			
-			Vector3 ColliderCenterPoint = WheelColliders_L[i].transform.TransformPoint( WheelColliders_L[i].center );
-			
-			if ( Physics.Raycast( ColliderCenterPoint, -WheelColliders_L[i].transform.up, out hit, (WheelColliders_L[i].suspensionDistance + WheelColliders_L[i].radius) * transform.localScale.y) ) {
-				WheelTransform_L[i].transform.position = hit.point + (WheelColliders_L[i].transform.up * WheelColliders_L[i].radius) * transform.localScale.y;
-				TrackBoneTransform_L[i].transform.position = hit.point + (WheelColliders_L[i].transform.up * trackOffset) * transform.localScale.y;
-			}else{
-				WheelTransform_L[i].transform.position = ColliderCenterPoint - (WheelColliders_L[i].transform.up * WheelColliders_L[i].suspensionDistance) * transform.localScale.y;
-				TrackBoneTransform_L[i].transform.position = ColliderCenterPoint - (WheelColliders_L[i].transform.up * (WheelColliders_L[i].suspensionDistance + WheelColliders_L[i].radius - trackOffset)) * transform.localScale.y;
-			}
-			
-			WheelTransform_L[i].transform.rotation = WheelColliders_L[i].transform.rotation * Quaternion.Euler( RotationValueL[Mathf.CeilToInt((WheelColliders_L.Length) / 2)], 0, 0);
-			RotationValueL[i] += WheelColliders_L[i].rpm * ( 6 ) * Time.deltaTime;
-			WheelColliders_L[i].GetGroundHit( out CorrespondingGroundHit );
-			
-		}
-		
-			
-		LeftTrackMesh.renderer.material.SetTextureOffset("_MainTex", new Vector2((RotationValueL[Mathf.CeilToInt((WheelColliders_L.Length) / 2)]/1000) * trackScrollSpeedMultiplier, 0));
-		RightTrackMesh.renderer.material.SetTextureOffset("_MainTex", new Vector2((RotationValueR[Mathf.CeilToInt((WheelColliders_R.Length) / 2)]/1000) * trackScrollSpeedMultiplier, 0));
-		LeftTrackMesh.renderer.material.SetTextureOffset("_BumpMap", new Vector2((RotationValueL[Mathf.CeilToInt((WheelColliders_L.Length) / 2)]/1000) * trackScrollSpeedMultiplier, 0));
-		RightTrackMesh.renderer.material.SetTextureOffset("_BumpMap", new Vector2((RotationValueR[Mathf.CeilToInt((WheelColliders_R.Length) / 2)]/1000) * trackScrollSpeedMultiplier, 0));
-			
+
+            //Right Wheels Transform.
+            for (int k = 0; k < WheelColliders_R.Length; k++)
+            {
+
+                Vector3 ColliderCenterPoint = WheelColliders_R[k].transform.TransformPoint(WheelColliders_R[k].center);
+
+                if (Physics.Raycast(ColliderCenterPoint, -WheelColliders_R[k].transform.up, out hit, (WheelColliders_R[k].suspensionDistance + WheelColliders_R[k].radius) * transform.localScale.y))
+                {
+                    WheelTransform_R[k].transform.position = hit.point + (WheelColliders_R[k].transform.up * WheelColliders_R[k].radius) * transform.localScale.y;
+                    TrackBoneTransform_R[k].transform.position = hit.point + (WheelColliders_R[k].transform.up * trackOffset) * transform.localScale.y;
+                }
+                else
+                {
+                    WheelTransform_R[k].transform.position = ColliderCenterPoint - (WheelColliders_R[k].transform.up * WheelColliders_R[k].suspensionDistance) * transform.localScale.y;
+                    TrackBoneTransform_R[k].transform.position = ColliderCenterPoint - (WheelColliders_R[k].transform.up * (WheelColliders_R[k].suspensionDistance + WheelColliders_R[k].radius - trackOffset)) * transform.localScale.y;
+                }
+
+                WheelTransform_R[k].transform.rotation = WheelColliders_R[k].transform.rotation * Quaternion.Euler(RotationValueR[Mathf.CeilToInt((WheelColliders_R.Length) / 2)], 0, 0);
+                RotationValueR[k] += WheelColliders_R[k].rpm * (6) * Time.deltaTime;
+                WheelColliders_R[k].GetGroundHit(out CorrespondingGroundHit);
+
+            }
+
+            //Left Wheels Transform.
+            for (int i = 0; i < WheelColliders_L.Length; i++)
+            {
+
+                Vector3 ColliderCenterPoint = WheelColliders_L[i].transform.TransformPoint(WheelColliders_L[i].center);
+
+                if (Physics.Raycast(ColliderCenterPoint, -WheelColliders_L[i].transform.up, out hit, (WheelColliders_L[i].suspensionDistance + WheelColliders_L[i].radius) * transform.localScale.y))
+                {
+                    WheelTransform_L[i].transform.position = hit.point + (WheelColliders_L[i].transform.up * WheelColliders_L[i].radius) * transform.localScale.y;
+                    TrackBoneTransform_L[i].transform.position = hit.point + (WheelColliders_L[i].transform.up * trackOffset) * transform.localScale.y;
+                }
+                else
+                {
+                    WheelTransform_L[i].transform.position = ColliderCenterPoint - (WheelColliders_L[i].transform.up * WheelColliders_L[i].suspensionDistance) * transform.localScale.y;
+                    TrackBoneTransform_L[i].transform.position = ColliderCenterPoint - (WheelColliders_L[i].transform.up * (WheelColliders_L[i].suspensionDistance + WheelColliders_L[i].radius - trackOffset)) * transform.localScale.y;
+                }
+
+                WheelTransform_L[i].transform.rotation = WheelColliders_L[i].transform.rotation * Quaternion.Euler(RotationValueL[Mathf.CeilToInt((WheelColliders_L.Length) / 2)], 0, 0);
+                RotationValueL[i] += WheelColliders_L[i].rpm * (6) * Time.deltaTime;
+                WheelColliders_L[i].GetGroundHit(out CorrespondingGroundHit);
+
+            }
+
+
+            LeftTrackMesh.renderer.material.SetTextureOffset("_MainTex", new Vector2((RotationValueL[Mathf.CeilToInt((WheelColliders_L.Length) / 2)] / 1000) * trackScrollSpeedMultiplier, 0));
+            RightTrackMesh.renderer.material.SetTextureOffset("_MainTex", new Vector2((RotationValueR[Mathf.CeilToInt((WheelColliders_R.Length) / 2)] / 1000) * trackScrollSpeedMultiplier, 0));
+            LeftTrackMesh.renderer.material.SetTextureOffset("_BumpMap", new Vector2((RotationValueL[Mathf.CeilToInt((WheelColliders_L.Length) / 2)] / 1000) * trackScrollSpeedMultiplier, 0));
+            RightTrackMesh.renderer.material.SetTextureOffset("_BumpMap", new Vector2((RotationValueR[Mathf.CeilToInt((WheelColliders_R.Length) / 2)] / 1000) * trackScrollSpeedMultiplier, 0));
+        }	
 	}
 
 
