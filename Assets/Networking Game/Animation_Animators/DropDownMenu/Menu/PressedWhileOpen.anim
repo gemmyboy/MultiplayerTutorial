@@ -19,49 +19,6 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 105
-        inSlope: 320
-        outSlope: 320
-        tangentMode: 10
-      - time: .25
-        value: 185
-        inSlope: 320
-        outSlope: 320
-        tangentMode: 10
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-    attribute: m_AnchoredPosition.y
-    path: The Mask/DropDownButton-skulls
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 35
-        inSlope: 280
-        outSlope: 280
-        tangentMode: 10
-      - time: .25
-        value: 105
-        inSlope: 220
-        outSlope: 220
-        tangentMode: 10
-      - time: .75
-        value: 185
-        inSlope: 160
-        outSlope: 160
-        tangentMode: 10
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-    attribute: m_AnchoredPosition.y
-    path: The Mask/DropDownButton-Tiger
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
         value: -35
         inSlope: 280
         outSlope: 280
@@ -159,6 +116,82 @@ AnimationClip:
     path: The Mask
     classID: 224
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_AnchoredPosition.x
+    path: The Mask/DropDownButton-Eagles
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 105
+        inSlope: 80
+        outSlope: 80
+        tangentMode: 10
+      - time: 1
+        value: 185
+        inSlope: 80
+        outSlope: 80
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_AnchoredPosition.y
+    path: The Mask/DropDownButton-Eagles
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_AnchoredPosition.x
+    path: The Mask/DropDownButton-Exorcist
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 35
+        inSlope: 150
+        outSlope: 150
+        tangentMode: 10
+      - time: 1
+        value: 185
+        inSlope: 150
+        outSlope: 150
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_AnchoredPosition.y
+    path: The Mask/DropDownButton-Exorcist
+    classID: 224
+    script: {fileID: 0}
   m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
@@ -167,18 +200,6 @@ AnimationClip:
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
     genericBindings:
-    - path: 1485462218
-      attribute: 538195251
-      script: {fileID: 0}
-      classID: 224
-      customType: 0
-      isPPtrCurve: 0
-    - path: 16474563
-      attribute: 538195251
-      script: {fileID: 0}
-      classID: 224
-      customType: 0
-      isPPtrCurve: 0
     - path: 3413179731
       attribute: 538195251
       script: {fileID: 0}
@@ -199,6 +220,30 @@ AnimationClip:
       isPPtrCurve: 0
     - path: 1811292712
       attribute: 538195251
+      script: {fileID: 0}
+      classID: 224
+      customType: 0
+      isPPtrCurve: 0
+    - path: 3955982982
+      attribute: 538195251
+      script: {fileID: 0}
+      classID: 224
+      customType: 0
+      isPPtrCurve: 0
+    - path: 2312351756
+      attribute: 538195251
+      script: {fileID: 0}
+      classID: 224
+      customType: 0
+      isPPtrCurve: 0
+    - path: 3955982982
+      attribute: 1460864421
+      script: {fileID: 0}
+      classID: 224
+      customType: 0
+      isPPtrCurve: 0
+    - path: 2312351756
+      attribute: 1460864421
       script: {fileID: 0}
       classID: 224
       customType: 0
@@ -226,49 +271,6 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 105
-        inSlope: 320
-        outSlope: 320
-        tangentMode: 10
-      - time: .25
-        value: 185
-        inSlope: 320
-        outSlope: 320
-        tangentMode: 10
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-    attribute: m_AnchoredPosition.y
-    path: The Mask/DropDownButton-skulls
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 35
-        inSlope: 280
-        outSlope: 280
-        tangentMode: 10
-      - time: .25
-        value: 105
-        inSlope: 220
-        outSlope: 220
-        tangentMode: 10
-      - time: .75
-        value: 185
-        inSlope: 160
-        outSlope: 160
-        tangentMode: 10
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-    attribute: m_AnchoredPosition.y
-    path: The Mask/DropDownButton-Tiger
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
         value: -35
         inSlope: 280
         outSlope: 280
@@ -364,6 +366,82 @@ AnimationClip:
       m_PostInfinity: 2
     attribute: m_AnchoredPosition.y
     path: The Mask
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_AnchoredPosition.x
+    path: The Mask/DropDownButton-Eagles
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 105
+        inSlope: 80
+        outSlope: 80
+        tangentMode: 10
+      - time: 1
+        value: 185
+        inSlope: 80
+        outSlope: 80
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_AnchoredPosition.y
+    path: The Mask/DropDownButton-Eagles
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_AnchoredPosition.x
+    path: The Mask/DropDownButton-Exorcist
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 35
+        inSlope: 150
+        outSlope: 150
+        tangentMode: 10
+      - time: 1
+        value: 185
+        inSlope: 150
+        outSlope: 150
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_AnchoredPosition.y
+    path: The Mask/DropDownButton-Exorcist
     classID: 224
     script: {fileID: 0}
   m_EulerEditorCurves: []

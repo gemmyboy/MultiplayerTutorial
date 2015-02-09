@@ -16,7 +16,6 @@ function Start () {
     var angles = transform.eulerAngles;
     x = angles.y;
     y = angles.x;
-
 	// Make the rigid body not change rotation
    	if (rigidbody)
 		rigidbody.freezeRotation = true;

@@ -9,7 +9,7 @@ public class CameraColliderForMouseOrbit : MonoBehaviour {
 
 	private bool useWithMouseOrbit = false;
 
-	private MouseOrbit orbitScript;
+	private MouseOrbitC orbitScript;
 
 	private float occDist;
 	private GameObject pivotTarget;
@@ -25,7 +25,7 @@ public class CameraColliderForMouseOrbit : MonoBehaviour {
 		}
 	
 		if(useWithMouseOrbit){
-			orbitScript = GetComponent<MouseOrbit>();
+			orbitScript = GetComponent<MouseOrbitC>();
 			target = orbitScript.target.gameObject;
 			defaultDistance = orbitScript.distance;
 		}

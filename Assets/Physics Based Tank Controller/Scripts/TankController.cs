@@ -82,36 +82,40 @@
 	private float defStiffness;
 	private WheelFrictionCurve sidewaysFrictionCurve;
 	private WheelFrictionCurve forwardFrictionCurve;
-		
+
+    PhotonView m_PhotonView;
 		
 	void  Start (){
-			
-		SetTags();
-		EngineStart();
-		SoundsInit();
-		GearInit();
-		SetStiffness();
-		if(WheelSlipPrefab)
-			SmokeInit();
+        m_PhotonView = GetComponent<PhotonView>();
+		if(m_PhotonView.isMine){
+            SetTags();
+            EngineStart();
+            SoundsInit();
+            GearInit();
+            SetStiffness();
 
-		dynamicCOM = new GameObject("Dynamic Com").transform;
-		dynamicCOM.parent = transform;
+            if (WheelSlipPrefab)
+                SmokeInit();
 
-		rigidbody.maxAngularVelocity = 5f;
+            dynamicCOM = new GameObject("Dynamic Com").transform;
+            dynamicCOM.parent = transform;
 
-		RotationValueL = new float[WheelColliders_L.Length];
-		RotationValueR = new float[WheelColliders_R.Length];
+            rigidbody.maxAngularVelocity = 5f;
 
-		Renderer[] r = GetComponentsInChildren<Renderer>();
-		if( r.Length > 0 )
-		{
-			Array.Sort(r, delegate(Renderer r1, Renderer r2) {
-				return r2.bounds.size.magnitude.CompareTo(r1.bounds.size.magnitude);
-			});
-			vehicleSizeX = r[0].bounds.size.x;
-			vehicleSizeY = r[0].bounds.size.y;
-		}
+            RotationValueL = new float[WheelColliders_L.Length];
+            RotationValueR = new float[WheelColliders_R.Length];
 
+            Renderer[] r = GetComponentsInChildren<Renderer>();
+            if (r.Length > 0)
+            {
+                Array.Sort(r, delegate(Renderer r1, Renderer r2)
+                {
+                    return r2.bounds.size.magnitude.CompareTo(r1.bounds.size.magnitude);
+                });
+                vehicleSizeX = r[0].bounds.size.x;
+                vehicleSizeY = r[0].bounds.size.y;
+            }
+        }
 	}
 
 	void SetTags(){

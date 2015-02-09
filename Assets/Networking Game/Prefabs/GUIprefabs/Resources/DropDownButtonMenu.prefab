@@ -14,7 +14,7 @@ GameObject:
   - 114: {fileID: 11441598}
   - 114: {fileID: 11438440}
   m_Layer: 5
-  m_Name: DropDownButton-skulls
+  m_Name: DropDownButton-Eagles
   m_TagString: DropDownButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,7 +159,7 @@ GameObject:
   - 114: {fileID: 11441594}
   - 114: {fileID: 11438436}
   m_Layer: 5
-  m_Name: DropDownButton-Tiger
+  m_Name: DropDownButton-Exorcist
   m_TagString: DropDownButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -470,8 +470,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5982c89f01ac154e955059816e622ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttons: []
-  otherView: {fileID: 0}
 --- !u!114 &11441594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -483,8 +481,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5982c89f01ac154e955059816e622ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttons: []
-  otherView: {fileID: 0}
 --- !u!114 &11441596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -496,8 +492,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5982c89f01ac154e955059816e622ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttons: []
-  otherView: {fileID: 0}
 --- !u!114 &11441598
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -509,8 +503,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5982c89f01ac154e955059816e622ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttons: []
-  otherView: {fileID: 0}
 --- !u!114 &11451336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -552,18 +544,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 11451370}
         m_MethodName: CloseMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
-      - m_Target: {fileID: 11441592}
-        m_MethodName: onClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -648,18 +628,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-      - m_Target: {fileID: 11441592}
-        m_MethodName: onClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &11451342
@@ -700,7 +668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .191176474, g: .16446799, b: .16446799, a: 1}
+  m_Color: {r: 0, g: .610344827, b: 0, a: 1}
   m_Sprite: {fileID: 21300000, guid: 1f1d5baae1d26404a8a639a07e5c7766, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -721,7 +689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .651927054, g: .514705896, b: 1, a: 1}
+  m_Color: {r: 1, g: .459533483, b: .257352948, a: 1}
   m_Sprite: {fileID: 21300000, guid: 1f1d5baae1d26404a8a639a07e5c7766, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -860,18 +828,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-      - m_Target: {fileID: 11441592}
-        m_MethodName: onClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &11451354
@@ -899,7 +855,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tigers Argent
+  m_Text: The Exorcist
 --- !u!114 &11451356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -941,18 +897,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 11451370}
         m_MethodName: CloseMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
-      - m_Target: {fileID: 11441592}
-        m_MethodName: onClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1037,7 +981,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: The Silver Skulls
+  m_Text: Dark Eagles
 --- !u!114 &11451364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1103,6 +1047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd1747cbb96f13047a84749e0de58cab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boom: {fileID: 8300000, guid: 8795aa8efae55c447aaea563ba3188ec, type: 3}
 --- !u!114 &11490916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1340,13 +1285,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 22451370}
   - {fileID: 22451368}
+  - {fileID: 22451370}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 450, y: 100}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 75}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22451354
@@ -1483,7 +1428,7 @@ RectTransform:
   m_Children:
   - {fileID: 22451354}
   m_Father: {fileID: 22451352}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1504,7 +1449,7 @@ RectTransform:
   - {fileID: 22451344}
   - {fileID: 22451360}
   m_Father: {fileID: 22451352}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_AnchorMin: {x: .5, y: 1}
   m_AnchorMax: {x: .5, y: 1}
   m_AnchoredPosition: {x: 0, y: -213}

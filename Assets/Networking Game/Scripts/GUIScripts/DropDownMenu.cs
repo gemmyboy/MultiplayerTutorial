@@ -6,7 +6,7 @@ using ExitGames.Client.Photon;
 using System.Collections.Generic;
 using System.Linq;
 public class DropDownMenu : MonoBehaviour {
-
+    public AudioClip boom;
     public void DropDown(Animator anim)
     {
         if (anim.GetBool("isOpen"))
@@ -21,6 +21,8 @@ public class DropDownMenu : MonoBehaviour {
 
     public void CloseMenu()
     {
+        GameObject audio = GameObject.Find("Audio");
+        audio.GetComponent<AudioSource>().PlayOneShot(boom);
         GetComponent<Animator>().SetBool("isOpen",false);
         GetComponent<Animator>().SetBool("Closing", true);
         StartCoroutine(DisablePanelDeleyed(gameObject.GetComponent<Animator>()));
@@ -42,7 +44,9 @@ public class DropDownMenu : MonoBehaviour {
         }
         if (wantToClose)
         {
-            Destroy(anim.gameObject);
+            anim.enabled = false;
+            anim.GetComponentInChildren<Text>().text = "Locked In!";
+            anim.GetComponentInChildren<Image>().color = Color.gray;
         }
 
     }

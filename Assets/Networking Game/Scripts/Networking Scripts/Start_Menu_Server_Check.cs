@@ -12,7 +12,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     public HostData[] hostList;
 
     public string gameName = "";
-    public int port = 0;
     public int connections;
 
     public GameObject StartButton;
@@ -531,44 +530,65 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //This is only for omega tanks. We need to split the teams up. Or we could use it for FFO. it doesnt matter
     public List<string> teams;
-    public void setUpTeams_FOF()
+    public void setUpTeams_FOF(PhotonView buttonView)
     {
         //setup list and hash
-        teams = new List<string>() { "Skulls", "Tiger", "Wolves", "Angel" };
+        teams = new List<string>() { "Eagles", "Excorcist", "Wolves", "Angel" };
         ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
-        //add the team to the hash
-        //hash.Add("Team", teams[]);
+        if (button.GetComponentInChildren<Text>().text == "Dark Eagles")
+        {
+            hash.Add("Team", teams[0]);
+        }
+        else if (button.GetComponentInChildren<Text>().text == "The Exorcist")
+        {
+            hash.Add("Team", teams[1]);
+        }
+        else if (button.GetComponentInChildren<Text>().text == "Emperor's Wolves")
+        {
+            hash.Add("Team", teams[2]);
+        }
+        else if (button.GetComponentInChildren<Text>().text == "Blood Angels")
+        {
+            hash.Add("Team", teams[3]);
+        }
         PhotonNetwork.player.SetCustomProperties(hash);
+        createTeamEmlbem();
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //We are making the drop down menu for our players choice of who to play
-    GameObject[] labels;
-    public Color buttonColor;
-
+    PhotonView button;
     [RPC]
-    public void ChangeColor(int myButtonViewID)
+    public void ChangeColor(int myButtonViewID, int LabelView)
     {
-        Debug.Log(myButtonViewID);
+        Debug.Log("Label: " + LabelView);
+        Debug.Log("Button: " + myButtonViewID);
+        Color buttonColor = Color.blue;
+
         PhotonView[] views = FindObjectsOfType<PhotonView>();
         foreach (PhotonView vie in views)
         {
             if (vie.viewID == myButtonViewID)
             {
                 buttonColor = vie.GetComponentInChildren<Image>().color;
-                Debug.Log(buttonColor);
+                button = vie.GetComponent<PhotonView>();
             }
         }
 
         foreach (PhotonView vie in views)
         {
-            if (vie.viewID == myLabelViewID)
+            if (vie.viewID == LabelView)
             {
                 vie.GetComponentInChildren<Image>().color = buttonColor;
                 if(vie.isMine){
-                    //setUpTeams_FOF();
+                    setUpTeams_FOF(button);
                 }
             }
         }
+    }
+
+    public void AlertColorChange(GameObject buttonView,int LabelView)
+    {
+        photonView.RPC("ChangeColor", PhotonTargets.AllBuffered, buttonView.GetComponent<PhotonView>().viewID, LabelView);
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -580,11 +600,50 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         int randNum = Random.Range(0,PhotonNetwork.playerList.Length);
         foreach(PhotonPlayer player in PhotonNetwork.playerList){
             if(player != PhotonNetwork.masterClient && randNum == randCounter){
-                Debug.Log(player);
                 return player;
             }
             randCounter++;
         }
         return null;
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    GameObject emblem;
+    public void createTeamEmlbem()
+    {
+        if(PhotonNetwork.player.customProperties["Team"] == teams[0]){
+            emblem = PhotonNetwork.Instantiate("Dark_Eagles_Emblem", ConnectingRoomWindow.transform.position, Quaternion.identity, 0);
+        }
+        else if (PhotonNetwork.player.customProperties["Team"] == teams[1])
+        {
+            emblem = PhotonNetwork.Instantiate("Exorcist_Emblem", ConnectingRoomWindow.transform.position, Quaternion.identity, 0);
+        }
+        else if (PhotonNetwork.player.customProperties["Team"] == teams[2])
+        {
+            emblem = PhotonNetwork.Instantiate("Wolves_Emblem", ConnectingRoomWindow.transform.position, Quaternion.identity, 0);
+        }
+        else if (PhotonNetwork.player.customProperties["Team"] == teams[3])
+        {
+            emblem = PhotonNetwork.Instantiate("Blood_Angel_Emblem", ConnectingRoomWindow.transform.position, Quaternion.identity, 0);
+        }
+        photonView.RPC("fixEmblem", PhotonTargets.AllBuffered, emblem.name,myLabelViewID);
+    }
+    GameObject lab;
+    [RPC]
+    public void fixEmblem(string gameObjectName,int viewID)
+    {
+        PhotonView[] views = FindObjectsOfType<PhotonView>();
+        foreach(PhotonView vie in views){
+            if(vie.viewID == viewID){
+                lab = vie.gameObject;
+            }
+        }
+        emblem = GameObject.Find(gameObjectName);
+        emblem.transform.parent = lab.transform;
+        emblem.transform.rotation = new Quaternion(0, 0, 0, 0);
+        emblem.transform.localScale = new Vector3(1, 1, 1);
+        emblem.GetComponentInChildren<RectTransform>().localPosition = new Vector3(150,0,0);
     }
 }

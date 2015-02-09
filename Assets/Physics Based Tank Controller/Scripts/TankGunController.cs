@@ -40,56 +40,62 @@ public class TankGunController : MonoBehaviour {
 	public GameObject groundSmoke;
 	public GameObject fireSmoke;
 
-
+    public PhotonView m_PhotonView;
 	void Start () {
-	
+        m_PhotonView = GetComponentInParent<PhotonView>();
 		rigidbody.maxAngularVelocity = maximumAngularVelocity;
 		rigidbody.interpolation = RigidbodyInterpolation.None;
 		rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
 
 		colliders = GetComponentsInChildren<BoxCollider>();
 		joint = GetComponent<HingeJoint>();
-
-		foreach(BoxCollider col in colliders){
-			col.transform.gameObject.tag = "Player";
-		}
-
+        if(m_PhotonView.isMine){
+            foreach (BoxCollider col in colliders)
+            {
+                col.transform.gameObject.tag = "Player";
+            }
+        }
 	}
 
 	void Update(){
-
-		Shooting();
-		JointConfiguration();
-
+        if (m_PhotonView.isMine)
+        {
+            Shooting();
+            JointConfiguration();
+        }
 	}
 	
 
 	void FixedUpdate () {
+        if (m_PhotonView.isMine)
+        {
+            if (transform.localEulerAngles.y > 0 && transform.localEulerAngles.y < 180)
+                rotationOfTheGun = transform.localEulerAngles.y;
+            else
+                rotationOfTheGun = transform.localEulerAngles.y - 360;
 
-		if(transform.localEulerAngles.y > 0 && transform.localEulerAngles.y < 180)
-			rotationOfTheGun = transform.localEulerAngles.y;
-		else
-			rotationOfTheGun = transform.localEulerAngles.y - 360;
-	
-			Vector3 targetPosition = transform.InverseTransformPoint( new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z));
+            Vector3 targetPosition = transform.InverseTransformPoint(new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z));
 
-			inputSteer = (targetPosition.x / targetPosition.magnitude);
-			rotationVelocity = rigidbody.angularVelocity.y;
+            inputSteer = (targetPosition.x / targetPosition.magnitude);
+            rotationVelocity = rigidbody.angularVelocity.y;
 
-			if(inputSteer > 0){
-				rigidbody.AddRelativeTorque(0, (rotationTorque) * Mathf.Abs (inputSteer), 0, ForceMode.Acceleration);
-			}else{
-				rigidbody.AddRelativeTorque(0, (-rotationTorque) * Mathf.Abs (inputSteer), 0, ForceMode.Acceleration);
-			}
+            if (inputSteer > 0)
+            {
+                rigidbody.AddRelativeTorque(0, (rotationTorque) * Mathf.Abs(inputSteer), 0, ForceMode.Acceleration);
+            }
+            else
+            {
+                rigidbody.AddRelativeTorque(0, (-rotationTorque) * Mathf.Abs(inputSteer), 0, ForceMode.Acceleration);
+            }
 
-			Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
-			barrel.transform.rotation = Quaternion.Slerp(barrel.transform.rotation, targetRotation, Time.deltaTime * 5);
+            Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
+            barrel.transform.rotation = Quaternion.Slerp(barrel.transform.rotation, targetRotation, Time.deltaTime * 5);
 
-			if(barrel.transform.localEulerAngles.x > 0 && barrel.transform.localEulerAngles.x < 180)
-				barrel.transform.localEulerAngles = new Vector3(Mathf.Clamp (barrel.transform.localEulerAngles.x, -minimumElevationLimit, minimumElevationLimit), 0, 0);
-			if(barrel.transform.localEulerAngles.x > 180 && barrel.transform.localEulerAngles.x < 360)
-				barrel.transform.localEulerAngles = new Vector3(Mathf.Clamp (barrel.transform.localEulerAngles.x - 360, -maximumElevationLimit, maximumElevationLimit), 0, 0);
-
+            if (barrel.transform.localEulerAngles.x > 0 && barrel.transform.localEulerAngles.x < 180)
+                barrel.transform.localEulerAngles = new Vector3(Mathf.Clamp(barrel.transform.localEulerAngles.x, -minimumElevationLimit, minimumElevationLimit), 0, 0);
+            if (barrel.transform.localEulerAngles.x > 180 && barrel.transform.localEulerAngles.x < 360)
+                barrel.transform.localEulerAngles = new Vector3(Mathf.Clamp(barrel.transform.localEulerAngles.x - 360, -maximumElevationLimit, maximumElevationLimit), 0, 0);
+        }
 	}
 
 	void Shooting(){

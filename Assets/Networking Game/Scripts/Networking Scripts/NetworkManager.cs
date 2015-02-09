@@ -99,12 +99,12 @@ public class NetworkManager : PunBehaviour
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     #region Photon
-    public MouseOrbit orbit;
+    public MouseOrbitC orbit;
     public TankGunController tankGun;
     public GameObject Target;
     void OnLevelWasLoaded(int level)
     {
-        if (level == 3)
+        if (level == 1)
         {
 
             CreatePlayerObject();
@@ -114,26 +114,18 @@ public class NetworkManager : PunBehaviour
     private void CreatePlayerObject()
     {
         Vector3 position = new Vector3(475, 100, 191);
-        //position.x += Random.Range(0f, 20f);
+        position.x += Random.Range(-50f, 50);
         //position.z += Random.Range(5f, 95f);
 
         //Instanitate Tank
         GameObject newPlayerObject = PhotonNetwork.Instantiate("T-90_Prefab_Network", position, Quaternion.identity, 0);
         //Add the camera target
-        orbit = FindObjectOfType<MouseOrbit>();
+        orbit = FindObjectOfType<MouseOrbitC>();
         //add the tankgun target
         tankGun = newPlayerObject.GetComponentInChildren<TankGunController>();
         Target = GameObject.Find("Target");
-        if (photonView.isMine)
-        {
-            orbit.target = newPlayerObject.transform;
-            tankGun.target = Target.transform;
-
-        }
-        else
-        {
-            Target.SetActive(false);
-        }
+        orbit.target = newPlayerObject.transform;
+        tankGun.target = Target.transform;
     }
     #endregion
 }

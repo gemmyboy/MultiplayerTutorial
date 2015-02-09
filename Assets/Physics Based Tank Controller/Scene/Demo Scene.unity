@@ -1866,9 +1866,9 @@ GameObject:
   - 92: {fileID: 70252056}
   - 124: {fileID: 70252055}
   - 81: {fileID: 70252054}
-  - 114: {fileID: 70252059}
   - 114: {fileID: 70252060}
   - 114: {fileID: 70252061}
+  - 114: {fileID: 70252059}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1950,7 +1950,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 70252053}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27acebc9ad1110f6d00074c88d76c639, type: 3}
+  m_Script: {fileID: 11500000, guid: 04bfa2764e1dfe747b971ebbf6bafde2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
@@ -13926,7 +13926,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &755226547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27812,7 +27812,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1640988354
 MonoBehaviour:
   m_ObjectHideFlags: 0
