@@ -258,77 +258,90 @@
 	}
 		
 	void  FixedUpdate (){
-			
-		AnimateGears();
-		Engine();
-		ShiftGears();
-		Bools();
-		SmokeInstantiateRate();
-		
-		Speed = rigidbody.velocity.magnitude * 3.6f;
 
-		//Acceleration Calculation.
-		acceleration = 0f;
-		acceleration = (transform.InverseTransformDirection(rigidbody.velocity).z - lastVelocity) / Time.fixedDeltaTime;
-		lastVelocity = transform.InverseTransformDirection(rigidbody.velocity).z;
+        if (m_PhotonView.isMine)
+        {
+            AnimateGears();
+            Engine();
+            ShiftGears();
+            Bools();
+            SmokeInstantiateRate();
 
-		//Drag Limit.
-		if(Speed < 100)
-			rigidbody.drag = Mathf.Clamp((acceleration / 30), 0f, 1f);
-		else
-			rigidbody.drag = .04f;
+            Speed = rigidbody.velocity.magnitude * 3.6f;
 
-		dynamicCOM.localPosition = new Vector3( Mathf.Clamp((transform.InverseTransformDirection(rigidbody.angularVelocity).y * 1), (-vehicleSizeX/15), (vehicleSizeX/15)) + COM.localPosition.x, -Mathf.Abs ( Mathf.Clamp((transform.InverseTransformDirection(rigidbody.angularVelocity).z * 10), (-vehicleSizeY/30), (vehicleSizeY/30))) + COM.localPosition.y, COM.localPosition.z);
-		dynamicCOM.rotation = transform.rotation;
-		rigidbody.centerOfMass = new Vector3((dynamicCOM.localPosition.x) * transform.localScale.x , (dynamicCOM.localPosition.y) * transform.localScale.y , (dynamicCOM.localPosition.z) * transform.localScale.z);
+            //Acceleration Calculation.
+            acceleration = 0f;
+            acceleration = (transform.InverseTransformDirection(rigidbody.velocity).z - lastVelocity) / Time.fixedDeltaTime;
+            lastVelocity = transform.InverseTransformDirection(rigidbody.velocity).z;
 
-		//EngineRPM
-		EngineRPM = ((((Mathf.Abs ((WheelColliders_R[Mathf.CeilToInt((WheelColliders_R.Length) / 2)].rpm * gearShiftRate * Mathf.Clamp01(motorInput)) + (WheelColliders_L[Mathf.CeilToInt((WheelColliders_L.Length) / 2)].rpm * gearShiftRate * Mathf.Clamp01(motorInput)))) * (GearRatio[CurrentGear]) * gearTimeMultiplier) ) + MinEngineRPM);
+            //Drag Limit.
+            if (Speed < 100)
+                rigidbody.drag = Mathf.Clamp((acceleration / 30), 0f, 1f);
+            else
+                rigidbody.drag = .04f;
 
-		//Engine Curve
-		if(EngineTorqueCurve.keys.Length >= 2){
-			if(CurrentGear == EngineTorqueCurve.length-2) gearTimeMultiplier = (((-EngineTorqueCurve[CurrentGear].time / gearShiftRate) / (maxSpeed * 3)) + 1f); else gearTimeMultiplier = ((-EngineTorqueCurve[CurrentGear].time / (maxSpeed * 3)) + 1f);
-		}else{
-			gearTimeMultiplier = 1;
-			Debug.Log ("You DID NOT CREATE any engine torque curve keys!, Please create 1 key at least...");
-		}
-			
-		//Audio
-		engineIdleAudio.audio.pitch = Mathf.Clamp ((Mathf.Abs(EngineRPM) / Mathf.Abs (MaxEngineRPM) + 1), 1f, 2f);
-		pitchValue = Mathf.Clamp ((Mathf.Abs((EngineRPM) / (MaxEngineRPM)) + .4f), .5f, 1.25f);
-		engineRunningAudio.audio.pitch = Mathf.Lerp (engineRunningAudio.audio.pitch, pitchValue, Time.deltaTime * 5);
-		engineRunningAudio.audio.volume = Mathf.Lerp (engineRunningAudio.audio.volume, Mathf.Clamp (Mathf.Abs (Input.GetAxis("Vertical") + WheelColliders_R[Mathf.CeilToInt((WheelColliders_R.Length) / 2)].rpm/500), 0, .75f), Time.deltaTime * 5);
+            dynamicCOM.localPosition = new Vector3(Mathf.Clamp((transform.InverseTransformDirection(rigidbody.angularVelocity).y * 1), (-vehicleSizeX / 15), (vehicleSizeX / 15)) + COM.localPosition.x, -Mathf.Abs(Mathf.Clamp((transform.InverseTransformDirection(rigidbody.angularVelocity).z * 10), (-vehicleSizeY / 30), (vehicleSizeY / 30))) + COM.localPosition.y, COM.localPosition.z);
+            dynamicCOM.rotation = transform.rotation;
+            rigidbody.centerOfMass = new Vector3((dynamicCOM.localPosition.x) * transform.localScale.x, (dynamicCOM.localPosition.y) * transform.localScale.y, (dynamicCOM.localPosition.z) * transform.localScale.z);
 
-		if(engineStartUpAudio)
-			engineStartUpAudio.audio.volume = Mathf.Lerp(engineStartUpAudio.audio.volume, 1, Time.deltaTime * 5);
+            //EngineRPM
+            EngineRPM = ((((Mathf.Abs((WheelColliders_R[Mathf.CeilToInt((WheelColliders_R.Length) / 2)].rpm * gearShiftRate * Mathf.Clamp01(motorInput)) + (WheelColliders_L[Mathf.CeilToInt((WheelColliders_L.Length) / 2)].rpm * gearShiftRate * Mathf.Clamp01(motorInput)))) * (GearRatio[CurrentGear]) * gearTimeMultiplier)) + MinEngineRPM);
 
-		for(int i = 0; i < AllWheelColliders.Count; i++){
-					
-			if(motorInput == 0){
-				AllWheelColliders[i].brakeTorque = Brake/5f;
-			}else if(motorInput < 0 && AllWheelColliders[0].rpm > 0){
-				AllWheelColliders[i].brakeTorque = Brake * (Mathf.Abs(motorInput));
-			}else{
-				AllWheelColliders[i].brakeTorque = 0;
-			}
-		
-		}
+            //Engine Curve
+            if (EngineTorqueCurve.keys.Length >= 2)
+            {
+                if (CurrentGear == EngineTorqueCurve.length - 2) gearTimeMultiplier = (((-EngineTorqueCurve[CurrentGear].time / gearShiftRate) / (maxSpeed * 3)) + 1f); else gearTimeMultiplier = ((-EngineTorqueCurve[CurrentGear].time / (maxSpeed * 3)) + 1f);
+            }
+            else
+            {
+                gearTimeMultiplier = 1;
+                Debug.Log("You DID NOT CREATE any engine torque curve keys!, Please create 1 key at least...");
+            }
 
-		WheelHit CorrespondingGroundHit;
-		WheelColliders_R[Mathf.CeilToInt((WheelColliders_R.Length) / 2)].GetGroundHit(out CorrespondingGroundHit);
-		if(WheelColliders_R[Mathf.CeilToInt((WheelColliders_R.Length) / 2)].isGrounded || WheelColliders_L[Mathf.CeilToInt((WheelColliders_L.Length) / 2)].isGrounded)
-			sidewaysSlipValue = Mathf.Clamp ( Mathf.Lerp ( defStiffness, 0f, ( (Mathf.Abs (CorrespondingGroundHit.sidewaysSlip)) / 5f ) ), .02f, defStiffness );
-		else
-			sidewaysSlipValue = 0;
+            //Audio
+            engineIdleAudio.audio.pitch = Mathf.Clamp((Mathf.Abs(EngineRPM) / Mathf.Abs(MaxEngineRPM) + 1), 1f, 2f);
+            pitchValue = Mathf.Clamp((Mathf.Abs((EngineRPM) / (MaxEngineRPM)) + .4f), .5f, 1.25f);
+            engineRunningAudio.audio.pitch = Mathf.Lerp(engineRunningAudio.audio.pitch, pitchValue, Time.deltaTime * 5);
+            engineRunningAudio.audio.volume = Mathf.Lerp(engineRunningAudio.audio.volume, Mathf.Clamp(Mathf.Abs(Input.GetAxis("Vertical") + WheelColliders_R[Mathf.CeilToInt((WheelColliders_R.Length) / 2)].rpm / 500), 0, .75f), Time.deltaTime * 5);
 
-		sidewaysFrictionCurve.stiffness = Mathf.Lerp (sidewaysFrictionCurve.stiffness, sidewaysSlipValue, Time.deltaTime*1);
+            if (engineStartUpAudio)
+                engineStartUpAudio.audio.volume = Mathf.Lerp(engineStartUpAudio.audio.volume, 1, Time.deltaTime * 5);
 
-		for(int i = 0; i < AllWheelColliders.Count; i++){
-			
-			AllWheelColliders[i].sidewaysFriction = sidewaysFrictionCurve;
-			AllWheelColliders[i].forwardFriction = forwardFrictionCurve;
-			
-		}
+            for (int i = 0; i < AllWheelColliders.Count; i++)
+            {
+
+                if (motorInput == 0)
+                {
+                    AllWheelColliders[i].brakeTorque = Brake / 5f;
+                }
+                else if (motorInput < 0 && AllWheelColliders[0].rpm > 0)
+                {
+                    AllWheelColliders[i].brakeTorque = Brake * (Mathf.Abs(motorInput));
+                }
+                else
+                {
+                    AllWheelColliders[i].brakeTorque = 0;
+                }
+
+            }
+
+            WheelHit CorrespondingGroundHit;
+            WheelColliders_R[Mathf.CeilToInt((WheelColliders_R.Length) / 2)].GetGroundHit(out CorrespondingGroundHit);
+            if (WheelColliders_R[Mathf.CeilToInt((WheelColliders_R.Length) / 2)].isGrounded || WheelColliders_L[Mathf.CeilToInt((WheelColliders_L.Length) / 2)].isGrounded)
+                sidewaysSlipValue = Mathf.Clamp(Mathf.Lerp(defStiffness, 0f, ((Mathf.Abs(CorrespondingGroundHit.sidewaysSlip)) / 5f)), .02f, defStiffness);
+            else
+                sidewaysSlipValue = 0;
+
+            sidewaysFrictionCurve.stiffness = Mathf.Lerp(sidewaysFrictionCurve.stiffness, sidewaysSlipValue, Time.deltaTime * 1);
+
+            for (int i = 0; i < AllWheelColliders.Count; i++)
+            {
+
+                AllWheelColliders[i].sidewaysFriction = sidewaysFrictionCurve;
+                AllWheelColliders[i].forwardFriction = forwardFrictionCurve;
+
+            }
+        }
 
 	}
 		
