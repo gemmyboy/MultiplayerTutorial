@@ -252,8 +252,10 @@
 	}
 
 	void Update(){
-
-		WheelAlign();
+        if (m_PhotonView.isMine)
+        {
+            WheelAlign();
+        }
 
 	}
 		
