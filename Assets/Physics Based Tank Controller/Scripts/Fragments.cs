@@ -36,8 +36,15 @@ public class Fragments : MonoBehaviour {
 		if(collision.transform.gameObject.layer != LayerMask.NameToLayer("Fragment")){
 			rigidbody.isKinematic = false;
 		}
-
 	}
+
+    void OnCollisionExit(Collision col)
+    {
+        if (col.transform.gameObject.layer == LayerMask.NameToLayer("Fragment"))
+        {
+            rigidbody.isKinematic = false;
+        }
+    }
 
 
 }
