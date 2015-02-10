@@ -13,7 +13,7 @@ public class TankBullet : MonoBehaviour {
 
 		rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
 		rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
-		Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Bullet"), LayerMask.NameToLayer("TankCollider"));
+		//Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Bullet"), LayerMask.NameToLayer("TankCollider"));
 		Physics.minPenetrationForPenalty = 0;
 
 		if(LayerMask.LayerToName(10) != "Bullet"){
@@ -24,7 +24,7 @@ public class TankBullet : MonoBehaviour {
 	}
 
 	void Update () {
-	
+	    
 		lifeTime += Time.deltaTime;
 
 		if(gameObject.activeSelf && lifeTime > lifeTimeOfTheBullet)

@@ -90,7 +90,7 @@
 		if(m_PhotonView.isMine){
             SetTags();
             EngineStart();
-            SoundsInit();
+            //SoundsInit();
             GearInit();
             SetStiffness();
 
