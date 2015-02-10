@@ -8,9 +8,9 @@ public class TankBullet : MonoBehaviour {
 	public GameObject explosionPrefab;
 	public int lifeTimeOfTheBullet = 5;
 	private float lifeTime;
-
+    PhotonView view;
 	void Start(){
-
+        view = GetComponent<PhotonView>();
 		rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
 		rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
 		//Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Bullet"), LayerMask.NameToLayer("TankCollider"));
@@ -34,19 +34,13 @@ public class TankBullet : MonoBehaviour {
 	
 
 	void OnCollisionEnter (Collision col) {
-        if(col.gameObject.GetComponent<PhotonView>() == null){
-            Explosion();
-            return;
-        }
-        if (col.gameObject.GetComponent<PhotonView>().isMine == false)
-        {
-            Explosion();
-        }
+        Explosion();
 	}
 
 	void Explosion(){
 
-        PhotonNetwork.Instantiate("large flames", transform.position, transform.rotation, 0);
+         //PhotonNetwork.Instantiate("large flames", transform.position, transform.rotation, 0);
+        PhotonNetwork.InstantiateSceneObject("large flames", transform.position, transform.rotation, 0,null);
 		Collider[] colliders = Physics.OverlapSphere(transform.position, 15);
 		foreach (Collider hit in colliders) {
 			if (hit && hit.rigidbody){
@@ -54,8 +48,7 @@ public class TankBullet : MonoBehaviour {
 				hit.rigidbody.AddExplosionForce(25000, transform.position, 15, 3);
 			}
 		}
-		PhotonNetwork.Destroy (gameObject);
-		
+        Destroy(gameObject);
 	}
 
 }
