@@ -850,7 +850,6 @@ GameObject:
   - 114: {fileID: 11469966}
   - 114: {fileID: 11491566}
   - 114: {fileID: 11493612}
-  - 114: {fileID: 11478962}
   m_Layer: 8
   m_Name: MainGun
   m_TagString: Untagged
@@ -5066,7 +5065,7 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-  gearShiftRate: 7
+  gearShiftRate: 5
   EngineTorque: 230
   MaxEngineRPM: 5000
   MinEngineRPM: 1000
@@ -5230,17 +5229,6 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
---- !u!114 &11478962
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116810}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13c4159c5850b1a498351cd423b910b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11491566
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5312,6 +5300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc7e1f46443bea41aa336336355e4c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  barrel: {fileID: 116804}
 --- !u!122 &12216706
 Halo:
   m_ObjectHideFlags: 1
