@@ -227,25 +227,26 @@
 		{
 			AllWheelColliders.Add (w);
 		}
-		
-        //for(int i = 0; i < AllWheelColliders.Count; i++){
+
+        //for (int i = 0; i < AllWheelColliders.Count; i++)
+        //{
         //    Instantiate(WheelSlipPrefab, AllWheelColliders[i].transform.position, transform.rotation);
         //}
-		
-        //foreach(GameObject go in GameObject.FindObjectsOfType(typeof(GameObject)))
+
+        //foreach (GameObject go in GameObject.FindObjectsOfType(typeof(GameObject)))
         //{
-        //    if(go.name == "WheelSlip(Clone)")
-        //        WheelParticles.Add (go);
+        //    if (go.name == "WheelSlip(Clone)")
+        //        WheelParticles.Add(go);
         //}
 		
 		
 		
-		for(int i = 0; i < AllWheelColliders.Count; i++){
+        //for(int i = 0; i < AllWheelColliders.Count; i++){
 			
-			WheelParticles[i].transform.position = AllWheelColliders[i].transform.position;
-			WheelParticles[i].transform.parent = AllWheelColliders[i].transform;
+        //    WheelParticles[i].transform.position = AllWheelColliders[i].transform.position;
+        //    WheelParticles[i].transform.parent = AllWheelColliders[i].transform;
 			
-		}
+        //}
 		
 		
 		
@@ -297,10 +298,10 @@
             }
 
             //Audio
-            engineIdleAudio.audio.pitch = Mathf.Clamp((Mathf.Abs(EngineRPM) / Mathf.Abs(MaxEngineRPM) + 1), 1f, 2f);
-            pitchValue = Mathf.Clamp((Mathf.Abs((EngineRPM) / (MaxEngineRPM)) + .4f), .5f, 1.25f);
-            engineRunningAudio.audio.pitch = Mathf.Lerp(engineRunningAudio.audio.pitch, pitchValue, Time.deltaTime * 5);
-            engineRunningAudio.audio.volume = Mathf.Lerp(engineRunningAudio.audio.volume, Mathf.Clamp(Mathf.Abs(Input.GetAxis("Vertical") + WheelColliders_R[Mathf.CeilToInt((WheelColliders_R.Length) / 2)].rpm / 500), 0, .75f), Time.deltaTime * 5);
+            //engineIdleAudio.audio.pitch = Mathf.Clamp((Mathf.Abs(EngineRPM) / Mathf.Abs(MaxEngineRPM) + 1), 1f, 2f);
+            //pitchValue = Mathf.Clamp((Mathf.Abs((EngineRPM) / (MaxEngineRPM)) + .4f), .5f, 1.25f);
+            //engineRunningAudio.audio.pitch = Mathf.Lerp(engineRunningAudio.audio.pitch, pitchValue, Time.deltaTime * 5);
+            //engineRunningAudio.audio.volume = Mathf.Lerp(engineRunningAudio.audio.volume, Mathf.Clamp(Mathf.Abs(Input.GetAxis("Vertical") + WheelColliders_R[Mathf.CeilToInt((WheelColliders_R.Length) / 2)].rpm / 500), 0, .75f), Time.deltaTime * 5);
 
             if (engineStartUpAudio)
                 engineStartUpAudio.audio.volume = Mathf.Lerp(engineStartUpAudio.audio.volume, 1, Time.deltaTime * 5);
