@@ -61,7 +61,7 @@ public class TankGunController : MonoBehaviour {
         if (m_PhotonView.isMine)
         {
             Shooting();
-            JointConfiguration();
+            //JointConfiguration();
         }
 	}
 
@@ -106,8 +106,8 @@ public class TankGunController : MonoBehaviour {
 			rigidbody.AddForce(-transform.forward * recoilForce, ForceMode.VelocityChange);
 			GameObject shot = PhotonNetwork.Instantiate("Bullet", barrelOut.position, barrelOut.rotation,0) as GameObject;
 			shot.GetComponent<Rigidbody>().AddForce(barrelOut.forward * bulletVelocity, ForceMode.VelocityChange);
-            PhotonNetwork.Instantiate("Ground Smoke", new Vector3(tank.transform.position.x, tank.transform.position.y - 3, tank.transform.position.z), tank.transform.rotation, 0);
-            PhotonNetwork.Instantiate("Fluffy Smoke", barrelOut.transform.position, barrelOut.transform.rotation, 0);
+            //PhotonNetwork.Instantiate("Ground Smoke", new Vector3(tank.transform.position.x, tank.transform.position.y - 3, tank.transform.position.z), tank.transform.rotation, 0);
+            //PhotonNetwork.Instantiate("Fluffy Smoke", barrelOut.transform.position, barrelOut.transform.rotation, 0);
 			ShootingSoundEffect();
 			ammo --;
 			loadingTime = 0;

@@ -293,7 +293,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     {
         photonView.RPC("closePanelForPlayers",PhotonTargets.All);
         PhotonNetwork.room.open = false;
-        //setUpTeams();
         StartCoroutine(ShootOffPods());
     }
     [RPC]
@@ -482,7 +481,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         // generate a name for this player, if none is assigned yet
         if (String.IsNullOrEmpty(PhotonNetwork.playerName))
         {
-            Debug.Log(PlayerPrefs.GetString("playerName", PhotonNetwork.playerName));
             PhotonNetwork.playerName = PlayerPrefs.GetString("playerName", PhotonNetwork.playerName);
         }
     }
@@ -500,7 +498,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             i++;
         }
         yield return new WaitForSeconds(13.0f);
-        PhotonNetwork.room.open = false;
+        PhotonNetwork.room.open = true;
         PhotonNetwork.LoadLevel(SceneNameGame);
 
     }
