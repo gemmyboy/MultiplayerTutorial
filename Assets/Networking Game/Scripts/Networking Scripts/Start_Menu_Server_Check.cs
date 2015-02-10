@@ -274,7 +274,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             if(PhotonNetwork.player.isMasterClient){
                 PhotonNetwork.Destroy(dropMenu); 
                 PhotonNetwork.SetMasterClient(chooseRandomPlayer());
-                i = 0;
+                i = 1;
                 photonView.RPC("rebuildLabelLobby", PhotonTargets.Others);
             }
             else
