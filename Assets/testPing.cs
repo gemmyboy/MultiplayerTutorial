@@ -15,6 +15,6 @@ public class testPing : PunBehaviour {
     void OnGUI()
     {
         GUILayout.BeginHorizontal();
-        GUILayout.Label(PhotonNetwork.GetPing() + "");
+        GUILayout.Label("Ping: " + PhotonNetwork.GetPing());
     }
 }
