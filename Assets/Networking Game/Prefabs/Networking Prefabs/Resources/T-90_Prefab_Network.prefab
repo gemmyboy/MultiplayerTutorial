@@ -850,6 +850,7 @@ GameObject:
   - 114: {fileID: 11469966}
   - 114: {fileID: 11491566}
   - 114: {fileID: 11493612}
+  - 114: {fileID: 11478962}
   m_Layer: 8
   m_Name: MainGun
   m_TagString: Untagged
@@ -1867,7 +1868,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 116722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .026702866, y: -.0861005783, z: 8.9838562}
+  m_LocalPosition: {x: .0270000007, y: -.0860000029, z: 9.1420002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 416804}
@@ -4961,7 +4962,7 @@ MonoBehaviour:
   rotationOfTheGun: 0
   target: {fileID: 0}
   bullet: {fileID: 5400000, guid: f2fefdf7e67beb744bc6674450810a82, type: 2}
-  bulletVelocity: 250
+  bulletVelocity: 75
   recoilForce: 500
   ammo: 100
   reloadTime: 3
@@ -5196,7 +5197,7 @@ MonoBehaviour:
   group: 0
   prefixBackup: -1
   observed: {fileID: 0}
-  synchronization: 3
+  synchronization: 1
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
@@ -5229,6 +5230,17 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
+--- !u!114 &11478962
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116810}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13c4159c5850b1a498351cd423b910b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11491566
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5241,10 +5253,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PositionModel:
-    SynchronizeEnabled: 0
+    SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 0
+    InterpolateOption: 3
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 1
     InterpolateMoveTowardsAcceleration: 2

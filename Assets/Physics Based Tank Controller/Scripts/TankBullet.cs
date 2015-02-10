@@ -34,10 +34,14 @@ public class TankBullet : MonoBehaviour {
 	
 
 	void OnCollisionEnter (Collision col) {
-	
-		if(col.transform.gameObject.layer != LayerMask.NameToLayer("TankCollider"))
-			Explosion();
-		
+        if(col.gameObject.GetComponent<PhotonView>() == null){
+            Explosion();
+            return;
+        }
+        if (col.gameObject.GetComponent<PhotonView>().isMine == false)
+        {
+            Explosion();
+        }
 	}
 
 	void Explosion(){
@@ -50,7 +54,7 @@ public class TankBullet : MonoBehaviour {
 				hit.rigidbody.AddExplosionForce(25000, transform.position, 15, 3);
 			}
 		}
-		Destroy (gameObject);
+		PhotonNetwork.Destroy (gameObject);
 		
 	}
 
