@@ -228,15 +228,15 @@
 			AllWheelColliders.Add (w);
 		}
 		
-		for(int i = 0; i < AllWheelColliders.Count; i++){
-			Instantiate(WheelSlipPrefab, AllWheelColliders[i].transform.position, transform.rotation);
-		}
+        //for(int i = 0; i < AllWheelColliders.Count; i++){
+        //    Instantiate(WheelSlipPrefab, AllWheelColliders[i].transform.position, transform.rotation);
+        //}
 		
-		foreach(GameObject go in GameObject.FindObjectsOfType(typeof(GameObject)))
-		{
-			if(go.name == "WheelSlip(Clone)")
-				WheelParticles.Add (go);
-		}
+        //foreach(GameObject go in GameObject.FindObjectsOfType(typeof(GameObject)))
+        //{
+        //    if(go.name == "WheelSlip(Clone)")
+        //        WheelParticles.Add (go);
+        //}
 		
 		
 		
