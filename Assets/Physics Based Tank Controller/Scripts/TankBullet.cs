@@ -24,10 +24,10 @@ public class TankBullet : MonoBehaviour {
 	}
 
 	void Update () {
-	    
+	   
 		lifeTime += Time.deltaTime;
 
-		if(gameObject.activeSelf && lifeTime > lifeTimeOfTheBullet)
+		if(gameObject.activeSelf && lifeTime > lifeTimeOfTheBullet && GetComponent<PhotonView>().isMine)
 			Explosion();
 
 	}
@@ -46,7 +46,7 @@ public class TankBullet : MonoBehaviour {
 
 	void Explosion(){
 
-		Instantiate(explosionPrefab, transform.position, transform.rotation);
+        PhotonNetwork.Instantiate("large flames", transform.position, transform.rotation, 0);
 		Collider[] colliders = Physics.OverlapSphere(transform.position, 15);
 		foreach (Collider hit in colliders) {
 			if (hit && hit.rigidbody){
