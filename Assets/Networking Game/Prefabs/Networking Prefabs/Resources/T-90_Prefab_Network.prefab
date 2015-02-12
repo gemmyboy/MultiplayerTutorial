@@ -307,7 +307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &116744
 GameObject:
   m_ObjectHideFlags: 1
@@ -797,6 +797,7 @@ GameObject:
   - 4: {fileID: 416804}
   - 33: {fileID: 3316736}
   - 23: {fileID: 2316736}
+  - 114: {fileID: 11407720}
   m_Layer: 8
   m_Name: Barrel Mesh
   m_TagString: Untagged
@@ -848,7 +849,6 @@ GameObject:
   - 54: {fileID: 5416716}
   - 59: {fileID: 5916716}
   - 114: {fileID: 11469966}
-  - 114: {fileID: 11493612}
   m_Layer: 8
   m_Name: MainGun
   m_TagString: Untagged
@@ -1191,7 +1191,6 @@ GameObject:
   - 114: {fileID: 11416710}
   - 54: {fileID: 5416726}
   - 114: {fileID: 11467642}
-  - 114: {fileID: 11433188}
   m_Layer: 8
   m_Name: T-90_Prefab_Network
   m_TagString: Player
@@ -4924,6 +4923,30 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11407720
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 3
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 416804}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
 --- !u!114 &11416706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4943,7 +4966,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 116810}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 736a9942a70d8884896bf62a0ddfdb4d, type: 3}
   m_Name: 
@@ -5108,17 +5131,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vehicle: {fileID: 116852}
   startSlipValue: 1
---- !u!114 &11433188
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13c4159c5850b1a498351cd423b910b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11467642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5139,7 +5151,8 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 11433188}
+  - {fileID: 5416726}
+  - {fileID: 416852}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -5163,23 +5176,11 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 11493612}
-  - {fileID: 0}
+  - {fileID: 5416716}
+  - {fileID: 416810}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
---- !u!114 &11493612
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bc7e1f46443bea41aa336336355e4c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  barrel: {fileID: 116804}
 --- !u!122 &12216706
 Halo:
   m_ObjectHideFlags: 1
