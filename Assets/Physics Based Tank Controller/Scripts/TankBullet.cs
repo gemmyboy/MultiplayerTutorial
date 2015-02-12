@@ -27,34 +27,45 @@ public class TankBullet : MonoBehaviour {
 	   
 		lifeTime += Time.deltaTime;
 
-		if(gameObject.activeSelf && lifeTime > lifeTimeOfTheBullet && GetComponent<PhotonView>().isMine)
+		if(gameObject.activeSelf && lifeTime > lifeTimeOfTheBullet)
 			Explosion();
 
 	}
 	
 
 	void OnCollisionEnter (Collision col) {
-        if(view.isMine){
             Explosion();
-        }
 	}
 
 	void Explosion(){
-        PhotonNetwork.Instantiate("large flames", transform.position, transform.rotation, 0);
-        view.RPC("explosionRadius",PhotonTargets.All);
-        PhotonNetwork.Destroy(gameObject);
-	}
-    [RPC]
-    public void explosionRadius()
-    {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 15);
+        Instantiate(explosionPrefab, transform.position, transform.rotation);
+        //PhotonNetwork.Instantiate("large flames", transform.position, transform.rotation, 0);
+        //view.RPC("explosionRadius",PhotonTargets.All,gameObject.transform.position);
+
+        Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, 15);
         foreach (Collider hit in colliders)
         {
             if (hit && hit.rigidbody)
             {
                 hit.rigidbody.isKinematic = false;
-                hit.rigidbody.AddExplosionForce(25000, transform.position, 15, 3);
+                hit.rigidbody.AddExplosionForce(25000, gameObject.transform.position, 15, 3);
             }
         }
+        Destroy(gameObject);
+	}
+    [RPC]
+    public void explosionRadius(Vector3 position)
+    {
+        Collider[] colliders = Physics.OverlapSphere(position, 15);
+        foreach (Collider hit in colliders)
+        {
+            if (hit && hit.rigidbody)
+            {
+                hit.rigidbody.isKinematic = false;
+                hit.rigidbody.AddExplosionForce(25000, position, 15, 3);
+            }
+        }
+        //if(GetComponent<PhotonView>().isMine)
+            //PhotonNetwork.Destroy(gameObject);
     }
 }
