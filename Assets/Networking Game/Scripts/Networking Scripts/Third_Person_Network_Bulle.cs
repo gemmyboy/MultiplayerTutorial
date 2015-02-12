@@ -22,7 +22,7 @@ public class Third_Person_Network_Bulle : Photon.MonoBehaviour {
             stream.SendNext(transform.rotation);
             stream.SendNext(rigidbody.velocity);
         }
-        else
+        if(stream.isReading)
         {
             //Network player, receive data
             correctBulletPos = (Vector3)stream.ReceiveNext();
@@ -36,8 +36,8 @@ public class Third_Person_Network_Bulle : Photon.MonoBehaviour {
         if (!photonView.isMine)
         {
             //Update remote player (smooth this, this looks good, at the cost of some accuracy)
-            transform.position = Vector3.Lerp(transform.position, correctBulletPos, Time.deltaTime * 5);
-            transform.rotation = Quaternion.Lerp(transform.rotation, correctBulletRot, Time.deltaTime * 5);
+            //transform.position = Vector3.Lerp(transform.position, correctBulletPos, Time.deltaTime * 5);
+            //transform.rotation = Quaternion.Lerp(transform.rotation, correctBulletRot, Time.deltaTime * 5);
         }
     }
 }
