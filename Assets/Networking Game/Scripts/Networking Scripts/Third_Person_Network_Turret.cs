@@ -28,7 +28,7 @@ public class Third_Person_Network_Turret : Photon.MonoBehaviour {
             stream.SendNext(barrel.transform.position);
             stream.SendNext(barrel.transform.rotation);
         }
-        else
+        if(stream.isReading)
         {
             //Network player, receive data
             //correctPlayerPos = (Vector3)stream.ReceiveNext();
@@ -44,11 +44,12 @@ public class Third_Person_Network_Turret : Photon.MonoBehaviour {
         if (!photonView.isMine)
         {
             //Update remote player (smooth this, this looks good, at the cost of some accuracy)
-            //transform.position = Vector3.Lerp(transform.position, correctPlayerPos, Time.deltaTime * 5);
-            transform.rotation = Quaternion.Lerp(transform.rotation, correctPlayerRot, Time.deltaTime * 5);
 
-            barrel.transform.position = Vector3.Lerp(barrel.transform.position, correctPlayerPosBarrel, Time.deltaTime * 5);
-            barrel.transform.rotation = Quaternion.Lerp(barrel.transform.rotation, correctPlayerRotBarrel, Time.deltaTime * 5);
+            //transform.position = Vector3.Lerp(transform.position, correctPlayerPos, Time.deltaTime * 5);
+            //transform.rotation = Quaternion.Lerp(transform.rotation, correctPlayerRot, Time.deltaTime * 5);
+
+            //barrel.transform.position = Vector3.Lerp(barrel.transform.position, correctPlayerPosBarrel, Time.deltaTime * 5);
+            //barrel.transform.rotation = Quaternion.Lerp(barrel.transform.rotation, correctPlayerRotBarrel, Time.deltaTime * 5);
         }
     }
 }

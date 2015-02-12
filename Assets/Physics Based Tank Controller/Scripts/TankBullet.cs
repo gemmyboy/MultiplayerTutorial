@@ -27,20 +27,24 @@ public class TankBullet : MonoBehaviour {
 	   
 		lifeTime += Time.deltaTime;
 
-		if(gameObject.activeSelf && lifeTime > lifeTimeOfTheBullet)
-			Explosion();
-
+        if (gameObject.activeSelf && lifeTime > lifeTimeOfTheBullet)
+        {
+            if (view.isMine)
+            {
+                Explosion();
+            }
+        }
 	}
 	
 
 	void OnCollisionEnter (Collision col) {
+        if(view.isMine){
             Explosion();
+        }
 	}
 
 	void Explosion(){
-        Instantiate(explosionPrefab, transform.position, transform.rotation);
-        //PhotonNetwork.Instantiate("large flames", transform.position, transform.rotation, 0);
-        //view.RPC("explosionRadius",PhotonTargets.All,gameObject.transform.position);
+        PhotonNetwork.Instantiate("large flames", transform.position, transform.rotation, 0);
 
         Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, 15);
         foreach (Collider hit in colliders)
@@ -51,21 +55,6 @@ public class TankBullet : MonoBehaviour {
                 hit.rigidbody.AddExplosionForce(25000, gameObject.transform.position, 15, 3);
             }
         }
-        Destroy(gameObject);
+        PhotonNetwork.Destroy(gameObject);
 	}
-    [RPC]
-    public void explosionRadius(Vector3 position)
-    {
-        Collider[] colliders = Physics.OverlapSphere(position, 15);
-        foreach (Collider hit in colliders)
-        {
-            if (hit && hit.rigidbody)
-            {
-                hit.rigidbody.isKinematic = false;
-                hit.rigidbody.AddExplosionForce(25000, position, 15, 3);
-            }
-        }
-        //if(GetComponent<PhotonView>().isMine)
-            //PhotonNetwork.Destroy(gameObject);
-    }
 }
