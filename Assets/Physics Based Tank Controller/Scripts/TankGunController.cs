@@ -41,7 +41,11 @@ public class TankGunController : MonoBehaviour {
 	public GameObject fireSmoke;
 
     public PhotonView m_PhotonView;
+    UIManager guiManager;
 	void Start () {
+        guiManager = FindObjectOfType<UIManager>();
+        guiManager.ChangeAmmo(ammo);
+
         m_PhotonView = GetComponentInParent<PhotonView>();
 		rigidbody.maxAngularVelocity = maximumAngularVelocity;
 		rigidbody.interpolation = RigidbodyInterpolation.None;
@@ -110,6 +114,7 @@ public class TankGunController : MonoBehaviour {
             //PhotonNetwork.Instantiate("Fluffy Smoke", barrelOut.transform.position, barrelOut.transform.rotation, 0);
 			ShootingSoundEffect();
 			ammo --;
+            guiManager.ChangeAmmo(ammo);
 			loadingTime = 0;
 
 		}
