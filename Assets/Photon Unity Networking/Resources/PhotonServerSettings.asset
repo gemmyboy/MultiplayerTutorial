@@ -45,4 +45,5 @@ MonoBehaviour:
   - fixDropDown
   - rebuildLabelLobby
   - fixEmblem
+  - explosionRadius
   DisableAutoOpenWizard: 0
