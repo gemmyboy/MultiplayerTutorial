@@ -19,7 +19,7 @@ public class ThirdPersonNetwork : Photon.MonoBehaviour
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation); 
         }
-        if(stream.isReading)
+        else
         {
             //Network player, receive data
             correctPlayerPos = (Vector3)stream.ReceiveNext();
