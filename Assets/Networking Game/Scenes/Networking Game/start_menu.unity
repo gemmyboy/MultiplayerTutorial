@@ -1997,12 +1997,12 @@ GameObject:
   - 82: {fileID: 159224473}
   - 114: {fileID: 159224472}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Mic Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &159224472
 MonoBehaviour:
   m_ObjectHideFlags: 0

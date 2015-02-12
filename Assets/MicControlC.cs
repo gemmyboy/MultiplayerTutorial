@@ -31,6 +31,7 @@ public class MicControlC : MonoBehaviour
         audio.loop = true; // Set the AudioClip to loop
         audio.mute = false; // Mute the sound, we don't want the player to hear it
         selectedDevice = Microphone.devices[0].ToString();
+        Debug.Log(selectedDevice);
         micSelected = true;
         GetMicCaps();
     }

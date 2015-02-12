@@ -34,21 +34,27 @@ public class TankBullet : MonoBehaviour {
 	
 
 	void OnCollisionEnter (Collision col) {
-        Explosion();
+        if(view.isMine){
+            Explosion();
+        }
 	}
 
 	void Explosion(){
-
-         //PhotonNetwork.Instantiate("large flames", transform.position, transform.rotation, 0);
-        PhotonNetwork.InstantiateSceneObject("large flames", transform.position, transform.rotation, 0,null);
-		Collider[] colliders = Physics.OverlapSphere(transform.position, 15);
-		foreach (Collider hit in colliders) {
-			if (hit && hit.rigidbody){
-				hit.rigidbody.isKinematic = false;
-				hit.rigidbody.AddExplosionForce(25000, transform.position, 15, 3);
-			}
-		}
-        Destroy(gameObject);
+        PhotonNetwork.Instantiate("large flames", transform.position, transform.rotation, 0);
+        view.RPC("explosionRadius",PhotonTargets.All);
+        PhotonNetwork.Destroy(gameObject);
 	}
-
+    [RPC]
+    public void explosionRadius()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 15);
+        foreach (Collider hit in colliders)
+        {
+            if (hit && hit.rigidbody)
+            {
+                hit.rigidbody.isKinematic = false;
+                hit.rigidbody.AddExplosionForce(25000, transform.position, 15, 3);
+            }
+        }
+    }
 }
