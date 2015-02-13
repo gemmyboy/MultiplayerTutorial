@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 3fea26f0
+  m_Name: excorcistMaterial
   m_Shader: {fileID: 4, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
@@ -17,7 +17,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: c5c036eef48f4934eb66516dd8f38b81, type: 3}
+          m_Texture: {fileID: 2800000, guid: f770e8c3a3ca84c46b86984b87094b31, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -27,43 +27,17 @@ Material:
           m_Texture: {fileID: 2800000, guid: 4fa92f80e70b28b4f8b0e365287cf95f, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _SpecTex
-        second:
-          m_Texture: {fileID: 2800000, guid: 9a6a54eb2871aee4bae083be3aecba19, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _OccTex
-        second:
-          m_Texture: {fileID: 2800000, guid: 36092f336e6cd8e43b99fbbd19b1bfa2, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
           name: _Shininess
-        second: 7.99999952
-      data:
-        first:
-          name: _SpecInt
-        second: 1
-      data:
-        first:
-          name: _Fresnel
-        second: .517857134
-      data:
-        first:
-          name: _OccStrength
         second: 1
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 1, b: 1, a: 0}
+        second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
           name: _SpecColor
-        second: {r: .694117665, g: .694117665, b: .694117665, a: 1}
+        second: {r: .5, g: .5, b: .5, a: 1}

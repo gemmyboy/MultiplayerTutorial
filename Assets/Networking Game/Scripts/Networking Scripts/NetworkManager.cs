@@ -4,9 +4,15 @@ using Photon;
 public class NetworkManager : PunBehaviour
 {
     #region Members
+    public Texture wolfTexture;
+    public Texture eagleTexture;
+    public Texture angelsTexture;
+    public Texture excorcistTexture;
 
-    
-
+    public Material eagleMaterial;
+    public Material excorsistMaterial;
+    public Material wolfMaterial;
+    public Material angelMaterial;
     #endregion
 
 
@@ -99,9 +105,10 @@ public class NetworkManager : PunBehaviour
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     #region Photon
-    public MouseOrbitC orbit;
-    public TankGunController tankGun;
-    public GameObject Target;
+    MouseOrbitC orbit;
+    TankGunController tankGun;
+    GameObject Target;
+    MeshRenderer[] meshes;
     void OnLevelWasLoaded(int level)
     {
         if (level == 1)
@@ -119,6 +126,36 @@ public class NetworkManager : PunBehaviour
 
         //Instanitate Tank
         GameObject newPlayerObject = PhotonNetwork.Instantiate("T-90_Prefab_Network", position, Quaternion.identity, 0);
+        //Change the texture of the tank
+        meshes = newPlayerObject.GetComponentsInChildren<MeshRenderer>();
+        if(PhotonNetwork.player.customProperties["Team"] == "Eagles"){
+
+            foreach (MeshRenderer mesh in meshes)
+            {
+                mesh.gameObject.renderer.material = eagleMaterial;
+            }
+        }
+        else if (PhotonNetwork.player.customProperties["Team"] == "Excorcist")
+        {
+            foreach (MeshRenderer mesh in meshes)
+            {
+                mesh.gameObject.renderer.material = excorsistMaterial;
+            }
+        }
+        else if (PhotonNetwork.player.customProperties["Team"] == "Wolves")
+        {
+            foreach (MeshRenderer mesh in meshes)
+            {
+                mesh.gameObject.renderer.material = wolfMaterial;
+            }
+        }
+        else if (PhotonNetwork.player.customProperties["Team"] == "Angel")
+        {
+            foreach (MeshRenderer mesh in meshes)
+            {
+                mesh.gameObject.renderer.material = angelMaterial;
+            }
+        }
         //Add the camera target
         orbit = FindObjectOfType<MouseOrbitC>();
         //add the tankgun target
