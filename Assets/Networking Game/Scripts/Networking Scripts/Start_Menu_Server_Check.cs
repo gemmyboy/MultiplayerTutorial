@@ -567,6 +567,8 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             {
                 buttonColor = vie.GetComponentInChildren<Image>().color;
                 button = vie.GetComponent<PhotonView>();
+                button.GetComponent<Button>().interactable = false;
+                button.GetComponentInChildren<Image>().color = Color.grey;
             }
         }
 
@@ -611,22 +613,18 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     {
         if(PhotonNetwork.player.customProperties["Team"] == teams[0]){
             emblem = PhotonNetwork.Instantiate("Dark_Eagles_Emblem", ConnectingRoomWindow.transform.position, Quaternion.identity, 0);
-            emblem.name = emblem.name + "-" + PhotonNetwork.player.name;
         }
         else if (PhotonNetwork.player.customProperties["Team"] == teams[1])
         {
             emblem = PhotonNetwork.Instantiate("Exorcist_Emblem", ConnectingRoomWindow.transform.position, Quaternion.identity, 0);
-            emblem.name = emblem.name + "-" + PhotonNetwork.player.name;
         }
         else if (PhotonNetwork.player.customProperties["Team"] == teams[2])
         {
             emblem = PhotonNetwork.Instantiate("Wolves_Emblem", ConnectingRoomWindow.transform.position, Quaternion.identity, 0);
-            emblem.name = emblem.name + "-" + PhotonNetwork.player.name;
         }
         else if (PhotonNetwork.player.customProperties["Team"] == teams[3])
         {
             emblem = PhotonNetwork.Instantiate("Blood_Angel_Emblem", ConnectingRoomWindow.transform.position, Quaternion.identity, 0);
-            emblem.name = emblem.name + "-" + PhotonNetwork.player.name;
         }
         photonView.RPC("fixEmblem", PhotonTargets.AllBuffered, emblem.name,myLabelViewID);
     }

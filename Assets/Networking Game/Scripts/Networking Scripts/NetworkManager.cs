@@ -4,11 +4,6 @@ using Photon;
 public class NetworkManager : PunBehaviour
 {
     #region Members
-    public Texture wolfTexture;
-    public Texture eagleTexture;
-    public Texture angelsTexture;
-    public Texture excorcistTexture;
-
     public Material eagleMaterial;
     public Material excorsistMaterial;
     public Material wolfMaterial;
@@ -117,7 +112,7 @@ public class NetworkManager : PunBehaviour
             CreatePlayerObject();
         }
     }
-
+    Material[] matt;
     private void CreatePlayerObject()
     {
         Vector3 position = new Vector3(475, 100, 191);
@@ -128,32 +123,60 @@ public class NetworkManager : PunBehaviour
         GameObject newPlayerObject = PhotonNetwork.Instantiate("T-90_Prefab_Network", position, Quaternion.identity, 0);
         //Change the texture of the tank
         meshes = newPlayerObject.GetComponentsInChildren<MeshRenderer>();
-        if(PhotonNetwork.player.customProperties["Team"] == "Eagles"){
-
+        if (PhotonNetwork.player.customProperties["Team"] == "Eagles")
+        {
             foreach (MeshRenderer mesh in meshes)
             {
-                mesh.gameObject.renderer.material = eagleMaterial;
+                if (mesh.name == "MainGun Mesh")
+                {
+                    mesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(eagleMaterial);
+                }
+                else
+                {
+                    mesh.gameObject.renderer.material = eagleMaterial;
+                }
             }
         }
         else if (PhotonNetwork.player.customProperties["Team"] == "Excorcist")
         {
             foreach (MeshRenderer mesh in meshes)
             {
-                mesh.gameObject.renderer.material = excorsistMaterial;
+                if (mesh.name == "MainGun Mesh")
+                {
+                    mesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(excorsistMaterial);
+                }
+                else
+                {
+                    mesh.gameObject.renderer.material = excorsistMaterial;
+                }
             }
         }
         else if (PhotonNetwork.player.customProperties["Team"] == "Wolves")
         {
             foreach (MeshRenderer mesh in meshes)
             {
-                mesh.gameObject.renderer.material = wolfMaterial;
+                if (mesh.name == "MainGun Mesh")
+                {
+                    mesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(wolfMaterial);
+                }
+                else
+                {
+                    mesh.gameObject.renderer.material = wolfMaterial;
+                }
             }
         }
         else if (PhotonNetwork.player.customProperties["Team"] == "Angel")
         {
             foreach (MeshRenderer mesh in meshes)
             {
-                mesh.gameObject.renderer.material = angelMaterial;
+                if (mesh.name == "MainGun Mesh")
+                {
+                    mesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(angelMaterial);
+                }
+                else
+                {
+                    mesh.gameObject.renderer.material = angelMaterial;
+                }
             }
         }
         //Add the camera target
