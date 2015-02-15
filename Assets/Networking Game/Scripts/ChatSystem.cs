@@ -1,32 +1,11 @@
-﻿using System;
+﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using ExitGames.Client.Photon.Chat;
-using UnityEngine;
-
-
-/// <summary>
-/// This simple Chat Server Gui uses a global chat (in lobby) and a room chat (in room).
-/// </summary>
-/// <remarks>
-/// The Chat Server API in ChatClient basically lets you create any number of channels. 
-/// You just have to name them. Example: "gc" for Global Channel or for rooms: "rc"+RoomName.GetHashCode()
-/// 
-/// This simple demo sends in a global chat when in lobby and in room channel when in room.
-/// Create a more elaborate UI to let players chat in either channel while in room or send private messages.
-/// 
-/// Names of users are set in Authenticate. That should be unique so users can actually get their messages.
-/// 
-/// 
-/// Workflow: 
-/// Create ChatClient, Connect to a server with your AppID, Authenticate the user (apply a unique name)
-/// and subscribe to some channels. 
-/// Subscribe a channel before you publish to that channel!
-/// 
-/// 
-/// Note: 
-/// Don't forget to call ChatClient.Service(). Might later on be integrated into PUN but for now don't forget.
-/// </remarks>
-public class ChatGui : MonoBehaviour, IChatClientListener
+using System;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+public class ChatSystem : Photon.MonoBehaviour, IChatClientListener
 {
     public string ChatAppId;                    // set in inspector. Your Chat AppId (don't mix it with Realtime/Turnbased Apps).
     public string[] ChannelsToJoinOnConnect;    // set in inspector. Demo channels to join automatically.
@@ -39,10 +18,10 @@ public class ChatGui : MonoBehaviour, IChatClientListener
     private string selectedChannelName;     // mainly used for GUI/input
     private int selectedChannelIndex = 0;   // mainly used for GUI/input
     bool doingPrivateChat;
-    
-    
+
+
     public ChatClient chatClient;
-    
+
     // GUI stuff:
     public Rect GuiRect = new Rect(0, 0, 250, 300);
     public bool IsVisible = true;
@@ -52,17 +31,25 @@ public class ChatGui : MonoBehaviour, IChatClientListener
     private string inputLine = "";
     private string userIdInput = "";
     private Vector2 scrollPos = Vector2.zero;
-    private static string WelcomeText = "Welcome to chat.\\help lists commands.";
-    private static string HelpText = "\n\\subscribe <list of channelnames> subscribes channels.\n\\unsubscribe <list of channelnames> leaves channels.\n\\msg <username> <message> send private message to user.\n\\clear clears the current chat tab. private chats get closed.\n\\help gets this help message.";
+    public static string WelcomeText = "Welcome to chat.\\help lists commands.";
+    public static string HelpText = "\n\\subscribe <list of channelnames> subscribes channels.\n\\unsubscribe <list of channelnames> leaves channels.\n\\msg <username> <message> send private message to user.\n\\clear clears the current chat tab. private chats get closed.\n\\help gets this help message.";
 
+    public EventSystem eventSystem;
+
+    public InputField chatInput;
+    public GameObject chatSystemContent;
+    public Animator chatAnimator;
     public void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
-        Application.runInBackground = true; // this must run in background or it will drop connection if not focussed.
+        //Set event system
+        eventSystem = FindObjectOfType<EventSystem>();
 
+        // this must run in background or it will drop connection if not focussed.
+        Application.runInBackground = true; 
+        //Set username
         if (string.IsNullOrEmpty(this.UserName))
         {
-            this.UserName = "user" + Environment.TickCount%99; //made-up username
+            this.UserName = PhotonNetwork.player.name;
         }
 
         chatClient = new ChatClient(this);
@@ -83,107 +70,89 @@ public class ChatGui : MonoBehaviour, IChatClientListener
         Debug.Log(this.UserName);
     }
 
-    /// <summary>To avoid that the Editor becomes unresponsive, disconnect all Photon connections in OnApplicationQuit.</summary>
-    public void OnApplicationQuit()
-    {
-        if (this.chatClient != null)
-        {
-            this.chatClient.Disconnect();
-        }
-    }
-
     public void Update()
     {
         if (this.chatClient != null)
         {
             this.chatClient.Service();  // make sure to call this regularly! it limits effort internally, so calling often is ok!
         }
-    }
 
-    public void OnGUI()
-    {
         if (!this.IsVisible)
         {
             return;
         }
 
-        GUI.skin.label.wordWrap = true;
-        //GUI.skin.button.richText = true;      // this allows toolbar buttons to have bold/colored text. nice to indicate new msgs
-        //GUILayout.Button("<b>lala</b>");      // as richText, html tags could be in text
-
-
-        if (Event.current.type == EventType.KeyDown && (Event.current.keyCode == KeyCode.KeypadEnter || Event.current.keyCode == KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
-            if ("ChatInput".Equals(GUI.GetNameOfFocusedControl()))
+            Debug.Log("LOL");
+            if (eventSystem.currentSelectedGameObject == chatInput.gameObject)
             {
                 // focus on input -> submit it
-                Debug.Log("LOL");
+                Debug.Log("send message");
                 GuiSendsMsg();
+                ChangeAlphaOfChatInput();
                 return; // showing the now modified list would result in an error. to avoid this, we just skip this single frame
             }
             else
             {
+                Debug.Log("Select");
                 // assign focus to input
-                GUI.FocusControl("ChatInput");
+                ChangeAlphaOfChatInput();
+                chatInput.Select();
             }
         }
 
-        GUI.SetNextControlName("");
-        GUILayout.BeginArea(this.GuiRect);
-
-        GUILayout.FlexibleSpace();
+        //GUI.SetNextControlName("");
 
         if (this.chatClient.State != ChatState.ConnectedToFrontEnd)
         {
             GUILayout.Label("Not in chat yet.");
         }
-        else
-        {
-            List<string> channels = new List<string>(this.chatClient.PublicChannels.Keys);    // this could be cached
-            int countOfPublicChannels = channels.Count;
-            channels.AddRange(this.chatClient.PrivateChannels.Keys);
+        //else
+        //{
+        //    List<string> channels = new List<string>(this.chatClient.PublicChannels.Keys);    // this could be cached
+        //    int countOfPublicChannels = channels.Count;
+        //    channels.AddRange(this.chatClient.PrivateChannels.Keys);
 
-            if (channels.Count > 0)
-            {
-                int previouslySelectedChannelIndex = this.selectedChannelIndex;
-                int channelIndex = channels.IndexOf(this.selectedChannelName);
-                this.selectedChannelIndex = (channelIndex >= 0) ? channelIndex : 0;
-                
-                this.selectedChannelIndex = GUILayout.Toolbar(this.selectedChannelIndex, channels.ToArray(), GUILayout.ExpandWidth(false));
-                this.scrollPos = GUILayout.BeginScrollView(this.scrollPos);
+        //    if (channels.Count > 0)
+        //    {
+        //        int previouslySelectedChannelIndex = this.selectedChannelIndex;
+        //        int channelIndex = channels.IndexOf(this.selectedChannelName);
+        //        this.selectedChannelIndex = (channelIndex >= 0) ? channelIndex : 0;
 
-                this.doingPrivateChat = (this.selectedChannelIndex >= countOfPublicChannels);
-                this.selectedChannelName = channels[this.selectedChannelIndex];
+        //        this.selectedChannelIndex = GUILayout.Toolbar(this.selectedChannelIndex, channels.ToArray(), GUILayout.ExpandWidth(false));
+        //        this.scrollPos = GUILayout.BeginScrollView(this.scrollPos);
 
-                if (this.selectedChannelIndex != previouslySelectedChannelIndex)
-                {
-                    // changed channel -> scroll down, if private: pre-fill "to" field with target user's name
-                    this.scrollPos.y = float.MaxValue;
-                    if (this.doingPrivateChat)
-                    {
-                        string[] pieces = this.selectedChannelName.Split(new char[] {':'}, 3);
-                        this.userIdInput = pieces[1];
-                    }
-                }
+        //        this.doingPrivateChat = (this.selectedChannelIndex >= countOfPublicChannels);
+        //        this.selectedChannelName = channels[this.selectedChannelIndex];
 
-                GUILayout.Label(ChatGui.WelcomeText);
+        //        if (this.selectedChannelIndex != previouslySelectedChannelIndex)
+        //        {
+        //            // changed channel -> scroll down, if private: pre-fill "to" field with target user's name
+        //            this.scrollPos.y = float.MaxValue;
+        //            if (this.doingPrivateChat)
+        //            {
+        //                string[] pieces = this.selectedChannelName.Split(new char[] { ':' }, 3);
+        //                this.userIdInput = pieces[1];
+        //            }
+        //        }
 
-                if (this.chatClient.TryGetChannel(selectedChannelName, this.doingPrivateChat, out this.selectedChannel))
-                {
-                    for (int i = 0; i < this.selectedChannel.Messages.Count; i++)
-                    {
-                        string sender = this.selectedChannel.Senders[i];
-                        object message = this.selectedChannel.Messages[i];
-                        GUILayout.Label(string.Format("{0}: {1}", sender, message));
-                    }
-                }
+        //        GUILayout.Label(ChatSystem.WelcomeText);
 
-                GUILayout.EndScrollView();
-            }
-        }
+        //        if (this.chatClient.TryGetChannel(selectedChannelName, this.doingPrivateChat, out this.selectedChannel))
+        //        {
+        //            for (int i = 0; i < this.selectedChannel.Messages.Count; i++)
+        //            {
+        //                string sender = this.selectedChannel.Senders[i];
+        //                object message = this.selectedChannel.Messages[i];
+        //                GUILayout.Label(string.Format("{0}: {1}", sender, message));
+        //            }
+        //        }
 
+        //        GUILayout.EndScrollView();
+        //    }
+        //}
 
-        GUILayout.BeginHorizontal();
         if (doingPrivateChat)
         {
             GUILayout.Label("to:", GUILayout.ExpandWidth(false));
@@ -203,17 +172,17 @@ public class ChatGui : MonoBehaviour, IChatClientListener
             }
 
         }
-        GUI.SetNextControlName("ChatInput");
-        inputLine = GUILayout.TextField(inputLine);
-        if (GUILayout.Button("Send", GUILayout.ExpandWidth(false)))
-        {
-            Debug.Log("Enter");
-            GuiSendsMsg();
-        }
-        GUILayout.EndHorizontal();
-        GUILayout.EndArea();
+        //GUI.SetNextControlName("ChatInput");
+        //inputLine = GUILayout.TextField(inputLine);
+        //if (GUILayout.Button("Send", GUILayout.ExpandWidth(false)))
+        //{
+        //    Debug.Log("Enter");
+        //    GuiSendsMsg();
+        //}
     }
-
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void GuiSendsMsg()
     {
         if (string.IsNullOrEmpty(this.inputLine))
@@ -225,7 +194,7 @@ public class ChatGui : MonoBehaviour, IChatClientListener
 
         if (this.inputLine[0].Equals('\\'))
         {
-            string[] tokens = this.inputLine.Split(new char[] {' '}, 2);
+            string[] tokens = this.inputLine.Split(new char[] { ' ' }, 2);
             if (tokens[0].Equals("\\help"))
             {
                 this.PostHelpToCurrentChannel();
@@ -237,11 +206,11 @@ public class ChatGui : MonoBehaviour, IChatClientListener
             }
             else if (tokens[0].Equals("\\subscribe") && !string.IsNullOrEmpty(tokens[1]))
             {
-                this.chatClient.Subscribe(tokens[1].Split(new char[] {' ', ','}));
+                this.chatClient.Subscribe(tokens[1].Split(new char[] { ' ', ',' }));
             }
             else if (tokens[0].Equals("\\unsubscribe") && !string.IsNullOrEmpty(tokens[1]))
             {
-                this.chatClient.Unsubscribe(tokens[1].Split(new char[] {' ', ','}));
+                this.chatClient.Unsubscribe(tokens[1].Split(new char[] { ' ', ',' }));
             }
             else if (tokens[0].Equals("\\clear"))
             {
@@ -260,7 +229,7 @@ public class ChatGui : MonoBehaviour, IChatClientListener
             }
             else if (tokens[0].Equals("\\msg") && !string.IsNullOrEmpty(tokens[1]))
             {
-                string[] subtokens = tokens[1].Split(new char[] {' ', ','}, 2);
+                string[] subtokens = tokens[1].Split(new char[] { ' ', ',' }, 2);
                 string targetUser = subtokens[0];
                 string message = subtokens[1];
                 this.chatClient.SendPrivateMessage(targetUser, message);
@@ -281,13 +250,24 @@ public class ChatGui : MonoBehaviour, IChatClientListener
         this.inputLine = "";
         GUI.FocusControl("");
     }
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /// <summary>To avoid that the Editor becomes unresponsive, disconnect all Photon connections in OnApplicationQuit.</summary>
+    public void OnApplicationQuit()
+    {
+        if (this.chatClient != null)
+        {
+            this.chatClient.Disconnect();
+        }
+    }
 
-    private void PostHelpToCurrentChannel()
+    public void PostHelpToCurrentChannel()
     {
         ChatChannel channelForHelp = this.selectedChannel;
         if (channelForHelp != null)
         {
-            channelForHelp.Add("info", ChatGui.HelpText);
+            channelForHelp.Add("info", ChatSystem.HelpText);
         }
         else
         {
@@ -303,7 +283,7 @@ public class ChatGui : MonoBehaviour, IChatClientListener
         }
         this.chatClient.SetOnlineStatus(ChatUserStatus.Online);             // You can set your online state (without a mesage).
     }
-    
+
     public void OnDisconnected()
     {
     }
@@ -316,7 +296,7 @@ public class ChatGui : MonoBehaviour, IChatClientListener
 
     public void OnSubscribed(string[] channels, bool[] results)
     {
-     
+
         // this demo can automatically send a "hi" to subscribed channels. in a game you usually only send user's input!!
         if (this.DemoPublishOnSubscribe)
         {
@@ -326,7 +306,7 @@ public class ChatGui : MonoBehaviour, IChatClientListener
             }
         }
     }
-    
+
     public void OnUnsubscribed(string[] channels)
     {
     }
@@ -344,7 +324,7 @@ public class ChatGui : MonoBehaviour, IChatClientListener
         // as the ChatClient is buffering the messages for you, this GUI doesn't need to do anything here
         // you also get messages that you sent yourself. in that case, the channelName is determinded by the target of your msg
     }
-    
+
     public void OnStatusUpdate(string user, int status, bool gotMessage, object message)
     {
         // this is how you get status updates of friends.
@@ -356,7 +336,26 @@ public class ChatGui : MonoBehaviour, IChatClientListener
         {
             activeChannel.Add("info", string.Format("{0} is {1}. Msg:{2}", user, status, message));
         }
-        
+
         Debug.LogWarning("status: " + string.Format("{0} is {1}. Msg:{2}", user, status, message));
+    }
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    public void CreateChatLabel()
+    {
+
+    }
+
+    public void ChangeAlphaOfChatInput()
+    {
+        if (chatAnimator.GetBool("Fade"))
+        {
+            chatAnimator.SetBool("Fade",false);
+        }
+        else
+        {
+            chatAnimator.SetBool("Fade", true);
+        }
     }
 }

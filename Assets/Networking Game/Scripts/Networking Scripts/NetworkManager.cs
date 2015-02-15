@@ -20,7 +20,7 @@ public class NetworkManager : PunBehaviour
         // in case we started this demo with the wrong scene being active, simply load the menu scene
         if (!PhotonNetwork.connected)
         {
-            Application.LoadLevel(Start_Menu_Server_Check.SceneNameMenu);
+            //Application.LoadLevel(Start_Menu_Server_Check.SceneNameMenu);
             return;
         }
 
@@ -60,6 +60,12 @@ public class NetworkManager : PunBehaviour
     {
         Debug.Log("OnLeftRoom (local)");
 
+        string message;
+        InRoomChat chatComponent = GetComponent<InRoomChat>();  // if we find a InRoomChat component, we print out a short message
+        message = PhotonNetwork.player + " has left the game!";
+        if(PhotonNetwork.player.isLocal == false){
+            chatComponent.AddLine(message);
+        }
         // back to main menu        
         Application.LoadLevel(Start_Menu_Server_Check.SceneNameMenu);
     }
@@ -108,7 +114,6 @@ public class NetworkManager : PunBehaviour
     {
         if (level == 1)
         {
-
             CreatePlayerObject();
         }
     }
@@ -121,9 +126,33 @@ public class NetworkManager : PunBehaviour
 
         //Instanitate Tank
         GameObject newPlayerObject = PhotonNetwork.Instantiate("T-90_Prefab_Network", position, Quaternion.identity, 0);
+        //Change Material
+        PhotonView view = newPlayerObject.GetComponent<PhotonView>();
+        photonView.RPC("ChangeTankMaterial", PhotonTargets.AllBuffered,view.viewID,PhotonNetwork.player);
+        //Add the camera target
+        orbit = FindObjectOfType<MouseOrbitC>();
+        //add the tankgun target
+        tankGun = newPlayerObject.GetComponentInChildren<TankGunController>();
+        Target = GameObject.Find("Target");
+        orbit.target = newPlayerObject.transform;
+        tankGun.target = Target.transform;
+    }
+    #endregion
+
+    #region TankRPC
+    GameObject tank;
+    [RPC]
+    public void ChangeTankMaterial(int viewID,PhotonPlayer player)
+    {
+        PhotonView[] views = FindObjectsOfType<PhotonView>();
+        foreach(PhotonView view in views){
+            if(view.viewID == viewID){
+                tank = view.gameObject;
+            }
+        }
         //Change the texture of the tank
-        meshes = newPlayerObject.GetComponentsInChildren<MeshRenderer>();
-        if (PhotonNetwork.player.customProperties["Team"] == "Eagles")
+        meshes = tank.GetComponentsInChildren<MeshRenderer>();
+        if (player.customProperties["Team"] == "Eagles")
         {
             foreach (MeshRenderer mesh in meshes)
             {
@@ -137,7 +166,7 @@ public class NetworkManager : PunBehaviour
                 }
             }
         }
-        else if (PhotonNetwork.player.customProperties["Team"] == "Excorcist")
+        else if (player.customProperties["Team"] == "Excorcist")
         {
             foreach (MeshRenderer mesh in meshes)
             {
@@ -151,7 +180,7 @@ public class NetworkManager : PunBehaviour
                 }
             }
         }
-        else if (PhotonNetwork.player.customProperties["Team"] == "Wolves")
+        else if (player.customProperties["Team"] == "Wolves")
         {
             foreach (MeshRenderer mesh in meshes)
             {
@@ -165,7 +194,7 @@ public class NetworkManager : PunBehaviour
                 }
             }
         }
-        else if (PhotonNetwork.player.customProperties["Team"] == "Angel")
+        else if (player.customProperties["Team"] == "Angel")
         {
             foreach (MeshRenderer mesh in meshes)
             {
@@ -179,13 +208,9 @@ public class NetworkManager : PunBehaviour
                 }
             }
         }
-        //Add the camera target
-        orbit = FindObjectOfType<MouseOrbitC>();
-        //add the tankgun target
-        tankGun = newPlayerObject.GetComponentInChildren<TankGunController>();
-        Target = GameObject.Find("Target");
-        orbit.target = newPlayerObject.transform;
-        tankGun.target = Target.transform;
     }
+
+
+
     #endregion
 }

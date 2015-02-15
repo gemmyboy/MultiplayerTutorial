@@ -46,4 +46,5 @@ MonoBehaviour:
   - rebuildLabelLobby
   - fixEmblem
   - explosionRadius
+  - ChangeTankMaterial
   DisableAutoOpenWizard: 0

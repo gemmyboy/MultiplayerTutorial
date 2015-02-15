@@ -11,26 +11,15 @@ public class UIManager : Photon.MonoBehaviour {
     private int frames = 0; // Frames drawn over the interval
     private float timeleft; // Left time for current interval
 
-    TankGunController[] tankGuns;
-    TankGunController m_gunController;
+    Color pingColor;
 	// Use this for initialization
 	void Start () {
-        //tankGuns = FindObjectsOfType<TankGunController>();
-        //foreach(TankGunController gun in tankGuns){
-        //    if(gun.GetComponent<PhotonView>().isMine){
-        //        m_gunController = gun.GetComponent<TankGunController>();
-        //    }
-        //}
-
         timeleft = updateInterval;
-        //ammoLabel.GetComponentInChildren<Text>().text = "Ammo: " + m_gunController.ammo;
+        pingColor = PingLabel.GetComponent<Image>().color;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	    PingLabel.GetComponentInChildren<Text>().text = "Ping: " + PhotonNetwork.GetPing();
-
-
         timeleft -= Time.deltaTime;
         accum += Time.timeScale/Time.deltaTime;
         ++frames;
@@ -40,24 +29,66 @@ public class UIManager : Photon.MonoBehaviour {
         {
         // display two fractional digits (f2 format)
 	    float fps = accum/frames;
+        //-----------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------
+        //Change the color of the FPS Label
         FPSLabel.GetComponentInChildren<Text>().text = "FPS: " + (int)fps;
+        Color FPSColor = FPSLabel.GetComponent<Image>().color;
 
         if (fps < 30)
-            FPSLabel.GetComponentInChildren<Image>().color = Color.yellow;
+        {
+            FPSLabel.GetComponent<Image>().color = new Color(255,255,0,FPSColor.a);
+        }
         else
+        {
             if (fps < 10)
-                FPSLabel.GetComponentInChildren<Image>().color = Color.red;
+            {
+                FPSLabel.GetComponent<Image>().color = new Color(255,0,0,FPSColor.a);
+            }
             else
-                FPSLabel.GetComponentInChildren<Image>().color = Color.green;
+            {
+                FPSLabel.GetComponent<Image>().color = new Color(0,250,0,FPSColor.a);
+            }
+        }
+        //-----------------------------------------------------------------------------------------
+        PingLabel.GetComponentInChildren<Text>().text = "Ping: " + PhotonNetwork.GetPing();
 
-            timeleft = updateInterval;
-            accum = 0.0F;
-            frames = 0;
+        if (PhotonNetwork.GetPing() >= 175)
+        {
+            PingLabel.GetComponent<Image>().color = new Color(255, 0, 0, pingColor.a);
+        }
+        else if(PhotonNetwork.GetPing() < 175 && PhotonNetwork.GetPing() >= 100){
+            PingLabel.GetComponent<Image>().color = new Color(255, 225, 0, pingColor.a);
+        }
+        else if (PhotonNetwork.GetPing() < 100)
+        {
+            PingLabel.GetComponent<Image>().color = new Color(0, 255, 0, pingColor.a);
+        }
+
+        //-----------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------
+        timeleft = updateInterval;
+        accum = 0.0F;
+        frames = 0;
         }
 	}
 
     public void ChangeAmmo(int ammo)
     {
         ammoLabel.GetComponentInChildren<Text>().text = "Ammo: " + ammo;
+        Color ammoColor = ammoLabel.GetComponentInChildren<Image>().color;
+
+        if(ammo >= 75){
+            ammoLabel.GetComponent<Image>().color = new Color(0, 255, 0, ammoColor.a);
+        }
+        else if(ammo <= 50 && ammo > 25){
+            ammoLabel.GetComponent<Image>().color = new Color(255, 255, 0, ammoColor.a);
+        }
+        else if (ammo <= 25)
+        {
+            ammoLabel.GetComponent<Image>().color = new Color(255, 0, 0, ammoColor.a);
+        }
     }
 }
