@@ -6,12 +6,19 @@ public class TankLerpMovement : Photon.MonoBehaviour {
     private Vector3 latestCorrectPos;
     private Vector3 onUpdatePos;
     private float fraction;
+    TankController tankController;
 
     public void Awake()
     {
+        this.name = this.name + "--" + this.photonView.owner.name;
         if (photonView.isMine)
         {
             this.enabled = false;   // due to this, Update() is not called on the owner client.
+        }
+        else
+        {
+            tankController = GetComponent<TankController>();
+            Debug.Log(tankController.gameObject.name);
         }
 
         latestCorrectPos = transform.position;
@@ -67,5 +74,6 @@ public class TankLerpMovement : Photon.MonoBehaviour {
 
         fraction = fraction + Time.deltaTime * 9;
         transform.localPosition = Vector3.Lerp(onUpdatePos, latestCorrectPos, fraction);    // set our pos between A and B
+        tankController.WheelAlign();
     }
 }

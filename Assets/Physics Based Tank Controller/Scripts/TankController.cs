@@ -5,7 +5,7 @@
 
 	[RequireComponent (typeof (Rigidbody))]
 
-	public class TankController : MonoBehaviour {
+	public class TankController : Photon.MonoBehaviour {
 
 	private bool reversing = false;
 
@@ -87,6 +87,8 @@
 		
 	void  Start (){
         m_PhotonView = GetComponent<PhotonView>();
+        RotationValueL = new float[WheelColliders_L.Length];
+        RotationValueR = new float[WheelColliders_R.Length];
 		if(m_PhotonView.isMine){
             SetTags();
             EngineStart();
@@ -102,9 +104,6 @@
 
             rigidbody.maxAngularVelocity = 5f;
 
-            RotationValueL = new float[WheelColliders_L.Length];
-            RotationValueR = new float[WheelColliders_R.Length];
-
             Renderer[] r = GetComponentsInChildren<Renderer>();
             if (r.Length > 0)
             {
@@ -115,6 +114,10 @@
                 vehicleSizeX = r[0].bounds.size.x;
                 vehicleSizeY = r[0].bounds.size.y;
             }
+        }
+        else
+        {
+            this.enabled = false;
         }
 	}
 
@@ -253,13 +256,11 @@
 	}
 
 	void Update(){
-            //WheelAlign();
+            WheelAlign();
 	}
 		
 	void  FixedUpdate (){
 
-        if (m_PhotonView.isMine)
-        {
             //AnimateGears();
             Engine();
             ShiftGears();
@@ -340,8 +341,6 @@
                 AllWheelColliders[i].forwardFriction = forwardFrictionCurve;
 
             }
-        }
-
 	}
 		
 	void Bools(){
@@ -422,9 +421,7 @@
 			
 	}
 
-	void  WheelAlign (){
-        if (m_PhotonView.isMine)
-        {
+	public void  WheelAlign (){
             RaycastHit hit;
             WheelHit CorrespondingGroundHit;
 
@@ -480,7 +477,6 @@
             RightTrackMesh.renderer.material.SetTextureOffset("_MainTex", new Vector2((RotationValueR[Mathf.CeilToInt((WheelColliders_R.Length) / 2)] / 1000) * trackScrollSpeedMultiplier, 0));
             LeftTrackMesh.renderer.material.SetTextureOffset("_BumpMap", new Vector2((RotationValueL[Mathf.CeilToInt((WheelColliders_L.Length) / 2)] / 1000) * trackScrollSpeedMultiplier, 0));
             RightTrackMesh.renderer.material.SetTextureOffset("_BumpMap", new Vector2((RotationValueR[Mathf.CeilToInt((WheelColliders_R.Length) / 2)] / 1000) * trackScrollSpeedMultiplier, 0));
-        }	
 	}
 
 
@@ -490,7 +486,7 @@
 		if (collision.contacts.Length > 0){	
 			
 			if(collision.relativeVelocity.magnitude > 10 && crashClips.Length > 0){
-				if (collision.contacts[0].thisCollider.gameObject.layer != LayerMask.NameToLayer("Wheel") && collision.transform.gameObject.layer != LayerMask.NameToLayer("Bullet")){
+				if (collision.contacts[0].thisCollider.gameObject.layer != LayerMask.NameToLayer("Wheel")){
 					
 					crashAudio = new GameObject("CrashSound");
 					crashAudio.transform.position = transform.position;

@@ -1192,6 +1192,7 @@ GameObject:
   - 54: {fileID: 5416726}
   - 114: {fileID: 11467642}
   - 114: {fileID: 11489886}
+  - 114: {fileID: 11419436}
   m_Layer: 8
   m_Name: T-90_Prefab_Network
   m_TagString: Player
@@ -5132,6 +5133,18 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
+--- !u!114 &11419436
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e927e162e0c1db43ab07b80017eb338, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interpolationBackTime: .14999999999999999
 --- !u!114 &11467642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5147,12 +5160,12 @@ MonoBehaviour:
   group: 0
   prefixBackup: -1
   observed: {fileID: 0}
-  synchronization: 3
+  synchronization: 2
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 11489886}
+  - {fileID: 11419436}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -5186,7 +5199,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 116852}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc20cd356c2286f46b82e2dfb09766ec, type: 3}
   m_Name: 
