@@ -257,6 +257,25 @@
 
 	void Update(){
             //WheelAlign();
+        //if(photonView.isMine){
+        //    if(Input.GetKeyDown(KeyCode.R)){
+        //        Camera.main.GetComponent<MouseOrbitC>().target = null;
+        //        gameObject.transform.DetachChildren();
+        //        Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, 50);
+        //        foreach (Collider hit in colliders)
+        //        {
+        //            if(hit.tag == "Terrain"){
+        //                return;
+        //            }
+        //            hit.gameObject.AddComponent<Rigidbody>();
+        //            if (hit && hit.rigidbody)
+        //            {
+        //                hit.rigidbody.isKinematic = false;
+        //                hit.rigidbody.AddExplosionForce(1000, gameObject.transform.position, 15, 3);
+        //            }
+        //        }
+        //    }
+        //}
 	}
 		
 	void  FixedUpdate (){

@@ -164,7 +164,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
                 StartTheGameButton.SetActive(true);
             }
         }
-
     }
     //--------------------------------------------------------------------------------------------------
     //The text fields that are in creating a server
