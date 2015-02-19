@@ -117,7 +117,6 @@ public class NetworkManager : PunBehaviour
             CreatePlayerObject();
         }
     }
-    Material[] matt;
     private void CreatePlayerObject()
     {
         Vector3 position = new Vector3(475, 100, 191);
@@ -128,7 +127,7 @@ public class NetworkManager : PunBehaviour
         GameObject newPlayerObject = PhotonNetwork.Instantiate("T-90_Prefab_Network", position, Quaternion.identity, 0);
         //Change Material
         PhotonView view = newPlayerObject.GetComponent<PhotonView>();
-        photonView.RPC("ChangeTankMaterial", PhotonTargets.AllBuffered,view.viewID,PhotonNetwork.player);
+        photonView.RPC("ChangeTankMaterial", PhotonTargets.AllBufferedViaServer,view.viewID,PhotonNetwork.player);
         //Add the camera target
         orbit = FindObjectOfType<MouseOrbitC>();
         //add the tankgun target
@@ -150,19 +149,23 @@ public class NetworkManager : PunBehaviour
                 tank = view.gameObject;
             }
         }
+
         //Change the texture of the tank
         meshes = tank.GetComponentsInChildren<MeshRenderer>();
         if (player.customProperties["Team"] == "Eagles")
         {
+            Debug.Log(tank.name);
             foreach (MeshRenderer mesh in meshes)
             {
                 if (mesh.name == "MainGun Mesh")
                 {
                     mesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(eagleMaterial);
+                    Debug.Log(mesh.gameObject.name);
                 }
                 else
                 {
                     mesh.gameObject.renderer.material = eagleMaterial;
+                    Debug.Log(mesh.gameObject.name);
                 }
             }
         }

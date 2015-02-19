@@ -18,6 +18,7 @@ public class TankInterpolationMovement : Photon.MonoBehaviour {
         internal double timestamp;
         internal Vector3 pos;
         internal Quaternion rot;
+        internal Vector3 vel;
     }
 
     // We store twenty states with "playback" information
@@ -36,10 +37,13 @@ public class TankInterpolationMovement : Photon.MonoBehaviour {
         // Always send transform (depending on reliability of the network view)
         if (stream.isWriting)
         {
-            Vector3 pos = transform.localPosition;
+            //Vector3 pos = transform.localPosition;
+            Vector3 pos = rigidbody.transform.localPosition;
             Quaternion rot = transform.localRotation;
+            Vector3 vel = rigidbody.velocity;
             stream.Serialize(ref pos);
             stream.Serialize(ref rot);
+            stream.Serialize(ref vel);
         }
         // When receiving, buffer the information
         else
@@ -47,8 +51,10 @@ public class TankInterpolationMovement : Photon.MonoBehaviour {
             // Receive latest state information
             Vector3 pos = Vector3.zero;
             Quaternion rot = Quaternion.identity;
+            Vector3 vel = Vector3.zero;
             stream.Serialize(ref pos);
             stream.Serialize(ref rot);
+            stream.Serialize(ref vel);
 
             // Shift buffer contents, oldest data erased, 18 becomes 19, ... , 0 becomes 1
             for (int i = m_BufferedState.Length - 1; i >= 1; i--)
@@ -62,6 +68,7 @@ public class TankInterpolationMovement : Photon.MonoBehaviour {
             state.timestamp = info.timestamp;
             state.pos = pos;
             state.rot = rot;
+            state.vel = vel;
             m_BufferedState[0] = state;
 
             // Increment state count but never exceed buffer size
@@ -109,8 +116,9 @@ public class TankInterpolationMovement : Photon.MonoBehaviour {
                         t = (float)((interpolationTime - lhs.timestamp) / length);
 
                     // if t=0 => lhs is used directly
-                    transform.localPosition = Vector3.Lerp(lhs.pos, rhs.pos, t);
+                    rigidbody.transform.localPosition = Vector3.Lerp(lhs.pos, rhs.pos, t);
                     transform.localRotation = Quaternion.Slerp(lhs.rot, rhs.rot, t);
+                    rigidbody.velocity = Vector3.Lerp(lhs.vel,rhs.vel,t);
                     return;
                 }
             }
@@ -121,8 +129,9 @@ public class TankInterpolationMovement : Photon.MonoBehaviour {
         {
             State latest = m_BufferedState[0];
 
-            transform.localPosition = Vector3.Lerp(transform.localPosition, latest.pos, Time.deltaTime * 20);
+            rigidbody.transform.localPosition = Vector3.Lerp(transform.localPosition, latest.pos, Time.deltaTime * 20);
             transform.localRotation = latest.rot;
+            rigidbody.velocity = latest.vel;
         }
     }
 }

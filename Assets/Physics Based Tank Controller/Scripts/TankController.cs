@@ -117,7 +117,7 @@
         }
         else
         {
-            this.enabled = false;
+            //this.enabled = false;
         }
 	}
 
@@ -256,11 +256,12 @@
 	}
 
 	void Update(){
-            WheelAlign();
+            //WheelAlign();
 	}
 		
 	void  FixedUpdate (){
-
+        if (photonView.isMine)
+        {
             //AnimateGears();
             Engine();
             ShiftGears();
@@ -341,6 +342,7 @@
                 AllWheelColliders[i].forwardFriction = forwardFrictionCurve;
 
             }
+        }
 	}
 		
 	void Bools(){
