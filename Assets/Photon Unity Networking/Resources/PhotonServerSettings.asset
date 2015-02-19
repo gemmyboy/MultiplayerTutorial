@@ -47,4 +47,5 @@ MonoBehaviour:
   - fixEmblem
   - explosionRadius
   - ChangeTankMaterial
+  - fixChatMessage
   DisableAutoOpenWizard: 0

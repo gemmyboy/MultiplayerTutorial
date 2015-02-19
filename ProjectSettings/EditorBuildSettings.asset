@@ -7,15 +7,9 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Networking Game/Scenes/Networking Game/start_menu.unity
-  - enabled: 0
-    path: Assets/Networking Game/Scenes/testing.unity
-  - enabled: 0
-    path: Assets/Networking Game/Scenes/OmegaTankScene.unity
   - enabled: 1
     path: Assets/Networking Game/Scenes/Networking Game/Demo Scene.unity
   - enabled: 0
-    path: Assets/Photon Unity Networking/Demos/DemoRPGMovement/DemoRPGMovement-Scene.unity
-  - enabled: 0
-    path: Assets/Photon Unity Networking/Demos/DemoWorker/DemoWorker-Scene.unity
+    path: Assets/Photon Unity Networking/Demos/DemoSynchronization/DemoSynchronization-Scene.unity
   - enabled: 0
     path: Assets/Photon Unity Networking/Demos/DemoWorker/DemoWorkerGame-Scene.unity

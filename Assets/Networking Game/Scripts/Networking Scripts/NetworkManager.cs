@@ -20,7 +20,7 @@ public class NetworkManager : PunBehaviour
         // in case we started this demo with the wrong scene being active, simply load the menu scene
         if (!PhotonNetwork.connected)
         {
-            //Application.LoadLevel(Start_Menu_Server_Check.SceneNameMenu);
+            Application.LoadLevel(Start_Menu_Server_Check.SceneNameMenu);
             return;
         }
 

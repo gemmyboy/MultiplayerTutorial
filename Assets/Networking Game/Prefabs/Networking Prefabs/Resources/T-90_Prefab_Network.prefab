@@ -797,6 +797,7 @@ GameObject:
   - 4: {fileID: 416804}
   - 33: {fileID: 3316736}
   - 23: {fileID: 2316736}
+  - 114: {fileID: 11416978}
   m_Layer: 8
   m_Name: Barrel Mesh
   m_TagString: Untagged
@@ -1190,6 +1191,7 @@ GameObject:
   - 114: {fileID: 11416710}
   - 54: {fileID: 5416726}
   - 114: {fileID: 11467642}
+  - 114: {fileID: 11489886}
   m_Layer: 8
   m_Name: T-90_Prefab_Network
   m_TagString: Player
@@ -5106,6 +5108,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vehicle: {fileID: 116852}
   startSlipValue: 1
+--- !u!114 &11416978
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
 --- !u!114 &11467642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5126,8 +5152,7 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 5416726}
-  - {fileID: 416852}
+  - {fileID: 11489886}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -5146,16 +5171,26 @@ MonoBehaviour:
   group: 0
   prefixBackup: -1
   observed: {fileID: 0}
-  synchronization: 3
+  synchronization: 0
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 5416716}
-  - {fileID: 416810}
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
+--- !u!114 &11489886
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc20cd356c2286f46b82e2dfb09766ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!122 &12216706
 Halo:
   m_ObjectHideFlags: 1

@@ -35,9 +35,9 @@ public class ChatGui : MonoBehaviour, IChatClientListener
 
     public string UserName { get; set; }
 
-    private ChatChannel selectedChannel;
-    private string selectedChannelName;     // mainly used for GUI/input
-    private int selectedChannelIndex = 0;   // mainly used for GUI/input
+    public ChatChannel selectedChannel;
+    public string selectedChannelName;     // mainly used for GUI/input
+    public int selectedChannelIndex = 0;   // mainly used for GUI/input
     bool doingPrivateChat;
     
     
@@ -62,9 +62,26 @@ public class ChatGui : MonoBehaviour, IChatClientListener
 
         if (string.IsNullOrEmpty(this.UserName))
         {
-            this.UserName = "user" + Environment.TickCount%99; //made-up username
+            this.UserName = PhotonNetwork.player.name; 
         }
-
+        //Set the chat system
+        if (PhotonNetwork.player.customProperties["Team"] == "Eagles")
+        {
+            ChannelsToJoinOnConnect[1] = "Eagle";
+        }
+        else if (PhotonNetwork.player.customProperties["Team"] == "Excorcist")
+        {
+            ChannelsToJoinOnConnect[1] = "Excorcist";
+        }
+        else if (PhotonNetwork.player.customProperties["Team"] == "Wolves")
+        {
+            ChannelsToJoinOnConnect[1] = "Wolves";
+        }
+        else if (PhotonNetwork.player.customProperties["Team"] == "Angel")
+        {
+            ChannelsToJoinOnConnect[1] = "Angel";
+        }
+        //Start the chat client
         chatClient = new ChatClient(this);
         chatClient.Connect(ChatAppId, "1.0", this.UserName, null);
 
@@ -102,6 +119,7 @@ public class ChatGui : MonoBehaviour, IChatClientListener
 
     public void OnGUI()
     {
+
         if (!this.IsVisible)
         {
             return;
@@ -117,7 +135,6 @@ public class ChatGui : MonoBehaviour, IChatClientListener
             if ("ChatInput".Equals(GUI.GetNameOfFocusedControl()))
             {
                 // focus on input -> submit it
-                Debug.Log("LOL");
                 GuiSendsMsg();
                 return; // showing the now modified list would result in an error. to avoid this, we just skip this single frame
             }
@@ -207,7 +224,6 @@ public class ChatGui : MonoBehaviour, IChatClientListener
         inputLine = GUILayout.TextField(inputLine);
         if (GUILayout.Button("Send", GUILayout.ExpandWidth(false)))
         {
-            Debug.Log("Enter");
             GuiSendsMsg();
         }
         GUILayout.EndHorizontal();
@@ -301,6 +317,8 @@ public class ChatGui : MonoBehaviour, IChatClientListener
         {
             this.chatClient.Subscribe(this.ChannelsToJoinOnConnect, this.HistoryLengthToFetch);
         }
+
+        this.chatClient.AddFriends(new string[] {"tobi", "ilya"});          // Add some users to the server-list to get their status updates
         this.chatClient.SetOnlineStatus(ChatUserStatus.Online);             // You can set your online state (without a mesage).
     }
     
