@@ -18,7 +18,8 @@ public class TankLerpMovement : Photon.MonoBehaviour {
         else
         {
             tankController = GetComponent<TankController>();
-            Debug.Log(tankController.gameObject.name);
+            //PhotonNetwork.sendRate;
+           // PhotonNetwork.sendRateOnSerialize
         }
 
         latestCorrectPos = transform.position;

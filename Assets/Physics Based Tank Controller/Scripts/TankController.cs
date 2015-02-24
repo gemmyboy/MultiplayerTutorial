@@ -89,13 +89,15 @@
         m_PhotonView = GetComponent<PhotonView>();
         RotationValueL = new float[WheelColliders_L.Length];
         RotationValueR = new float[WheelColliders_R.Length];
+
+        EngineStart();
+        SetStiffness();
+        SoundsInit();
+
 		if(m_PhotonView.isMine){
             SetTags();
-            EngineStart();
-            //SoundsInit();
             GearInit();
-            SetStiffness();
-
+            
             if (WheelSlipPrefab)
                 SmokeInit();
 
@@ -257,35 +259,16 @@
 
 	void Update(){
             //WheelAlign();
-        //if(photonView.isMine){
-        //    if(Input.GetKeyDown(KeyCode.R)){
-        //        Camera.main.GetComponent<MouseOrbitC>().target = null;
-        //        gameObject.transform.DetachChildren();
-        //        Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, 50);
-        //        foreach (Collider hit in colliders)
-        //        {
-        //            if(hit.tag == "Terrain"){
-        //                return;
-        //            }
-        //            hit.gameObject.AddComponent<Rigidbody>();
-        //            if (hit && hit.rigidbody)
-        //            {
-        //                hit.rigidbody.isKinematic = false;
-        //                hit.rigidbody.AddExplosionForce(1000, gameObject.transform.position, 15, 3);
-        //            }
-        //        }
-        //    }
-        //}
 	}
 		
 	void  FixedUpdate (){
+        AnimateGears();
         if (photonView.isMine)
         {
-            //AnimateGears();
             Engine();
             ShiftGears();
             Bools();
-            //SmokeInstantiateRate();
+            SmokeInstantiateRate();
 
             Speed = rigidbody.velocity.magnitude * 3.6f;
 
@@ -317,15 +300,6 @@
                 gearTimeMultiplier = 1;
                 Debug.Log("You DID NOT CREATE any engine torque curve keys!, Please create 1 key at least...");
             }
-
-            //Audio
-            //engineIdleAudio.audio.pitch = Mathf.Clamp((Mathf.Abs(EngineRPM) / Mathf.Abs(MaxEngineRPM) + 1), 1f, 2f);
-            //pitchValue = Mathf.Clamp((Mathf.Abs((EngineRPM) / (MaxEngineRPM)) + .4f), .5f, 1.25f);
-            //engineRunningAudio.audio.pitch = Mathf.Lerp(engineRunningAudio.audio.pitch, pitchValue, Time.deltaTime * 5);
-            //engineRunningAudio.audio.volume = Mathf.Lerp(engineRunningAudio.audio.volume, Mathf.Clamp(Mathf.Abs(Input.GetAxis("Vertical") + WheelColliders_R[Mathf.CeilToInt((WheelColliders_R.Length) / 2)].rpm / 500), 0, .75f), Time.deltaTime * 5);
-
-            if (engineStartUpAudio)
-                engineStartUpAudio.audio.volume = Mathf.Lerp(engineStartUpAudio.audio.volume, 1, Time.deltaTime * 5);
 
             for (int i = 0; i < AllWheelColliders.Count; i++)
             {
@@ -362,6 +336,15 @@
 
             }
         }
+
+        //Audio
+        this.engineIdleAudio.audio.pitch = Mathf.Clamp((Mathf.Abs(EngineRPM) / Mathf.Abs(MaxEngineRPM) + 1), 1f, 2f);
+        this.pitchValue = Mathf.Clamp((Mathf.Abs((EngineRPM) / (MaxEngineRPM)) + .4f), .5f, 1.25f);
+        this.engineRunningAudio.audio.pitch = Mathf.Lerp(engineRunningAudio.audio.pitch, pitchValue, Time.deltaTime * 5);
+        this.engineRunningAudio.audio.volume = Mathf.Lerp(engineRunningAudio.audio.volume, Mathf.Clamp(Mathf.Abs(Input.GetAxis("Vertical") + WheelColliders_R[Mathf.CeilToInt((WheelColliders_R.Length) / 2)].rpm / 500), 0, .75f), Time.deltaTime * 5);
+
+        if (this.engineStartUpAudio)
+            engineStartUpAudio.audio.volume = Mathf.Lerp(engineStartUpAudio.audio.volume, 1, Time.deltaTime * 5);
 	}
 		
 	void Bools(){
@@ -562,4 +545,4 @@
 		
 	}
 		
-	}
+}
