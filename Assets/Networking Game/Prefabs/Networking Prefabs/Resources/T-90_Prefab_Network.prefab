@@ -4952,7 +4952,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tank: {fileID: 116852}
   barrel: {fileID: 116804}
-  rotationTorque: 100
+  rotationTorque: 25
   maximumAngularVelocity: 1
   maximumRotationLimit: 160
   minimumElevationLimit: 10
@@ -4962,14 +4962,14 @@ MonoBehaviour:
   target: {fileID: 0}
   bullet: {fileID: 5400000, guid: f2fefdf7e67beb744bc6674450810a82, type: 2}
   bulletVelocity: 250
-  recoilForce: 500
+  recoilForce: 200
   ammo: 100
   reloadTime: 3
   barrelOut: {fileID: 416722}
   fireSoundClip: {fileID: 8300000, guid: f4577b6ab5693e446bcf9765748510dd, type: 3}
   groundSmoke: {fileID: 100000, guid: 4b31b1caadab1ee4b8606c9f35713992, type: 2}
   fireSmoke: {fileID: 100000, guid: 44b3febaf5142a5429938ef0a0de2395, type: 2}
-  m_PhotonView: {fileID: 0}
+  m_PhotonView: {fileID: 11469966}
 --- !u!114 &11416710
 MonoBehaviour:
   m_ObjectHideFlags: 1
