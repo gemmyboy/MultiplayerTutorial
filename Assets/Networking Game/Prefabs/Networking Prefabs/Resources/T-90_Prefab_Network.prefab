@@ -4945,7 +4945,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 116810}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 736a9942a70d8884896bf62a0ddfdb4d, type: 3}
   m_Name: 
@@ -5145,7 +5145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e927e162e0c1db43ab07b80017eb338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interpolationBackTime: .10000000149011612
+  interpolationBackTime: .15000000596046448
 --- !u!114 &11441064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5221,7 +5221,7 @@ MonoBehaviour:
   group: 0
   prefixBackup: -1
   observed: {fileID: 0}
-  synchronization: 1
+  synchronization: 2
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0

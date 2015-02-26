@@ -30,6 +30,9 @@ public class TankInterpolationMovement : Photon.MonoBehaviour {
     {
         if (photonView.isMine)
             this.enabled = false;//Only enable inter/extrapol for remote players
+
+        PhotonNetwork.sendRate = 20;
+        PhotonNetwork.sendRateOnSerialize = 20;
     }
 
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
