@@ -13,6 +13,7 @@ GameObject:
   - 26: {fileID: 2600000}
   - 114: {fileID: 11410682}
   - 114: {fileID: 11499986}
+  - 65: {fileID: 6563904}
   m_Layer: 0
   m_Name: large flames
   m_TagString: Untagged
@@ -47,7 +48,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: -2.3157444e-08, y: -1, z: -5.41077252e-11, w: 5.62018101e-07}
-  m_LocalPosition: {x: 496.604187, y: 88.455368, z: 210.183685}
+  m_LocalPosition: {x: 513.900024, y: 120.400002, z: 196.600006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -97,7 +98,7 @@ ParticleAnimator:
   force: {x: 0, y: 5, z: 0}
   damping: .100000001
   stopSimulation: 0
-  autodestruct: 1
+  autodestruct: 0
 --- !u!1002 &1200001
 EditorExtensionImpl:
   serializedVersion: 6
@@ -164,6 +165,18 @@ ParticleRenderer:
 --- !u!1002 &2600001
 EditorExtensionImpl:
   serializedVersion: 6
+--- !u!65 &6563904
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 13, y: 13, z: 13}
+  m_Center: {x: .889999986, y: 2.57999992, z: .140548915}
 --- !u!108 &10800000
 Light:
   m_ObjectHideFlags: 1

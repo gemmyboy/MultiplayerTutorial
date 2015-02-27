@@ -26,7 +26,7 @@ using UnityEngine;
 /// Note: 
 /// Don't forget to call ChatClient.Service(). Might later on be integrated into PUN but for now don't forget.
 /// </remarks>
-public class ChatGui : MonoBehaviour, IChatClientListener
+public class ChatGui : Photon.MonoBehaviour, IChatClientListener
 {
     public string ChatAppId;                    // set in inspector. Your Chat AppId (don't mix it with Realtime/Turnbased Apps).
     public string[] ChannelsToJoinOnConnect;    // set in inspector. Demo channels to join automatically.
@@ -45,7 +45,7 @@ public class ChatGui : MonoBehaviour, IChatClientListener
     
     // GUI stuff:
     public Rect GuiRect = new Rect(0, 0, 250, 300);
-    public bool IsVisible = true;
+    public bool IsVisible = false;
     public bool AlignBottom = false;
     public bool FullScreen = false;
 
@@ -57,6 +57,14 @@ public class ChatGui : MonoBehaviour, IChatClientListener
 
     public void Start()
     {
+        if(!photonView.isMine){
+            this.enabled = false;
+        }
+        else
+        {
+            switchVisibility();
+        }
+
         DontDestroyOnLoad(this.gameObject);
         Application.runInBackground = true; // this must run in background or it will drop connection if not focussed.
 
@@ -96,8 +104,6 @@ public class ChatGui : MonoBehaviour, IChatClientListener
             this.GuiRect.width = Screen.width;
             this.GuiRect.height = Screen.height;
         }
-
-        Debug.Log(this.UserName);
     }
 
     /// <summary>To avoid that the Editor becomes unresponsive, disconnect all Photon connections in OnApplicationQuit.</summary>
@@ -114,6 +120,10 @@ public class ChatGui : MonoBehaviour, IChatClientListener
         if (this.chatClient != null)
         {
             this.chatClient.Service();  // make sure to call this regularly! it limits effort internally, so calling often is ok!
+        }
+        if (Input.GetKeyDown(KeyCode.Return) && !displayingMessage)
+        {
+            switchVisibility();
         }
     }
 
@@ -376,5 +386,16 @@ public class ChatGui : MonoBehaviour, IChatClientListener
         }
         
         Debug.LogWarning("status: " + string.Format("{0} is {1}. Msg:{2}", user, status, message));
+    }
+
+    void switchVisibility()
+    {
+        if(IsVisible){
+            IsVisible = false;
+        }
+        else
+        {
+            IsVisible = true;
+        }
     }
 }

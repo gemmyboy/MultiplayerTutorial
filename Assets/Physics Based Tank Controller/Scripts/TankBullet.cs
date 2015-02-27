@@ -52,7 +52,7 @@ public class TankBullet : MonoBehaviour {
             if (hit && hit.rigidbody)
             {
                 hit.rigidbody.isKinematic = false;
-                hit.rigidbody.AddExplosionForce(25000, gameObject.transform.position, 15, 3);
+                hit.rigidbody.AddExplosionForce(100, gameObject.transform.position, 15, 3);
             }
         }
         PhotonNetwork.Destroy(gameObject);
