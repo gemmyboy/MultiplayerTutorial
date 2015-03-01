@@ -121,7 +121,7 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
         {
             this.chatClient.Service();  // make sure to call this regularly! it limits effort internally, so calling often is ok!
         }
-        if (Input.GetKeyDown(KeyCode.Return) && !displayingMessage)
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             switchVisibility();
         }

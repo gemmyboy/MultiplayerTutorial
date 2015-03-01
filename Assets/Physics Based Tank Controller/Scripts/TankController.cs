@@ -84,7 +84,6 @@
 	private WheelFrictionCurve forwardFrictionCurve;
 
     PhotonView m_PhotonView;
-		
 	void  Start (){
         m_PhotonView = GetComponent<PhotonView>();
         RotationValueL = new float[WheelColliders_L.Length];
@@ -490,7 +489,8 @@
 		if (collision.contacts.Length > 0){	
 			
 			if(collision.relativeVelocity.magnitude > 10 && crashClips.Length > 0){
-				if (collision.contacts[0].thisCollider.gameObject.layer != LayerMask.NameToLayer("Wheel")){
+                if (collision.contacts[0].thisCollider.gameObject.layer != LayerMask.NameToLayer("Wheel") && collision.contacts[0].thisCollider.gameObject.layer != LayerMask.NameToLayer("Bullet"))
+                {
 					
 					crashAudio = new GameObject("CrashSound");
 					crashAudio.transform.position = transform.position;

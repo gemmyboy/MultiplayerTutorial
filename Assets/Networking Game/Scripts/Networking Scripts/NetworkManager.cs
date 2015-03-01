@@ -10,11 +10,7 @@ public class NetworkManager : PunBehaviour
     public Material angelMaterial;
     #endregion
 
-
-
-    #region Unity
-    public Transform playerPrefab;
-
+    #region PhotonConnect&Disconnect
     public void Awake()
     {
         // in case we started this demo with the wrong scene being active, simply load the menu scene
@@ -23,9 +19,6 @@ public class NetworkManager : PunBehaviour
             Application.LoadLevel(Start_Menu_Server_Check.SceneNameMenu);
             return;
         }
-
-        // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-        //PhotonNetwork.Instantiate(this.playerPrefab.name, transform.position + Vector3.up * 5, Quaternion.identity, 0);
     }
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -78,16 +71,6 @@ public class NetworkManager : PunBehaviour
         Application.LoadLevel(Start_Menu_Server_Check.SceneNameMenu);
     }
 
-    public void OnPhotonInstantiate(PhotonMessageInfo info)
-    {
-        Debug.Log("OnPhotonInstantiate " + info.sender);    // you could use this info to store this or react
-    }
-
-    public void OnPhotonPlayerConnected(PhotonPlayer player)
-    {
-        Debug.Log("OnPhotonPlayerConnected: " + player);
-    }
-
     public void OnPhotonPlayerDisconnected(PhotonPlayer player)
     {
         Debug.Log("OnPlayerDisconneced: " + player);
@@ -125,9 +108,6 @@ public class NetworkManager : PunBehaviour
 
         //Instanitate Tank
         GameObject newPlayerObject = PhotonNetwork.Instantiate("T-90_Prefab_Network", position, Quaternion.identity, 0);
-        //Change Material
-        PhotonView view = newPlayerObject.GetComponent<PhotonView>();
-        photonView.RPC("ChangeTankMaterial", PhotonTargets.AllBufferedViaServer,view.viewID,PhotonNetwork.player);
         //Add the camera target
         orbit = FindObjectOfType<MouseOrbitC>();
         //add the tankgun target
@@ -135,6 +115,12 @@ public class NetworkManager : PunBehaviour
         Target = GameObject.Find("Target");
         orbit.target = newPlayerObject.transform;
         tankGun.target = Target.transform;
+        //Turn off own health system
+        Transform TankHealthSystem = newPlayerObject.transform.Find("TankHealthSystemCanvas");
+        TankHealthSystem.gameObject.SetActive(false);
+        //Change Material
+        PhotonView view = newPlayerObject.GetComponent<PhotonView>();
+        photonView.RPC("ChangeTankMaterial", PhotonTargets.AllBuffered, view.viewID, PhotonNetwork.player);
     }
     #endregion
 
@@ -152,68 +138,66 @@ public class NetworkManager : PunBehaviour
 
         //Change the texture of the tank
         meshes = tank.GetComponentsInChildren<MeshRenderer>();
-        if (player.customProperties["Team"] == "Eagles")
-        {
-            Debug.Log(tank.name);
-            foreach (MeshRenderer mesh in meshes)
-            {
-                if (mesh.name == "MainGun Mesh")
-                {
-                    mesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(eagleMaterial);
-                    Debug.Log(mesh.gameObject.name);
-                }
-                else
-                {
-                    mesh.gameObject.renderer.material = eagleMaterial;
-                    Debug.Log(mesh.gameObject.name);
-                }
-            }
-        }
-        else if (player.customProperties["Team"] == "Excorcist")
-        {
-            foreach (MeshRenderer mesh in meshes)
-            {
-                if (mesh.name == "MainGun Mesh")
-                {
-                    mesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(excorsistMaterial);
-                }
-                else
-                {
-                    mesh.gameObject.renderer.material = excorsistMaterial;
-                }
-            }
-        }
-        else if (player.customProperties["Team"] == "Wolves")
-        {
-            foreach (MeshRenderer mesh in meshes)
-            {
-                if (mesh.name == "MainGun Mesh")
-                {
-                    mesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(wolfMaterial);
-                }
-                else
-                {
-                    mesh.gameObject.renderer.material = wolfMaterial;
-                }
-            }
-        }
-        else if (player.customProperties["Team"] == "Angel")
-        {
-            foreach (MeshRenderer mesh in meshes)
-            {
-                if (mesh.name == "MainGun Mesh")
-                {
-                    mesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(angelMaterial);
-                }
-                else
-                {
-                    mesh.gameObject.renderer.material = angelMaterial;
-                }
-            }
-        }
+        Debug.Log(PhotonNetwork.player.name + "::Changing::" + tank.name);
+
+
+
+        //if (player.customProperties["Team"] == "Eagles")
+        //{
+        //    foreach (MeshRenderer mesh in meshes)
+        //    {
+        //        if (mesh.name == "MainGun Mesh")
+        //        {
+        //            mesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(eagleMaterial);
+        //        }
+        //        else
+        //        {
+        //            mesh.gameObject.renderer.material = eagleMaterial;
+        //        }
+        //    }
+        //}
+        //else if (player.customProperties["Team"] == "Excorcist")
+        //{
+        //    foreach (MeshRenderer mesh in meshes)
+        //    {
+        //        if (mesh.name == "MainGun Mesh")
+        //        {
+        //            mesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(excorsistMaterial);
+        //        }
+        //        else
+        //        {
+        //            mesh.gameObject.renderer.material = excorsistMaterial;
+        //        }
+        //    }
+        //}
+        //else if (player.customProperties["Team"] == "Wolves")
+        //{
+        //    foreach (MeshRenderer mesh in meshes)
+        //    {
+        //        if (mesh.name == "MainGun Mesh")
+        //        {
+        //            mesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(wolfMaterial);
+        //        }
+        //        else
+        //        {
+        //            mesh.gameObject.renderer.material = wolfMaterial;
+        //        }
+        //    }
+        //}
+        //else if (player.customProperties["Team"] == "Angel")
+        //{
+        //    foreach (MeshRenderer mesh in meshes)
+        //    {
+        //        if (mesh.name == "MainGun Mesh")
+        //        {
+        //            mesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(angelMaterial);
+        //        }
+        //        else
+        //        {
+        //            mesh.gameObject.renderer.material = angelMaterial;
+        //        }
+        //    }
+        //}
     }
-
-
-
     #endregion
 }

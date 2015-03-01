@@ -137,7 +137,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 427d27e36207daf42b5ba912d5bfb33d, type: 2}
+  - {fileID: 2100000, guid: e25c0a3b04362d546859d7d7d0294c93, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -285,6 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleSystem: {fileID: 0}
+  particleEmiter: {fileID: 0}
 --- !u!114 &11457752
 MonoBehaviour:
   m_ObjectHideFlags: 1

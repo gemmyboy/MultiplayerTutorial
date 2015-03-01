@@ -14,6 +14,10 @@ public class UIManager : Photon.MonoBehaviour {
     Color pingColor;
 	// Use this for initialization
 	void Start () {
+        if(!photonView.isMine){
+            this.enabled = false;
+        }
+
         timeleft = updateInterval;
         pingColor = PingLabel.GetComponent<Image>().color;
 	}

@@ -4187,7 +4187,7 @@ GameObject:
   - 114: {fileID: 155938692}
   - 114: {fileID: 155938691}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: ScoreSystem/ChatSystem Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4205,7 +4205,7 @@ RectTransform:
   m_Children:
   - {fileID: 880263472}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -25433,8 +25433,6 @@ MonoBehaviour:
   IsVisible: 1
   AlignBottom: 1
   FullScreen: 0
-  currentMessageList: 0
-  displayingMessage: 0
 --- !u!114 &1166978965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25457,8 +25455,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 329
-  instantiationId: 329
+  viewIdField: 333
+  instantiationId: 333
 --- !u!1 &1175302361
 GameObject:
   m_ObjectHideFlags: 0
@@ -27887,7 +27885,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!1 &1357109473
 GameObject:
   m_ObjectHideFlags: 0
@@ -35818,64 +35816,6 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 52
   instantiationId: 52
---- !u!1 &1774233060
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1774233062}
-  - 114: {fileID: 1774233061}
-  m_Layer: 0
-  m_Name: ChatScripts
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1774233061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1774233060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02d148d0890b2d44dbdf7f1c1b39a499, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ChatAppId: 9bdf7337-b892-416a-96f7-a7e6ce702d5d
-  ChannelsToJoinOnConnect:
-  - AllChat
-  - 
-  HistoryLengthToFetch: 0
-  DemoPublishOnSubscribe: 1
-  selectedChannelName: 
-  selectedChannelIndex: 0
-  GuiRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 400
-    height: 300
-  IsVisible: 1
-  AlignBottom: 1
-  FullScreen: 0
-  currentMessageList: 0
-  displayingMessage: 0
---- !u!4 &1774233062
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1774233060}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
 --- !u!1 &1779662935
 GameObject:
   m_ObjectHideFlags: 0
@@ -36827,7 +36767,6 @@ MonoBehaviour:
   excorsistMaterial: {fileID: 2100000, guid: 598e275fb98b2aa4997bf178f8897e57, type: 2}
   wolfMaterial: {fileID: 2100000, guid: c307bcf5f00cca2479703b342fcb5acc, type: 2}
   angelMaterial: {fileID: 2100000, guid: 5fcf5189f21702448b01ea338d432834, type: 2}
-  playerPrefab: {fileID: 400000, guid: 5fa239dc902776240b919279dd6748f5, type: 2}
 --- !u!4 &1847502932
 Transform:
   m_ObjectHideFlags: 0
@@ -42445,7 +42384,7 @@ Transform:
   m_LocalScale: {x: 22.8292084, y: 1, z: 10.3446331}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 7
 --- !u!1 &2137904315
 GameObject:
   m_ObjectHideFlags: 0

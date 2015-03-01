@@ -28,9 +28,13 @@ public class TankInterpolationMovement : Photon.MonoBehaviour {
 
     void Awake()
     {
+        gameObject.name = PhotonNetwork.playerName + "--" + photonView.viewID;
         if (photonView.isMine)
             this.enabled = false;//Only enable inter/extrapol for remote players
+        else
+        {
 
+        }
         PhotonNetwork.sendRate = 25;
         PhotonNetwork.sendRateOnSerialize = 25;
     }
