@@ -5130,7 +5130,7 @@ MonoBehaviour:
   rotationOfTheGun: 0
   target: {fileID: 0}
   bullet: {fileID: 5400000, guid: f2fefdf7e67beb744bc6674450810a82, type: 2}
-  bulletVelocity: 250
+  bulletVelocity: 175
   recoilForce: 50
   ammo: 100
   reloadTime: 3

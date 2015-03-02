@@ -489,7 +489,7 @@
 		if (collision.contacts.Length > 0){	
 			
 			if(collision.relativeVelocity.magnitude > 10 && crashClips.Length > 0){
-                if (collision.contacts[0].thisCollider.gameObject.layer != LayerMask.NameToLayer("Wheel") && collision.contacts[0].thisCollider.gameObject.layer != LayerMask.NameToLayer("Bullet"))
+                if (collision.contacts[0].thisCollider.gameObject.layer != LayerMask.NameToLayer("Wheel"))
                 {
 					
 					crashAudio = new GameObject("CrashSound");
