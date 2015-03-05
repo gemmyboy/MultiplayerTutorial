@@ -20,7 +20,7 @@ public class UIManager : Photon.MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         if(!photonView.isMine){
-            this.enabled = false;
+            gameObject.SetActive(false);
         }
 
         timeleft = updateInterval;
