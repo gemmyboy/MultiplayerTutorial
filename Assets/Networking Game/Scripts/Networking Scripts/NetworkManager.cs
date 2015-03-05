@@ -138,7 +138,7 @@ public class NetworkManager : PunBehaviour
 
         //Change the texture of the tank
         meshes = tank.GetComponentsInChildren<MeshRenderer>();
-        Debug.Log(PhotonNetwork.player.name + "::Changing::" + tank.name);
+        //Debug.Log(PhotonNetwork.player.name + "::Changing::" + tank.name);
 
 
 

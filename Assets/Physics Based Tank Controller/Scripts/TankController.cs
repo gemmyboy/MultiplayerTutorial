@@ -507,6 +507,10 @@
 					Destroy(crashAudio, crashAudio.audio.clip.length);
 					
 				}
+                if (collision.contacts[0].thisCollider.gameObject.layer == LayerMask.NameToLayer("TankCollider"))
+                {
+                    Debug.Log("TankCollide");
+                }
 			}
 			
 		}

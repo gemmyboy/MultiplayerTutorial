@@ -318,10 +318,11 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             int i = 0;
             foreach (RoomInfo roomInfo in PhotonNetwork.GetRoomList())
             {
+                ClearButtons();
                 ServerButton = Instantiate(preFabButton, refreshWindow.transform.position, refreshWindow.transform.rotation) as GameObject;
                 ServerButton.name = "ServerButton";
                 if(roomInfo.open == false){
-                    ServerButton.GetComponentInChildren<Text>().text = roomInfo.name + " " + roomInfo.playerCount + "/" + roomInfo.maxPlayers + "(Starting)";
+                    ServerButton.GetComponentInChildren<Text>().text = roomInfo.name + " " + roomInfo.playerCount + "/" + roomInfo.maxPlayers + "(In Progress)";
                 }
                 else
                 {
@@ -342,7 +343,8 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     //For adding game buttons to server list window
     public void fixButton(GameObject button,int i)
     {
-        button.transform.parent = refreshWindow.transform;
+        //button.transform.parent = refreshWindow.transform;
+        button.transform.SetParent(refreshWindow.transform);
         button.transform.localScale = new Vector3(1, 1, 1);
         button.GetComponent<RectTransform>().localPosition = new Vector3(0, (-80 * i) + 30, 0);
     }
@@ -370,7 +372,8 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             {
                 //currentPlayerLabels.Add(vie.viewID);
                 GameObject obj = vie.gameObject;
-                obj.transform.parent = ConnectingRoomWindow.transform;
+                //obj.transform.parent = ConnectingRoomWindow.transform;
+                obj.transform.SetParent(ConnectingRoomWindow.transform);
                 obj.transform.localScale = new Vector3(1, 1, 1);
                 obj.transform.rotation = new Quaternion(0, 0, 0, 0);
                 if (player.isMasterClient)
@@ -408,7 +411,8 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     void fixDropDown()
     {
         dropMenu = GameObject.Find("DropDownButtonMenu(Clone)");
-        dropMenu.transform.parent = ConnectingRoomWindow.transform;
+        //dropMenu.transform.parent = ConnectingRoomWindow.transform;
+        dropMenu.transform.SetParent(ConnectingRoomWindow.transform);
         dropMenu.transform.localScale = new Vector3(1, 1, 1);
         dropMenu.transform.rotation = new Quaternion(0, 0, 0, 0);
         dropMenu.GetComponentInChildren<RectTransform>().localPosition = new Vector3(450, 100, 0);
@@ -519,7 +523,8 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     public void FixScreen()
     {
         GameObject screenFade = GameObject.Find("FadeScreen(Clone)");
-        screenFade.transform.parent = canvas.transform;
+        //screenFade.transform.parent = canvas.transform;
+        screenFade.transform.SetParent(canvas.transform);
         screenFade.transform.localScale = new Vector3(1, 1, 1);
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -638,7 +643,8 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             }
         }
         emblem = GameObject.Find(gameObjectName);
-        emblem.transform.parent = lab.transform;
+        //emblem.transform.parent = lab.transform;
+        emblem.transform.SetParent(lab.transform);
         emblem.transform.rotation = new Quaternion(0, 0, 0, 0);
         emblem.transform.localScale = new Vector3(1, 1, 1);
         emblem.GetComponentInChildren<RectTransform>().localPosition = new Vector3(150,0,0);
