@@ -62,7 +62,7 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
         }
         else
         {
-            switchVisibility();
+            //switchVisibility();
         }
 
         DontDestroyOnLoad(this.gameObject);
@@ -117,13 +117,13 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
 
     public void Update()
     {
-        if (this.chatClient != null)
-        {
-            this.chatClient.Service();  // make sure to call this regularly! it limits effort internally, so calling often is ok!
-        }
         if (Input.GetKeyDown(KeyCode.Return))
         {
             switchVisibility();
+        }
+        if (this.chatClient != null)
+        {
+            this.chatClient.Service();  // make sure to call this regularly! it limits effort internally, so calling often is ok!
         }
     }
 
@@ -246,6 +246,7 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
         {
 
             GUI.FocusControl("");
+            switchVisibility();
             return;
         }
 

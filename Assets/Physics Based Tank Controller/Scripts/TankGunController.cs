@@ -44,7 +44,7 @@ public class TankGunController : MonoBehaviour {
     UIManager guiManager;
 	void Start () {
         guiManager = FindObjectOfType<UIManager>();
- 
+        guiManager.ChangeAmmo(ammo);
 
         m_PhotonView = GetComponent<PhotonView>();
 		rigidbody.maxAngularVelocity = maximumAngularVelocity;

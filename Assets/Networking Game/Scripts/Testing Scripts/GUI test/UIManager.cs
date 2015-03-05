@@ -3,8 +3,13 @@ using System.Collections;
 using UnityEngine.UI;
 public class UIManager : Photon.MonoBehaviour {
     public GameObject PingLabel;
-    public GameObject ammoLabel;
     public GameObject FPSLabel;
+
+    public GameObject ammoLabel;
+    public GameObject healthLabel;
+    public GameObject killsLabel;
+    public GameObject deathLabel;
+    public GameObject assistLabel;
     
     public  float updateInterval = 0.5F;
     private float accum = 0; // FPS accumulated over the interval
@@ -81,18 +86,39 @@ public class UIManager : Photon.MonoBehaviour {
 
     public void ChangeAmmo(int ammo)
     {
-        ammoLabel.GetComponentInChildren<Text>().text = "Ammo: " + ammo;
+        ammoLabel.GetComponentInChildren<Text>().text = "" + ammo;
         Color ammoColor = ammoLabel.GetComponentInChildren<Image>().color;
 
         if(ammo >= 75){
-            ammoLabel.GetComponent<Image>().color = new Color(0, 255, 0, ammoColor.a);
+            Debug.Log("yes");
+            ammoLabel.GetComponentInChildren<Image>().color = new Color(0, 255, 0, ammoColor.a);
+            Debug.Log(ammoLabel.GetComponentInChildren<Image>().color);
         }
         else if(ammo <= 50 && ammo > 25){
-            ammoLabel.GetComponent<Image>().color = new Color(255, 255, 0, ammoColor.a);
+            ammoLabel.GetComponentInChildren<Image>().color = new Color(255, 255, 0, ammoColor.a);
         }
         else if (ammo <= 25)
         {
-            ammoLabel.GetComponent<Image>().color = new Color(255, 0, 0, ammoColor.a);
+            ammoLabel.GetComponentInChildren<Image>().color = new Color(255, 0, 0, ammoColor.a);
         }
+    }
+
+    public void ChangeHealth(int health)
+    {
+        healthLabel.GetComponentInChildren<Text>().text = "" + health;
+    }
+
+    public void changeKills(int kills)
+    {
+        killsLabel.GetComponentInChildren<Text>().text = "" + kills;
+    }
+    public void changeDeaths(int deaths)
+    {
+        deathLabel.GetComponentInChildren<Text>().text = "" + deaths;
+
+    }
+    public void changeAssist(int assist)
+    {
+        assistLabel.GetComponentInChildren<Text>().text = "" + assist;
     }
 }
