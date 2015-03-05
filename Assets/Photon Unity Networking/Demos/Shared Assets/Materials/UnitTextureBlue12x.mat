@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: UnitTextureBlue12x
-  m_Shader: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 2, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -20,9 +20,68 @@ Material:
           m_Texture: {fileID: 2800000, guid: df33d7843e7ff98489b55381f6cdd866, type: 3}
           m_Scale: {x: 12, y: 12}
           m_Offset: {x: 0, y: 0}
-    m_Floats: {}
+      data:
+        first:
+          name: _BumpMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Normal
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Diffuse
+        second:
+          m_Texture: {fileID: 2800000, guid: 66cd0471e2fdc414682a5349c9d0df67, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Normals
+        second:
+          m_Texture: {fileID: 2800000, guid: 427cf221b0e5f4b4da9d0821562ddc18, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _AORGBHeightA
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _Cutoff
+        second: .5
+      data:
+        first:
+          name: _Divisions
+        second: .563909829
+      data:
+        first:
+          name: _BulgeScale
+        second: .5
+      data:
+        first:
+          name: _BulgeShape
+        second: 2
+      data:
+        first:
+          name: _GlowIntensity
+        second: 1
     m_Colors:
       data:
         first:
           name: _Color
         second: {r: .433066636, g: .480388671, b: .654411793, a: 1}
+      data:
+        first:
+          name: _GlowColor
+        second: {r: .110294104, g: 1, b: .337322354, a: 1}

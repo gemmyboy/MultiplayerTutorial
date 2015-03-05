@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: ShaderForgeInternal
-  m_Shader: {fileID: 4800000, guid: a66ce55a8b03a214ca28d778bcaa1c5e, type: 3}
+  m_Shader: {fileID: 4800000, guid: 6dedef75fd0484cdf8557f522ceaa8bf, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,19 +17,31 @@ Material:
         first:
           name: _Diffuse
         second:
-          m_Texture: {fileID: 2800000, guid: 02b230a6dbc126f49ac17778565ed96e, type: 3}
+          m_Texture: {fileID: 2800000, guid: b66bceaf0cc0ace4e9bdc92f14bba709, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Normal
+          name: _Normals
         second:
-          m_Texture: {fileID: 2800000, guid: 6de787b941a84ab47aa819718eab2994, type: 3}
+          m_Texture: {fileID: 2800000, guid: c7ae2d77608d4fb4380bfcbf944e3282, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-    m_Floats: {}
+    m_Floats:
+      data:
+        first:
+          name: _BulgeScale
+        second: .200000003
+      data:
+        first:
+          name: _BulgeShape
+        second: 5
+      data:
+        first:
+          name: _GlowIntensity
+        second: 1.20000005
     m_Colors:
       data:
         first:
-          name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
+          name: _GlowColor
+        second: {r: 1, g: .239148095, b: .110294104, a: 1}

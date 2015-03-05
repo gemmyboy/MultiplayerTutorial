@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Jura-Flat-Material
-  m_Shader: {fileID: 4800000, guid: 953d6c4c7f7ec324d860efb0db9c68ff, type: 3}
+  m_Shader: {fileID: 4800000, guid: 6dedef75fd0484cdf8557f522ceaa8bf, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -20,9 +20,39 @@ Material:
           m_Texture: {fileID: 2800000, guid: e00995507c2406448b4c8429136104dd, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-    m_Floats: {}
+      data:
+        first:
+          name: _Diffuse
+        second:
+          m_Texture: {fileID: 2800000, guid: 66cd0471e2fdc414682a5349c9d0df67, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Normals
+        second:
+          m_Texture: {fileID: 2800000, guid: 275f1ed58b36b4424bee28d2747aa6ee, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _BulgeScale
+        second: .200000003
+      data:
+        first:
+          name: _BulgeShape
+        second: 5
+      data:
+        first:
+          name: _GlowIntensity
+        second: 1.20000005
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
+        second: {r: .691176474, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _GlowColor
+        second: {r: 0, g: 1, b: 0, a: 1}

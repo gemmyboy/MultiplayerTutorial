@@ -73,15 +73,15 @@ Material:
       data:
         first:
           name: _BulgeScale
-        second: .200000003
+        second: .00100000005
       data:
         first:
           name: _BulgeShape
-        second: 5
+        second: 10
       data:
         first:
           name: _GlowIntensity
-        second: 8.51000023
+        second: 10
       data:
         first:
           name: _Magnitude
@@ -94,4 +94,4 @@ Material:
       data:
         first:
           name: _GlowColor
-        second: {r: .110294104, g: .410953432, b: 1, a: 1}
+        second: {r: 0, g: 1, b: 0, a: 1}
