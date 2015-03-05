@@ -43,12 +43,17 @@ public class TankBullet : MonoBehaviour {
                 Explosion();
                 col.gameObject.SendMessage("TakeDamage", SendMessageOptions.RequireReceiver);
             }
-            else
-            {
-                Explosion();
-            }
         }
 	}
+
+    void OnCollision(Collision col)
+    {
+        if (view.isMine)
+        {
+            Explosion();
+            col.gameObject.SendMessage("TakeDamage", SendMessageOptions.RequireReceiver);
+        }
+    }
 
 	void Explosion(){
         PhotonNetwork.Instantiate("I_Made_Fire", transform.position, transform.rotation, 0);
