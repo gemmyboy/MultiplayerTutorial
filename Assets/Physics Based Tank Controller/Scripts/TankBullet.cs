@@ -38,9 +38,15 @@ public class TankBullet : MonoBehaviour {
 	
 
 	void OnTriggerEnter (Collider col) {
-        if(view.isMine && col.gameObject.tag == "TankSystem"){
-            Explosion();
-            col.gameObject.SendMessage("TakeDamage",SendMessageOptions.RequireReceiver);
+        if(view.isMine){
+            if(col.gameObject.tag == "TankSystem"){
+                Explosion();
+                col.gameObject.SendMessage("TakeDamage", SendMessageOptions.RequireReceiver);
+            }
+            else
+            {
+                Explosion();
+            }
         }
 	}
 
