@@ -13,7 +13,7 @@ public class RotateEnemyHealth : MonoBehaviour {
 	void Update () {
 	    foreach(GameObject tank in tanks){
             Debug.Log(tank.name,tank.transform.Find("TankHealthSystemCanvas"));
-            tank.transform.Find("TankHealthSystemCanvas").LookAt(transform);
+            tank.transform.Find("TankHealthSystemCanvas").LookAt(health.transform);
         }
 	}
 }
