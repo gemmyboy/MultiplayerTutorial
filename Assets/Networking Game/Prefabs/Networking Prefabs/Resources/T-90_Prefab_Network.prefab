@@ -1229,6 +1229,7 @@ GameObject:
   - 114: {fileID: 11467642}
   - 114: {fileID: 11419436}
   - 114: {fileID: 11468410}
+  - 114: {fileID: 11418300}
   m_Layer: 8
   m_Name: T-90_Prefab_Network
   m_TagString: Player
@@ -1810,7 +1811,6 @@ GameObject:
   - 65: {fileID: 6533538}
   - 114: {fileID: 11433538}
   - 114: {fileID: 11468170}
-  - 114: {fileID: 11474028}
   m_Layer: 0
   m_Name: Health
   m_TagString: HealthSystem
@@ -5306,6 +5306,17 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
+--- !u!114 &11418300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7a9de26b9c5a0e45b7fb52806daaa60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11419436
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5443,18 +5454,6 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
---- !u!114 &11474028
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 133538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7a9de26b9c5a0e45b7fb52806daaa60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: {fileID: 106368}
 --- !u!114 &11483586
 MonoBehaviour:
   m_ObjectHideFlags: 1
