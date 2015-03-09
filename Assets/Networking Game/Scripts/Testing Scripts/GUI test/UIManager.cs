@@ -17,7 +17,7 @@ public class UIManager : Photon.MonoBehaviour {
     private float timeleft; // Left time for current interval
 
     Color pingColor;
-	// Use this for initialization
+	// Use this for initializatio
 	void Start () {
         if(!photonView.isMine){
             //gameObject.SetActive(false);
