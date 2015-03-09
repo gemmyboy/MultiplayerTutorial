@@ -3,7 +3,6 @@ using System.Collections;
 
 public class RotateEnemyHealth : MonoBehaviour {
     GameObject[] tanks;
-    public GameObject health;
 	// Use this for initialization
 	void Start () {
         tanks = GameObject.FindGameObjectsWithTag("Player");
@@ -13,7 +12,7 @@ public class RotateEnemyHealth : MonoBehaviour {
 	void Update () {
 	    foreach(GameObject tank in tanks){
             Debug.Log(tank.name,tank.transform.Find("TankHealthSystemCanvas"));
-            tank.transform.Find("TankHealthSystemCanvas").LookAt(health.transform);
+            tank.transform.Find("TankHealthSystemCanvas").LookAt(gameObject.transform);
         }
 	}
 }
