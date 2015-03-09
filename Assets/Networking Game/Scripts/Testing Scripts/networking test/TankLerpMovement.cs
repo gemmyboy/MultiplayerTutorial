@@ -17,9 +17,8 @@ public class TankLerpMovement : Photon.MonoBehaviour {
         }
         else
         {
-            tankController = GetComponent<TankController>();
-            //PhotonNetwork.sendRate;
-           // PhotonNetwork.sendRateOnSerialize
+            PhotonNetwork.sendRate = 25;
+            PhotonNetwork.sendRateOnSerialize = 25;
         }
 
         latestCorrectPos = transform.position;
@@ -75,6 +74,5 @@ public class TankLerpMovement : Photon.MonoBehaviour {
 
         fraction = fraction + Time.deltaTime * 9;
         transform.localPosition = Vector3.Lerp(onUpdatePos, latestCorrectPos, fraction);    // set our pos between A and B
-        tankController.WheelAlign();
     }
 }

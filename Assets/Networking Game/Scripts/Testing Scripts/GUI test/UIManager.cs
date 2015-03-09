@@ -61,19 +61,19 @@ public class UIManager : Photon.MonoBehaviour {
             }
         }
         //-----------------------------------------------------------------------------------------
-        PingLabel.GetComponentInChildren<Text>().text = "Ping: " + PhotonNetwork.GetPing();
-        Debug.Log(PingLabel.GetComponentInChildren<Text>().text);
-        //if (PhotonNetwork.GetPing() >= 175)
-        //{
-        //    PingLabel.GetComponent<Image>().color = new Color(255, 0, 0, pingColor.a);
-        //}
-        //else if(PhotonNetwork.GetPing() < 175 && PhotonNetwork.GetPing() >= 100){
-        //    PingLabel.GetComponent<Image>().color = new Color(255, 225, 0, pingColor.a);
-        //}
-        //else if (PhotonNetwork.GetPing() < 100)
-        //{
-        //    PingLabel.GetComponent<Image>().color = new Color(0, 255, 0, pingColor.a);
-        //}
+        PingLabel.GetComponentInChildren<Text>().text = "" + PhotonNetwork.GetPing();
+        if (PhotonNetwork.GetPing() >= 175)
+        {
+            PingLabel.GetComponent<Image>().color = new Color(255, 0, 0, pingColor.a);
+        }
+        else if (PhotonNetwork.GetPing() < 175 && PhotonNetwork.GetPing() >= 100)
+        {
+            PingLabel.GetComponent<Image>().color = new Color(255, 225, 0, pingColor.a);
+        }
+        else if (PhotonNetwork.GetPing() < 100)
+        {
+            PingLabel.GetComponent<Image>().color = new Color(0, 255, 0, pingColor.a);
+        }
 
         //-----------------------------------------------------------------------------------------
         //-----------------------------------------------------------------------------------------
