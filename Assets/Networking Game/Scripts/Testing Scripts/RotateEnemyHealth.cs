@@ -12,7 +12,7 @@ public class RotateEnemyHealth : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	    foreach(GameObject tank in tanks){
-            Debug.Log(tank.transform.Find("TankHealthSystemCanvas"));
+            Debug.Log(tank.name,tank.transform.Find("TankHealthSystemCanvas"));
             tank.transform.Find("TankHealthSystemCanvas").LookAt(transform);
         }
 	}
