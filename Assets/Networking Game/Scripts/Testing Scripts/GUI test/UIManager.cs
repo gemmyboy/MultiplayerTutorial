@@ -42,7 +42,7 @@ public class UIManager : Photon.MonoBehaviour {
         //-----------------------------------------------------------------------------------------
         //-----------------------------------------------------------------------------------------
         //Change the color of the FPS Label
-        FPSLabel.GetComponentInChildren<Text>().text = "FPS: " + (int)fps;
+        FPSLabel.GetComponentInChildren<Text>().text = "" + (int)fps;
         Color FPSColor = FPSLabel.GetComponent<Image>().color;
 
         if (fps < 30)
@@ -62,18 +62,18 @@ public class UIManager : Photon.MonoBehaviour {
         }
         //-----------------------------------------------------------------------------------------
         PingLabel.GetComponentInChildren<Text>().text = "Ping: " + PhotonNetwork.GetPing();
-
-        if (PhotonNetwork.GetPing() >= 175)
-        {
-            PingLabel.GetComponent<Image>().color = new Color(255, 0, 0, pingColor.a);
-        }
-        else if(PhotonNetwork.GetPing() < 175 && PhotonNetwork.GetPing() >= 100){
-            PingLabel.GetComponent<Image>().color = new Color(255, 225, 0, pingColor.a);
-        }
-        else if (PhotonNetwork.GetPing() < 100)
-        {
-            PingLabel.GetComponent<Image>().color = new Color(0, 255, 0, pingColor.a);
-        }
+        Debug.Log(PingLabel.GetComponentInChildren<Text>().text);
+        //if (PhotonNetwork.GetPing() >= 175)
+        //{
+        //    PingLabel.GetComponent<Image>().color = new Color(255, 0, 0, pingColor.a);
+        //}
+        //else if(PhotonNetwork.GetPing() < 175 && PhotonNetwork.GetPing() >= 100){
+        //    PingLabel.GetComponent<Image>().color = new Color(255, 225, 0, pingColor.a);
+        //}
+        //else if (PhotonNetwork.GetPing() < 100)
+        //{
+        //    PingLabel.GetComponent<Image>().color = new Color(0, 255, 0, pingColor.a);
+        //}
 
         //-----------------------------------------------------------------------------------------
         //-----------------------------------------------------------------------------------------
