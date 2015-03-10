@@ -9,6 +9,9 @@ public class TankBullet : MonoBehaviour {
 	public int lifeTimeOfTheBullet = 5;
 	private float lifeTime;
     PhotonView view;
+
+    public double m_CreationTime;
+    public int m_projectileID;
 	void Start(){
         view = GetComponent<PhotonView>();
 		rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
@@ -24,49 +27,58 @@ public class TankBullet : MonoBehaviour {
 	}
 
 	void Update () {
-	   
-		lifeTime += Time.deltaTime;
+
+        lifeTime = (float)(PhotonNetwork.time - m_CreationTime);
 
         if (gameObject.activeSelf && lifeTime > lifeTimeOfTheBullet)
         {
-            if (view.isMine)
-            {
-                Explosion();
-            }
+            Explosion();
         }
 	}
 	
 
-	void OnTriggerEnter (Collider col) {
-        if(view.isMine){
-            if(col.gameObject.tag == "TankSystem"){
-                Explosion();
-                col.gameObject.SendMessage("TakeDamage", SendMessageOptions.RequireReceiver);
-            }
-        }
-	}
+    //void OnTriggerEnter (Collider col) {
+    //    if(view.isMine){
+    //        if(col.gameObject.tag == "TankSystem"){
+    //            Explosion();
+    //            col.gameObject.SendMessage("TakeDamage", SendMessageOptions.RequireReceiver);
+    //        }
+    //    }
+    //}
 
-    void OnCollision(Collision col)
+    void OnCollisionEnter(Collision col)
     {
-        if (view.isMine)
-        {
-            Explosion();
-            col.gameObject.SendMessage("TakeDamage", SendMessageOptions.RequireReceiver);
-        }
+        Debug.Log("hit something");
+        //if (view.isMine)
+        //{
+        //    Explosion();
+        //    col.gameObject.SendMessage("TakeDamage", SendMessageOptions.RequireReceiver);
+        //}
     }
 
 	void Explosion(){
-        PhotonNetwork.Instantiate("I_Made_Fire", transform.position, transform.rotation, 0);
-        Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, 15);
-        foreach (Collider hit in colliders)
-        {
-            if (hit && hit.rigidbody)
-            {
-                //hit.rigidbody.isKinematic = false;
-                //hit.rigidbody.AddExplosionForce(1, gameObject.transform.position, 15, 3);
-                Debug.Log("Explosion");
-            }
-        }
-        PhotonNetwork.Destroy(gameObject);
+        //PhotonNetwork.Instantiate("I_Made_Fire", transform.position, transform.rotation, 0);
+        GameObject explosion = (GameObject)Instantiate(Resources.Load<GameObject>("I_Made_Fire"), transform.position, transform.rotation) as GameObject;
+        //Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, 15);
+        //foreach (Collider hit in colliders)
+        //{
+        //    if (hit && hit.rigidbody)
+        //    {
+        //        //hit.rigidbody.isKinematic = false;
+        //        //hit.rigidbody.AddExplosionForce(1, gameObject.transform.position, 15, 3);
+        //        Debug.Log("Explosion");
+        //    }
+        //}
+        //PhotonNetwork.Destroy(gameObject);
+        Destroy(gameObject);
 	}
+
+    public void SetProjectileId(int id)
+    {
+        m_projectileID = id;
+    }
+    public void SetCreationTime(double stamp)
+    {
+        m_CreationTime = stamp;
+    }
 }

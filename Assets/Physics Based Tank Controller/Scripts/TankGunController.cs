@@ -42,6 +42,9 @@ public class TankGunController : MonoBehaviour {
 
     public PhotonView m_PhotonView;
     UIManager guiManager;
+
+    public int m_LastProjectileID;
+    public float m_LastShootTime;
 	void Start () {
         guiManager = FindObjectOfType<UIManager>();
         guiManager.ChangeAmmo(ammo);
@@ -106,13 +109,15 @@ public class TankGunController : MonoBehaviour {
 		loadingTime += Time.deltaTime;
 
 		if(Input.GetButtonDown("Fire1") && loadingTime > reloadTime && ammo > 0){
-
+            m_LastProjectileID++;
 			rigidbody.AddForce(-transform.forward * recoilForce, ForceMode.VelocityChange);
-			GameObject shot = PhotonNetwork.Instantiate("Bullet", barrelOut.position, barrelOut.rotation,0) as GameObject;
-			shot.GetComponent<Rigidbody>().AddForce(barrelOut.forward * bulletVelocity, ForceMode.VelocityChange);
+
+            m_PhotonView.RPC("shootShell",PhotonTargets.All,barrelOut.position,barrelOut.rotation,m_LastProjectileID);
+
             //PhotonNetwork.Instantiate("Ground Smoke", new Vector3(tank.transform.position.x, tank.transform.position.y - 3, tank.transform.position.z), tank.transform.rotation, 0);
             //PhotonNetwork.Instantiate("Fluffy Smoke", barrelOut.transform.position, barrelOut.transform.rotation, 0);
-			ShootingSoundEffect();
+			//ShootingSoundEffect();
+
 			ammo --;
             guiManager.ChangeAmmo(ammo);
 			loadingTime = 0;
@@ -121,12 +126,30 @@ public class TankGunController : MonoBehaviour {
 
 	}
 
-	void ShootingSoundEffect(){
+    [RPC]
+    void shootShell(Vector3 position, Quaternion rotation, int projectileID, PhotonMessageInfo info)
+    {
+        Debug.Log("Hola");
+        double timeStamp = PhotonNetwork.time;
+        timeStamp = info.timestamp;
+        m_LastShootTime = Time.realtimeSinceStartup;
+
+        GameObject shot = (GameObject)Instantiate(Resources.Load<GameObject>("Bullet"), position, rotation) as GameObject;
+        shot.name = "Bullet_" + shot.name;
+
+        TankBullet bullet = shot.GetComponent<TankBullet>();
+        bullet.SetProjectileId(projectileID);
+        bullet.SetCreationTime(timeStamp);
+
+        shot.GetComponent<Rigidbody>().AddForce(barrelOut.forward * bulletVelocity, ForceMode.VelocityChange);
+        ShootingSoundEffect(position);
+    }
+	void ShootingSoundEffect(Vector3 position){
 
 		fireSoundSource = new GameObject("FireSound");
-		fireSoundSource.transform.position = transform.position;
-		fireSoundSource.transform.rotation = transform.rotation;
-		fireSoundSource.transform.parent = transform;
+		fireSoundSource.transform.position = position;
+		//fireSoundSource.transform.rotation = 
+		//fireSoundSource.transform.parent = transform;
 		fireSoundSource.AddComponent<AudioSource>();
 		fireSoundSource.audio.minDistance = 30;
 		fireSoundSource.audio.clip = fireSoundClip;

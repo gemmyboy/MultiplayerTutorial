@@ -10,7 +10,7 @@ public class TankLerpMovement : Photon.MonoBehaviour {
 
     public void Awake()
     {
-        this.name = this.name + "--" + this.photonView.owner.name;
+        gameObject.name = PhotonNetwork.playerName + "--" + photonView.viewID;
         if (photonView.isMine)
         {
             this.enabled = false;   // due to this, Update() is not called on the owner client.
