@@ -10,7 +10,11 @@ public class UIManager : Photon.MonoBehaviour {
     public GameObject killsLabel;
     public GameObject deathLabel;
     public GameObject assistLabel;
-    
+    public GameObject overTimeUI;
+
+    public int OverallTime;
+    public int roundTimeLimitMins;
+
     public  float updateInterval = 0.5F;
     private float accum = 0; // FPS accumulated over the interval
     private int frames = 0; // Frames drawn over the interval
@@ -25,6 +29,8 @@ public class UIManager : Photon.MonoBehaviour {
 
         timeleft = updateInterval;
         pingColor = PingLabel.GetComponent<Image>().color;
+
+        overTimeUI.GetComponent<Text>().text = roundTimeLimitMins.ToString() + ":00"; 
 	}
 	
 	// Update is called once per frame
@@ -32,6 +38,9 @@ public class UIManager : Photon.MonoBehaviour {
         timeleft -= Time.deltaTime;
         accum += Time.timeScale/Time.deltaTime;
         ++frames;
+
+        //For the time limit of the game
+
 
         // Interval ended - update GUI text and start new interval
         if( timeleft <= 0.0 )
@@ -62,19 +71,6 @@ public class UIManager : Photon.MonoBehaviour {
         }
         //-----------------------------------------------------------------------------------------
         PingLabel.GetComponentInChildren<Text>().text = "" + PhotonNetwork.GetPing();
-        if (PhotonNetwork.GetPing() >= 175)
-        {
-            PingLabel.GetComponent<Image>().color = new Color(255, 0, 0, pingColor.a);
-        }
-        else if (PhotonNetwork.GetPing() < 175 && PhotonNetwork.GetPing() >= 100)
-        {
-            PingLabel.GetComponent<Image>().color = new Color(255, 225, 0, pingColor.a);
-        }
-        else if (PhotonNetwork.GetPing() < 100)
-        {
-            PingLabel.GetComponent<Image>().color = new Color(0, 255, 0, pingColor.a);
-        }
-
         //-----------------------------------------------------------------------------------------
         //-----------------------------------------------------------------------------------------
         //-----------------------------------------------------------------------------------------
@@ -88,19 +84,6 @@ public class UIManager : Photon.MonoBehaviour {
     {
         ammoLabel.GetComponentInChildren<Text>().text = "" + ammo;
         Color ammoColor = ammoLabel.GetComponentInChildren<Image>().color;
-
-        if(ammo >= 75){
-            Debug.Log("yes");
-            ammoLabel.GetComponentInChildren<Image>().color = new Color(0, 255, 0, ammoColor.a);
-            Debug.Log(ammoLabel.GetComponentInChildren<Image>().color);
-        }
-        else if(ammo <= 50 && ammo > 25){
-            ammoLabel.GetComponentInChildren<Image>().color = new Color(255, 255, 0, ammoColor.a);
-        }
-        else if (ammo <= 25)
-        {
-            ammoLabel.GetComponentInChildren<Image>().color = new Color(255, 0, 0, ammoColor.a);
-        }
     }
 
     public void ChangeHealth(int health)

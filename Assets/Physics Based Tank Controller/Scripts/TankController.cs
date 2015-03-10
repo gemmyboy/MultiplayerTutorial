@@ -509,7 +509,10 @@
 				}
                 if (collision.contacts[0].thisCollider.gameObject.layer == LayerMask.NameToLayer("TankCollider"))
                 {
-                    Debug.Log("TankCollide");
+                    if (collision.gameObject.GetComponent<PhotonView>().viewID != photonView.viewID)
+                    {
+                        Debug.Log("TankCollide");
+                    }
                 }
 			}
 			

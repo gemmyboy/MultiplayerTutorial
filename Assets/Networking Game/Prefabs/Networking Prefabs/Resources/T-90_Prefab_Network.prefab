@@ -5142,6 +5142,8 @@ MonoBehaviour:
   groundSmoke: {fileID: 100000, guid: 4b31b1caadab1ee4b8606c9f35713992, type: 2}
   fireSmoke: {fileID: 100000, guid: 44b3febaf5142a5429938ef0a0de2395, type: 2}
   m_PhotonView: {fileID: 11469966}
+  m_LastProjectileID: 0
+  m_LastShootTime: 0
 --- !u!114 &11416710
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -129,13 +129,12 @@ public class TankGunController : MonoBehaviour {
     [RPC]
     void shootShell(Vector3 position, Quaternion rotation, int projectileID, PhotonMessageInfo info)
     {
-        Debug.Log("Hola");
         double timeStamp = PhotonNetwork.time;
         timeStamp = info.timestamp;
         m_LastShootTime = Time.realtimeSinceStartup;
 
         GameObject shot = (GameObject)Instantiate(Resources.Load<GameObject>("Bullet"), position, rotation) as GameObject;
-        shot.name = "Bullet_" + shot.name;
+        shot.name = "Bullet_" + shot.GetPhotonView().owner.name;
 
         TankBullet bullet = shot.GetComponent<TankBullet>();
         bullet.SetProjectileId(projectileID);

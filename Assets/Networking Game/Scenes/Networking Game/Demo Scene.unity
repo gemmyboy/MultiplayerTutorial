@@ -42760,6 +42760,9 @@ MonoBehaviour:
   killsLabel: {fileID: 1349947786}
   deathLabel: {fileID: 193560799}
   assistLabel: {fileID: 1249744060}
+  overTimeUI: {fileID: 0}
+  OverallTime: 0
+  roundTimeLimitMins: 5
   updateInterval: .5
 --- !u!224 &2107818047
 RectTransform:

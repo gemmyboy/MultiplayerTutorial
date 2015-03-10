@@ -48,4 +48,5 @@ MonoBehaviour:
   - explosionRadius
   - ChangeTankMaterial
   - fixChatMessage
+  - shootShell
   DisableAutoOpenWizard: 0
