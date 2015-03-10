@@ -30,7 +30,7 @@ public class UIManager : Photon.MonoBehaviour {
         timeleft = updateInterval;
         pingColor = PingLabel.GetComponent<Image>().color;
 
-        overTimeUI.GetComponent<Text>().text = roundTimeLimitMins.ToString() + ":00"; 
+        overTimeUI.GetComponentInChildren<Text>().text = roundTimeLimitMins.ToString() + ":00"; 
 	}
 	
 	// Update is called once per frame

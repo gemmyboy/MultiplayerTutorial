@@ -27,12 +27,13 @@ public class TankBullet : MonoBehaviour {
 	}
 
 	void Update () {
+        if(view.isMine){
+            lifeTime += Time.deltaTime;
 
-        lifeTime = (float)(PhotonNetwork.time - m_CreationTime);
-
-        if (gameObject.activeSelf && lifeTime > lifeTimeOfTheBullet)
-        {
-            Explosion();
+            if (gameObject.activeSelf && lifeTime > lifeTimeOfTheBullet)
+            {
+                Explosion();
+            }
         }
 	}
 	
@@ -57,8 +58,7 @@ public class TankBullet : MonoBehaviour {
     }
 
 	void Explosion(){
-        //PhotonNetwork.Instantiate("I_Made_Fire", transform.position, transform.rotation, 0);
-        GameObject explosion = (GameObject)Instantiate(Resources.Load<GameObject>("I_Made_Fire"), transform.position, transform.rotation) as GameObject;
+        PhotonNetwork.Instantiate("I_Made_Fire", transform.position, transform.rotation, 0);
         //Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, 15);
         //foreach (Collider hit in colliders)
         //{
@@ -72,13 +72,4 @@ public class TankBullet : MonoBehaviour {
         //PhotonNetwork.Destroy(gameObject);
         Destroy(gameObject);
 	}
-
-    public void SetProjectileId(int id)
-    {
-        m_projectileID = id;
-    }
-    public void SetCreationTime(double stamp)
-    {
-        m_CreationTime = stamp;
-    }
 }

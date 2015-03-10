@@ -11,7 +11,7 @@ GameObject:
   - 198: {fileID: 19805628}
   - 199: {fileID: 19905628}
   - 114: {fileID: 11405628}
-  - 114: {fileID: 11475554}
+  - 114: {fileID: 11425472}
   m_Layer: 0
   m_Name: I_Made_Fire
   m_TagString: Untagged
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleSystem: {fileID: 0}
   particleEmiter: {fileID: 0}
---- !u!114 &11475554
+--- !u!114 &11425472
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
