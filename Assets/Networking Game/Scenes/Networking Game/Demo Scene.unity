@@ -42716,7 +42716,6 @@ GameObject:
   - 224: {fileID: 2107818047}
   - 114: {fileID: 2107818046}
   - 114: {fileID: 2107818048}
-  - 114: {fileID: 2107818049}
   m_Layer: 0
   m_Name: UI Manager
   m_TagString: Untagged
@@ -42787,17 +42786,6 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 329
   instantiationId: 329
---- !u!114 &2107818049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2107818045}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63a4d1519cb8dea42be7addce2022400, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2111741297
 GameObject:
   m_ObjectHideFlags: 0
