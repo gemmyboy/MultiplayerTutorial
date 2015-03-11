@@ -139,41 +139,41 @@ public class NetworkManager : PunBehaviour
                 tank = view.gameObject;
             }
         }
-        Debug.Log(tank.name);
+        Debug.Log(player.name + "\t" + tank.name);
         //Change the texture of the tank
         meshes = tank.GetComponentsInChildren<MeshRenderer>();
         //Debug.Log(PhotonNetwork.player.name + "::Changing::" + tank.name);
 
 
 
-        //if (player.customProperties["Team"] == "Eagles")
-        //{
-        //    foreach (MeshRenderer mesh in meshes)
-        //    {
-        //        if (mesh.name == "MainGun Mesh")
-        //        {
-        //            mesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(eagleMaterial);
-        //        }
-        //        else
-        //        {
-        //            mesh.gameObject.renderer.material = eagleMaterial;
-        //        }
-        //    }
-        //}
-        //else if (player.customProperties["Team"] == "Excorcist")
-        //{
-        //    foreach (MeshRenderer mesh in meshes)
-        //    {
-        //        if (mesh.name == "MainGun Mesh")
-        //        {
-        //            mesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(excorsistMaterial);
-        //        }
-        //        else
-        //        {
-        //            mesh.gameObject.renderer.material = excorsistMaterial;
-        //        }
-        //    }
-        //}
+        if (player.customProperties["Team"] == "Eagles")
+        {
+            foreach (MeshRenderer mesh in meshes)
+            {
+                if (mesh.name == "MainGun Mesh")
+                {
+                    mesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(eagleMaterial);
+                }
+                else
+                {
+                    mesh.gameObject.renderer.material = eagleMaterial;
+                }
+            }
+        }
+        else if (player.customProperties["Team"] == "Excorcist")
+        {
+            foreach (MeshRenderer mesh in meshes)
+            {
+                if (mesh.name == "MainGun Mesh")
+                {
+                    mesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(excorsistMaterial);
+                }
+                else
+                {
+                    mesh.gameObject.renderer.material = excorsistMaterial;
+                }
+            }
+        }
         //else if (player.customProperties["Team"] == "Wolves")
         //{
         //    foreach (MeshRenderer mesh in meshes)
