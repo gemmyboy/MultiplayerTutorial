@@ -42,10 +42,12 @@ public class TankGunController : MonoBehaviour {
 
     public PhotonView m_PhotonView;
     UIManager guiManager;
+    GameTimeManager timeManager;
 
     public int m_LastProjectileID;
     public float m_LastShootTime;
 	void Start () {
+        timeManager = FindObjectOfType<GameTimeManager>();
         guiManager = FindObjectOfType<UIManager>();
         guiManager.ChangeAmmo(ammo);
 
@@ -65,7 +67,7 @@ public class TankGunController : MonoBehaviour {
 	}
 
 	void Update(){
-        if (m_PhotonView.isMine)
+        if (m_PhotonView.isMine && timeManager.IsItTimeYet)
         {
             Shooting();
             JointConfiguration();
@@ -73,7 +75,7 @@ public class TankGunController : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-        if (m_PhotonView.isMine)
+        if (m_PhotonView.isMine && timeManager.IsItTimeYet)
         {
             if (transform.localEulerAngles.y > 0 && transform.localEulerAngles.y < 180)
                 rotationOfTheGun = transform.localEulerAngles.y;

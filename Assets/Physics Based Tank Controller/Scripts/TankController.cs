@@ -84,7 +84,9 @@
 	private WheelFrictionCurve forwardFrictionCurve;
 
     PhotonView m_PhotonView;
+    GameTimeManager timeManager;
 	void  Start (){
+        timeManager = FindObjectOfType<GameTimeManager>();
         m_PhotonView = GetComponent<PhotonView>();
         RotationValueL = new float[WheelColliders_L.Length];
         RotationValueR = new float[WheelColliders_R.Length];
@@ -257,12 +259,12 @@
 	}
 
 	void Update(){
-            //WheelAlign();
+            WheelAlign();
 	}
 		
 	void  FixedUpdate (){
         AnimateGears();
-        if (photonView.isMine)
+        if (photonView.isMine && timeManager.IsItTimeYet)
         {
             Engine();
             ShiftGears();
@@ -336,12 +338,14 @@
             }
         }
 
-        //Audio
-        this.engineIdleAudio.audio.pitch = Mathf.Clamp((Mathf.Abs(EngineRPM) / Mathf.Abs(MaxEngineRPM) + 1), 1f, 2f);
-        this.pitchValue = Mathf.Clamp((Mathf.Abs((EngineRPM) / (MaxEngineRPM)) + .4f), .5f, 1.25f);
-        this.engineRunningAudio.audio.pitch = Mathf.Lerp(engineRunningAudio.audio.pitch, pitchValue, Time.deltaTime * 5);
-        this.engineRunningAudio.audio.volume = Mathf.Lerp(engineRunningAudio.audio.volume, Mathf.Clamp(Mathf.Abs(Input.GetAxis("Vertical") + WheelColliders_R[Mathf.CeilToInt((WheelColliders_R.Length) / 2)].rpm / 500), 0, .75f), Time.deltaTime * 5);
-
+        if (timeManager.IsItTimeYet)
+        {
+            //Audio
+            this.engineIdleAudio.audio.pitch = Mathf.Clamp((Mathf.Abs(EngineRPM) / Mathf.Abs(MaxEngineRPM) + 1), 1f, 2f);
+            this.pitchValue = Mathf.Clamp((Mathf.Abs((EngineRPM) / (MaxEngineRPM)) + .4f), .5f, 1.25f);
+            this.engineRunningAudio.audio.pitch = Mathf.Lerp(engineRunningAudio.audio.pitch, pitchValue, Time.deltaTime * 5);
+            this.engineRunningAudio.audio.volume = Mathf.Lerp(engineRunningAudio.audio.volume, Mathf.Clamp(Mathf.Abs(Input.GetAxis("Vertical") + WheelColliders_R[Mathf.CeilToInt((WheelColliders_R.Length) / 2)].rpm / 500), 0, .75f), Time.deltaTime * 5);
+        }
         if (this.engineStartUpAudio)
             engineStartUpAudio.audio.volume = Mathf.Lerp(engineStartUpAudio.audio.volume, 1, Time.deltaTime * 5);
 	}
