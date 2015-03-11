@@ -121,6 +121,10 @@ public class NetworkManager : PunBehaviour
         //Change Material
         PhotonView view = newPlayerObject.GetComponent<PhotonView>();
         photonView.RPC("ChangeTankMaterial", PhotonTargets.AllBuffered, view.viewID, PhotonNetwork.player);
+        //Apply the time script to Master Client
+        //if(PhotonNetwork.isMasterClient){
+        //    newPlayerObject.AddComponent<GameTimeManager>();
+        //}
     }
     #endregion
 

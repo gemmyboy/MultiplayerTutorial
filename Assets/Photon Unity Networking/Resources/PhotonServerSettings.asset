@@ -49,4 +49,5 @@ MonoBehaviour:
   - ChangeTankMaterial
   - fixChatMessage
   - shootShell
+  - updateTime
   DisableAutoOpenWizard: 0
