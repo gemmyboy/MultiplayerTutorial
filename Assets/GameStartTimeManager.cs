@@ -3,30 +3,22 @@ using ExitGames.Client.Photon;
 using Photon;
 using UnityEngine;
 using UnityEngine.UI;
-public class GameTimeManager : PunBehaviour{
-
-    private const string TimeToStartProp = "st";
+public class GameStartTimeManager : PunBehaviour
+{
+    private const string GameTime = "GameTime";
     private double timeToStart = 0.0f;
-    public double SecondsBeforeStart; // set in inspector
-    public GameObject GameTimeUI;
+    public double SecondsBeforeEnd = 11.0f; // set in inspector
+    public GameObject startTimeUI;
     public double time;
-
-    UIManager uimanager;
-    void Start(){
-        uimanager = FindObjectOfType<UIManager>();
-        SecondsBeforeStart = uimanager.roundTimeLimitMins * 60;
-    }
 
     public bool IsItTimeYet
     {
         get { return IsTimeToStartKnown && PhotonNetwork.time > this.timeToStart; }
     }
-
     public bool IsTimeToStartKnown
     {
         get { return this.timeToStart > 0.001f; }
     }
-
     public double SecondsUntilItsTime
     {
         get
@@ -42,7 +34,6 @@ public class GameTimeManager : PunBehaviour{
             }
         }
     }
-
     void Update()
     {
         if (PhotonNetwork.isMasterClient)
@@ -51,31 +42,28 @@ public class GameTimeManager : PunBehaviour{
             if (!this.IsTimeToStartKnown && PhotonNetwork.time > 0.0001f)
             {
                 // no startTime set for room. calculate and set it as property of this room
-                this.timeToStart = PhotonNetwork.time + SecondsBeforeStart;
-                Hashtable timeProps = new Hashtable() { { TimeToStartProp, this.timeToStart } };
+                this.timeToStart = PhotonNetwork.time + SecondsBeforeEnd;
+                Hashtable timeProps = new Hashtable() { { GameTime, this.timeToStart } };
                 PhotonNetwork.room.SetCustomProperties(timeProps);
             }
         }
         time = this.SecondsUntilItsTime;
-        GameTimeUI.GetComponentInChildren<Text>().text = "" + (int)time;
-        if ((int)time == 0)
-        {
-            Debug.Log("Ready Freddy");
+        startTimeUI.GetComponentInChildren<Text>().text = "" + (int)time;
+        if((int)time == 0){
+            Destroy(startTimeUI);
         }
     }
-
     public override void OnPhotonCustomRoomPropertiesChanged(Hashtable propertiesThatChanged)
     {
-        if (propertiesThatChanged.ContainsKey(TimeToStartProp))
+        if (propertiesThatChanged.ContainsKey(GameTime))
         {
-            this.timeToStart = (double)propertiesThatChanged[TimeToStartProp];
-            Debug.Log("Got StartTime: " + this.timeToStart + " is it time yet?! " + this.IsItTimeYet);
+            this.timeToStart = (double)propertiesThatChanged[GameTime];
+            Debug.Log("Got GameTime: " + this.timeToStart + " is it time yet?! " + this.IsItTimeYet);
         }
     }
-    
-    public void changeToNormalTime(int numOfSeconds)
+    void OnGUI()
     {
-        int minutes = (int)numOfSeconds / 60;
+        //GUILayout.Label("Is it time yet: " + this.IsItTimeYet);
+        //GUILayout.Label("Seconds until it's time: " + (float)this.SecondsUntilItsTime);
     }
-
 }

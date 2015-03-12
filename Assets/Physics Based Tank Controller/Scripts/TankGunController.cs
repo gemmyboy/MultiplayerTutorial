@@ -42,12 +42,12 @@ public class TankGunController : MonoBehaviour {
 
     public PhotonView m_PhotonView;
     UIManager guiManager;
-    GameTimeManager timeManager;
+    GameStartTimeManager timeManager;
 
     public int m_LastProjectileID;
     public float m_LastShootTime;
 	void Start () {
-        timeManager = FindObjectOfType<GameTimeManager>();
+        timeManager = FindObjectOfType<GameStartTimeManager>();
         guiManager = FindObjectOfType<UIManager>();
         guiManager.ChangeAmmo(ammo);
 

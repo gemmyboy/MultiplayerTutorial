@@ -49,7 +49,14 @@ public class TankBullet : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        Debug.Log("hit something");
+        if(col.gameObject.layer == LayerMask.NameToLayer("TankCollider")){
+            Debug.Log("hit tank");
+            PhotonNetwork.Destroy(gameObject);
+        }
+        else
+        {
+            Debug.Log("hit something else");
+        }
         //if (view.isMine)
         //{
         //    Explosion();
@@ -70,6 +77,6 @@ public class TankBullet : MonoBehaviour {
         //    }
         //}
         //PhotonNetwork.Destroy(gameObject);
-        Destroy(gameObject);
+        PhotonNetwork.Destroy(gameObject);
 	}
 }

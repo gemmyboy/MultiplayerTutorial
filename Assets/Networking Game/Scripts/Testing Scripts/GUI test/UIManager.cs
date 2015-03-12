@@ -10,7 +10,6 @@ public class UIManager : Photon.MonoBehaviour {
     public GameObject killsLabel;
     public GameObject deathLabel;
     public GameObject assistLabel;
-    public GameObject overTimeUI;
 
     public int OverallTime;
     public int roundTimeLimitMins;
@@ -29,8 +28,6 @@ public class UIManager : Photon.MonoBehaviour {
 
         timeleft = updateInterval;
         pingColor = PingLabel.GetComponent<Image>().color;
-
-        overTimeUI.GetComponentInChildren<Text>().text = roundTimeLimitMins.ToString() + ":00"; 
 	}
 	
 	// Update is called once per frame

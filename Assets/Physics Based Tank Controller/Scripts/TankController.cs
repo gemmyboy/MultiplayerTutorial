@@ -84,9 +84,9 @@
 	private WheelFrictionCurve forwardFrictionCurve;
 
     PhotonView m_PhotonView;
-    GameTimeManager timeManager;
+    GameStartTimeManager timeManager;
 	void  Start (){
-        timeManager = FindObjectOfType<GameTimeManager>();
+        timeManager = FindObjectOfType<GameStartTimeManager>();
         m_PhotonView = GetComponent<PhotonView>();
         RotationValueL = new float[WheelColliders_L.Length];
         RotationValueR = new float[WheelColliders_R.Length];

@@ -6324,6 +6324,7 @@ GameObject:
   - 224: {fileID: 232411420}
   - 222: {fileID: 232411422}
   - 114: {fileID: 232411421}
+  - 114: {fileID: 232411423}
   m_Layer: 5
   m_Name: Time
   m_TagString: Untagged
@@ -6376,6 +6377,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 232411419}
+--- !u!114 &232411423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 232411419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a96a9ca3b8c02064c94e7180b7f89435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SecondsBeforeStart: 0
+  GameTimeUI: {fileID: 232411419}
+  time: 0
 --- !u!1 &234633446
 GameObject:
   m_ObjectHideFlags: 0
@@ -29184,7 +29199,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PhotonView: {fileID: 0}
-  gameMusic: {fileID: 0}
   hardcoreMusic: {fileID: 8300000, guid: 0804d762be41b514ab739249472e33c3, type: 3}
 --- !u!1 &1394090754
 GameObject:
@@ -37845,7 +37859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9294e50e0e739004e93ae50d333af91c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SecondsBeforeStart: 10
+  SecondsBeforeEnd: 11
   startTimeUI: {fileID: 1859266156}
   time: 0
 --- !u!1 &1862291582
@@ -43123,7 +43137,6 @@ MonoBehaviour:
   killsLabel: {fileID: 1349947786}
   deathLabel: {fileID: 193560799}
   assistLabel: {fileID: 1249744060}
-  overTimeUI: {fileID: 232411419}
   OverallTime: 0
   roundTimeLimitMins: 5
   updateInterval: .5

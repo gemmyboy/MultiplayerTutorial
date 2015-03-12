@@ -50,4 +50,5 @@ MonoBehaviour:
   - fixChatMessage
   - shootShell
   - updateTime
+  - createMusic
   DisableAutoOpenWizard: 0
