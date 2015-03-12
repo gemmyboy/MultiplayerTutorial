@@ -43137,7 +43137,7 @@ MonoBehaviour:
   killsLabel: {fileID: 1349947786}
   deathLabel: {fileID: 193560799}
   assistLabel: {fileID: 1249744060}
-  OverallTime: 0
+  GameTimeUI: {fileID: 232411419}
   roundTimeLimitMins: 5
   updateInterval: .5
 --- !u!224 &2107818047

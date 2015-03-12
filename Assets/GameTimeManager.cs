@@ -8,13 +8,17 @@ public class GameTimeManager : PunBehaviour{
     private const string TimeToStartProp = "st";
     private double timeToStart = 0.0f;
     public double SecondsBeforeStart; // set in inspector
+
     public GameObject GameTimeUI;
+    GameStartTimeManager startTimer;
+
     public double time;
 
     UIManager uimanager;
     void Start(){
         uimanager = FindObjectOfType<UIManager>();
         SecondsBeforeStart = uimanager.roundTimeLimitMins * 60;
+        startTimer = FindObjectOfType<GameStartTimeManager>();
     }
 
     public bool IsItTimeYet
@@ -56,11 +60,14 @@ public class GameTimeManager : PunBehaviour{
                 PhotonNetwork.room.SetCustomProperties(timeProps);
             }
         }
-        time = this.SecondsUntilItsTime;
-        GameTimeUI.GetComponentInChildren<Text>().text = "" + (int)time;
-        if ((int)time == 0)
-        {
-            Debug.Log("Ready Freddy");
+        
+        if(startTimer.IsItTimeYet){
+            time = this.SecondsUntilItsTime;
+            changeToNormalTime((int)time);
+            if ((int)time == 0)
+            {
+                Debug.Log("Ready Freddy");
+            }
         }
     }
 
@@ -75,7 +82,16 @@ public class GameTimeManager : PunBehaviour{
     
     public void changeToNormalTime(int numOfSeconds)
     {
-        int minutes = (int)numOfSeconds / 60;
+        int minutes = (int)(numOfSeconds / 60);
+        int seconds = (int)(numOfSeconds % 60);
+        if (seconds >= 10)
+        {
+            GameTimeUI.GetComponentInChildren<Text>().text = "" + minutes + ":" + seconds;
+        }
+        else
+        {
+            GameTimeUI.GetComponentInChildren<Text>().text = "" + minutes + ":0" + seconds;
+        }
     }
 
 }
