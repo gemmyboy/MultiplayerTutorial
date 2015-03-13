@@ -113,13 +113,12 @@ public class TankGunController : MonoBehaviour {
 
 		if(Input.GetButtonDown("Fire1") && loadingTime > reloadTime && ammo > 0){
 			rigidbody.AddForce(-transform.forward * recoilForce, ForceMode.VelocityChange);
-            GameObject shot = PhotonNetwork.Instantiate("Bullet", barrelOut.position, barrelOut.rotation,0) as GameObject;
+            GameObject shot = PhotonNetwork.Instantiate("TankBullet", barrelOut.position, barrelOut.rotation,0) as GameObject;
 
             shot.GetComponent<Rigidbody>().AddForce(barrelOut.forward * bulletVelocity, ForceMode.VelocityChange);
             ShootingSoundEffect();
             //PhotonNetwork.Instantiate("Ground Smoke", new Vector3(tank.transform.position.x, tank.transform.position.y - 3, tank.transform.position.z), tank.transform.rotation, 0);
             //PhotonNetwork.Instantiate("Fluffy Smoke", barrelOut.transform.position, barrelOut.transform.rotation, 0);
-			//ShootingSoundEffect();
 
 			ammo --;
             guiManager.ChangeAmmo(ammo);

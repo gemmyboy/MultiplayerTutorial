@@ -9,13 +9,17 @@ public class TankBullet : MonoBehaviour {
 	public int lifeTimeOfTheBullet = 5;
 	private float lifeTime;
     PhotonView view;
+    TankGunController gunController;
 
     public double m_CreationTime;
     public int m_projectileID;
 	void Start(){
+        gunController = FindObjectOfType<TankGunController>();
         view = GetComponent<PhotonView>();
+
 		rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
 		rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
+
 		//Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Bullet"), LayerMask.NameToLayer("TankCollider"));
 		Physics.minPenetrationForPenalty = 0;
 
@@ -29,7 +33,6 @@ public class TankBullet : MonoBehaviour {
 	void Update () {
         if(view.isMine){
             lifeTime += Time.deltaTime;
-
             if (gameObject.activeSelf && lifeTime > lifeTimeOfTheBullet)
             {
                 Explosion();

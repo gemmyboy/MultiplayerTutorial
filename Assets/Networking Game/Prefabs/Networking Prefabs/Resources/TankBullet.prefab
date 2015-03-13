@@ -25,8 +25,13 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 494684}
+  - 136: {fileID: 13603060}
+  - 54: {fileID: 5440062}
+  - 114: {fileID: 11440066}
+  - 114: {fileID: 11440064}
+  - 114: {fileID: 11440062}
   m_Layer: 0
-  m_Name: Bullett
+  m_Name: TankBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +56,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194684}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 519.909973, y: 87.7200012, z: 165.399994}
+  m_LocalPosition: {x: 592.890015, y: 90.0599976, z: 182.240005}
   m_LocalScale: {x: .300000012, y: 1, z: .300000012}
   m_Children:
   - {fileID: 494682}
@@ -84,6 +89,84 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194682}
   m_Mesh: {fileID: 4300000, guid: 36b8d76c6c8714f43850fce0686570d9, type: 3}
+--- !u!54 &5440062
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194684}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: .0500000007
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
+--- !u!114 &11440062
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76a6068c8666e3a45a5aabd0cee90063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11440064
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 1
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 11440062}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+--- !u!114 &11440066
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71221607c30a8948814b71442d5fd03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 100000, guid: 7b277829b0b4991f100024a80dbc5c14, type: 2}
+  lifeTimeOfTheBullet: 5
+  m_CreationTime: 0
+  m_projectileID: 0
+--- !u!136 &13603060
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194684}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.20000005
+  m_Height: 3.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.80999994, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
