@@ -50,7 +50,10 @@ public class TankBullet : MonoBehaviour {
     void OnCollisionEnter(Collision col)
     {
         if(col.gameObject.layer == LayerMask.NameToLayer("TankCollider")){
-            Debug.Log("hit tank");
+            if (view.isMine && col.gameObject.GetComponent<PhotonView>().owner.customProperties["Team"] != view.owner.customProperties["Team"])
+            {
+                Debug.Log("hit tank");
+            }
             PhotonNetwork.Destroy(gameObject);
         }
         else
