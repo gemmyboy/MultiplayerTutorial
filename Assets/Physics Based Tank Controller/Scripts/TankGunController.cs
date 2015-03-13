@@ -58,6 +58,7 @@ public class TankGunController : MonoBehaviour {
 
 		colliders = GetComponentsInChildren<BoxCollider>();
 		joint = GetComponent<HingeJoint>();
+
         if(m_PhotonView.isMine){
             foreach (BoxCollider col in colliders)
             {
