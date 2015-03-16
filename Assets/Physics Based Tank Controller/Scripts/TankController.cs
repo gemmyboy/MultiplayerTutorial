@@ -511,7 +511,7 @@
 					Destroy(crashAudio, crashAudio.audio.clip.length);
 					
 				}
-                if (collision.contacts[0].thisCollider.gameObject.layer == LayerMask.NameToLayer("TankCollider"))
+                if (collision.contacts[0].thisCollider.gameObject.layer == LayerMask.NameToLayer("TankCollider") && collision.gameObject.GetComponent<PhotonView>().isMine == false)
                 {
                     if (collision.gameObject.GetComponent<PhotonView>().viewID != photonView.viewID)
                     {

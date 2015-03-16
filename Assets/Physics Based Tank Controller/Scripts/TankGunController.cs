@@ -71,7 +71,7 @@ public class TankGunController : MonoBehaviour {
         if (m_PhotonView.isMine && timeManager.IsItTimeYet)
         {
             Shooting();
-            JointConfiguration();
+            //JointConfiguration();
         }
 	}
 
@@ -113,7 +113,11 @@ public class TankGunController : MonoBehaviour {
 
 		if(Input.GetButtonDown("Fire1") && loadingTime > reloadTime && ammo > 0){
 			rigidbody.AddForce(-transform.forward * recoilForce, ForceMode.VelocityChange);
-            GameObject shot = PhotonNetwork.Instantiate("TankBullet", barrelOut.position, barrelOut.rotation,0) as GameObject;
+            GameObject shot = PhotonNetwork.Instantiate("TankBullet", barrelOut.position, barrel.transform.rotation,0) as GameObject;
+
+            Vector3 rotationDir = barrelOut.position - barrel.transform.position;
+            shot.transform.forward = rotationDir.normalized;
+            shot.transform.LookAt(shot.transform.position + shot.transform.forward);
 
             shot.GetComponent<Rigidbody>().AddForce(barrelOut.forward * bulletVelocity, ForceMode.VelocityChange);
             ShootingSoundEffect();

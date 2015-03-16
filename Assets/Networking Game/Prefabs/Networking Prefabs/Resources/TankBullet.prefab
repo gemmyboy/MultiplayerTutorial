@@ -25,11 +25,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 494684}
-  - 136: {fileID: 13603060}
   - 54: {fileID: 5440062}
   - 114: {fileID: 11440066}
   - 114: {fileID: 11440064}
   - 114: {fileID: 11440062}
+  - 136: {fileID: 13667818}
   m_Layer: 0
   m_Name: TankBullet
   m_TagString: Untagged
@@ -43,9 +43,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194682}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
+  m_LocalPosition: {x: 0, y: 2.07999992, z: 0}
+  m_LocalScale: {x: .300000012, y: 1, z: .300000012}
   m_Children: []
   m_Father: {fileID: 494684}
   m_RootOrder: 0
@@ -56,8 +56,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194684}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 592.890015, y: 90.0599976, z: 182.240005}
-  m_LocalScale: {x: .300000012, y: 1, z: .300000012}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 494682}
   m_Father: {fileID: 0}
@@ -154,7 +154,7 @@ MonoBehaviour:
   lifeTimeOfTheBullet: 5
   m_CreationTime: 0
   m_projectileID: 0
---- !u!136 &13603060
+--- !u!136 &13667818
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -163,10 +163,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.20000005
-  m_Height: 3.5
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.80999994, z: 0}
+  m_Radius: .400000006
+  m_Height: 3.79999995
+  m_Direction: 2
+  m_Center: {x: 0, y: 2, z: 1.79999995}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

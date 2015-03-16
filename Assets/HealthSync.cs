@@ -3,7 +3,7 @@ using System.Collections;
 
 public class HealthSync : Photon.MonoBehaviour {
     public int health;
-
+    public UIManager uiManager;
 	// Use this for initialization
 	void Start () {
         if (photonView.isMine)
@@ -13,6 +13,7 @@ public class HealthSync : Photon.MonoBehaviour {
         else
         {
             health = (int)PhotonNetwork.player.customProperties["Health"];
+            uiManager = FindObjectOfType<UIManager>();
         }
 	}
 
@@ -27,11 +28,17 @@ public class HealthSync : Photon.MonoBehaviour {
         // When receiving, buffer the information
         else
         {
-            //int oldhealth = health;
             health = (int)stream.ReceiveNext();
-            //if(oldhealth != health){
-                Debug.Log(info.sender.name + "sent this");
-            //}
+            Debug.Log(info.sender.name + "sent this");
+        }
+    }
+
+    void Update()
+    {
+        int oldHealth = (int)PhotonNetwork.player.customProperties["Health"];
+        if(oldHealth != health){
+            Debug.Log("Yeah");
+            uiManager.ChangeHealth(oldHealth);
         }
     }
 }
