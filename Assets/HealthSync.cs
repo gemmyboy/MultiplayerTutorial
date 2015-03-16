@@ -2,12 +2,18 @@
 using System.Collections;
 
 public class HealthSync : Photon.MonoBehaviour {
-    float health = 100;
+    public int health;
 
 	// Use this for initialization
 	void Start () {
         if (photonView.isMine)
+        {
             this.enabled = false;//Only enable inter/extrapol for remote players
+        }
+        else
+        {
+            health = (int)PhotonNetwork.player.customProperties["Health"];
+        }
 	}
 
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -16,11 +22,16 @@ public class HealthSync : Photon.MonoBehaviour {
         if (stream.isWriting)
         {
             stream.SendNext(health);
+            Debug.Log(info.sender + "Send: " + health);
         }
         // When receiving, buffer the information
         else
         {
-            health = (float)stream.ReceiveNext();
+            //int oldhealth = health;
+            health = (int)stream.ReceiveNext();
+            //if(oldhealth != health){
+                Debug.Log(info.sender.name + "sent this");
+            //}
         }
     }
 }

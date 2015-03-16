@@ -19,6 +19,7 @@ public class GameTimeManager : PunBehaviour{
         uimanager = FindObjectOfType<UIManager>();
         SecondsBeforeStart = uimanager.roundTimeLimitMins * 60;
         startTimer = FindObjectOfType<GameStartTimeManager>();
+        timeToStart = startTimer.timeToStart;
     }
 
     public bool IsItTimeYet

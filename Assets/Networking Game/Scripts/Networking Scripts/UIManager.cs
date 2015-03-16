@@ -34,21 +34,19 @@ public class UIManager : Photon.MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        //FPS
+        //-----------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------
         timeleft -= Time.deltaTime;
         accum += Time.timeScale/Time.deltaTime;
         ++frames;
-
-        //For the time limit of the game
-
 
         // Interval ended - update GUI text and start new interval
         if( timeleft <= 0.0 )
         {
         // display two fractional digits (f2 format)
 	    float fps = accum/frames;
-        //-----------------------------------------------------------------------------------------
-        //-----------------------------------------------------------------------------------------
-        //-----------------------------------------------------------------------------------------
         //Change the color of the FPS Label
         FPSLabel.GetComponentInChildren<Text>().text = "" + (int)fps;
         Color FPSColor = FPSLabel.GetComponent<Image>().color;

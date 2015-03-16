@@ -125,6 +125,13 @@ public class NetworkManager : PunBehaviour
         //if(PhotonNetwork.isMasterClient){
         //    newPlayerObject.AddComponent<GameTimeManager>();
         //}
+
+        ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
+        hash.Add("Kills", 0);
+        hash.Add("Deaths",0);
+        hash.Add("Assist",0);
+        hash.Add("Health",100);
+        PhotonNetwork.player.SetCustomProperties(hash);
     }
     #endregion
 

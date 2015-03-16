@@ -10,7 +10,7 @@ public class GameMusicManager : Photon.MonoBehaviour {
         if(PhotonNetwork.isMasterClient){
             GameObject gameMusic = PhotonNetwork.Instantiate("GameMusic", transform.position, transform.rotation, 0) as GameObject;
             int viewID = gameMusic.GetComponent<PhotonView>().viewID;
-            m_PhotonView.RPC("createMusic", PhotonTargets.AllBuffered,viewID);
+            m_PhotonView.RPC("createMusic", PhotonTargets.AllBufferedViaServer,viewID);
         }
     }
 

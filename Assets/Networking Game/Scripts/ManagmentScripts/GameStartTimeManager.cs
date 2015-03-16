@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameStartTimeManager : PunBehaviour
 {
     private const string GameTime = "GameTime";
-    private double timeToStart = 0.0f;
+    public double timeToStart = 0.0f;
     public double SecondsBeforeEnd = 11.0f; // set in inspector
     public GameObject startTimeUI;
     public double time;

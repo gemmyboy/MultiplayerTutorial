@@ -56,6 +56,11 @@ public class TankBullet : MonoBehaviour {
             if (view.isMine && col.gameObject.GetComponent<PhotonView>().owner.customProperties["Team"] != view.owner.customProperties["Team"])
             {
                 Debug.Log("hit tank");
+
+                PhotonPlayer player = col.gameObject.GetComponent<PhotonView>().owner;
+                player.customProperties["Health"] = (int)player.customProperties["Health"] - 30;
+                Debug.Log(player + "" + player.customProperties["Health"]);
+                Debug.Log(PhotonNetwork.player + "" + PhotonNetwork.player.customProperties["Health"]);
             }
             PhotonNetwork.Destroy(gameObject);
         }

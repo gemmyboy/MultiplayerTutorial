@@ -46,7 +46,7 @@ public class TankControllerCinematic : Photon.MonoBehaviour
             if (hit && hit.rigidbody)
             {
                 hit.rigidbody.isKinematic = false;
-                hit.rigidbody.AddExplosionForce(500, gameObject.transform.position, 500, 3);
+                hit.rigidbody.AddExplosionForce(2000, gameObject.transform.position, 500, 3);
             }
         }
     }
