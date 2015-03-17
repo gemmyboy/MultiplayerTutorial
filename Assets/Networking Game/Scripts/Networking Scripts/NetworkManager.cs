@@ -138,7 +138,7 @@ public class NetworkManager : PunBehaviour
     #region TankRPC
     GameObject tank;
     [RPC]
-    public void ChangeTankMaterial(int viewID,PhotonPlayer player)
+    public void ChangeTankMaterial(int viewID,PhotonPlayer player, PhotonMessageInfo info)
     {
         PhotonView[] views = FindObjectsOfType<PhotonView>();
         foreach(PhotonView view in views){
@@ -149,7 +149,9 @@ public class NetworkManager : PunBehaviour
         Debug.Log(player.name + "\t" + tank.name);
         //Change the texture of the tank
         meshes = tank.GetComponentsInChildren<MeshRenderer>();
-        //Debug.Log(PhotonNetwork.player.name + "::Changing::" + tank.name);
+        Debug.Log(info.sender.name + "::Changing::" + tank.name);
+        Debug.Log(player.customProperties["Team"]);
+        Debug.Log("-------------------------------------------");
 
 
 

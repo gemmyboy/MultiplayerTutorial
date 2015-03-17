@@ -511,11 +511,12 @@
 					Destroy(crashAudio, crashAudio.audio.clip.length);
 					
 				}
-                if (collision.contacts[0].thisCollider.gameObject.layer == LayerMask.NameToLayer("TankCollider") && collision.gameObject.GetComponent<PhotonView>().isMine == false)
+                if (collision.contacts[0].thisCollider.gameObject.layer == LayerMask.NameToLayer("TankCollider") && collision.gameObject.tag != "Terrain" && collision.gameObject.tag != "TankShell")
                 {
-                    if (collision.gameObject.GetComponent<PhotonView>().viewID != photonView.viewID)
+                    if (collision.gameObject.GetComponentInParent<PhotonView>().viewID != photonView.viewID)
                     {
                         Debug.Log("TankCollide");
+                        rigidbody.AddForce(-transform.forward * 50, ForceMode.Acceleration);
                     }
                 }
 			}

@@ -2183,7 +2183,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: .300000012
-  far clip plane: 750
+  far clip plane: 1500
   field of view: 60
   orthographic: 0
   orthographic size: 100
@@ -2205,7 +2205,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 70252053}
   m_LocalRotation: {x: .0825250223, y: -.136458591, z: .0114089344, w: .987136543}
-  m_LocalPosition: {x: 497.5, y: -11.6000004, z: 171.800003}
+  m_LocalPosition: {x: 497.5, y: 185.5, z: 171.800003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1394090755}
@@ -12959,7 +12959,7 @@ GameObject:
   - 154: {fileID: 493792536}
   m_Layer: 0
   m_Name: TerrainMap1
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -21249,6 +21249,14 @@ Prefab:
     - target: {fileID: 488528, guid: 9a26d79cbe78ce74c96d0eaf26688523, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 188528, guid: 9a26d79cbe78ce74c96d0eaf26688523, type: 2}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 11488528, guid: 9a26d79cbe78ce74c96d0eaf26688523, type: 2}
+      propertyPath: m_MaterialTemplate
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a26d79cbe78ce74c96d0eaf26688523, type: 2}

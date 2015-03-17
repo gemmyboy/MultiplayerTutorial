@@ -60,9 +60,12 @@ public class TankBullet : MonoBehaviour {
                 Debug.Log("hit tank");
 
                 PhotonPlayer player = col.gameObject.GetComponent<PhotonView>().owner;
-                player.customProperties["Health"] = (int)player.customProperties["Health"] - 30;
-                Debug.Log(player + "" + player.customProperties["Health"]);
-                Debug.Log(PhotonNetwork.player + "" + PhotonNetwork.player.customProperties["Health"]);
+                int changedHealth = (int)player.customProperties["Health"] - 30;
+
+                ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
+                hash.Add("Health",changedHealth);
+                player.SetCustomProperties(hash);
+
             }
             PhotonNetwork.Destroy(gameObject);
         }
