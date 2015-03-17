@@ -23,13 +23,11 @@ public class HealthSync : Photon.MonoBehaviour {
         if (stream.isWriting)
         {
             stream.SendNext(health);
-            Debug.Log(info.sender + "Send: " + health);
         }
         // When receiving, buffer the information
         else
         {
             health = (int)stream.ReceiveNext();
-            Debug.Log(info.sender.name + "sent this");
         }
     }
 
