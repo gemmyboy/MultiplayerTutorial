@@ -10,7 +10,7 @@ public class GameStartTimeManager : PunBehaviour
     public double SecondsBeforeEnd = 11.0f; // set in inspector
     public GameObject startTimeUI;
     public double time;
-
+    public GameObject audioManager;
     public bool IsItTimeYet
     {
         get { return IsTimeToStartKnown && PhotonNetwork.time > this.timeToStart; }
@@ -50,7 +50,7 @@ public class GameStartTimeManager : PunBehaviour
         time = this.SecondsUntilItsTime;
         startTimeUI.GetComponentInChildren<Text>().text = "" + (int)time;
         if((int)time == 0){
-            Destroy(startTimeUI);
+            StartCoroutine("waitFrame");
         }
     }
     public override void OnPhotonCustomRoomPropertiesChanged(Hashtable propertiesThatChanged)
@@ -65,5 +65,11 @@ public class GameStartTimeManager : PunBehaviour
     {
         //GUILayout.Label("Is it time yet: " + this.IsItTimeYet);
         //GUILayout.Label("Seconds until it's time: " + (float)this.SecondsUntilItsTime);
+    }
+
+    System.Collections.IEnumerator waitFrame()
+    {
+        yield return new WaitForSeconds(1.0f);
+        Destroy(startTimeUI);
     }
 }

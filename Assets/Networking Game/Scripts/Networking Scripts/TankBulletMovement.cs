@@ -14,15 +14,20 @@ public class TankBulletMovement : Photon.MonoBehaviour {
     void Awake()
     {
         lastSynchronizationTime = Time.time;
-    }
-
-    void Update()
-    {
         if (photonView.isMine)
         {
             this.enabled = false;
         }
         else
+        {
+            PhotonNetwork.sendRate = 25;
+            PhotonNetwork.sendRateOnSerialize = 25;
+        }
+    }
+
+    void Update()
+    {
+        if (!photonView.isMine)
         {
             SyncedMovement();
         }
