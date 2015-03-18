@@ -1230,6 +1230,7 @@ GameObject:
   - 114: {fileID: 11419436}
   - 114: {fileID: 11468410}
   - 114: {fileID: 11418300}
+  - 114: {fileID: 11451082}
   m_Layer: 8
   m_Name: T-90_Prefab_Network
   m_TagString: Player
@@ -5053,6 +5054,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  uiManager: {fileID: 0}
 --- !u!114 &11406366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5356,6 +5358,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+--- !u!114 &11451082
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4726f235b004a134d8eb6cb7b910d77f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eagleMaterial: {fileID: 2100000, guid: e25c0a3b04362d546859d7d7d0294c93, type: 2}
+  excorsistMaterial: {fileID: 2100000, guid: 598e275fb98b2aa4997bf178f8897e57, type: 2}
+  wolfMaterial: {fileID: 2100000, guid: c307bcf5f00cca2479703b342fcb5acc, type: 2}
+  angelMaterial: {fileID: 2100000, guid: 5fcf5189f21702448b01ea338d432834, type: 2}
 --- !u!114 &11465996
 MonoBehaviour:
   m_ObjectHideFlags: 1

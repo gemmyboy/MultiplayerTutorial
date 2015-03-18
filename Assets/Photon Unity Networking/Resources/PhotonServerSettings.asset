@@ -51,4 +51,5 @@ MonoBehaviour:
   - shootShell
   - updateTime
   - createMusic
+  - ChangeMyTexture
   DisableAutoOpenWizard: 0
