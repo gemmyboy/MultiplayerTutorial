@@ -116,7 +116,8 @@ public class NetworkManager : PunBehaviour
         orbit.target = newPlayerObject.transform;
         tankGun.target = Target.transform;
         //Turn off own health system
-        Transform TankHealthSystem = newPlayerObject.transform.Find("TankHealthSystemCanvas");
+        //Transform TankHealthSystem = newPlayerObject.transform.Find("TankHealthSystemCanvas");
+		Transform TankHealthSystem = (Transform)newPlayerObject.transform.Find ("TankHealthSystem").FindChild ("TankHealthSystemCanvas");
         TankHealthSystem.gameObject.SetActive(false);
         //Change Material
         PhotonView view = newPlayerObject.GetComponent<PhotonView>();
