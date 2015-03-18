@@ -26,7 +26,7 @@ public class AdjustTankSkins : Photon.MonoBehaviour {
 				teamed = true;
 				photonView.RPC("ChangeMyTexture",PhotonTargets.All,1);
 
-			}else if(this.photonView.owner.customProperties["Team"] == "Excorsist")
+			}else if(this.photonView.owner.customProperties["Team"] == "Excorcist")
 			{
 				teamed = true;
 				photonView.RPC("ChangeMyTexture",PhotonTargets.All,2);
