@@ -45,7 +45,7 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
     
     // GUI stuff:
     public Rect GuiRect = new Rect(0, 0, 250, 300);
-    public bool IsVisible = false;
+    public bool IsVisible = true;
     public bool AlignBottom = false;
     public bool FullScreen = false;
 
@@ -246,7 +246,7 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
         {
 
             GUI.FocusControl("");
-            switchVisibility();
+            //switchVisibility();
             return;
         }
 

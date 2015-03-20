@@ -42,7 +42,6 @@ public class HealthSync : Photon.MonoBehaviour {
     //}
     void Update()
     {
-        ExitGames.Client.Photon.Hashtable hash = PhotonNetwork.player.allProperties;
-        Debug.Log(PhotonNetwork.player.allProperties);
+
     }
 }

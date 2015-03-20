@@ -14751,6 +14751,37 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 218
   instantiationId: 218
+--- !u!1 &577596966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 577596967}
+  m_Layer: 0
+  m_Name: SpawnPoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &577596967
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 577596966}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 400, y: 75, z: 300}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2032477716}
+  - {fileID: 1989759792}
+  - {fileID: 1307113996}
+  - {fileID: 643626578}
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
 --- !u!1 &579497335
 GameObject:
   m_ObjectHideFlags: 0
@@ -15743,6 +15774,33 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 210
   instantiationId: 210
+--- !u!1 &643626577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 643626578}
+  m_Layer: 0
+  m_Name: ExorcistSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &643626578
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 643626577}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 300, y: 40, z: -250}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 577596967}
+  m_RootOrder: 3
 --- !u!1 &662466344
 GameObject:
   m_ObjectHideFlags: 0
@@ -26016,7 +26074,7 @@ MonoBehaviour:
     y: 0
     width: 250
     height: 300
-  IsVisible: 0
+  IsVisible: 1
   AlignBottom: 1
   FullScreen: 0
 --- !u!114 &1166978965
@@ -27965,6 +28023,33 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 118
   instantiationId: 118
+--- !u!1 &1307113995
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1307113996}
+  m_Layer: 0
+  m_Name: EaglesSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1307113996
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1307113995}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 40, z: -250}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 577596967}
+  m_RootOrder: 2
 --- !u!1 &1307899921
 GameObject:
   m_ObjectHideFlags: 0
@@ -40021,6 +40106,33 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 29
   instantiationId: 29
+--- !u!1 &1989759791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1989759792}
+  m_Layer: 0
+  m_Name: BloodSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1989759792
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1989759791}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 40, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 577596967}
+  m_RootOrder: 1
 --- !u!1 &1990253360
 GameObject:
   m_ObjectHideFlags: 0
@@ -40765,6 +40877,33 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 23
   instantiationId: 23
+--- !u!1 &2032477715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2032477716}
+  m_Layer: 0
+  m_Name: WolfSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2032477716
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2032477715}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 400, y: 40, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 577596967}
+  m_RootOrder: 0
 --- !u!1 &2033671047
 GameObject:
   m_ObjectHideFlags: 0

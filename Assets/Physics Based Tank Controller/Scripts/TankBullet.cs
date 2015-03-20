@@ -31,8 +31,8 @@ public class TankBullet : MonoBehaviour {
 	}
 
 	void Update () {
-        //transform.LookAt(transform.position + transform.forward);
-        transform.LookAt(transform.position + rigidbody.velocity);
+        transform.LookAt(transform.position + transform.forward);
+        //transform.LookAt(transform.position + rigidbody.velocity);
         if(view.isMine){
             lifeTime += Time.deltaTime;
             if (gameObject.activeSelf && lifeTime > lifeTimeOfTheBullet)
@@ -42,15 +42,6 @@ public class TankBullet : MonoBehaviour {
         }
 	}
 	
-
-    //void OnTriggerEnter (Collider col) {
-    //    if(view.isMine){
-    //        if(col.gameObject.tag == "TankSystem"){
-    //            Explosion();
-    //            col.gameObject.SendMessage("TakeDamage", SendMessageOptions.RequireReceiver);
-    //        }
-    //    }
-    //}
 
     void OnCollisionEnter(Collision col)
     {
@@ -72,12 +63,11 @@ public class TankBullet : MonoBehaviour {
         else
         {
             Debug.Log("hit something else");
+            if (view.isMine)
+            {
+                Explosion();
+            }
         }
-        //if (view.isMine)
-        //{
-        //    Explosion();
-        //    col.gameObject.SendMessage("TakeDamage", SendMessageOptions.RequireReceiver);
-        //}
     }
 
 	void Explosion(){
