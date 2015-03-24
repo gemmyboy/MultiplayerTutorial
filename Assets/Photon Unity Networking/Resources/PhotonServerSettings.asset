@@ -54,4 +54,6 @@ MonoBehaviour:
   - ChangeMyTexture
   - ReduceMyHealth
   - MakeBulletExplode
+  - AdjustPercent
+  - AdjustHealthBar
   DisableAutoOpenWizard: 0

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class HealthSync : Photon.MonoBehaviour {
@@ -51,6 +52,10 @@ public class HealthSync : Photon.MonoBehaviour {
 	private PhotonPlayer hurtPlayer;
 	private Transform hurtPlayersTransform;
 	private PhotonPlayer theOwner;
+	private Text myText;
+	private RectTransform myRect;
+	public GameObject myTextObj;
+	public GameObject myRectObj;
 	void Start()
 	{
 		dead = false;
@@ -62,6 +67,8 @@ public class HealthSync : Photon.MonoBehaviour {
 		theOwner = null;
 		TankShellDamage = 30.0f;
 		//health = 100;
+		myText = myTextObj.GetComponent<Text> ();
+		myRect = myRectObj.GetComponent<RectTransform> ();
 
 		hurtPlayer = gameObject.GetPhotonView().owner;
 		ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
@@ -113,51 +120,57 @@ public class HealthSync : Photon.MonoBehaviour {
 
 			if((health >= 0) && (!dead) && (col.gameObject.tag == "TankShell"))
 			{
-				if(col.gameObject.GetPhotonView().owner.customProperties["Team"] != this.gameObject.GetPhotonView().owner.customProperties["Team"])
+				if(col.gameObject.GetPhotonView().owner.customProperties["Team"] != gameObject.GetPhotonView().owner.customProperties["Team"])
 				{
 					Debug.Log("SuCcEsSfUl ShOt**********");
 						//photonView.RPC("MakeBulletExplode",PhotonTargets.All,col.gameObject);
 					if((health-(int)TankShellDamage) <= 0)
 					{
 						health = 0;
-						gameObject.SendMessage("AdjustPercent",health,SendMessageOptions.RequireReceiver);
+						//gameObject.SendMessage("AdjustPercent",health,SendMessageOptions.RequireReceiver);
+						photonView.RPC("AdjustPercent",PhotonTargets.All,health);
 						uiManager.ChangeHealth(health);
-						RectTransform[] healthBar;
-						healthBar = gameObject.GetComponentsInParent<RectTransform>();
-						foreach(RectTransform myRect in healthBar)
-						{
-							if(myRect.tag == "GreenHealthBar")
-							{
-								Debug.Log ("GreenHealthBar1");
-								//Vector3[] corners = new Vector3();
-								//myRect.offsetMin.x += ((TankShellDamage/100.0f)*7.0f);
-								Debug.Log (myRect.offsetMin.x);
-								Debug.Log (myRect.offsetMax.x);
-								Vector2 tempVectTwo = new Vector2(7.01f,0.0f);
-								myRect.offsetMin = tempVectTwo;
-								break;
-							}
-						}
+						photonView.RPC ("AdjustHealthBar",PhotonTargets.All,1);
+						//RectTransform[] healthBar;
+						//healthBar = gameObject.GetComponentsInParent<RectTransform>();
+//						foreach(RectTransform myRect in healthBar)
+//						{
+//							if(myRect.tag == "GreenHealthBar")
+//							{
+//								Debug.Log ("GreenHealthBar1");
+//								//Vector3[] corners = new Vector3();
+//								//myRect.offsetMin.x += ((TankShellDamage/100.0f)*7.0f);
+//								Debug.Log (myRect.offsetMin.x);
+//								Debug.Log (myRect.offsetMax.x);
+//								Vector2 tempVectTwo = new Vector2(7.01f,0.0f);
+//								myRect.offsetMin = tempVectTwo;
+//								break;
+//							}
+//						}
 						dead = true;
 						photonView.RPC("ReduceMyHealth",PhotonTargets.All,gameObject.GetPhotonView().ownerId,1);
 					}else if((health-(int)TankShellDamage) > 0)
 					{
 						health -= (int)TankShellDamage;
-						gameObject.SendMessage("AdjustPercent",health,SendMessageOptions.RequireReceiver);
+						//gameObject.SendMessage("AdjustPercent",health,SendMessageOptions.RequireReceiver);
+						photonView.RPC("AdjustPercent",PhotonTargets.All,health);
 						uiManager.ChangeHealth(health);
-						RectTransform[] healthBar;
-						healthBar = gameObject.GetComponentsInParent<RectTransform>();
-						foreach(RectTransform myRect in healthBar)
-						{
-							if(myRect.tag == "GreenHealthBar")
-							{
-								Debug.Log ("GreenHealthBar2");
-								Vector2 tempVectTwoTwo = new Vector2(((TankShellDamage/100.0f)*7.1f),0.0f);
-								myRect.offsetMin += tempVectTwoTwo;//((TankShellDamage/100.0f)*7.01f);
-								break;
-							}
-						}
+						photonView.RPC ("AdjustHealthBar",PhotonTargets.All,2);
+
+						//RectTransform[] healthBar;
+						//healthBar = gameObject.GetComponentsInParent<RectTransform>();
+//						foreach(RectTransform myRect in healthBar)
+//						{
+//							if(myRect.tag == "GreenHealthBar")
+//							{
+//								Debug.Log ("GreenHealthBar2");
+//								Vector2 tempVectTwoTwo = new Vector2(((TankShellDamage/100.0f)*7.1f),0.0f);
+//								myRect.offsetMin += tempVectTwoTwo;//((TankShellDamage/100.0f)*7.01f);
+//								break;
+//							}
+//						}
 						photonView.RPC("ReduceMyHealth",PhotonTargets.All,gameObject.GetPhotonView().ownerId,2);
+
 					}
 				}
 			}
@@ -177,7 +190,7 @@ public class HealthSync : Photon.MonoBehaviour {
 			hash.Add("Health",health);
 			hurtPlayer.SetCustomProperties(hash);
 			//hurtPlayer.rigidbody.AddExplosionForce(1000.0f,hurtPlayer.transform,10.0f,3.0f);
-			hurtPlayersTransform.rigidbody.AddExplosionForce(1000000.0f,hurtPlayersTransform.position,10.0f,3.0f,ForceMode.Force);
+			hurtPlayersTransform.rigidbody.AddExplosionForce(10000000000000.0f,hurtPlayersTransform.position,10.0f,3.0f,ForceMode.Force);
 
 		}else if((photonView.isMine) && (theCase == 2) && (photonView.ownerId == myViewID)){
 
@@ -198,4 +211,35 @@ public class HealthSync : Photon.MonoBehaviour {
 	*/
 	////////////////////////////
 	////////////////////////////
+	[RPC]
+	void AdjustPercent(int health)
+	{
+		myText.text = health.ToString ();
+	}
+
+	[RPC]
+	void AdjustHealthBar(int bounds)
+	{
+		if(bounds == 1)
+		{
+			if(myRect.tag == "GreenHealthBar")
+			{
+				Debug.Log ("GreenHealthBar1");
+				//Vector3[] corners = new Vector3();
+				//myRect.offsetMin.x += ((TankShellDamage/100.0f)*7.0f);
+				Debug.Log (myRect.offsetMin.x);
+				Debug.Log (myRect.offsetMax.x);
+				Vector2 tempVectTwo = new Vector2(7.01f,0.0f);
+				myRect.offsetMin = tempVectTwo;
+			}
+		}else if(bounds == 2)
+		{
+			if(myRect.tag == "GreenHealthBar")
+			{
+				Debug.Log ("GreenHealthBar2");
+				Vector2 tempVectTwoTwo = new Vector2(((TankShellDamage/100.0f)*7.1f),0.0f);
+				myRect.offsetMin += tempVectTwoTwo;//((TankShellDamage/100.0f)*7.01f);
+			}
+		}
+	}
 }

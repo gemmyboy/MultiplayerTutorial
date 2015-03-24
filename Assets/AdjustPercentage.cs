@@ -24,11 +24,13 @@ public class AdjustPercentage : Photon.MonoBehaviour {
 			{
 				hasValue = true;
 				playerHealth = (int)gameObject.GetPhotonView ().owner.customProperties ["Health"];
-				myText.text = playerHealth.ToString ();
+				photonView.RPC("AdjustPercent",PhotonTargets.All,playerHealth);
+				//myText.text = playerHealth.ToString ();
 			}
 		}
 	}
-	
+
+	[RPC]
 	void AdjustPercent(int health)
 	{
 		//playerHealth = (int)gameObject.GetPhotonView ().owner.customProperties ["Health"];
