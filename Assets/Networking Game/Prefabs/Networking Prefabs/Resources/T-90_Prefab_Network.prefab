@@ -833,6 +833,7 @@ GameObject:
   - 33: {fileID: 3316736}
   - 23: {fileID: 2316736}
   - 114: {fileID: 11416978}
+  - 114: {fileID: 11457226}
   m_Layer: 8
   m_Name: Barrel Mesh
   m_TagString: Untagged
@@ -1813,7 +1814,7 @@ GameObject:
   - 114: {fileID: 11433538}
   - 114: {fileID: 11468170}
   - 114: {fileID: 11400336}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Health
   m_TagString: HealthSystem
   m_Icon: {fileID: -1203168336, guid: 0000000000000000d000000000000000, type: 0}
@@ -1831,6 +1832,8 @@ GameObject:
   - 33: {fileID: 3336700}
   - 65: {fileID: 6536700}
   - 23: {fileID: 2336700}
+  - 114: {fileID: 11476956}
+  - 114: {fileID: 11476954}
   m_Layer: 0
   m_Name: TankHealthSystem
   m_TagString: Untagged
@@ -1865,9 +1868,11 @@ GameObject:
   - 224: {fileID: 22483586}
   - 222: {fileID: 22283586}
   - 114: {fileID: 11483586}
+  - 114: {fileID: 11408800}
+  - 114: {fileID: 11408802}
   m_Layer: 5
   m_Name: GreenBar
-  m_TagString: Untagged
+  m_TagString: GreenHealthBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2809,7 +2814,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 116852}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 476.578156, y: 95.3759842, z: 191.781219}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 416798}
@@ -3297,7 +3302,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 133538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.70000005, z: 0}
+  m_LocalPosition: {x: .330000013, y: 3.70000005, z: -.5}
   m_LocalScale: {x: 6.75292587, y: .530788004, z: .0747099966}
   m_Children: []
   m_Father: {fileID: 416852}
@@ -4601,7 +4606,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .260269403, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 3.1083374, y: -1.33061981, z: -6.06617737}
+  m_ConnectedAnchor: {x: 3.10833836, y: -1.33062339, z: -6.0661788}
   m_UseSpring: 1
   m_Spring:
     spring: 1
@@ -4631,7 +4636,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .328484148, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 3.13665771, y: -1.33784485, z: -4.60920715}
+  m_ConnectedAnchor: {x: 3.13665843, y: -1.33784473, z: -4.60920811}
   m_UseSpring: 1
   m_Spring:
     spring: 1
@@ -4661,7 +4666,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .358617902, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -2.95861816, y: -1.32495117, z: -4.59864807}
+  m_ConnectedAnchor: {x: -2.95862651, y: -1.32495344, z: -4.59864902}
   m_UseSpring: 1
   m_Spring:
     spring: 1
@@ -4691,7 +4696,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .341757447, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -3.01196289, y: -1.3572998, z: -.250228882}
+  m_ConnectedAnchor: {x: -3.01197124, y: -1.35730112, z: -.250228912}
   m_UseSpring: 1
   m_Spring:
     spring: 1
@@ -4721,7 +4726,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .183339015, z: .209999993}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -2.55279541, y: -1.3138504, z: -6.84024048}
+  m_ConnectedAnchor: {x: -2.55279493, y: -1.31385148, z: -6.84023285}
   m_UseSpring: 1
   m_Spring:
     spring: 1
@@ -4751,7 +4756,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.00485229492, y: -.422554016, z: -2.16372681}
+  m_ConnectedAnchor: {x: -.00485229492, y: -.422557831, z: -2.16372681}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -4781,7 +4786,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .183448121, z: .209999993}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 2.48092651, y: -1.31472778, z: -6.85450745}
+  m_ConnectedAnchor: {x: 2.48092771, y: -1.31473041, z: -6.85450697}
   m_UseSpring: 1
   m_Spring:
     spring: 1
@@ -4811,7 +4816,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .268196791, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -3.00991821, y: -1.32662201, z: -6.05436707}
+  m_ConnectedAnchor: {x: -3.00992656, y: -1.3266232, z: -6.0543685}
   m_UseSpring: 1
   m_Spring:
     spring: 1
@@ -4841,7 +4846,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .337130994, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -3.01672363, y: -1.37114716, z: 1.89305115}
+  m_ConnectedAnchor: {x: -3.01673198, y: -1.37114954, z: 1.89305162}
   m_UseSpring: 1
   m_Spring:
     spring: 1
@@ -4871,7 +4876,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .330844134, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 3.15484619, y: -1.35958099, z: -.266906738}
+  m_ConnectedAnchor: {x: 3.15484691, y: -1.35957742, z: -.266906798}
   m_UseSpring: 1
   m_Spring:
     spring: 1
@@ -4901,7 +4906,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .333941609, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 3.13546753, y: -1.34682465, z: -2.65229797}
+  m_ConnectedAnchor: {x: 3.13546824, y: -1.34682405, z: -2.65229869}
   m_UseSpring: 1
   m_Spring:
     spring: 1
@@ -4931,7 +4936,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .338472933, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 3.15377808, y: -1.36746979, z: 1.8762207}
+  m_ConnectedAnchor: {x: 3.15377903, y: -1.36747205, z: 1.87622118}
   m_UseSpring: 1
   m_Spring:
     spring: 1
@@ -4961,7 +4966,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .338472933, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -3.02545166, y: -1.34455872, z: -2.63543701}
+  m_ConnectedAnchor: {x: -3.02546, y: -1.34456146, z: -2.63543773}
   m_UseSpring: 1
   m_Spring:
     spring: 1
@@ -5028,8 +5033,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 8, z: 170}
-  m_Center: {x: -.0500000007, y: -9.5, z: -10}
+  m_Size: {x: 1, y: 5.5, z: 143.600006}
+  m_Center: {x: -.0500000007, y: -9.59000015, z: -10}
 --- !u!65 &6536700
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -5124,7 +5129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  uiManager: {fileID: 0}
+  TankShellDamage: 30
 --- !u!114 &11406366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5183,6 +5188,90 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11408800
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 1
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 11408802}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+--- !u!114 &11408802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 4
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 1
+    InterpolateMoveTowardsAcceleration: 2
+    InterpolateMoveTowardsDeceleration: 2
+    InterpolateSpeedCurve:
+      serializedVersion: 2
+      m_Curve:
+      - time: -1
+        value: 0
+        inSlope: 0
+        outSlope: Infinity
+        tangentMode: 0
+      - time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+      - time: 4
+        value: 4
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+    DrawErrorGizmo: 1
+  m_RotationModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 1
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0
 --- !u!114 &11416706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5384,12 +5473,12 @@ MonoBehaviour:
   group: 0
   prefixBackup: -1
   observed: {fileID: 0}
-  synchronization: 0
+  synchronization: 3
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 11457226}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -5443,6 +5532,66 @@ MonoBehaviour:
   excorsistMaterial: {fileID: 2100000, guid: 598e275fb98b2aa4997bf178f8897e57, type: 2}
   wolfMaterial: {fileID: 2100000, guid: c307bcf5f00cca2479703b342fcb5acc, type: 2}
   angelMaterial: {fileID: 2100000, guid: 5fcf5189f21702448b01ea338d432834, type: 2}
+--- !u!114 &11457226
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 2
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 1
+    InterpolateMoveTowardsAcceleration: 2
+    InterpolateMoveTowardsDeceleration: 2
+    InterpolateSpeedCurve:
+      serializedVersion: 2
+      m_Curve:
+      - time: -1
+        value: 0
+        inSlope: 0
+        outSlope: Infinity
+        tangentMode: 0
+      - time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+      - time: 4
+        value: 4
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+    DrawErrorGizmo: 1
+  m_RotationModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 1
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0
 --- !u!114 &11465996
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5508,7 +5657,7 @@ MonoBehaviour:
   group: 0
   prefixBackup: -1
   observed: {fileID: 0}
-  synchronization: 3
+  synchronization: 1
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
@@ -5553,6 +5702,91 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 11498162}
+  - {fileID: 11498162}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+--- !u!114 &11476954
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 2
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 1
+    InterpolateMoveTowardsAcceleration: 2
+    InterpolateMoveTowardsDeceleration: 2
+    InterpolateSpeedCurve:
+      serializedVersion: 2
+      m_Curve:
+      - time: -1
+        value: 0
+        inSlope: 0
+        outSlope: Infinity
+        tangentMode: 0
+      - time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+      - time: 4
+        value: 4
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+    DrawErrorGizmo: 1
+  m_RotationModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 1
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0
+--- !u!114 &11476956
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1

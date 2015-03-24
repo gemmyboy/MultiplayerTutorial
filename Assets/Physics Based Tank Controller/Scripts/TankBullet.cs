@@ -3,7 +3,7 @@ using System.Collections;
 
 [RequireComponent (typeof (Rigidbody))]
 
-public class TankBullet : MonoBehaviour {
+public class TankBullet : Photon.MonoBehaviour {
 
 	public GameObject explosionPrefab;
 	public int lifeTimeOfTheBullet = 5;
@@ -58,20 +58,25 @@ public class TankBullet : MonoBehaviour {
             if (view.isMine && col.gameObject.GetComponent<PhotonView>().owner.customProperties["Team"] != view.owner.customProperties["Team"])
             {
                 Debug.Log("hit tank");
+				Explosion ();
+				//PhotonNetwork.Destroy(gameObject);
+				//Destroy(gameObject);
 
-                PhotonPlayer player = col.gameObject.GetComponent<PhotonView>().owner;
-                int changedHealth = (int)player.customProperties["Health"] - 30;
+                //PhotonPlayer player = col.gameObject.GetComponent<PhotonView>().owner;
+                //int changedHealth = (int)player.customProperties["Health"] - 30;
 
-                ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
-                hash.Add("Health",changedHealth);
-                player.SetCustomProperties(hash);
+                //ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
+                //hash.Add("Health",changedHealth);
+                //player.SetCustomProperties(hash);
 
             }
-            PhotonNetwork.Destroy(gameObject);
+            
         }
         else
         {
             Debug.Log("hit something else");
+			Explosion ();
+			//PhotonNetwork.Destroy (gameObject);
         }
         //if (view.isMine)
         //{
@@ -93,6 +98,9 @@ public class TankBullet : MonoBehaviour {
         //    }
         //}
         //PhotonNetwork.Destroy(gameObject);
-        PhotonNetwork.Destroy(gameObject);
+		if(photonView.isMine && gameObject != null)
+		{
+			PhotonNetwork.Destroy(gameObject);
+		}
 	}
 }

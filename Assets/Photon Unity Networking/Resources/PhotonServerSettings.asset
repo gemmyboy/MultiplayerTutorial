@@ -52,4 +52,6 @@ MonoBehaviour:
   - updateTime
   - createMusic
   - ChangeMyTexture
+  - ReduceMyHealth
+  - MakeBulletExplode
   DisableAutoOpenWizard: 0
