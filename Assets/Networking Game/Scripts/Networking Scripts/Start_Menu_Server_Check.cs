@@ -162,7 +162,10 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         if (ConnectingRoomWindow.active)
         {
             obj = ConnectingRoomWindow.transform.FindChild("SF Title").gameObject;
-            obj.GetComponentInChildren<Text>().text = (string)PhotonNetwork.room.customProperties["GameType"];
+            if (obj != null)
+            {
+                obj.GetComponentInChildren<Text>().text = (string)PhotonNetwork.room.customProperties["GameType"];
+            }
             if(PhotonNetwork.isMasterClient){
                 StartTheGameButton.SetActive(true);
             }
@@ -289,9 +292,11 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     //START THE GAMMMMMME
     public void StartTheGame()
     {
-        photonView.RPC("closePanelForPlayers",PhotonTargets.All);
-        PhotonNetwork.room.open = false;
-        StartCoroutine(ShootOffPods());
+        if(CheckFactions()){
+            photonView.RPC("closePanelForPlayers",PhotonTargets.All);
+            PhotonNetwork.room.open = false;
+            StartCoroutine(ShootOffPods()); 
+        }
     }
     [RPC]
     void closePanelForPlayers()
@@ -325,6 +330,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
                 if(roomInfo.open == false){
                     //ServerButton.GetComponentInChildren<Text>().text = roomInfo.name + roomInfo.customProperties["GameType"].ToString() + roomInfo.playerCount.ToString() + "/" + roomInfo.maxPlayers.ToString() + PhotonNetwork.GetPing();
                     ServerButton.GetComponentInChildren<Text>().text = String.Format("{0,-22}{1,-28}{2,-15}{3,10}", roomInfo.name, roomInfo.customProperties["GameType"].ToString(), (roomInfo.playerCount.ToString() + "/" + roomInfo.maxPlayers.ToString()), PhotonNetwork.GetPing());
+                    ServerButton.GetComponentInChildren<Image>().color = Color.grey;
                 }
                 else
                 {
@@ -662,5 +668,23 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         emblem.transform.rotation = new Quaternion(0, 0, 0, 0);
         emblem.transform.localScale = new Vector3(1, 1, 1);
         emblem.GetComponentInChildren<RectTransform>().localPosition = new Vector3(150,0,0);
+    }
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    bool CheckFactions()
+    {
+        foreach(PhotonPlayer player in PhotonNetwork.playerList){
+            if(player.customProperties["Team"] == null){
+                photonView.RPC("noFaction",player);
+                return false;
+            }
+        }
+        return true;
+    }
+    [RPC]
+    void noFaction()
+    {
+        this.ErrorDialog = "Choose a Faction";
     }
 }

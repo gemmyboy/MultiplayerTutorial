@@ -54,4 +54,5 @@ MonoBehaviour:
   - ChangeMyTexture
   - ReduceMyHealth
   - MakeBulletExplode
+  - noFaction
   DisableAutoOpenWizard: 0
