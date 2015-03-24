@@ -40,6 +40,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     //GameObjects for The RefreshMenu
     public GameObject NoListLabel;
     public GameObject ListLabel;
+    public GameObject layout;
 
     //bools for checking connection and list
     public bool checkedList = false;
@@ -307,11 +308,13 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         {
             NoListLabel.SetActive(true);
             ListLabel.SetActive(false);
+            layout.SetActive(false);
         }
         else
         {
             NoListLabel.SetActive(false);
             ListLabel.SetActive(true);
+            layout.SetActive(true);
 
             int i = 0;
             foreach (RoomInfo roomInfo in PhotonNetwork.GetRoomList())
@@ -320,11 +323,13 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
                 ServerButton = Instantiate(preFabButton, refreshWindow.transform.position, refreshWindow.transform.rotation) as GameObject;
                 ServerButton.name = "ServerButton";
                 if(roomInfo.open == false){
-                    ServerButton.GetComponentInChildren<Text>().text = roomInfo.name + "\t\t" + roomInfo.customProperties["GameType"].ToString() + "\t" +roomInfo.playerCount + "/" + roomInfo.maxPlayers + "(In Progress)";
+                    //ServerButton.GetComponentInChildren<Text>().text = roomInfo.name + roomInfo.customProperties["GameType"].ToString() + roomInfo.playerCount.ToString() + "/" + roomInfo.maxPlayers.ToString() + PhotonNetwork.GetPing();
+                    ServerButton.GetComponentInChildren<Text>().text = String.Format("{0,27}{1,15}{2, 2}{3,5}", roomInfo.name, roomInfo.customProperties["GameType"].ToString(), roomInfo.playerCount.ToString() + "/" + roomInfo.maxPlayers.ToString(), PhotonNetwork.GetPing());
                 }
                 else
                 {
-                    ServerButton.GetComponentInChildren<Text>().text = roomInfo.name + "\t\t" + roomInfo.customProperties["GameType"].ToString() + "\t" + roomInfo.playerCount + "/" + roomInfo.maxPlayers + "\t" + PhotonNetwork.GetPing();
+                    //ServerButton.GetComponentInChildren<Text>().text = roomInfo.name + roomInfo.customProperties["GameType"].ToString() + roomInfo.playerCount.ToString() + "/" + roomInfo.maxPlayers.ToString() + PhotonNetwork.GetPing();
+                    ServerButton.GetComponentInChildren<Text>().text = String.Format("{0,-10}{1,-10}{1,-10}{1,-10}", roomInfo.name, roomInfo.customProperties["GameType"].ToString(), roomInfo.playerCount.ToString() + "/" + roomInfo.maxPlayers.ToString(), PhotonNetwork.GetPing());
                 }
             //    //Fix Button Position
                 fixButton(ServerButton,i);
@@ -344,7 +349,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         //button.transform.parent = refreshWindow.transform;
         button.transform.SetParent(refreshWindow.transform);
         button.transform.localScale = new Vector3(1, 1, 1);
-        button.GetComponent<RectTransform>().localPosition = new Vector3(0, (-80 * i) + 10, 0);
+        button.GetComponent<RectTransform>().localPosition = new Vector3(0, (-80 * i) - 20, 0);
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Creating the label and assigning it the right spot
