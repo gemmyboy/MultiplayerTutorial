@@ -22884,7 +22884,6 @@ GameObject:
   - 114: {fileID: 1824121276}
   - 114: {fileID: 1824121275}
   - 114: {fileID: 1824121280}
-  - 114: {fileID: 1824121279}
   m_Layer: 5
   m_Name: ConnectingWindow
   m_TagString: ConnectingWindow
@@ -22964,34 +22963,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1824121273}
---- !u!114 &1824121279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1824121273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02d148d0890b2d44dbdf7f1c1b39a499, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ChatAppId: 9bdf7337-b892-416a-96f7-a7e6ce702d5d
-  ChannelsToJoinOnConnect: []
-  HistoryLengthToFetch: 0
-  DemoPublishOnSubscribe: 0
-  selectedChannelName: 
-  selectedChannelIndex: 0
-  GuiRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 250
-    height: 300
-  IsVisible: 1
-  AlignBottom: 0
-  FullScreen: 0
-  inputLine: 
-  displayedMessage: 0
 --- !u!114 &1824121280
 MonoBehaviour:
   m_ObjectHideFlags: 0
