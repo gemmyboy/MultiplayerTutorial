@@ -25,18 +25,15 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 494684}
-<<<<<<< HEAD
   - 54: {fileID: 5440062}
   - 114: {fileID: 11440066}
   - 114: {fileID: 11440064}
   - 114: {fileID: 11440062}
   - 136: {fileID: 13667818}
   - 114: {fileID: 11420342}
-=======
->>>>>>> origin/Jacob_Testing_baby_Splicing
   m_Layer: 0
   m_Name: TankBullet
-  m_TagString: Untagged
+  m_TagString: TankShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,15 +44,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194682}
-<<<<<<< HEAD
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .300000012, y: 1, z: .300000012}
-=======
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
->>>>>>> origin/Jacob_Testing_baby_Splicing
   m_Children: []
   m_Father: {fileID: 494684}
   m_RootOrder: 0
@@ -66,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194684}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 58.6955643, y: 25.0700226, z: 29.7652473}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 494682}
@@ -99,7 +90,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194682}
   m_Mesh: {fileID: 4300000, guid: 36b8d76c6c8714f43850fce0686570d9, type: 3}
-<<<<<<< HEAD
 --- !u!54 &5440062
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -192,8 +182,6 @@ CapsuleCollider:
   m_Height: 3.79999995
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 1.79999995}
-=======
->>>>>>> origin/Jacob_Testing_baby_Splicing
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

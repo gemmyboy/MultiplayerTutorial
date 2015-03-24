@@ -149,6 +149,9 @@ public class HealthSync : Photon.MonoBehaviour {
 		if(photonView.isMine && theCase == 1)
 		{
 			hurtPlayer.GetPhotonView().owner.customProperties ["Health"] = health;
+			//ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
+			//hash.Add("Health",changedHealth);
+			//.SetCustomProperties(hash);
 			//hurtPlayer.rigidbody.AddExplosionForce(1000.0f,hurtPlayer.transform,10.0f,3.0f);
 			hurtPlayer.rigidbody.AddExplosionForce(1000.0f,hurtPlayer.transform.position,10.0f,3.0f,ForceMode.Force);
 		}else if(photonView.isMine && theCase == 2){
