@@ -324,12 +324,16 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
                 ServerButton.name = "ServerButton";
                 if(roomInfo.open == false){
                     //ServerButton.GetComponentInChildren<Text>().text = roomInfo.name + roomInfo.customProperties["GameType"].ToString() + roomInfo.playerCount.ToString() + "/" + roomInfo.maxPlayers.ToString() + PhotonNetwork.GetPing();
-                    ServerButton.GetComponentInChildren<Text>().text = String.Format("{0,27}{1,15}{2, 2}{3,5}", roomInfo.name, roomInfo.customProperties["GameType"].ToString(), roomInfo.playerCount.ToString() + "/" + roomInfo.maxPlayers.ToString(), PhotonNetwork.GetPing());
+                    ServerButton.GetComponentInChildren<Text>().text = String.Format("{0,-22}{1,-28}{2,-15}{3,10}", roomInfo.name, roomInfo.customProperties["GameType"].ToString(), (roomInfo.playerCount.ToString() + "/" + roomInfo.maxPlayers.ToString()), PhotonNetwork.GetPing());
                 }
                 else
                 {
                     //ServerButton.GetComponentInChildren<Text>().text = roomInfo.name + roomInfo.customProperties["GameType"].ToString() + roomInfo.playerCount.ToString() + "/" + roomInfo.maxPlayers.ToString() + PhotonNetwork.GetPing();
-                    ServerButton.GetComponentInChildren<Text>().text = String.Format("{0,-10}{1,-10}{1,-10}{1,-10}", roomInfo.name, roomInfo.customProperties["GameType"].ToString(), roomInfo.playerCount.ToString() + "/" + roomInfo.maxPlayers.ToString(), PhotonNetwork.GetPing());
+                    Debug.Log(roomInfo.name);
+                    Debug.Log(roomInfo.customProperties["GameType"].ToString());
+                    Debug.Log(roomInfo.playerCount.ToString() + "/" + roomInfo.maxPlayers.ToString());
+                    Debug.Log(PhotonNetwork.GetPing());
+                    ServerButton.GetComponentInChildren<Text>().text = String.Format("{0,-22}{1,-28}{2,-15}{3,10}", roomInfo.name, roomInfo.customProperties["GameType"].ToString(), (roomInfo.playerCount.ToString() + "/" + roomInfo.maxPlayers.ToString()), PhotonNetwork.GetPing());
                 }
             //    //Fix Button Position
                 fixButton(ServerButton,i);

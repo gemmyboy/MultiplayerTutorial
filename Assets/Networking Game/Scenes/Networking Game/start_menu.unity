@@ -7760,7 +7760,7 @@ MonoBehaviour:
   m_LineType: 0
   m_HideMobileInput: 0
   m_CharacterValidation: 4
-  m_CharacterLimit: 20
+  m_CharacterLimit: 10
   m_EndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -9123,7 +9123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameName: 
-  connections: 4
+  connections: 3
   StartButton: {fileID: 1387689732}
   RefreshButton: {fileID: 54934078}
   preFabButton: {fileID: 100004, guid: 05a81c3d5091440058129444d28322f3, type: 2}
