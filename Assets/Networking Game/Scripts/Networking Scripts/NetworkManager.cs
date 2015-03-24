@@ -172,6 +172,7 @@ public class NetworkManager : PunBehaviour
         ExitGames.Client.Photon.Hashtable hash2 = new ExitGames.Client.Photon.Hashtable();
         if(PhotonNetwork.room.customProperties["GameType"] != "Free For All"){
             hash2.Add("TeamScore",0);
+            PhotonNetwork.player.SetScore(0);
         }
         hash2.Add("Kills", 0);
         hash2.Add("Deaths",0);
