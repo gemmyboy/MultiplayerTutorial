@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using Photon;
+using System.Collections.Generic;
 public class NetworkManager : PunBehaviour
 {
     #region Members
@@ -103,9 +104,37 @@ public class NetworkManager : PunBehaviour
     Vector3 spawnPoint;
     private void CreatePlayerObject()
     {
-        foreach(PhotonPlayer player in PhotonNetwork.playerList){
-            Debug.Log(player);
+        //OMEGA TANK BABY
+        if(PhotonNetwork.room.customProperties["GameType"].ToString() == "Omega Tank" && PhotonNetwork.isMasterClient){
+            //Choose random omega and its faction
+            int randomOmega = Random.Range(0, PhotonNetwork.playerList.Length);
+            int randomFaction = Random.Range(0, 3);
+
+            //Make the things we need
+            List<string> teams = new List<string>() {"Eagles", "Excorcist", "Wolves", "Angel" };
+            PhotonPlayer[] players = PhotonNetwork.playerList;
+            ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
+            PhotonPlayer theOmega = players[randomOmega];
+
+            //Add it and secure the baby boys
+            hash.Add("Team", teams[randomFaction]);
+            theOmega.SetCustomProperties(hash);
+
+            //now to make a team for the other players
+            teams.Remove(teams[randomFaction]);
+            randomFaction = Random.Range(0, 2);
+
+            foreach (PhotonPlayer player in PhotonNetwork.playerList)
+            {
+                if(player != theOmega){
+                    hash = new ExitGames.Client.Photon.Hashtable();
+                    hash.Add("Team", teams[randomFaction]);
+                    player.SetCustomProperties(hash);
+                }
+            }
         }
+
+
         if (PhotonNetwork.player.customProperties["Team"] == "Eagles")
         {
             spawnPoint = GameObject.Find("EaglesSpawnPoint").transform.position;
@@ -140,15 +169,15 @@ public class NetworkManager : PunBehaviour
         //    newPlayerObject.AddComponent<GameTimeManager>();
         //}
 
-        ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
+        ExitGames.Client.Photon.Hashtable hash2 = new ExitGames.Client.Photon.Hashtable();
         if(PhotonNetwork.room.customProperties["GameType"] != "Free For All"){
-            hash.Add("TeamScore",0);
+            hash2.Add("TeamScore",0);
         }
-        hash.Add("Kills", 0);
-        hash.Add("Deaths",0);
-        hash.Add("Assist",0);
-        hash.Add("Health",100);
-        PhotonNetwork.player.SetCustomProperties(hash);
+        hash2.Add("Kills", 0);
+        hash2.Add("Deaths",0);
+        hash2.Add("Assist",0);
+        hash2.Add("Health",100);
+        PhotonNetwork.player.SetCustomProperties(hash2);
     }
     #endregion
 }

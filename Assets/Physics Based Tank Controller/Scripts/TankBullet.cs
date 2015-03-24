@@ -31,8 +31,8 @@ public class TankBullet : MonoBehaviour {
 	}
 
 	void Update () {
-        transform.LookAt(transform.position + transform.forward);
-        //transform.LookAt(transform.position + rigidbody.velocity);
+        //transform.LookAt(transform.position + transform.forward);
+        transform.LookAt(transform.position + rigidbody.velocity);
         if(view.isMine){
             lifeTime += Time.deltaTime;
             if (gameObject.activeSelf && lifeTime > lifeTimeOfTheBullet)

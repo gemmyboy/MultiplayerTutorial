@@ -26086,6 +26086,8 @@ MonoBehaviour:
   IsVisible: 1
   AlignBottom: 1
   FullScreen: 0
+  inputLine: 
+  displayedMessage: 0
 --- !u!114 &1166978965
 MonoBehaviour:
   m_ObjectHideFlags: 0

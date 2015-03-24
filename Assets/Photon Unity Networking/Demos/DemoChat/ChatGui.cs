@@ -49,12 +49,13 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
     public bool AlignBottom = false;
     public bool FullScreen = false;
 
-    private string inputLine = "";
+    public string inputLine = "";
     private string userIdInput = "";
     private Vector2 scrollPos = Vector2.zero;
     private static string WelcomeText = "Welcome to chat.\\help lists commands.";
     private static string HelpText = "\n\\subscribe <list of channelnames> subscribes channels.\n\\unsubscribe <list of channelnames> leaves channels.\n\\msg <username> <message> send private message to user.\n\\clear clears the current chat tab. private chats get closed.\n\\help gets this help message.";
 
+    public bool displayedMessage;
     public void Start()
     {
         if(!photonView.isMine){
@@ -117,10 +118,6 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            switchVisibility();
-        }
         if (this.chatClient != null)
         {
             this.chatClient.Service();  // make sure to call this regularly! it limits effort internally, so calling often is ok!
@@ -146,11 +143,13 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
             {
                 // focus on input -> submit it
                 GuiSendsMsg();
+                Screen.lockCursor = true;
                 return; // showing the now modified list would result in an error. to avoid this, we just skip this single frame
             }
             else
             {
                 // assign focus to input
+                Screen.lockCursor = false;
                 GUI.FocusControl("ChatInput");
             }
         }
@@ -207,6 +206,19 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
 
                 GUILayout.EndScrollView();
             }
+
+            if (PhotonNetwork.room.customProperties["GameType"].ToString() == "Omega Tank" && !displayedMessage)
+            {
+                displayedMessage = true;
+                this.chatClient.PublishMessage("All", "The omega has spawned!");
+                Debug.Log("Yes");
+            }
+            else if (PhotonNetwork.room.customProperties["GameType"].ToString() != "Omega Tank" && !displayedMessage)
+            {
+                displayedMessage = true;
+                Debug.Log("No");
+                this.chatClient.PublishMessage(this.selectedChannelName, "Let The Killing Begin!");
+            }
         }
 
 
@@ -240,13 +252,12 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
         GUILayout.EndArea();
     }
 
-    private void GuiSendsMsg()
+    public void GuiSendsMsg()
     {
         if (string.IsNullOrEmpty(this.inputLine))
         {
 
             GUI.FocusControl("");
-            //switchVisibility();
             return;
         }
 

@@ -2162,7 +2162,7 @@ Prefab:
     - target: {fileID: 11400004, guid: 05a81c3d5091440058129444d28322f3, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 1822665555}
+      objectReference: {fileID: 1517033548}
     - target: {fileID: 11400004, guid: 05a81c3d5091440058129444d28322f3, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 1
@@ -9123,7 +9123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameName: 
-  connections: 3
+  connections: 1
   StartButton: {fileID: 1387689732}
   RefreshButton: {fileID: 54934078}
   preFabButton: {fileID: 100004, guid: 05a81c3d5091440058129444d28322f3, type: 2}
@@ -19313,7 +19313,7 @@ MonoBehaviour:
         m_MethodName: changeAnimator
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1822665555}
+          m_ObjectArgument: {fileID: 1517033548}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
           m_IntArgument: 0
@@ -22884,6 +22884,7 @@ GameObject:
   - 114: {fileID: 1824121276}
   - 114: {fileID: 1824121275}
   - 114: {fileID: 1824121280}
+  - 114: {fileID: 1824121279}
   m_Layer: 5
   m_Name: ConnectingWindow
   m_TagString: ConnectingWindow
@@ -22963,6 +22964,34 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1824121273}
+--- !u!114 &1824121279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1824121273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d148d0890b2d44dbdf7f1c1b39a499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChatAppId: 9bdf7337-b892-416a-96f7-a7e6ce702d5d
+  ChannelsToJoinOnConnect: []
+  HistoryLengthToFetch: 0
+  DemoPublishOnSubscribe: 0
+  selectedChannelName: 
+  selectedChannelIndex: 0
+  GuiRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 250
+    height: 300
+  IsVisible: 1
+  AlignBottom: 0
+  FullScreen: 0
+  inputLine: 
+  displayedMessage: 0
 --- !u!114 &1824121280
 MonoBehaviour:
   m_ObjectHideFlags: 0
