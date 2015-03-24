@@ -117,9 +117,10 @@ public class HealthSync : Photon.MonoBehaviour {
 				{
 					Debug.Log("SuCcEsSfUl ShOt**********");
 						//photonView.RPC("MakeBulletExplode",PhotonTargets.All,col.gameObject);
-					if((health-TankShellDamage) <= 0)
+					if((health-(int)TankShellDamage) <= 0)
 					{
 						health = 0;
+						gameObject.SendMessage("AdjustPercent",health,SendMessageOptions.RequireReceiver);
 						uiManager.ChangeHealth(health);
 						RectTransform[] healthBar;
 						healthBar = gameObject.GetComponentsInParent<RectTransform>();
@@ -127,6 +128,7 @@ public class HealthSync : Photon.MonoBehaviour {
 						{
 							if(myRect.tag == "GreenHealthBar")
 							{
+								Debug.Log ("GreenHealthBar1");
 								//Vector3[] corners = new Vector3();
 								//myRect.offsetMin.x += ((TankShellDamage/100.0f)*7.0f);
 								Debug.Log (myRect.offsetMin.x);
@@ -138,9 +140,10 @@ public class HealthSync : Photon.MonoBehaviour {
 						}
 						dead = true;
 						photonView.RPC("ReduceMyHealth",PhotonTargets.All,gameObject.GetPhotonView().ownerId,1);
-					}else if((health-TankShellDamage) > 0)
+					}else if((health-(int)TankShellDamage) > 0)
 					{
 						health -= (int)TankShellDamage;
+						gameObject.SendMessage("AdjustPercent",health,SendMessageOptions.RequireReceiver);
 						uiManager.ChangeHealth(health);
 						RectTransform[] healthBar;
 						healthBar = gameObject.GetComponentsInParent<RectTransform>();
@@ -148,6 +151,7 @@ public class HealthSync : Photon.MonoBehaviour {
 						{
 							if(myRect.tag == "GreenHealthBar")
 							{
+								Debug.Log ("GreenHealthBar2");
 								Vector2 tempVectTwoTwo = new Vector2(((TankShellDamage/100.0f)*7.1f),0.0f);
 								myRect.offsetMin += tempVectTwoTwo;//((TankShellDamage/100.0f)*7.01f);
 								break;
@@ -173,9 +177,9 @@ public class HealthSync : Photon.MonoBehaviour {
 			hash.Add("Health",health);
 			hurtPlayer.SetCustomProperties(hash);
 			//hurtPlayer.rigidbody.AddExplosionForce(1000.0f,hurtPlayer.transform,10.0f,3.0f);
-			hurtPlayersTransform.rigidbody.AddExplosionForce(1000.0f,hurtPlayersTransform.position,10.0f,3.0f,ForceMode.Force);
+			hurtPlayersTransform.rigidbody.AddExplosionForce(1000000.0f,hurtPlayersTransform.position,10.0f,3.0f,ForceMode.Force);
 
-		}else if(photonView.isMine && theCase == 2){
+		}else if((photonView.isMine) && (theCase == 2) && (photonView.ownerId == myViewID)){
 
 			hurtPlayer = gameObject.GetPhotonView().owner;
 			//hurtPlayer.customProperties ["Health"] = health;
