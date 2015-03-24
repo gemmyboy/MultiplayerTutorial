@@ -320,11 +320,11 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
                 ServerButton = Instantiate(preFabButton, refreshWindow.transform.position, refreshWindow.transform.rotation) as GameObject;
                 ServerButton.name = "ServerButton";
                 if(roomInfo.open == false){
-                    ServerButton.GetComponentInChildren<Text>().text = roomInfo.name + " " + roomInfo.playerCount + "/" + roomInfo.maxPlayers + "(In Progress)";
+                    ServerButton.GetComponentInChildren<Text>().text = roomInfo.name + "\t\t" + roomInfo.customProperties["GameType"].ToString() + "\t" +roomInfo.playerCount + "/" + roomInfo.maxPlayers + "(In Progress)";
                 }
                 else
                 {
-                    ServerButton.GetComponentInChildren<Text>().text = roomInfo.name + " " + roomInfo.playerCount + "/" + roomInfo.maxPlayers;
+                    ServerButton.GetComponentInChildren<Text>().text = roomInfo.name + "\t\t" + roomInfo.customProperties["GameType"].ToString() + "\t" + roomInfo.playerCount + "/" + roomInfo.maxPlayers + "\t" + PhotonNetwork.GetPing();
                 }
             //    //Fix Button Position
                 fixButton(ServerButton,i);
@@ -344,7 +344,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         //button.transform.parent = refreshWindow.transform;
         button.transform.SetParent(refreshWindow.transform);
         button.transform.localScale = new Vector3(1, 1, 1);
-        button.GetComponent<RectTransform>().localPosition = new Vector3(0, (-80 * i) + 30, 0);
+        button.GetComponent<RectTransform>().localPosition = new Vector3(0, (-80 * i) + 10, 0);
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Creating the label and assigning it the right spot
