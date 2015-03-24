@@ -19,14 +19,23 @@ public class Kills_Deaths_Assist : MonoBehaviour {
 
     public void updateKills()
     {
-        PhotonNetwork.player.customProperties["Kills"] = (int)PhotonNetwork.player.customProperties["Kills"] + 1;
+        ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
+        kills = (int)PhotonNetwork.player.customProperties["Kills"] + 1;
+        hash.Add("Kills", kills);
+        PhotonNetwork.SetPlayerCustomProperties(hash);
     }
     public void updateDeaths()
     {
-        PhotonNetwork.player.customProperties["Deaths"] = (int)PhotonNetwork.player.customProperties["Deaths"] + 1;
+        ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
+        deaths = (int)PhotonNetwork.player.customProperties["Deaths"] + 1;
+        hash.Add("Deaths", deaths);
+        PhotonNetwork.SetPlayerCustomProperties(hash);
     }
     public void updateAssist()
     {
-        PhotonNetwork.player.customProperties["Assist"] = (int)PhotonNetwork.player.customProperties["Assist"] + 1;
+        ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
+        assist = (int)PhotonNetwork.player.customProperties["Assist"] + 1;
+        hash.Add("Deaths", assist);
+        PhotonNetwork.SetPlayerCustomProperties(hash);
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using Photon;
+using System.Collections.Generic;
 public class NetworkManager : PunBehaviour
 {
     #region Members
@@ -100,14 +101,59 @@ public class NetworkManager : PunBehaviour
             CreatePlayerObject();
         }
     }
+    Vector3 spawnPoint;
     private void CreatePlayerObject()
     {
-        Vector3 position = new Vector3(475, 100, 191);
-        position.x += Random.Range(-50f, 50);
-        //position.z += Random.Range(5f, 95f);
+        //OMEGA TANK BABY
+        if(PhotonNetwork.room.customProperties["GameType"].ToString() == "Omega Tank" && PhotonNetwork.isMasterClient){
+            //Choose random omega and its faction
+            int randomOmega = Random.Range(0, PhotonNetwork.playerList.Length);
+            int randomFaction = Random.Range(0, 3);
+
+            //Make the things we need
+            List<string> teams = new List<string>() {"Eagles", "Excorcist", "Wolves", "Angel" };
+            PhotonPlayer[] players = PhotonNetwork.playerList;
+            ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
+            PhotonPlayer theOmega = players[randomOmega];
+
+            //Add it and secure the baby boys
+            hash.Add("Team", teams[randomFaction]);
+            theOmega.SetCustomProperties(hash);
+
+            //now to make a team for the other players
+            teams.Remove(teams[randomFaction]);
+            randomFaction = Random.Range(0, 2);
+
+            foreach (PhotonPlayer player in PhotonNetwork.playerList)
+            {
+                if(player != theOmega){
+                    hash = new ExitGames.Client.Photon.Hashtable();
+                    hash.Add("Team", teams[randomFaction]);
+                    player.SetCustomProperties(hash);
+                }
+            }
+        }
+
+
+        if (PhotonNetwork.player.customProperties["Team"] == "Eagles")
+        {
+            spawnPoint = GameObject.Find("EaglesSpawnPoint").transform.position;
+        }
+        else if (PhotonNetwork.player.customProperties["Team"] == "Excorcist")
+        {
+            spawnPoint = GameObject.Find("ExorcistSpawnPoint").transform.position;
+        }
+        else if (PhotonNetwork.player.customProperties["Team"] == "Wolves")
+        {
+            spawnPoint = GameObject.Find("WolfSpawnPoint").transform.position;
+        }
+        else if (PhotonNetwork.player.customProperties["Team"] == "Angel")
+        {
+            spawnPoint = GameObject.Find("BloodSpawnPoint").transform.position;
+        }
 
         //Instanitate Tank
-        GameObject newPlayerObject = PhotonNetwork.Instantiate("T-90_Prefab_Network", position, Quaternion.identity, 0);
+        GameObject newPlayerObject = PhotonNetwork.Instantiate("T-90_Prefab_Network", spawnPoint, Quaternion.identity, 0);
         //Add the camera target
         orbit = FindObjectOfType<MouseOrbitC>();
         //add the tankgun target
@@ -116,102 +162,22 @@ public class NetworkManager : PunBehaviour
         orbit.target = newPlayerObject.transform;
         tankGun.target = Target.transform;
         //Turn off own health system
-        //Transform TankHealthSystem = newPlayerObject.transform.Find("TankHealthSystemCanvas");
 		Transform TankHealthSystem = (Transform)newPlayerObject.transform.Find ("TankHealthSystem").FindChild ("TankHealthSystemCanvas");
         TankHealthSystem.gameObject.SetActive(false);
-        //Change Material
-        PhotonView view = newPlayerObject.GetComponent<PhotonView>();
-        photonView.RPC("ChangeTankMaterial", PhotonTargets.AllBuffered, view.viewID, PhotonNetwork.player);
         //Apply the time script to Master Client
         //if(PhotonNetwork.isMasterClient){
         //    newPlayerObject.AddComponent<GameTimeManager>();
         //}
 
-        ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
-        hash.Add("Kills", 0);
-        hash.Add("Deaths",0);
-        hash.Add("Assist",0);
-        hash.Add("Health",100);
-        PhotonNetwork.player.SetCustomProperties(hash);
-    }
-    #endregion
-
-    #region TankRPC
-    GameObject tank;
-    [RPC]
-    public void ChangeTankMaterial(int viewID,PhotonPlayer player, PhotonMessageInfo info)
-    {
-        PhotonView[] views = FindObjectsOfType<PhotonView>();
-        foreach(PhotonView view in views){
-            if(view.viewID == viewID){
-                tank = view.gameObject;
-            }
+        ExitGames.Client.Photon.Hashtable hash2 = new ExitGames.Client.Photon.Hashtable();
+        if(PhotonNetwork.room.customProperties["GameType"] != "Free For All"){
+            hash2.Add("TeamScore",0);
         }
-        Debug.Log(player.name + "\t" + tank.name);
-        //Change the texture of the tank
-        meshes = tank.GetComponentsInChildren<MeshRenderer>();
-        Debug.Log(info.sender.name + "::Changing::" + tank.name);
-        Debug.Log(player.customProperties["Team"]);
-        Debug.Log("-------------------------------------------");
-
-
-
-        if (player.customProperties["Team"] == "Eagles")
-        {
-            foreach (MeshRenderer mesh in meshes)
-            {
-                if (mesh.name == "MainGun Mesh")
-                {
-                    mesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(eagleMaterial);
-                }
-                else
-                {
-                    mesh.gameObject.renderer.material = eagleMaterial;
-                }
-            }
-        }
-        else if (player.customProperties["Team"] == "Excorcist")
-        {
-            foreach (MeshRenderer mesh in meshes)
-            {
-                if (mesh.name == "MainGun Mesh")
-                {
-                    mesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(excorsistMaterial);
-                }
-                else
-                {
-                    mesh.gameObject.renderer.material = excorsistMaterial;
-                }
-            }
-        }
-        //else if (player.customProperties["Team"] == "Wolves")
-        //{
-        //    foreach (MeshRenderer mesh in meshes)
-        //    {
-        //        if (mesh.name == "MainGun Mesh")
-        //        {
-        //            mesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(wolfMaterial);
-        //        }
-        //        else
-        //        {
-        //            mesh.gameObject.renderer.material = wolfMaterial;
-        //        }
-        //    }
-        //}
-        //else if (player.customProperties["Team"] == "Angel")
-        //{
-        //    foreach (MeshRenderer mesh in meshes)
-        //    {
-        //        if (mesh.name == "MainGun Mesh")
-        //        {
-        //            mesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(angelMaterial);
-        //        }
-        //        else
-        //        {
-        //            mesh.gameObject.renderer.material = angelMaterial;
-        //        }
-        //    }
-        //}
+        hash2.Add("Kills", 0);
+        hash2.Add("Deaths",0);
+        hash2.Add("Assist",0);
+        hash2.Add("Health",100);
+        PhotonNetwork.player.SetCustomProperties(hash2);
     }
     #endregion
 }

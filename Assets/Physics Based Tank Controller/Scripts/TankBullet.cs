@@ -43,15 +43,6 @@ public class TankBullet : Photon.MonoBehaviour {
 	}
 	
 
-    //void OnTriggerEnter (Collider col) {
-    //    if(view.isMine){
-    //        if(col.gameObject.tag == "TankSystem"){
-    //            Explosion();
-    //            col.gameObject.SendMessage("TakeDamage", SendMessageOptions.RequireReceiver);
-    //        }
-    //    }
-    //}
-
     void OnCollisionEnter(Collision col)
     {
         if(col.gameObject.layer == LayerMask.NameToLayer("TankCollider")){
@@ -75,14 +66,16 @@ public class TankBullet : Photon.MonoBehaviour {
         else
         {
             Debug.Log("hit something else");
+<<<<<<< HEAD
 			Explosion ();
 			//PhotonNetwork.Destroy (gameObject);
+=======
+            if (view.isMine)
+            {
+                Explosion();
+            }
+>>>>>>> origin/Jacob_Testing_baby_Splicing
         }
-        //if (view.isMine)
-        //{
-        //    Explosion();
-        //    col.gameObject.SendMessage("TakeDamage", SendMessageOptions.RequireReceiver);
-        //}
     }
 
 	void Explosion(){

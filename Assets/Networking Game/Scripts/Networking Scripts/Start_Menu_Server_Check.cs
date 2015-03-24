@@ -40,6 +40,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     //GameObjects for The RefreshMenu
     public GameObject NoListLabel;
     public GameObject ListLabel;
+    public GameObject layout;
 
     //bools for checking connection and list
     public bool checkedList = false;
@@ -55,7 +56,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     //Used for Connections
     private bool connectFailed = false;
     public static readonly string SceneNameMenu = "start_menu";
-    public static readonly string SceneNameGame = "Demo Scene";
+    public static string SceneNameGame = "Demo Scene";
 
     private string errorDialog;
     private double timeToClearDialog;
@@ -158,14 +159,17 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             ErrorButton.GetComponent<Animator>().SetBool("Faded", true);
         }
         //Dont ALLow non server owners to see the play button in the matchmaking lobby
-        if (ConnectingRoomWindow)
+        if (ConnectingRoomWindow.active)
         {
+            obj = ConnectingRoomWindow.transform.FindChild("SF Title").gameObject;
+            obj.GetComponentInChildren<Text>().text = (string)PhotonNetwork.room.customProperties["GameType"];
             if(PhotonNetwork.isMasterClient){
                 StartTheGameButton.SetActive(true);
             }
         }
     }
     //--------------------------------------------------------------------------------------------------
+    GameObject obj;
     //The text fields that are in creating a server
     public void ChangePlayerName(InputField inputName)
     {
@@ -195,16 +199,8 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
 
     public void ChangeGameMode(string gameMode)
     {
-        if (gameMode == "OmegaTank")
-        {
-            this.gameMode = "OmegaTank";
-            Start_Menu_Server_Check.SceneNameGame.Replace(SceneNameGame,"OmegaTankScene");
-        }
-        else
-        {
-            this.gameMode = "testing";
-            Start_Menu_Server_Check.SceneNameGame.Replace(SceneNameGame, "testing");
-        }
+        this.gameMode = gameMode;
+
     }
     //--------------------------------------------------------------------------------------------------
     //Starting the server
@@ -218,8 +214,11 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         }
         else{
             //string[] roomPropsInLobby = { "map", "ai" };
-            //Hashtable customRoomProperties = new Hashtable() { { "map", 1 } };
-            PhotonNetwork.CreateRoom(this.gameName, new RoomOptions() { maxPlayers = connections }, null); 
+            ExitGames.Client.Photon.Hashtable customRoomProperties = new ExitGames.Client.Photon.Hashtable();
+            customRoomProperties.Add("GameType",gameMode);
+            //PhotonNetwork.CreateRoom(this.gameName, new RoomOptions() { maxPlayers = connections }, null);
+            //Game name   isVisible  isOpen   Maxplayers   customproperties
+            PhotonNetwork.CreateRoom(this.gameName,true,true,connections,customRoomProperties,null);
         }
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -309,11 +308,13 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         {
             NoListLabel.SetActive(true);
             ListLabel.SetActive(false);
+            layout.SetActive(false);
         }
         else
         {
             NoListLabel.SetActive(false);
             ListLabel.SetActive(true);
+            layout.SetActive(true);
 
             int i = 0;
             foreach (RoomInfo roomInfo in PhotonNetwork.GetRoomList())
@@ -322,11 +323,17 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
                 ServerButton = Instantiate(preFabButton, refreshWindow.transform.position, refreshWindow.transform.rotation) as GameObject;
                 ServerButton.name = "ServerButton";
                 if(roomInfo.open == false){
-                    ServerButton.GetComponentInChildren<Text>().text = roomInfo.name + " " + roomInfo.playerCount + "/" + roomInfo.maxPlayers + "(In Progress)";
+                    //ServerButton.GetComponentInChildren<Text>().text = roomInfo.name + roomInfo.customProperties["GameType"].ToString() + roomInfo.playerCount.ToString() + "/" + roomInfo.maxPlayers.ToString() + PhotonNetwork.GetPing();
+                    ServerButton.GetComponentInChildren<Text>().text = String.Format("{0,-22}{1,-28}{2,-15}{3,10}", roomInfo.name, roomInfo.customProperties["GameType"].ToString(), (roomInfo.playerCount.ToString() + "/" + roomInfo.maxPlayers.ToString()), PhotonNetwork.GetPing());
                 }
                 else
                 {
-                    ServerButton.GetComponentInChildren<Text>().text = roomInfo.name + " " + roomInfo.playerCount + "/" + roomInfo.maxPlayers;
+                    //ServerButton.GetComponentInChildren<Text>().text = roomInfo.name + roomInfo.customProperties["GameType"].ToString() + roomInfo.playerCount.ToString() + "/" + roomInfo.maxPlayers.ToString() + PhotonNetwork.GetPing();
+                    Debug.Log(roomInfo.name);
+                    Debug.Log(roomInfo.customProperties["GameType"].ToString());
+                    Debug.Log(roomInfo.playerCount.ToString() + "/" + roomInfo.maxPlayers.ToString());
+                    Debug.Log(PhotonNetwork.GetPing());
+                    ServerButton.GetComponentInChildren<Text>().text = String.Format("{0,-22}{1,-28}{2,-15}{3,10}", roomInfo.name, roomInfo.customProperties["GameType"].ToString(), (roomInfo.playerCount.ToString() + "/" + roomInfo.maxPlayers.ToString()), PhotonNetwork.GetPing());
                 }
             //    //Fix Button Position
                 fixButton(ServerButton,i);
@@ -346,7 +353,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         //button.transform.parent = refreshWindow.transform;
         button.transform.SetParent(refreshWindow.transform);
         button.transform.localScale = new Vector3(1, 1, 1);
-        button.GetComponent<RectTransform>().localPosition = new Vector3(0, (-80 * i) + 30, 0);
+        button.GetComponent<RectTransform>().localPosition = new Vector3(0, (-80 * i) - 20, 0);
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Creating the label and assigning it the right spot
@@ -356,7 +363,10 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         photonView.RPC("fixLabel", PhotonTargets.AllBuffered, new object[] { PhotonNetwork.player, myLabelViewID });
         if (PhotonNetwork.player.isMasterClient)
         {
-            createDropDownMenu();
+            if ((string)PhotonNetwork.room.customProperties["GameType"] != "Omega Tank")
+            {
+                createDropDownMenu();
+            }
         }
     }
     //number to represent where the label is placed
@@ -501,7 +511,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             i++;
         }
         yield return new WaitForSeconds(13.0f);
-        PhotonNetwork.room.open = true;
+        //PhotonNetwork.room.open = true;
         PhotonNetwork.LoadLevel(SceneNameGame);
 
     }
@@ -571,8 +581,10 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             {
                 buttonColor = vie.GetComponentInChildren<Image>().color;
                 button = vie.GetComponent<PhotonView>();
-                button.GetComponent<Button>().interactable = false;
-                button.GetComponentInChildren<Image>().color = Color.grey;
+                if((string)PhotonNetwork.room.customProperties["GameType"] == "Free For All"){
+                    button.GetComponent<Button>().interactable = false;
+                    button.GetComponentInChildren<Image>().color = Color.grey;
+                }
             }
         }
 
@@ -630,19 +642,21 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         {
             emblem = PhotonNetwork.Instantiate("Blood_Angel_Emblem", ConnectingRoomWindow.transform.position, Quaternion.identity, 0);
         }
-        photonView.RPC("fixEmblem", PhotonTargets.AllBuffered, emblem.name,myLabelViewID);
+        photonView.RPC("fixEmblem", PhotonTargets.AllBuffered, emblem.GetComponent<PhotonView>().viewID,myLabelViewID);
     }
     GameObject lab;
     [RPC]
-    public void fixEmblem(string gameObjectName,int viewID)
+    public void fixEmblem(int gameObjectID,int viewID)
     {
         PhotonView[] views = FindObjectsOfType<PhotonView>();
         foreach(PhotonView vie in views){
             if(vie.viewID == viewID){
                 lab = vie.gameObject;
             }
+            if(vie.viewID == gameObjectID){
+                emblem = vie.gameObject;
+            }
         }
-        emblem = GameObject.Find(gameObjectName);
         //emblem.transform.parent = lab.transform;
         emblem.transform.SetParent(lab.transform);
         emblem.transform.rotation = new Quaternion(0, 0, 0, 0);
