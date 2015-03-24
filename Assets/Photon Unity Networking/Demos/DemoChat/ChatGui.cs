@@ -74,21 +74,24 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
             this.UserName = PhotonNetwork.player.name; 
         }
         //Set the chat system
-        if (PhotonNetwork.player.customProperties["Team"] == "Eagles")
+        if (PhotonNetwork.player.customProperties["Team"] != null)
         {
-            ChannelsToJoinOnConnect[1] = "Eagle";
-        }
-        else if (PhotonNetwork.player.customProperties["Team"] == "Excorcist")
-        {
-            ChannelsToJoinOnConnect[1] = "Excorcist";
-        }
-        else if (PhotonNetwork.player.customProperties["Team"] == "Wolves")
-        {
-            ChannelsToJoinOnConnect[1] = "Wolves";
-        }
-        else if (PhotonNetwork.player.customProperties["Team"] == "Angel")
-        {
-            ChannelsToJoinOnConnect[1] = "Angel";
+            if (PhotonNetwork.player.customProperties["Team"] == "Eagles")
+            {
+                ChannelsToJoinOnConnect[1] = "Eagle";
+            }
+            else if (PhotonNetwork.player.customProperties["Team"] == "Excorcist")
+            {
+                ChannelsToJoinOnConnect[1] = "Excorcist";
+            }
+            else if (PhotonNetwork.player.customProperties["Team"] == "Wolves")
+            {
+                ChannelsToJoinOnConnect[1] = "Wolves";
+            }
+            else if (PhotonNetwork.player.customProperties["Team"] == "Angel")
+            {
+                ChannelsToJoinOnConnect[1] = "Angel";
+            }
         }
         //Start the chat client
         chatClient = new ChatClient(this);

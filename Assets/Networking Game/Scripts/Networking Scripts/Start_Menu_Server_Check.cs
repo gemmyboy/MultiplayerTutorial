@@ -317,9 +317,9 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             layout.SetActive(true);
 
             int i = 0;
+            ClearButtons();
             foreach (RoomInfo roomInfo in PhotonNetwork.GetRoomList())
             {
-                ClearButtons();
                 ServerButton = Instantiate(preFabButton, refreshWindow.transform.position, refreshWindow.transform.rotation) as GameObject;
                 ServerButton.name = "ServerButton";
                 if(roomInfo.open == false){
