@@ -2,9 +2,6 @@
 using System.Collections;
 
 public class HealthSync : Photon.MonoBehaviour {
-    public int health;
-    private UIManager uiManager;
-	private UIManager testForManager;
 	// Use this for initialization
     //void Start () {
     //    if (photonView.isMine)
@@ -45,9 +42,14 @@ public class HealthSync : Photon.MonoBehaviour {
 	////////////////////////////
 	//I ADDED THIS JACOB ---Adam
 	////////////////////////////
+	public int health;
+	private UIManager uiManager;
+	private UIManager testForManager;
 	private bool dead;
 	private bool uiManagerStillNull;
 	public float TankShellDamage;
+	private PhotonPlayer hurtPlayer;
+	private Transform hurtPlayersTransform;
 	void Start()
 	{
 		dead = false;
@@ -55,6 +57,7 @@ public class HealthSync : Photon.MonoBehaviour {
 		uiManagerStillNull = true;
 		testForManager = null;
 		TankShellDamage = 30.0f;
+		health = 100;
 	}
 	////////////////////////////
 	////////////////////////////
@@ -135,7 +138,7 @@ public class HealthSync : Photon.MonoBehaviour {
 								break;
 							}
 						}
-						photonView.RPC("ReduceMyHealth",PhotonTargets.All,transform.gameObject/*.GetPhotonView().owner*/,2);
+						photonView.RPC("ReduceMyHealth",PhotonTargets.All,transform.gameObject.GetPhotonView().ownerId,2);
 					}
 				}
 			}
@@ -144,18 +147,21 @@ public class HealthSync : Photon.MonoBehaviour {
 
 
 	[RPC]
-	void ReduceMyHealth(GameObject hurtPlayer,int theCase)
+	void ReduceMyHealth(int myViewID,int theCase)
 	{
 		if(photonView.isMine && theCase == 1)
 		{
-			hurtPlayer.GetPhotonView().owner.customProperties ["Health"] = health;
+			hurtPlayer = gameObject.GetPhotonView().owner;
+			hurtPlayersTransform = gameObject.GetComponentInParent<Transform>();
+			hurtPlayer.customProperties ["Health"] = health;
 			//ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
 			//hash.Add("Health",changedHealth);
 			//.SetCustomProperties(hash);
 			//hurtPlayer.rigidbody.AddExplosionForce(1000.0f,hurtPlayer.transform,10.0f,3.0f);
-			hurtPlayer.rigidbody.AddExplosionForce(1000.0f,hurtPlayer.transform.position,10.0f,3.0f,ForceMode.Force);
+			hurtPlayersTransform.rigidbody.AddExplosionForce(1000.0f,hurtPlayersTransform.position,10.0f,3.0f,ForceMode.Force);
 		}else if(photonView.isMine && theCase == 2){
-			hurtPlayer.GetPhotonView().owner.customProperties ["Health"] = health;
+			hurtPlayer = gameObject.GetPhotonView().owner;
+			hurtPlayer.customProperties ["Health"] = health;
 		}
 	}
 	/*
