@@ -60,8 +60,6 @@ public class HealthSync : Photon.MonoBehaviour {
 	////////////////////////////
     void Update()
     {
-
-<<<<<<< HEAD
 		if(uiManagerStillNull)
 		{
 			testForManager = FindObjectOfType<UIManager>();
@@ -84,8 +82,6 @@ public class HealthSync : Photon.MonoBehaviour {
 
         //ExitGames.Client.Photon.Hashtable hash = PhotonNetwork.player.allProperties;
         //Debug.Log(PhotonNetwork.player.allProperties);
-=======
->>>>>>> origin/Jacob_Testing_baby_Splicing
     }
 
 	////////////////////////////

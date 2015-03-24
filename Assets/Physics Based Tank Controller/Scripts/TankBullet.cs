@@ -66,15 +66,12 @@ public class TankBullet : Photon.MonoBehaviour {
         else
         {
             Debug.Log("hit something else");
-<<<<<<< HEAD
-			Explosion ();
+			//Explosion ();
 			//PhotonNetwork.Destroy (gameObject);
-=======
             if (view.isMine)
             {
-                Explosion();
+           	 	Explosion();
             }
->>>>>>> origin/Jacob_Testing_baby_Splicing
         }
     }
 
