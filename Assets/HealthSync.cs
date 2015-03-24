@@ -43,10 +43,10 @@ public class HealthSync : Photon.MonoBehaviour {
 	//I ADDED THIS JACOB ---Adam
 	////////////////////////////
 	public int health;
-	private UIManager uiManager;
-	private UIManager testForManager;
+	public UIManager uiManager;
+	//private UIManager testForManager;
 	private bool dead;
-	private bool uiManagerStillNull;
+	//private bool uiManagerStillNull;
 	public float TankShellDamage;
 	private PhotonPlayer hurtPlayer;
 	private Transform hurtPlayersTransform;
@@ -54,8 +54,8 @@ public class HealthSync : Photon.MonoBehaviour {
 	{
 		dead = false;
 		uiManager = null;
-		uiManagerStillNull = true;
-		testForManager = null;
+		//uiManagerStillNull = true;
+		//testForManager = null;
 		TankShellDamage = 30.0f;
 		health = 100;
 	}
@@ -63,16 +63,16 @@ public class HealthSync : Photon.MonoBehaviour {
 	////////////////////////////
     void Update()
     {
-		if(uiManagerStillNull)
-		{
-			testForManager = FindObjectOfType<UIManager>();
-			if(testForManager != null)
-			{
-				uiManagerStillNull = false;
-				uiManager = testForManager;
-				Debug.Log("UIMANAGER WAS SET");
-			}
-		}
+//		if(uiManagerStillNull)
+//		{
+//			testForManager = FindObjectOfType<UIManager>();
+//			if(testForManager != null)
+//			{
+//				uiManagerStillNull = false;
+//				uiManager = testForManager;
+//				Debug.Log("UIMANAGER WAS SET");
+//			}
+//		}
 		////////////////////////////
 		//I ADDED THIS JACOB ---Adam
 		////////////////////////////
@@ -90,7 +90,7 @@ public class HealthSync : Photon.MonoBehaviour {
 	////////////////////////////
 	//I ADDED THIS JACOB ---Adam
 	////////////////////////////
-	void OnCollisionEnter(Collision col)
+	void OnTriggerEnter(Collider col)
 	{
 		string blah = "HEALTH: " + health.ToString();
 		Debug.Log (blah);
@@ -153,15 +153,18 @@ public class HealthSync : Photon.MonoBehaviour {
 		{
 			hurtPlayer = gameObject.GetPhotonView().owner;
 			hurtPlayersTransform = gameObject.GetComponentInParent<Transform>();
-			hurtPlayer.customProperties ["Health"] = health;
-			//ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
-			//hash.Add("Health",changedHealth);
-			//.SetCustomProperties(hash);
+			//hurtPlayer.customProperties ["Health"] = health;
+			ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
+			hash.Add("Health",health);
+			hurtPlayer.SetCustomProperties(hash);
 			//hurtPlayer.rigidbody.AddExplosionForce(1000.0f,hurtPlayer.transform,10.0f,3.0f);
 			hurtPlayersTransform.rigidbody.AddExplosionForce(1000.0f,hurtPlayersTransform.position,10.0f,3.0f,ForceMode.Force);
 		}else if(photonView.isMine && theCase == 2){
 			hurtPlayer = gameObject.GetPhotonView().owner;
-			hurtPlayer.customProperties ["Health"] = health;
+			//hurtPlayer.customProperties ["Health"] = health;
+			ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
+			hash.Add("Health",health);
+			hurtPlayer.SetCustomProperties(hash);
 		}
 	}
 	/*
