@@ -163,7 +163,7 @@ public class NetworkManager : PunBehaviour
         tankGun.target = Target.transform;
         //Turn off own health system
 		Transform TankHealthSystem = (Transform)newPlayerObject.transform.Find ("TankHealthSystem").FindChild ("TankHealthSystemCanvas");
-        //TankHealthSystem.gameObject.SetActive(false);
+        TankHealthSystem.gameObject.SetActive(false);
         //Apply the time script to Master Client
         //if(PhotonNetwork.isMasterClient){
         //    newPlayerObject.AddComponent<GameTimeManager>();
