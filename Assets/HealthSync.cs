@@ -3,42 +3,6 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class HealthSync : Photon.MonoBehaviour {
-	// Use this for initialization
-    //void Start () {
-    //    if (photonView.isMine)
-    //    {
-    //        this.enabled = false;//Only enable inter/extrapol for remote players
-    //    }
-    //    else
-    //    {
-    //        health = (int)PhotonNetwork.player.customProperties["Health"];
-    //        uiManager = FindObjectOfType<UIManager>();
-    //    }
-    //}
-
-    //void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    //{
-    //    // Always send transform (depending on reliability of the network view)
-    //    if (stream.isWriting)
-    //    {
-    //        stream.SendNext(health);
-    //        Debug.Log(info.sender.allProperties);
-    //    }
-    //    // When receiving, buffer the information
-    //    else
-    //    {
-    //        health = (int)stream.ReceiveNext();
-    //    }
-    //}
-
-    //void Update()
-    //{
-    //    int oldHealth = (int)PhotonNetwork.player.customProperties["Health"];
-    //    if(oldHealth != health){
-    //        Debug.Log("Yeah");
-    //        uiManager.ChangeHealth(oldHealth);
-    //    }
-    //}
 
 	////////////////////////////
 	//I ADDED THIS JACOB ---Adam
@@ -91,18 +55,6 @@ public class HealthSync : Photon.MonoBehaviour {
 				uiManager.ChangeHealth(health);
 			}
 		}
-		////////////////////////////
-		//I ADDED THIS JACOB ---Adam
-		////////////////////////////
-		//if(!dead && photonView.isMine)
-		//{
-
-		//}
-		////////////////////////////
-		////////////////////////////
-
-        //ExitGames.Client.Photon.Hashtable hash = PhotonNetwork.player.allProperties;
-        //Debug.Log(PhotonNetwork.player.allProperties);
     }
 
 	////////////////////////////
@@ -147,19 +99,6 @@ public class HealthSync : Photon.MonoBehaviour {
 							uiManager.ChangeHealth(health);
 						photonView.RPC("AdjustPercent",PhotonTargets.All,gameObject.GetPhotonView().ownerId,health);
 						photonView.RPC ("AdjustHealthBar",PhotonTargets.All,gameObject.GetPhotonView().ownerId,2);
-
-						//RectTransform[] healthBar;
-						//healthBar = gameObject.GetComponentsInParent<RectTransform>();
-//						foreach(RectTransform myRect in healthBar)
-//						{
-//							if(myRect.tag == "GreenHealthBar")
-//							{
-//								Debug.Log ("GreenHealthBar2");
-//								Vector2 tempVectTwoTwo = new Vector2(((TankShellDamage/100.0f)*7.1f),0.0f);
-//								myRect.offsetMin += tempVectTwoTwo;//((TankShellDamage/100.0f)*7.01f);
-//								break;
-//							}
-//						}
 						photonView.RPC("ReduceMyHealth",PhotonTargets.All,gameObject.GetPhotonView().ownerId,2,col.gameObject.GetPhotonView().ownerId);
 
 					}
@@ -192,11 +131,11 @@ public class HealthSync : Photon.MonoBehaviour {
 
 			hurtPlayer = gameObject.GetPhotonView().owner;
 			//hurtPlayer.customProperties ["Health"] = health;
-			ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
+			ExitGames.Client.Photon.Hashtable hash2 = new ExitGames.Client.Photon.Hashtable();
 			//uiManager.ChangeHealth(health);
-			hash.Add("Health",health);
+			hash2.Add("Health",health);
 			transform.rigidbody.AddExplosionForce(15000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
-			hurtPlayer.SetCustomProperties(hash);
+			hurtPlayer.SetCustomProperties(hash2);
 
 		}else if(true)//if photonView == theKiller && theCase == 1
 		{
