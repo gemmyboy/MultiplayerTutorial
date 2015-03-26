@@ -4,13 +4,6 @@ using Photon;
 using System.Collections.Generic;
 public class NetworkManager : PunBehaviour
 {
-    #region Members
-    public Material eagleMaterial;
-    public Material excorsistMaterial;
-    public Material wolfMaterial;
-    public Material angelMaterial;
-    #endregion
-
     #region PhotonConnect&Disconnect
     public void Awake()
     {
@@ -101,11 +94,13 @@ public class NetworkManager : PunBehaviour
             CreatePlayerObject();
         }
     }
-    Vector3 spawnPoint;
     private void CreatePlayerObject()
     {
         //OMEGA TANK BABY
+        //--------------------------------------------------------------------------------------------------------------
         if(PhotonNetwork.room.customProperties["GameType"].ToString() == "Omega Tank" && PhotonNetwork.isMasterClient){
+            Random.seed = Mathf.RoundToInt(Time.time * 100);
+            Debug.Log(Random.seed = Mathf.RoundToInt(Time.time * 100));
             //Choose random omega and its faction
             int randomOmega = Random.Range(0, PhotonNetwork.playerList.Length);
             int randomFaction = Random.Range(0, 3);
@@ -133,24 +128,10 @@ public class NetworkManager : PunBehaviour
                 }
             }
         }
-
-
-        if (PhotonNetwork.player.customProperties["Team"] == "Eagles")
-        {
-            spawnPoint = GameObject.Find("EaglesSpawnPoint").transform.position;
-        }
-        else if (PhotonNetwork.player.customProperties["Team"] == "Excorcist")
-        {
-            spawnPoint = GameObject.Find("ExorcistSpawnPoint").transform.position;
-        }
-        else if (PhotonNetwork.player.customProperties["Team"] == "Wolves")
-        {
-            spawnPoint = GameObject.Find("WolfSpawnPoint").transform.position;
-        }
-        else if (PhotonNetwork.player.customProperties["Team"] == "Angel")
-        {
-            spawnPoint = GameObject.Find("BloodSpawnPoint").transform.position;
-        }
+        //--------------------------------------------------------------------------------------------------------------
+        //NWAPS STNIOP YBAB ----spawn points baby
+        createSpawns();
+        //--------------------------------------------------------------------------------------------------------------
 
         //Instanitate Tank
         GameObject newPlayerObject = PhotonNetwork.Instantiate("T-90_Prefab_Network", spawnPoint, Quaternion.identity, 0);
@@ -164,11 +145,9 @@ public class NetworkManager : PunBehaviour
         //Turn off own health system
 		Transform TankHealthSystem = (Transform)newPlayerObject.transform.Find ("TankHealthSystem").FindChild ("TankHealthSystemCanvas");
         TankHealthSystem.gameObject.SetActive(false);
-        //Apply the time script to Master Client
-        //if(PhotonNetwork.isMasterClient){
-        //    newPlayerObject.AddComponent<GameTimeManager>();
-        //}
+        //--------------------------------------------------------------------------------------------------------------
 
+        //Setup scoring system
         ExitGames.Client.Photon.Hashtable hash2 = new ExitGames.Client.Photon.Hashtable();
         if(PhotonNetwork.room.customProperties["GameType"] != "Free For All"){
             hash2.Add("TeamScore",0);
@@ -180,5 +159,105 @@ public class NetworkManager : PunBehaviour
         hash2.Add("Health",100);
         PhotonNetwork.player.SetCustomProperties(hash2);
     }
+
+    public GameObject spawnpointsFFA;
+    public GameObject spawnpointsCTF;
+    Vector3 spawnPoint;
+    Vector3 spawnPos;
+    void createSpawns()
+    {
+        //NWAPS STNIOP YBAB ----spawn points baby
+        //Free for all
+        if (PhotonNetwork.room.customProperties["GameType"].ToString() == "Free For All")
+        {
+            GameObject spawnPoints = Instantiate(spawnpointsFFA,transform.position,transform.rotation) as GameObject;
+            spawnPoints.transform.localPosition = new Vector3(400,0,300);
+            if (PhotonNetwork.player.customProperties["Team"] == "Eagles")
+            {
+                spawnPoint = GameObject.Find("EaglesSpawnPoint").transform.position;
+            }
+            else if (PhotonNetwork.player.customProperties["Team"] == "Excorcist")
+            {
+                spawnPoint = GameObject.Find("ExorcistSpawnPoint").transform.position;
+            }
+            else if (PhotonNetwork.player.customProperties["Team"] == "Wolves")
+            {
+                spawnPoint = GameObject.Find("WolfSpawnPoint").transform.position;
+            }
+            else if (PhotonNetwork.player.customProperties["Team"] == "Angel")
+            {
+                spawnPoint = GameObject.Find("BloodSpawnPoint").transform.position;
+            }
+        }
+        //Capture the flag
+        else if (PhotonNetwork.room.customProperties["GameType"].ToString() == "Capture The Flag")
+        {
+            GameObject spawnPoints = Instantiate(spawnpointsCTF, transform.position, transform.rotation) as GameObject;
+            spawnPoints.transform.localPosition = new Vector3(400, 0, 300);
+            //Now spawn the player
+            if (PhotonNetwork.player.customProperties["Team"] == "Eagles")
+            {
+                spawnPoint = GameObject.Find("EaglesSpawnPoint").transform.position + new Vector3(10,10,10);
+            }
+            else if (PhotonNetwork.player.customProperties["Team"] == "Excorcist")
+            {
+                spawnPoint = GameObject.Find("ExorcistSpawnPoint").transform.position + new Vector3(10, 10, 10);
+            }
+            else if (PhotonNetwork.player.customProperties["Team"] == "Wolves")
+            {
+                spawnPoint = GameObject.Find("WolfSpawnPoint").transform.position + new Vector3(10, 10, 10);
+            }
+            else if (PhotonNetwork.player.customProperties["Team"] == "Angel")
+            {
+                spawnPoint = GameObject.Find("BloodSpawnPoint").transform.position + new Vector3(10, 10, 10);
+            }
+
+            if (PhotonNetwork.isMasterClient)
+            {
+                GameObject eagleFlag = PhotonNetwork.Instantiate("Eagle_Flag", spawnPoint, Quaternion.identity, 0);
+                int id = eagleFlag.GetPhotonView().viewID;
+                photonView.RPC("fixFlag", PhotonTargets.All, id, "Eagle");
+
+                GameObject exorcistFlag = PhotonNetwork.Instantiate("Exorcist_Flag", spawnPoint, Quaternion.identity, 0);
+                id = exorcistFlag.GetPhotonView().viewID;
+                photonView.RPC("fixFlag", PhotonTargets.All, id, "Exorcist");
+
+                GameObject wolfFlag = PhotonNetwork.Instantiate("Wolf_Flag", spawnPoint, Quaternion.identity, 0);
+                id = wolfFlag.GetPhotonView().viewID;
+                photonView.RPC("fixFlag", PhotonTargets.All, id, "Wolf");
+
+                GameObject bloodFlag = PhotonNetwork.Instantiate("Blood_Flag", spawnPoint, Quaternion.identity, 0);
+                id = bloodFlag.GetPhotonView().viewID;
+                photonView.RPC("fixFlag", PhotonTargets.All, id, "Blood");
+            }
+        }
+    }
     #endregion
+    GameObject currentFlag;
+    [RPC]
+    void fixFlag(int ID,string message)
+    {
+        //find the flag
+        PhotonView[] views = FindObjectsOfType<PhotonView>();
+        foreach(PhotonView view in views){
+            if(ID == view.viewID){
+                currentFlag = view.gameObject;
+            }
+        }
+        if(message == "Eagle"){
+            currentFlag.transform.position = GameObject.Find("EaglesSpawnPoint").transform.position;
+            currentFlag.transform.FindChild("InteractiveCloth").GetComponent<InteractiveCloth>().enabled = true;
+        }else if(message == "Exorcist"){
+            currentFlag.transform.position = GameObject.Find("ExorcistSpawnPoint").transform.position;
+            currentFlag.transform.FindChild("InteractiveCloth").GetComponent<InteractiveCloth>().enabled = true;
+        }else if(message == "Wolf"){
+            currentFlag.transform.position = GameObject.Find("WolfSpawnPoint").transform.position;
+            currentFlag.transform.FindChild("InteractiveCloth").GetComponent<InteractiveCloth>().enabled = true;
+        }else if (message == "Blood")
+        {
+            currentFlag.transform.position = GameObject.Find("BloodSpawnPoint").transform.position;
+            currentFlag.transform.FindChild("InteractiveCloth").GetComponent<InteractiveCloth>().enabled = true;
+        }
+
+    }
 }

@@ -76,7 +76,7 @@ public class TankBullet : Photon.MonoBehaviour {
     }
 
 	void Explosion(){
-        PhotonNetwork.Instantiate("I_Made_Fire", transform.position, transform.rotation, 0);
+        PhotonNetwork.Instantiate("large flames", transform.position, transform.rotation, 0);
         //Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, 15);
         //foreach (Collider hit in colliders)
         //{

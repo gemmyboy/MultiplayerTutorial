@@ -77,7 +77,6 @@ public class GameTimeManager : PunBehaviour{
         if (propertiesThatChanged.ContainsKey(TimeToStartProp))
         {
             this.timeToStart = (double)propertiesThatChanged[TimeToStartProp];
-            Debug.Log("Got StartTime: " + this.timeToStart + " is it time yet?! " + this.IsItTimeYet);
         }
     }
     

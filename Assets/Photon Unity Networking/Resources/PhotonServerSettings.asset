@@ -55,4 +55,5 @@ MonoBehaviour:
   - ReduceMyHealth
   - MakeBulletExplode
   - noFaction
+  - fixFlag
   DisableAutoOpenWizard: 0

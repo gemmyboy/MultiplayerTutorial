@@ -209,19 +209,6 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
 
                 GUILayout.EndScrollView();
             }
-
-            if (PhotonNetwork.room.customProperties["GameType"].ToString() == "Omega Tank" && !displayedMessage)
-            {
-                displayedMessage = true;
-                this.chatClient.PublishMessage("All", "The omega has spawned!");
-                Debug.Log("Yes");
-            }
-            else if (PhotonNetwork.room.customProperties["GameType"].ToString() != "Omega Tank" && !displayedMessage)
-            {
-                displayedMessage = true;
-                Debug.Log("No");
-                this.chatClient.PublishMessage(this.selectedChannelName, "Let The Killing Begin!");
-            }
         }
 
 
