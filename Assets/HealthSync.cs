@@ -134,17 +134,19 @@ public class HealthSync : Photon.MonoBehaviour {
 					{
 						health = 0;
 						//gameObject.SendMessage("AdjustPercent",health,SendMessageOptions.RequireReceiver);
-						photonView.RPC("AdjustPercent",PhotonTargets.All,health);
-						//uiManager.ChangeHealth(health);
-						photonView.RPC ("AdjustHealthBar",PhotonTargets.All,1);
+						if(photonView.isMine)
+							uiManager.ChangeHealth(health);
+						photonView.RPC("AdjustPercent",PhotonTargets.All,gameObject.GetPhotonView().ownerId,health);
+						photonView.RPC ("AdjustHealthBar",PhotonTargets.All,gameObject.GetPhotonView().ownerId,1);
 						photonView.RPC("ReduceMyHealth",PhotonTargets.All,gameObject.GetPhotonView().ownerId,1,col.gameObject.GetPhotonView().ownerId);
 					}else if((health-(int)TankShellDamage) > 0)
 					{
 						health -= (int)TankShellDamage;
 						//gameObject.SendMessage("AdjustPercent",health,SendMessageOptions.RequireReceiver);
-						photonView.RPC("AdjustPercent",PhotonTargets.All,health);
-						//uiManager.ChangeHealth(health);
-						photonView.RPC ("AdjustHealthBar",PhotonTargets.All,2);
+						if(photonView.isMine)
+							uiManager.ChangeHealth(health);
+						photonView.RPC("AdjustPercent",PhotonTargets.All,gameObject.GetPhotonView().ownerId,health);
+						photonView.RPC ("AdjustHealthBar",PhotonTargets.All,gameObject.GetPhotonView().ownerId,2);
 
 						//RectTransform[] healthBar;
 						//healthBar = gameObject.GetComponentsInParent<RectTransform>();
@@ -176,7 +178,7 @@ public class HealthSync : Photon.MonoBehaviour {
 			hurtPlayer = gameObject.GetPhotonView().owner;
 
 			ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
-			uiManager.ChangeHealth(health);
+			//uiManager.ChangeHealth(health);
 			hash.Add("Health",health);
 
 			dead = true;
@@ -191,7 +193,7 @@ public class HealthSync : Photon.MonoBehaviour {
 			hurtPlayer = gameObject.GetPhotonView().owner;
 			//hurtPlayer.customProperties ["Health"] = health;
 			ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
-			uiManager.ChangeHealth(health);
+			//uiManager.ChangeHealth(health);
 			hash.Add("Health",health);
 			transform.rigidbody.AddExplosionForce(15000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
 			hurtPlayer.SetCustomProperties(hash);
@@ -211,31 +213,32 @@ public class HealthSync : Photon.MonoBehaviour {
 	////////////////////////////
 	////////////////////////////
 	[RPC]
-	void AdjustPercent(int health)
+	void AdjustPercent(int myViewID, int health)
 	{
-		myText.text = health.ToString ();
+		if(photonView.ownerId == myViewID)
+			myText.text = health.ToString ();
 	}
 
 	[RPC]
-	void AdjustHealthBar(int bounds)
+	void AdjustHealthBar(int myViewID, int bounds)
 	{
-		if(bounds == 1)
+		if(bounds == 1 && (photonView.ownerId == myViewID))
 		{
 			if(myRect.tag == "GreenHealthBar")
 			{
-				Debug.Log ("GreenHealthBar1");
+				//Debug.Log ("GreenHealthBar1");
 				//Vector3[] corners = new Vector3();
 				//myRect.offsetMin.x += ((TankShellDamage/100.0f)*7.0f);
-				Debug.Log (myRect.offsetMin.x);
-				Debug.Log (myRect.offsetMax.x);
+				//Debug.Log (myRect.offsetMin.x);
+				//Debug.Log (myRect.offsetMax.x);
 				Vector2 tempVectTwo = new Vector2(7.01f,0.0f);
 				myRect.offsetMin = tempVectTwo;
 			}
-		}else if(bounds == 2)
+		}else if(bounds == 2 && (photonView.ownerId == myViewID))
 		{
 			if(myRect.tag == "GreenHealthBar")
 			{
-				Debug.Log ("GreenHealthBar2");
+				//Debug.Log ("GreenHealthBar2");
 				Vector2 tempVectTwoTwo = new Vector2(((TankShellDamage/100.0f)*7.1f),0.0f);
 				myRect.offsetMin += tempVectTwoTwo;//((TankShellDamage/100.0f)*7.01f);
 			}
