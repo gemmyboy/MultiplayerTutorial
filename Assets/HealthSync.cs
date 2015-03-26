@@ -20,6 +20,7 @@ public class HealthSync : Photon.MonoBehaviour {
 	private RectTransform myRect;
 	public GameObject myTextObj;
 	public GameObject myRectObj;
+	private int healthAmount = 0;
 	void Start()
 	{
 		dead = false;
@@ -39,11 +40,16 @@ public class HealthSync : Photon.MonoBehaviour {
 		hash.Add("Health",100);
 		hurtPlayer.SetCustomProperties(hash);
 		health = (int)gameObject.GetPhotonView ().owner.customProperties ["Health"];
+		healthAmount = (int)gameObject.GetPhotonView ().owner.customProperties ["Health"];
+
+		
 	}
 	////////////////////////////
 	////////////////////////////
     void Update()
     {
+		healthAmount = (int)gameObject.GetPhotonView().owner.customProperties["Health"];
+
 		if(uiManagerStillNull && photonView.isOwnerActive && (photonView.ownerId == gameObject.GetPhotonView().ownerId))
 		{
 			testForManager = FindObjectOfType<UIManager>();
@@ -52,7 +58,7 @@ public class HealthSync : Photon.MonoBehaviour {
 				uiManagerStillNull = false;
 				uiManager = testForManager;
 				//Debug.Log("UIMANAGER WAS SET");
-				uiManager.ChangeHealth(health);
+				uiManager.ChangeHealth(healthAmount);
 			}
 		}
     }
@@ -69,37 +75,37 @@ public class HealthSync : Photon.MonoBehaviour {
 //			uiManager.ChangeHealth(health);
 //			string blah = "HEALTH: " + health.ToString();
 //			Debug.Log (blah);
-
-			if((health >= 0) && (!dead) && (col.gameObject.tag == "TankShell"))
+			//healthAmount = (int)gameObject.GetPhotonView().owner.customProperties["Health"];
+			if((healthAmount >= 0) && (!dead) && (col.gameObject.tag == "TankShell"))
 			{
 				Debug.Log("DaMaGe****SHOULD****HaPpEn");
 				if(col.gameObject.GetPhotonView().owner.customProperties["Team"] != gameObject.GetPhotonView().owner.customProperties["Team"])
 				{
-					theOwner = gameObject.GetPhotonView().owner;
-					health = (int)theOwner.customProperties ["Health"];
-					uiManager.ChangeHealth(health);
+					//theOwner = gameObject.GetPhotonView().owner;
+					//health = (int)theOwner.customProperties ["Health"];
+					//uiManager.ChangeHealth(health);
 					string blah = "HEALTH: " + health.ToString();
 					Debug.Log (blah);
 					Debug.Log("SuCcEsSfUl ShOt**********");
 						//photonView.RPC("MakeBulletExplode",PhotonTargets.All,col.gameObject);
-					if((health-(int)TankShellDamage) <= 0)
+					if(((healthAmount-(int)TankShellDamage)) <= 0)
 					{
 						health = 0;
 						//gameObject.SendMessage("AdjustPercent",health,SendMessageOptions.RequireReceiver);
 						if(photonView.isMine)
 							uiManager.ChangeHealth(health);
-						photonView.RPC("AdjustPercent",PhotonTargets.All,gameObject.GetPhotonView().ownerId,health);
-						photonView.RPC ("AdjustHealthBar",PhotonTargets.All,gameObject.GetPhotonView().ownerId,1);
-						photonView.RPC("ReduceMyHealth",PhotonTargets.All,gameObject.GetPhotonView().ownerId,1,col.gameObject.GetPhotonView().ownerId);
-					}else if((health-(int)TankShellDamage) > 0)
+//						photonView.RPC("AdjustPercent",PhotonTargets.All,gameObject.GetPhotonView().ownerId,health);
+//						photonView.RPC ("AdjustHealthBar",PhotonTargets.All,gameObject.GetPhotonView().ownerId,1);
+						photonView.RPC("ReduceMyHealth",PhotonTargets.Others,gameObject.GetPhotonView().ownerId,1,col.gameObject.GetPhotonView().ownerId);
+					}else if((healthAmount-(int)TankShellDamage) > 0)
 					{
-						health -= (int)TankShellDamage;
+						//health -= (int)TankShellDamage;
 						//gameObject.SendMessage("AdjustPercent",health,SendMessageOptions.RequireReceiver);
-						if(photonView.isMine)
-							uiManager.ChangeHealth(health);
-						photonView.RPC("AdjustPercent",PhotonTargets.All,gameObject.GetPhotonView().ownerId,health);
-						photonView.RPC ("AdjustHealthBar",PhotonTargets.All,gameObject.GetPhotonView().ownerId,2);
-						photonView.RPC("ReduceMyHealth",PhotonTargets.All,gameObject.GetPhotonView().ownerId,2,col.gameObject.GetPhotonView().ownerId);
+						//if(photonView.isMine)
+							//uiManager.ChangeHealth(health);
+						//photonView.RPC("AdjustPercent",PhotonTargets.All,gameObject.GetPhotonView().ownerId,health);
+						//photonView.RPC ("AdjustHealthBar",PhotonTargets.All,gameObject.GetPhotonView().ownerId,2);
+						photonView.RPC("ReduceMyHealth",PhotonTargets.Others,gameObject.GetPhotonView().ownerId,2,col.gameObject.GetPhotonView().ownerId);
 
 					}
 				}
@@ -117,13 +123,19 @@ public class HealthSync : Photon.MonoBehaviour {
 			hurtPlayer = gameObject.GetPhotonView().owner;
 
 			ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
-			//uiManager.ChangeHealth(health);
-			hash.Add("Health",health);
+			hash.Add("Health",0);
+			healthAmount = (int)gameObject.GetPhotonView().owner.customProperties["Health"];
+			uiManager.ChangeHealth(0);
+			hurtPlayer.SetCustomProperties(hash);
 
+			
 			dead = true;
 			transform.rigidbody.AddExplosionForce(150000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
+			photonView.RPC ("AdjustHealthBar",PhotonTargets.All,gameObject.GetPhotonView().ownerId,1);
+			photonView.RPC("AdjustPercent",PhotonTargets.All,gameObject.GetPhotonView().ownerId,healthAmount);
 
-			hurtPlayer.SetCustomProperties(hash);
+			
+			
 
 			//Debug.Log("SHOULD HAVE EXPLODED");
 
@@ -132,10 +144,18 @@ public class HealthSync : Photon.MonoBehaviour {
 			hurtPlayer = gameObject.GetPhotonView().owner;
 			//hurtPlayer.customProperties ["Health"] = health;
 			ExitGames.Client.Photon.Hashtable hash2 = new ExitGames.Client.Photon.Hashtable();
-			//uiManager.ChangeHealth(health);
-			hash2.Add("Health",health);
-			transform.rigidbody.AddExplosionForce(15000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
+
+			healthAmount = (int)gameObject.GetPhotonView().owner.customProperties["Health"];
+
+			hash2.Add("Health",(int)(healthAmount-(int)TankShellDamage));
+			healthAmount = (int)gameObject.GetPhotonView().owner.customProperties["Health"];
 			hurtPlayer.SetCustomProperties(hash2);
+
+			uiManager.ChangeHealth(healthAmount);
+			transform.rigidbody.AddExplosionForce(15000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
+			
+			photonView.RPC("AdjustPercent",PhotonTargets.Others,gameObject.GetPhotonView().ownerId,healthAmount);
+			photonView.RPC ("AdjustHealthBar",PhotonTargets.Others,gameObject.GetPhotonView().ownerId,2);
 
 		}else if(true)//if photonView == theKiller && theCase == 1
 		{
