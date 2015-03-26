@@ -144,6 +144,7 @@ GameObject:
   - 33: {fileID: 3316712}
   - 23: {fileID: 2316712}
   - 64: {fileID: 6416706}
+  - 65: {fileID: 6523996}
   m_Layer: 8
   m_Name: MainBody Mesh
   m_TagString: Untagged
@@ -1233,6 +1234,7 @@ GameObject:
   - 114: {fileID: 11418300}
   - 114: {fileID: 11451082}
   - 114: {fileID: 11434562}
+  - 114: {fileID: 11426272}
   m_Layer: 8
   m_Name: T-90_Prefab_Network
   m_TagString: Player
@@ -4551,7 +4553,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!54 &5416728
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -5024,6 +5026,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.13999987, y: 1.60000002, z: 6.61999989}
   m_Center: {x: 0, y: .270000011, z: 0}
+--- !u!65 &6523996
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116718}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 5.96000004, y: 2.20000005, z: 10.1099997}
+  m_Center: {x: .000283837318, y: -.49000001, z: .810000002}
 --- !u!65 &6533538
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -5601,6 +5615,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interpolationBackTime: .15000000596046448
+--- !u!114 &11426272
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c61943769b58e6843bbb44366f366314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power: 0
+  radius: 0
 --- !u!114 &11434562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5613,7 +5640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 0}
-  TankShellDamage: 10
+  TankShellDamage: 22
   myTextObj: {fileID: 165996}
   myRectObj: {fileID: 183586}
 --- !u!114 &11437554

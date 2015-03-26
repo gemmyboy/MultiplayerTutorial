@@ -56,4 +56,5 @@ MonoBehaviour:
   - MakeBulletExplode
   - AdjustPercent
   - AdjustHealthBar
+  - BulletExplosionForce
   DisableAutoOpenWizard: 0
