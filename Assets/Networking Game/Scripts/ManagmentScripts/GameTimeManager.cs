@@ -17,7 +17,7 @@ public class GameTimeManager : PunBehaviour{
     UIManager uimanager;
     void Start(){
         uimanager = FindObjectOfType<UIManager>();
-        SecondsBeforeStart = uimanager.roundTimeLimitMins * 60;
+        SecondsBeforeStart = uimanager.roundTimeLimitMins * 60 + GameObject.FindObjectOfType<GameStartTimeManager>().SecondsBeforeEnd;
         startTimer = FindObjectOfType<GameStartTimeManager>();
         timeToStart = startTimer.timeToStart;
     }

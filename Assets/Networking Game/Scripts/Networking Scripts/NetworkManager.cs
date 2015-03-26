@@ -214,21 +214,21 @@ public class NetworkManager : PunBehaviour
 
             if (PhotonNetwork.isMasterClient)
             {
-                GameObject eagleFlag = PhotonNetwork.Instantiate("Eagle_Flag", spawnPoint, Quaternion.identity, 0);
-                int id = eagleFlag.GetPhotonView().viewID;
-                photonView.RPC("fixFlag", PhotonTargets.All, id, "Eagle");
+                GameObject eagleFlag = PhotonNetwork.Instantiate("Eagle_Flag", GameObject.Find("EaglesSpawnPoint").transform.position, Quaternion.identity, 0);
+                //int id = eagleFlag.GetPhotonView().viewID;
+                //photonView.RPC("fixFlag", PhotonTargets.All, id, "Eagle");
 
-                GameObject exorcistFlag = PhotonNetwork.Instantiate("Exorcist_Flag", spawnPoint, Quaternion.identity, 0);
-                id = exorcistFlag.GetPhotonView().viewID;
-                photonView.RPC("fixFlag", PhotonTargets.All, id, "Exorcist");
+                GameObject exorcistFlag = PhotonNetwork.Instantiate("Exorcist_Flag", GameObject.Find("ExorcistSpawnPoint").transform.position, Quaternion.identity, 0);
+                //int id = exorcistFlag.GetPhotonView().viewID;
+                //photonView.RPC("fixFlag", PhotonTargets.All, id, "Exorcist");
 
-                GameObject wolfFlag = PhotonNetwork.Instantiate("Wolf_Flag", spawnPoint, Quaternion.identity, 0);
-                id = wolfFlag.GetPhotonView().viewID;
-                photonView.RPC("fixFlag", PhotonTargets.All, id, "Wolf");
+                GameObject wolfFlag = PhotonNetwork.Instantiate("Wolf_Flag", GameObject.Find("WolfSpawnPoint").transform.position, Quaternion.identity, 0);
+                //id = wolfFlag.GetPhotonView().viewID;
+                //photonView.RPC("fixFlag", PhotonTargets.All, id, "Wolf");
 
-                GameObject bloodFlag = PhotonNetwork.Instantiate("Blood_Flag", spawnPoint, Quaternion.identity, 0);
-                id = bloodFlag.GetPhotonView().viewID;
-                photonView.RPC("fixFlag", PhotonTargets.All, id, "Blood");
+                GameObject bloodFlag = PhotonNetwork.Instantiate("Blood_Flag", GameObject.Find("BloodSpawnPoint").transform.position, Quaternion.identity, 0);
+                //id = bloodFlag.GetPhotonView().viewID;
+                //photonView.RPC("fixFlag", PhotonTargets.All, id, "Blood");
             }
         }
     }
@@ -246,17 +246,13 @@ public class NetworkManager : PunBehaviour
         }
         if(message == "Eagle"){
             currentFlag.transform.position = GameObject.Find("EaglesSpawnPoint").transform.position;
-            currentFlag.transform.FindChild("InteractiveCloth").GetComponent<InteractiveCloth>().enabled = true;
         }else if(message == "Exorcist"){
             currentFlag.transform.position = GameObject.Find("ExorcistSpawnPoint").transform.position;
-            currentFlag.transform.FindChild("InteractiveCloth").GetComponent<InteractiveCloth>().enabled = true;
         }else if(message == "Wolf"){
             currentFlag.transform.position = GameObject.Find("WolfSpawnPoint").transform.position;
-            currentFlag.transform.FindChild("InteractiveCloth").GetComponent<InteractiveCloth>().enabled = true;
         }else if (message == "Blood")
         {
             currentFlag.transform.position = GameObject.Find("BloodSpawnPoint").transform.position;
-            currentFlag.transform.FindChild("InteractiveCloth").GetComponent<InteractiveCloth>().enabled = true;
         }
 
     }
