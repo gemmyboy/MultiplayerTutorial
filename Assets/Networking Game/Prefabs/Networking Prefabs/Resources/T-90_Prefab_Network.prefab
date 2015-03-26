@@ -11,7 +11,7 @@ GameObject:
   - 223: {fileID: 22306370}
   - 114: {fileID: 11406368}
   - 114: {fileID: 11406366}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: TankHealthSystemCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ GameObject:
   - 224: {fileID: 22406370}
   - 222: {fileID: 22206370}
   - 114: {fileID: 11406370}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: RedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   - 4: {fileID: 416710}
   - 146: {fileID: 14616706}
   - 114: {fileID: 11416706}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel2L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -433,7 +433,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 416754}
   - 146: {fileID: 14616708}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel1R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +449,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 416756}
   - 146: {fileID: 14616710}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel4R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -465,7 +465,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 416758}
   - 146: {fileID: 14616712}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel3L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -526,7 +526,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 416766}
   - 146: {fileID: 14616714}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel5R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -607,7 +607,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 416776}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: WheelColliders_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -623,7 +623,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 416778}
   - 146: {fileID: 14616716}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel1L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -735,7 +735,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 416792}
   - 146: {fileID: 14616718}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel5L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1166,7 +1166,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 416844}
   - 146: {fileID: 14616720}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel3R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1281,7 +1281,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 416858}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: WheelColliders_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1313,7 +1313,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 416862}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MainGunColliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1380,7 +1380,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 416870}
   - 146: {fileID: 14616722}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel4L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1426,7 +1426,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 416876}
   - 146: {fileID: 14616724}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel6L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1588,7 +1588,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 416896}
   - 146: {fileID: 14616726}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel6R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1624,7 +1624,7 @@ GameObject:
   - 4: {fileID: 416900}
   - 146: {fileID: 14616728}
   - 114: {fileID: 11416714}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel2R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1835,7 +1835,7 @@ GameObject:
   - 33: {fileID: 3336700}
   - 65: {fileID: 6536700}
   - 23: {fileID: 2336700}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TankHealthSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1854,7 +1854,7 @@ GameObject:
   - 114: {fileID: 11465996}
   - 114: {fileID: 11437554}
   - 114: {fileID: 11409362}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Health Percentage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1873,7 +1873,7 @@ GameObject:
   - 114: {fileID: 11483586}
   - 114: {fileID: 11408800}
   - 114: {fileID: 11408802}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: GreenBar
   m_TagString: GreenHealthBar
   m_Icon: {fileID: 0}
@@ -4553,7 +4553,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 0
 --- !u!54 &5416728
 Rigidbody:
   m_ObjectHideFlags: 1
