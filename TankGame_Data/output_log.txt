@@ -27,79 +27,18 @@ XInput1_3.dll not found.
 <RI> Input initialized.
 Platform assembly: C:\Users\arm8759\Desktop\MultiplayerTutorial\TankGame_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\arm8759\Desktop\MultiplayerTutorial\TankGame_Data\Managed\System.dll (this message is harmless)
-Adfdd
+OnCreatedRoom
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-Start_Menu_Server_Check:RefreshServerList() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\Start_Menu_Server_Check.cs:332)
-UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent.cs:110)
-UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent.cs:575)
-UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent.cs:717)
-UnityEngine.Events.UnityEvent:Invoke() (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent_0.cs:53)
-UnityEngine.UI.Button:Press() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\UI\Core\Button.cs:36)
-UnityEngine.UI.Button:OnPointerClick(PointerEventData) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\UI\Core\Button.cs:45)
-UnityEngine.EventSystems.ExecuteEvents:Execute(IPointerClickHandler, BaseEventData) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\ExecuteEvents.cs:52)
-UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\ExecuteEvents.cs:269)
-UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\InputModules\StandaloneInputModule.cs:359)
-UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\InputModules\StandaloneInputModule.cs:250)
-UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\InputModules\StandaloneInputModule.cs:161)
-UnityEngine.EventSystems.EventSystem:Update() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\EventSystem.cs:263)
- 
-(Filename: C Line: 0)
-
-Free For All
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Start_Menu_Server_Check:RefreshServerList() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\Start_Menu_Server_Check.cs:333)
-UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent.cs:110)
-UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent.cs:575)
-UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent.cs:717)
-UnityEngine.Events.UnityEvent:Invoke() (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent_0.cs:53)
-UnityEngine.UI.Button:Press() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\UI\Core\Button.cs:36)
-UnityEngine.UI.Button:OnPointerClick(PointerEventData) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\UI\Core\Button.cs:45)
-UnityEngine.EventSystems.ExecuteEvents:Execute(IPointerClickHandler, BaseEventData) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\ExecuteEvents.cs:52)
-UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\ExecuteEvents.cs:269)
-UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\InputModules\StandaloneInputModule.cs:359)
-UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\InputModules\StandaloneInputModule.cs:250)
-UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\InputModules\StandaloneInputModule.cs:161)
-UnityEngine.EventSystems.EventSystem:Update() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\EventSystem.cs:263)
- 
-(Filename: C Line: 0)
-
-1/2
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Start_Menu_Server_Check:RefreshServerList() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\Start_Menu_Server_Check.cs:334)
-UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent.cs:110)
-UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent.cs:575)
-UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent.cs:717)
-UnityEngine.Events.UnityEvent:Invoke() (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent_0.cs:53)
-UnityEngine.UI.Button:Press() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\UI\Core\Button.cs:36)
-UnityEngine.UI.Button:OnPointerClick(PointerEventData) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\UI\Core\Button.cs:45)
-UnityEngine.EventSystems.ExecuteEvents:Execute(IPointerClickHandler, BaseEventData) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\ExecuteEvents.cs:52)
-UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\ExecuteEvents.cs:269)
-UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\InputModules\StandaloneInputModule.cs:359)
-UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\InputModules\StandaloneInputModule.cs:250)
-UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\InputModules\StandaloneInputModule.cs:161)
-UnityEngine.EventSystems.EventSystem:Update() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\EventSystem.cs:263)
- 
-(Filename: C Line: 0)
-
-51
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Start_Menu_Server_Check:RefreshServerList() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\Start_Menu_Server_Check.cs:335)
-UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent.cs:110)
-UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent.cs:575)
-UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent.cs:717)
-UnityEngine.Events.UnityEvent:Invoke() (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent_0.cs:53)
-UnityEngine.UI.Button:Press() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\UI\Core\Button.cs:36)
-UnityEngine.UI.Button:OnPointerClick(PointerEventData) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\UI\Core\Button.cs:45)
-UnityEngine.EventSystems.ExecuteEvents:Execute(IPointerClickHandler, BaseEventData) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\ExecuteEvents.cs:52)
-UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\ExecuteEvents.cs:269)
-UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\InputModules\StandaloneInputModule.cs:359)
-UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\InputModules\StandaloneInputModule.cs:250)
-UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\InputModules\StandaloneInputModule.cs:161)
-UnityEngine.EventSystems.EventSystem:Update() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\EventSystem.cs:263)
+Start_Menu_Server_Check:OnCreatedRoom() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\Start_Menu_Server_Check.cs:249)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1950)
+NetworkingPeer:GameEnteredOnGameServer(OperationResponse) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:881)
+NetworkingPeer:OnOperationResponse(OperationResponse) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1198)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
  
 (Filename: C Line: 0)
 
@@ -118,1085 +57,95 @@ PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\P
 (Filename: C Line: 0)
 
 WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
-UnloadTime: 6.197644 ms
+UnloadTime: 8.032734 ms
 System memory in use before: 63.9 MB.
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 System memory in use after: 50.1 MB.
 
 Unloading 80 unused Assets to reduce memory usage. Loaded Objects now: 3658.
-Total: 3.921079 ms (FindLiveObjects: 0.156768 ms CreateObjectMapping: 0.041369 ms MarkObjects: 1.000332 ms  DeleteObjects: 2.234262 ms)
+Total: 4.917308 ms (FindLiveObjects: 0.155522 ms CreateObjectMapping: 0.044790 ms MarkObjects: 1.373885 ms  DeleteObjects: 2.471251 ms)
 
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE TURRET MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:60)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-EAGLE MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:64)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2945)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2494)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:557)
-AdjustTankSkins:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:27)
- 
-(Filename: C Line: 0)
-
-Got StartTime: 803788.537 is it time yet?! False
+Got StartTime: 887922.603 is it time yet?! False
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
 GameTimeManager:OnPhotonCustomRoomPropertiesChanged(Hashtable) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\ManagmentScripts\GameTimeManager.cs:80)
 UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
 NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1950)
-NetworkingPeer:ReadoutProperties(Hashtable, Hashtable, Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:540)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1812)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
+Room:SetCustomProperties(Hashtable) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\Room.cs:214)
+GameTimeManager:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\ManagmentScripts\GameTimeManager.cs:61)
  
 (Filename: C Line: 0)
 
-Got GameTime: 803192.537 is it time yet?! False
+Got GameTime: 887326.619 is it time yet?! False
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
 GameStartTimeManager:OnPhotonCustomRoomPropertiesChanged(Hashtable) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\ManagmentScripts\GameStartTimeManager.cs:61)
 UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
 NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1950)
-NetworkingPeer:ReadoutProperties(Hashtable, Hashtable, Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:540)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1812)
+Room:SetCustomProperties(Hashtable) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\Room.cs:214)
+GameStartTimeManager:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\ManagmentScripts\GameStartTimeManager.cs:47)
+ 
+(Filename: C Line: 0)
+
+OperationResponse 230: ReturnCode: 0 (). Parameters: {(Byte)230=(String)23.97.153.188:5057, (Byte)221=(String)+fxityHbxL3yt1H9TgqAGuvpsjAPmwdXwzDMpf2TXSuvG7BYo4EHfJpT/k683lILvpk2o+1opSz9Buc41unSYhLLgd+Fu0vKkBBWRhCSgBC0vd3VBeCrthvFRm1g8WX9} on: ns.exitgamescloud.com
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+ExitGames.Client.Photon.Chat.ChatClient:ExitGames.Client.Photon.IPhotonPeerListener.DebugReturn(DebugLevel, String) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Plugins\ChatApi\ChatClient.cs:569)
+ExitGames.Client.Photon.Chat.ChatClient:HandleAuthResponse(OperationResponse) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Plugins\ChatApi\ChatClient.cs:770)
+ExitGames.Client.Photon.Chat.ChatClient:ExitGames.Client.Photon.IPhotonPeerListener.OnOperationResponse(OperationResponse) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Plugins\ChatApi\ChatClient.cs:603)
 ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
 ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
 ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
+ExitGames.Client.Photon.PhotonPeer:Service()
+ExitGames.Client.Photon.Chat.ChatClient:Service() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Plugins\ChatApi\ChatClient.cs:179)
+ChatGui:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Demos\DemoChat\ChatGui.cs:126)
  
 (Filename: C Line: 0)
 
-ANGEL MESH SHOULD BE SET
+NullReferenceException: Object reference not set to an instance of an object
+  at HealthSync.AdjustPercent (Int32 myViewID, Int32 health) [0x00011] in C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:122 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000c0] in /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222 
+Rethrow as TargetInvocationException: Exception has been thrown by the target of an invocation.
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000e3] in /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:232 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115 
+  at NetworkingPeer.ExecuteRPC (ExitGames.Client.Photon.Hashtable rpcData, .PhotonPlayer sender) [0x00456] in C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116 
+  at NetworkingPeer.OnEvent (ExitGames.Client.Photon.EventData photonEvent) [0x006b4] in C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818 
+  at ExitGames.Client.Photon.PeerBase.DeserializeMessageAndCallback (System.Byte[] inBuff) [0x00000] in <filename unknown>:0 
+  at ExitGames.Client.Photon.EnetPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
+  at ExitGames.Client.Photon.PhotonPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
+  at PhotonHandler.Update () [0x00053] in C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83 
+ 
+(Filename: C Line: 0)
+
+OperationResponse 230: ReturnCode: 0 (). Parameters: {} on: ns.exitgamescloud.com
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
+ExitGames.Client.Photon.Chat.ChatClient:ExitGames.Client.Photon.IPhotonPeerListener.DebugReturn(DebugLevel, String) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Plugins\ChatApi\ChatClient.cs:569)
+ExitGames.Client.Photon.Chat.ChatClient:HandleAuthResponse(OperationResponse) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Plugins\ChatApi\ChatClient.cs:770)
+ExitGames.Client.Photon.Chat.ChatClient:ExitGames.Client.Photon.IPhotonPeerListener.OnOperationResponse(OperationResponse) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Plugins\ChatApi\ChatClient.cs:603)
 ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
 ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
 ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
+ExitGames.Client.Photon.PhotonPeer:Service()
+ExitGames.Client.Photon.Chat.ChatClient:Service() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Plugins\ChatApi\ChatClient.cs:179)
+ChatGui:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Demos\DemoChat\ChatGui.cs:126)
  
 (Filename: C Line: 0)
 
-ANGEL MESH SHOULD BE SET
+No
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
+ChatGui:OnGUI() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Demos\DemoChat\ChatGui.cs:222)
  
 (Filename: C Line: 0)
 
-ANGEL MESH SHOULD BE SET
+PublishMessage parameters must be non-null and not empty.
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL TURRET MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:102)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-ANGEL MESH SHOULD BE SET
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AdjustTankSkins:ChangeMyTexture(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\AdjustTankSkins.cs:106)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRPC(Hashtable, PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2116)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1818)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
- 
-(Filename: C Line: 0)
-
-DaMaGe****SHOULD****HaPpEn
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:81)
- 
-(Filename: C Line: 0)
-
-HEALTH: 100
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:88)
- 
-(Filename: C Line: 0)
-
-SuCcEsSfUl ShOt**********
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:89)
+UnityEngine.Debug:LogWarning(Object)
+ExitGames.Client.Photon.Chat.ChatClient:LogWarning(String) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Plugins\ChatApi\ChatClient.cs:871)
+ExitGames.Client.Photon.Chat.ChatClient:PublishMessage(String, Object) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Plugins\ChatApi\ChatClient.cs:280)
+ChatGui:OnGUI() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Demos\DemoChat\ChatGui.cs:223)
  
 (Filename: C Line: 0)
 
@@ -1207,66 +156,10 @@ TankBullet:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerT
  
 (Filename: C Line: 0)
 
-DaMaGe****SHOULD****HaPpEn
+Online particle
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:81)
- 
-(Filename: C Line: 0)
-
-HEALTH: 100
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:88)
- 
-(Filename: C Line: 0)
-
-SuCcEsSfUl ShOt**********
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:89)
- 
-(Filename: C Line: 0)
-
-DaMaGe****SHOULD****HaPpEn
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:81)
- 
-(Filename: C Line: 0)
-
-HEALTH: 100
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:88)
- 
-(Filename: C Line: 0)
-
-SuCcEsSfUl ShOt**********
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:89)
- 
-(Filename: C Line: 0)
-
-DaMaGe****SHOULD****HaPpEn
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:81)
- 
-(Filename: C Line: 0)
-
-HEALTH: 100
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:88)
- 
-(Filename: C Line: 0)
-
-SuCcEsSfUl ShOt**********
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:89)
+AutoDestroyParticleSystem:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Basic Game Scripts\AutoDestroyParticleSystem.cs:20)
  
 (Filename: C Line: 0)
 
@@ -1284,24 +177,17 @@ AutoDestroyParticleSystem:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutor
  
 (Filename: C Line: 0)
 
-DaMaGe****SHOULD****HaPpEn
+hit tank
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:81)
+TankBullet:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Physics Based Tank Controller\Scripts\TankBullet.cs:51)
  
 (Filename: C Line: 0)
 
-HEALTH: 100
+Online particle
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:88)
- 
-(Filename: C Line: 0)
-
-SuCcEsSfUl ShOt**********
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:89)
+AutoDestroyParticleSystem:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Basic Game Scripts\AutoDestroyParticleSystem.cs:20)
  
 (Filename: C Line: 0)
 
@@ -1319,24 +205,17 @@ AutoDestroyParticleSystem:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutor
  
 (Filename: C Line: 0)
 
-DaMaGe****SHOULD****HaPpEn
+hit tank
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:81)
+TankBullet:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Physics Based Tank Controller\Scripts\TankBullet.cs:51)
  
 (Filename: C Line: 0)
 
-HEALTH: 100
+Online particle
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:88)
- 
-(Filename: C Line: 0)
-
-SuCcEsSfUl ShOt**********
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:89)
+AutoDestroyParticleSystem:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Basic Game Scripts\AutoDestroyParticleSystem.cs:20)
  
 (Filename: C Line: 0)
 
@@ -1354,88 +233,18 @@ AutoDestroyParticleSystem:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutor
  
 (Filename: C Line: 0)
 
-DaMaGe****SHOULD****HaPpEn
+OnPlayerDisconneced: 'GunborN2'
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:81)
- 
-(Filename: C Line: 0)
-
-HEALTH: 100
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:88)
- 
-(Filename: C Line: 0)
-
-SuCcEsSfUl ShOt**********
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:89)
- 
-(Filename: C Line: 0)
-
-hit tank
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-TankBullet:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Physics Based Tank Controller\Scripts\TankBullet.cs:51)
- 
-(Filename: C Line: 0)
-
-Online particle
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AutoDestroyParticleSystem:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Basic Game Scripts\AutoDestroyParticleSystem.cs:20)
- 
-(Filename: C Line: 0)
-
-DaMaGe****SHOULD****HaPpEn
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:81)
- 
-(Filename: C Line: 0)
-
-HEALTH: 100
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:88)
- 
-(Filename: C Line: 0)
-
-SuCcEsSfUl ShOt**********
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-HealthSync:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\HealthSync.cs:89)
- 
-(Filename: C Line: 0)
-
-hit tank
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-TankBullet:OnCollisionEnter(Collision) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Physics Based Tank Controller\Scripts\TankBullet.cs:51)
- 
-(Filename: C Line: 0)
-
-Online particle
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-AutoDestroyParticleSystem:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Basic Game Scripts\AutoDestroyParticleSystem.cs:20)
- 
-(Filename: C Line: 0)
-
-Failed to 'network-remove' GameObject because has no PhotonView components: Health Percentage (UnityEngine.GameObject)
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:LogError(Object)
-NetworkingPeer:RemoveInstantiatedGO(GameObject, Boolean) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2501)
-NetworkingPeer:LocalCleanupAnythingInstantiated(Boolean) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:514)
-NetworkingPeer:LeftRoomCleanup() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:479)
-NetworkingPeer:OnStatusChanged(StatusCode) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1498)
-ExitGames.Client.Photon.EnetPeer:Disconnect()
-ExitGames.Client.Photon.PhotonPeer:Disconnect()
-NetworkingPeer:Disconnect() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:406)
-PhotonNetwork:Disconnect() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:1301)
-PhotonHandler:OnApplicationQuit() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:56)
+NetworkManager:OnPhotonPlayerDisconnected(PhotonPlayer) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Networking Game\Scripts\Networking Scripts\NetworkManager.cs:77)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1950)
+NetworkingPeer:HandleEventLeave(Int32) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:680)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1796)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\arm8759\Desktop\MultiplayerTutorial\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:83)
  
 (Filename: C Line: 0)
 
@@ -1470,7 +279,7 @@ PhotonHandler:OnApplicationQuit() (at C:\Users\arm8759\Desktop\MultiplayerTutori
  
 (Filename: C Line: 0)
 
-UnloadTime: 12.576631 ms
+UnloadTime: 14.598581 ms
 Ignoring Connect() because app gets closed. If this is an error, check PhotonHandler.AppQuits.
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:LogWarning(Object)
@@ -1492,10 +301,10 @@ NullReferenceException
  
 (Filename: C Line: 0)
 
-System memory in use before: 83.6 MB.
+System memory in use before: 83.7 MB.
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-System memory in use after: 58.4 MB.
+System memory in use after: 58.5 MB.
 
-Unloading 379 unused Assets to reduce memory usage. Loaded Objects now: 2189.
-Total: 7.273562 ms (FindLiveObjects: 0.167033 ms CreateObjectMapping: 0.051945 ms MarkObjects: 1.327244 ms  DeleteObjects: 5.072892 ms)
+Unloading 379 unused Assets to reduce memory usage. Loaded Objects now: 2208.
+Total: 5.808452 ms (FindLiveObjects: 0.098912 ms CreateObjectMapping: 0.039502 ms MarkObjects: 0.899230 ms  DeleteObjects: 3.998793 ms)
 

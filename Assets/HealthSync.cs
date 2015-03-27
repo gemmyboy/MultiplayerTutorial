@@ -31,7 +31,7 @@ public class HealthSync : Photon.MonoBehaviour {
 		hash.Add("Health",100);
 		hurtPlayer.SetCustomProperties(hash);
 		healthAmount = (int)gameObject.GetPhotonView ().owner.customProperties ["Health"];
-		photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
+		//photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
 
 	}
 
@@ -45,6 +45,7 @@ public class HealthSync : Photon.MonoBehaviour {
 				uiManagerStillNull = false;
 				uiManager = testForManager;
 				uiManager.ChangeHealth(healthAmount);
+				photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
 			}
 		}
     }
