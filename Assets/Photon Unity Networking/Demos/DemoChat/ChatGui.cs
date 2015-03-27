@@ -209,6 +209,7 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
 
                 GUILayout.EndScrollView();
             }
+            Debug.Log("we in");
         }
 
 
