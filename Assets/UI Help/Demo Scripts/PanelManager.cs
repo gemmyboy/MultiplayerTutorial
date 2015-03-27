@@ -83,11 +83,10 @@ public class PanelManager : MonoBehaviour
     {
         bool closedStateReached = false;
         bool wantToClose = true;
-        while (!closedStateReached && wantToClose)
+        while (!closedStateReached && wantToClose && anim.active)
         {
             if (!anim.IsInTransition(0))
                 closedStateReached = anim.GetCurrentAnimatorStateInfo(0).IsName(k_ClosedStateName);
-
             wantToClose = !anim.GetBool(m_OpenParameterId);
 
             yield return new WaitForEndOfFrame();
@@ -109,7 +108,7 @@ public class PanelManager : MonoBehaviour
                     AudioWindow.SetActive(false);
                 }
             }
-            anim.gameObject.SetActive(false);
+                anim.gameObject.SetActive(false);
         }
 
     }

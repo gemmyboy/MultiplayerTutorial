@@ -158,18 +158,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         {
             ErrorButton.GetComponent<Animator>().SetBool("Faded", true);
         }
-        //Dont ALLow non server owners to see the play button in the matchmaking lobby
-        if (ConnectingRoomWindow.active)
-        {
-            obj = ConnectingRoomWindow.transform.FindChild("SF Title").gameObject;
-            if (obj != null)
-            {
-                obj.GetComponentInChildren<Text>().text = (string)PhotonNetwork.room.customProperties["GameType"];
-            }
-            if(PhotonNetwork.isMasterClient){
-                StartTheGameButton.SetActive(true);
-            }
-        }
     }
     //--------------------------------------------------------------------------------------------------
     GameObject obj;
@@ -273,6 +261,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     {
         if(PhotonNetwork.playerList.Length > 1){
             if(PhotonNetwork.player.isMasterClient){
+                StartTheGameButton.SetActive(false);
                 PhotonNetwork.Destroy(dropMenu); 
                 PhotonNetwork.SetMasterClient(chooseRandomPlayer());
                 i = 1;
@@ -295,6 +284,9 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         if(CheckFactions()){
             photonView.RPC("closePanelForPlayers",PhotonTargets.All);
             PhotonNetwork.room.open = false;
+            fadeOut();
+            Start_Screen_Sound sound = FindObjectOfType<Start_Screen_Sound>(); 
+            sound.StartGameCountdown();
             StartCoroutine(ShootOffPods()); 
         }
     }
@@ -366,9 +358,14 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     public void createLabelForPlayer(){
         GameObject label = PhotonNetwork.Instantiate("GameLabel", ConnectingRoomWindow.transform.position, Quaternion.identity, 0);
         myLabelViewID = label.GetPhotonView().viewID;
+
+        obj = ConnectingRoomWindow.transform.FindChild("SF Title").gameObject;
+        obj.GetComponentInChildren<Text>().text = (string)PhotonNetwork.room.customProperties["GameType"];
+
         photonView.RPC("fixLabel", PhotonTargets.AllBuffered, new object[] { PhotonNetwork.player, myLabelViewID });
         if (PhotonNetwork.player.isMasterClient)
         {
+            StartTheGameButton.SetActive(true);
             if ((string)PhotonNetwork.room.customProperties["GameType"] != "Omega Tank")
             {
                 createDropDownMenu();
@@ -676,8 +673,10 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     {
         foreach(PhotonPlayer player in PhotonNetwork.playerList){
             if(player.customProperties["Team"] == null){
-                photonView.RPC("noFaction",player);
-                return false;
+                if(PhotonNetwork.room.customProperties["GameType"].ToString() != "Omega Tank"){
+                    photonView.RPC("noFaction",player);
+                    return false;
+                }
             }
         }
         return true;

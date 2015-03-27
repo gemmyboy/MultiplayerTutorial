@@ -234,7 +234,6 @@ public class NetworkManager : PunBehaviour
             if((int)PhotonNetwork.player.customProperties["TheOmega"] == 1){
                 spawnPoint = new Vector3(400,1000,300);
                 BoxCollider collider = new BoxCollider();
-                collider.isTrigger = true;
                 collider.transform.localScale = new Vector3(10,10,10);
             }
             else

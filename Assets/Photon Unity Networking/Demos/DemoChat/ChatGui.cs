@@ -209,7 +209,10 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
 
                 GUILayout.EndScrollView();
             }
-            Debug.Log("we in");
+            if(PhotonNetwork.player.isMasterClient && PhotonNetwork.room.customProperties["GameType"].ToString() == "Omega Tank"){
+                string message = "OMEGA TANK HAS SPAWNED!";
+                this.chatClient.PublishMessage(this.selectedChannelName, message);
+            }
         }
 
 

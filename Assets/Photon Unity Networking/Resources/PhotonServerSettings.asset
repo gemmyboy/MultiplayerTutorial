@@ -56,4 +56,6 @@ MonoBehaviour:
   - MakeBulletExplode
   - noFaction
   - fixFlag
+  - AdjustHealthBar
+  - AdjustPercent
   DisableAutoOpenWizard: 0
