@@ -46,6 +46,8 @@ public class TankGunController : MonoBehaviour {
 
     public int m_LastProjectileID;
     public float m_LastShootTime;
+	private float healthRefreshTimer;
+	private float tempHealth;
 	void Start () {
         timeManager = FindObjectOfType<GameStartTimeManager>();
         guiManager = FindObjectOfType<UIManager>();
@@ -65,6 +67,7 @@ public class TankGunController : MonoBehaviour {
                 col.transform.gameObject.tag = "Player";
             }
         }
+		healthRefreshTimer = Time.time;
 	}
 
 	void Update(){
@@ -73,6 +76,17 @@ public class TankGunController : MonoBehaviour {
             Shooting();
             //JointConfiguration();
         }
+		if(healthRefreshTimer <= Time.time)
+		{
+			healthRefreshTimer+=1.0f;
+
+			//tempHealth = (int)HealthSync.healthAmount;
+			if(m_PhotonView.isMine)
+			{
+				tempHealth = (int)m_PhotonView.owner.customProperties["Health"];
+				guiManager.ChangeHealth((int)tempHealth);
+			}
+		}
 	}
 
 	void FixedUpdate () {

@@ -11,7 +11,7 @@ GameObject:
   - 223: {fileID: 22306370}
   - 114: {fileID: 11406368}
   - 114: {fileID: 11406366}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: TankHealthSystemCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ GameObject:
   - 224: {fileID: 22406370}
   - 222: {fileID: 22206370}
   - 114: {fileID: 11406370}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: RedBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   - 4: {fileID: 416710}
   - 146: {fileID: 14616706}
   - 114: {fileID: 11416706}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel2L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,6 +144,7 @@ GameObject:
   - 33: {fileID: 3316712}
   - 23: {fileID: 2316712}
   - 64: {fileID: 6416706}
+  - 65: {fileID: 6523996}
   m_Layer: 8
   m_Name: MainBody Mesh
   m_TagString: Untagged
@@ -432,7 +433,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 416754}
   - 146: {fileID: 14616708}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel1R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -448,7 +449,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 416756}
   - 146: {fileID: 14616710}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel4R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -464,7 +465,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 416758}
   - 146: {fileID: 14616712}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel3L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -525,7 +526,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 416766}
   - 146: {fileID: 14616714}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel5R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -606,7 +607,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 416776}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: WheelColliders_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -622,7 +623,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 416778}
   - 146: {fileID: 14616716}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel1L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -734,7 +735,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 416792}
   - 146: {fileID: 14616718}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel5L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1165,7 +1166,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 416844}
   - 146: {fileID: 14616720}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel3R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1232,6 +1233,8 @@ GameObject:
   - 114: {fileID: 11468410}
   - 114: {fileID: 11418300}
   - 114: {fileID: 11451082}
+  - 114: {fileID: 11434562}
+  - 114: {fileID: 11426272}
   m_Layer: 8
   m_Name: T-90_Prefab_Network
   m_TagString: Player
@@ -1278,7 +1281,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 416858}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: WheelColliders_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1310,7 +1313,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 416862}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MainGunColliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1377,7 +1380,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 416870}
   - 146: {fileID: 14616722}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel4L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1423,7 +1426,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 416876}
   - 146: {fileID: 14616724}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel6L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1567,7 +1570,8 @@ GameObject:
   - 15: {fileID: 1516706}
   - 12: {fileID: 1216706}
   - 26: {fileID: 2616706}
-  - 114: {fileID: 11427106}
+  - 114: {fileID: 11419172}
+  - 114: {fileID: 11400446}
   m_Layer: 8
   m_Name: HeavyExhaust
   m_TagString: Untagged
@@ -1584,7 +1588,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 416896}
   - 146: {fileID: 14616726}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel6R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1602,7 +1606,7 @@ GameObject:
   - 15: {fileID: 1516708}
   - 12: {fileID: 1216708}
   - 26: {fileID: 2616708}
-  - 114: {fileID: 11427108}
+  - 114: {fileID: 11459114}
   m_Layer: 8
   m_Name: NormalExhaust
   m_TagString: Untagged
@@ -1620,7 +1624,7 @@ GameObject:
   - 4: {fileID: 416900}
   - 146: {fileID: 14616728}
   - 114: {fileID: 11416714}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wheel2R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1813,15 +1817,13 @@ GameObject:
   m_Component:
   - 4: {fileID: 433538}
   - 65: {fileID: 6533538}
-  - 114: {fileID: 11468170}
-  - 114: {fileID: 11400336}
   m_Layer: 8
   m_Name: Health
   m_TagString: HealthSystem
   m_Icon: {fileID: -1203168336, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &136700
 GameObject:
   m_ObjectHideFlags: 0
@@ -1833,9 +1835,7 @@ GameObject:
   - 33: {fileID: 3336700}
   - 65: {fileID: 6536700}
   - 23: {fileID: 2336700}
-  - 114: {fileID: 11476956}
-  - 114: {fileID: 11476954}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TankHealthSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1852,7 +1852,8 @@ GameObject:
   - 224: {fileID: 22465996}
   - 222: {fileID: 22265996}
   - 114: {fileID: 11465996}
-  m_Layer: 5
+  - 114: {fileID: 11437554}
+  m_Layer: 8
   m_Name: Health Percentage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1869,9 +1870,7 @@ GameObject:
   - 224: {fileID: 22483586}
   - 222: {fileID: 22283586}
   - 114: {fileID: 11483586}
-  - 114: {fileID: 11408800}
-  - 114: {fileID: 11408802}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: GreenBar
   m_TagString: GreenHealthBar
   m_Icon: {fileID: 0}
@@ -5024,6 +5023,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.13999987, y: 1.60000002, z: 6.61999989}
   m_Center: {x: 0, y: .270000011, z: 0}
+--- !u!65 &6523996
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116718}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 5.96000004, y: 2.20000005, z: 10.1099997}
+  m_Center: {x: .000283837318, y: -.49000001, z: .810000002}
 --- !u!65 &6533538
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -5032,7 +5043,7 @@ BoxCollider:
   m_GameObject: {fileID: 133538}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 5.5, z: 143.600006}
   m_Center: {x: -.0500000007, y: -9.59000015, z: -10}
@@ -5118,19 +5129,66 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
---- !u!114 &11400336
+--- !u!114 &11400446
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 133538}
+  m_GameObject: {fileID: 116894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cf5c0d7ea68d8646bb53cfc996a938a, type: 3}
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  TankShellDamage: 30
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 2
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 1
+    InterpolateMoveTowardsAcceleration: 2
+    InterpolateMoveTowardsDeceleration: 2
+    InterpolateSpeedCurve:
+      serializedVersion: 2
+      m_Curve:
+      - time: -1
+        value: 0
+        inSlope: 0
+        outSlope: Infinity
+        tangentMode: 0
+      - time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+      - time: 4
+        value: 4
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+    DrawErrorGizmo: 1
+  m_RotationModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 1
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0
 --- !u!114 &11406366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5189,90 +5247,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11408800
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 183586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  prefixBackup: -1
-  observed: {fileID: 0}
-  synchronization: 1
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 11408802}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
---- !u!114 &11408802
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 183586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PositionModel:
-    SynchronizeEnabled: 1
-    TeleportEnabled: 1
-    TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 4
-    InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 1
-    InterpolateMoveTowardsAcceleration: 2
-    InterpolateMoveTowardsDeceleration: 2
-    InterpolateSpeedCurve:
-      serializedVersion: 2
-      m_Curve:
-      - time: -1
-        value: 0
-        inSlope: 0
-        outSlope: Infinity
-        tangentMode: 0
-      - time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 1
-        tangentMode: 0
-      - time: 4
-        value: 4
-        inSlope: 1
-        outSlope: 0
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-    ExtrapolateOption: 0
-    ExtrapolateSpeed: 1
-    ExtrapolateIncludingRoundTripTime: 1
-    ExtrapolateNumberOfStoredPositions: 1
-    DrawErrorGizmo: 1
-  m_RotationModel:
-    SynchronizeEnabled: 1
-    InterpolateOption: 1
-    InterpolateRotateTowardsSpeed: 180
-    InterpolateLerpSpeed: 5
-  m_ScaleModel:
-    SynchronizeEnabled: 0
-    InterpolateOption: 0
-    InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 0
 --- !u!114 &11416706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5308,7 +5282,7 @@ MonoBehaviour:
   rotationOfTheGun: 0
   target: {fileID: 0}
   bullet: {fileID: 5400000, guid: f2fefdf7e67beb744bc6674450810a82, type: 2}
-  bulletVelocity: 175
+  bulletVelocity: 250
   recoilForce: 50
   ammo: 100
   reloadTime: 3
@@ -5494,19 +5468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a9de26b9c5a0e45b7fb52806daaa60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11419436
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e927e162e0c1db43ab07b80017eb338, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interpolationBackTime: .15000000596046448
---- !u!114 &11427106
+--- !u!114 &11419172
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -5521,39 +5483,66 @@ MonoBehaviour:
   group: 0
   prefixBackup: -1
   observed: {fileID: 0}
-  synchronization: 0
+  synchronization: 3
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 11400446}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
---- !u!114 &11427108
+--- !u!114 &11419436
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116898}
+  m_GameObject: {fileID: 116852}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e927e162e0c1db43ab07b80017eb338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  prefixBackup: -1
-  observed: {fileID: 0}
-  synchronization: 0
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 0}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  interpolationBackTime: .15000000596046448
+--- !u!114 &11426272
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c61943769b58e6843bbb44366f366314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power: 0
+  radius: 0
+--- !u!114 &11434562
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf5c0d7ea68d8646bb53cfc996a938a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiManager: {fileID: 0}
+  TankShellDamage: 22
+  myTextObj: {fileID: 165996}
+  myRectObj: {fileID: 183586}
+--- !u!114 &11437554
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165996}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec1bfd302df41a644aa4967e8ef13bb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11451082
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5629,6 +5618,30 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &11459114
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
 --- !u!114 &11465996
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5679,30 +5692,6 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
---- !u!114 &11468170
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 133538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  prefixBackup: -1
-  observed: {fileID: 0}
-  synchronization: 1
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 11400336}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
 --- !u!114 &11468410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5739,91 +5728,6 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 11498162}
-  - {fileID: 11498162}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
---- !u!114 &11476954
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 136700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PositionModel:
-    SynchronizeEnabled: 1
-    TeleportEnabled: 1
-    TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 2
-    InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 1
-    InterpolateMoveTowardsAcceleration: 2
-    InterpolateMoveTowardsDeceleration: 2
-    InterpolateSpeedCurve:
-      serializedVersion: 2
-      m_Curve:
-      - time: -1
-        value: 0
-        inSlope: 0
-        outSlope: Infinity
-        tangentMode: 0
-      - time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 1
-        tangentMode: 0
-      - time: 4
-        value: 4
-        inSlope: 1
-        outSlope: 0
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-    ExtrapolateOption: 0
-    ExtrapolateSpeed: 1
-    ExtrapolateIncludingRoundTripTime: 1
-    ExtrapolateNumberOfStoredPositions: 1
-    DrawErrorGizmo: 1
-  m_RotationModel:
-    SynchronizeEnabled: 1
-    InterpolateOption: 1
-    InterpolateRotateTowardsSpeed: 180
-    InterpolateLerpSpeed: 5
-  m_ScaleModel:
-    SynchronizeEnabled: 0
-    InterpolateOption: 0
-    InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 0
---- !u!114 &11476956
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 136700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  prefixBackup: -1
-  observed: {fileID: 0}
-  synchronization: 0
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
