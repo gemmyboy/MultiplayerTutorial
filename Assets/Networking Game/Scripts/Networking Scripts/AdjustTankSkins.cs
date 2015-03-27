@@ -57,11 +57,9 @@ public class AdjustTankSkins : Photon.MonoBehaviour {
 				if ((theMesh.name == "MainGun Mesh"))
 				{
 					theMesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(eagleMaterial);
-					Debug.Log("EAGLE TURRET MESH SHOULD BE SET");
 				}
 				else{
 					theMesh.gameObject.renderer.material = eagleMaterial;
-					Debug.Log("EAGLE MESH SHOULD BE SET");
 				}
 			}
 		}else if(team == 2)
@@ -71,11 +69,9 @@ public class AdjustTankSkins : Photon.MonoBehaviour {
 				if ((theMesh.name == "MainGun Mesh"))
 				{
 					theMesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(excorsistMaterial);
-					Debug.Log("EXCORSIST TURRET MESH SHOULD BE SET");
 				}
 				else{
 					theMesh.gameObject.renderer.material = excorsistMaterial;
-					Debug.Log("EXCORSIST MESH SHOULD BE SET");
 				}
 			}
 		}else if(team == 3)
@@ -85,11 +81,9 @@ public class AdjustTankSkins : Photon.MonoBehaviour {
 				if ((theMesh.name == "MainGun Mesh"))
 				{
 					theMesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(wolfMaterial);
-					Debug.Log("WOLVES TURRET MESH SHOULD BE SET");
 				}
 				else{
 					theMesh.gameObject.renderer.material = wolfMaterial;
-					Debug.Log("WOLVES MESH SHOULD BE SET");
 				}
 			}
 		}else if(team == 4)
@@ -99,11 +93,9 @@ public class AdjustTankSkins : Photon.MonoBehaviour {
 				if ((theMesh.name == "MainGun Mesh"))
 				{
 					theMesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(angelMaterial);
-					Debug.Log("ANGEL TURRET MESH SHOULD BE SET");
 				}
 				else{
 					theMesh.gameObject.renderer.material = angelMaterial;
-					Debug.Log("ANGEL MESH SHOULD BE SET");
 				}
 			}
 		}
