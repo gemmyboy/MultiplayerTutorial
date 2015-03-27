@@ -31,6 +31,8 @@ public class HealthSync : Photon.MonoBehaviour {
 		hash.Add("Health",100);
 		hurtPlayer.SetCustomProperties(hash);
 		healthAmount = (int)gameObject.GetPhotonView ().owner.customProperties ["Health"];
+		photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
+
 	}
 
     void Update()
