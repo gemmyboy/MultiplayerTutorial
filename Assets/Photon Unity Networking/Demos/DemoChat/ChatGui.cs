@@ -42,6 +42,7 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
     
     
     public ChatClient chatClient;
+    public ChatClient chatClient2;
     
     // GUI stuff:
     public Rect GuiRect = new Rect(0, 0, 250, 300);
@@ -55,7 +56,7 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
     private static string WelcomeText = "Welcome to chat.\\help lists commands.";
     private static string HelpText = "\n\\subscribe <list of channelnames> subscribes channels.\n\\unsubscribe <list of channelnames> leaves channels.\n\\msg <username> <message> send private message to user.\n\\clear clears the current chat tab. private chats get closed.\n\\help gets this help message.";
 
-    public bool displayedMessage;
+    public bool displayedMessage = false;
     public void Start()
     {
         if(!photonView.isMine){
@@ -96,6 +97,12 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
         //Start the chat client
         chatClient = new ChatClient(this);
         chatClient.Connect(ChatAppId, "1.0", this.UserName, null);
+
+        if(PhotonNetwork.isMasterClient){
+            //server client
+            chatClient2 = new ChatClient(this);
+            chatClient2.Connect(ChatAppId, "1.0", "Server", null);
+        }
 
         if (this.AlignBottom)
         {
@@ -209,9 +216,10 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
 
                 GUILayout.EndScrollView();
             }
-            if(PhotonNetwork.player.isMasterClient && PhotonNetwork.room.customProperties["GameType"].ToString() == "Omega Tank"){
+            if(PhotonNetwork.player.isMasterClient && PhotonNetwork.room.customProperties["GameType"].ToString() == "Omega Tank" && !displayedMessage){
                 string message = "OMEGA TANK HAS SPAWNED!";
-                this.chatClient.PublishMessage(this.selectedChannelName, message);
+                this.chatClient2.PublishMessage(this.selectedChannelName, message);
+                displayedMessage = true;
             }
         }
 

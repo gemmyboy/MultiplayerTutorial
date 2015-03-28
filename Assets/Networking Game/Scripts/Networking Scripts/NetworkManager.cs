@@ -106,7 +106,7 @@ public class NetworkManager : PunBehaviour
             int randomFaction = Random.Range(0, 3);
 
             //Make the things we need
-            List<string> teams = new List<string>() {"Eagles", "Excorcist", "Wolves", "Angel" };
+            List<string> teams = new List<string>() {"Eagles", "Exorcist", "Wolves", "Angel" };
             PhotonPlayer[] players = PhotonNetwork.playerList;
             ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
             PhotonPlayer theOmega = players[randomOmega];
@@ -147,6 +147,11 @@ public class NetworkManager : PunBehaviour
         //Turn off own health system
 		Transform TankHealthSystem = (Transform)newPlayerObject.transform.Find ("TankHealthSystem").FindChild ("TankHealthSystemCanvas");
         TankHealthSystem.gameObject.SetActive(false);
+        //If Capture the flag, add the flag script
+        if (PhotonNetwork.room.customProperties["GameType"].ToString() == "Capture The Flag")
+        {
+            newPlayerObject.AddComponent<PickUpFlag>();
+        }
         //--------------------------------------------------------------------------------------------------------------
 
         //Setup scoring system
@@ -177,7 +182,7 @@ public class NetworkManager : PunBehaviour
             {
                 spawnPoint = GameObject.Find("EaglesSpawnPoint").transform.position;
             }
-            else if (PhotonNetwork.player.customProperties["Team"] == "Excorcist")
+            else if (PhotonNetwork.player.customProperties["Team"] == "Exorcist")
             {
                 spawnPoint = GameObject.Find("ExorcistSpawnPoint").transform.position;
             }
@@ -195,30 +200,31 @@ public class NetworkManager : PunBehaviour
         {
             GameObject spawnPoints = Instantiate(spawnpointsCTF, transform.position, transform.rotation) as GameObject;
             spawnPoints.transform.localPosition = new Vector3(400, 0, 300);
+
             //Now spawn the player
             if (PhotonNetwork.player.customProperties["Team"] == "Eagles")
             {
-                int randX = Random.Range(0, 10);
-                int randZ = Random.Range(0, 10);
-                spawnPoint = GameObject.Find("EaglesSpawnPoint").transform.position + new Vector3(randX,10,randZ);
+                int randX = Random.Range(0, 30);
+                int randZ = Random.Range(0, 30);
+                spawnPoint = GameObject.Find("EaglesSpawnPoint").transform.position + new Vector3(randX, 20, randZ);
             }
-            else if (PhotonNetwork.player.customProperties["Team"] == "Excorcist")
+            else if (PhotonNetwork.player.customProperties["Team"] == "Exorcist")
             {
-                int randX = Random.Range(0, 10);
-                int randZ = Random.Range(0, 10);
-                spawnPoint = GameObject.Find("ExorcistSpawnPoint").transform.position + new Vector3(randX, 10, randZ);
+                int randX = Random.Range(0, 30);
+                int randZ = Random.Range(0, 30);
+                spawnPoint = GameObject.Find("ExorcistSpawnPoint").transform.position + new Vector3(randX, 20, randZ);
             }
             else if (PhotonNetwork.player.customProperties["Team"] == "Wolves")
             {
-                int randX = Random.Range(0, 10);
-                int randZ = Random.Range(0, 10);
-                spawnPoint = GameObject.Find("WolfSpawnPoint").transform.position + new Vector3(randX, 10, randZ);
+                int randX = Random.Range(0, 30);
+                int randZ = Random.Range(0, 30);
+                spawnPoint = GameObject.Find("WolfSpawnPoint").transform.position + new Vector3(randX, 20, randZ);
             }
             else if (PhotonNetwork.player.customProperties["Team"] == "Angel")
             {
-                int randX = Random.Range(0, 10);
-                int randZ = Random.Range(0, 10);
-                spawnPoint = GameObject.Find("BloodSpawnPoint").transform.position + new Vector3(randX, 10, randZ);
+                int randX = Random.Range(0, 30);
+                int randZ = Random.Range(0, 30);
+                spawnPoint = GameObject.Find("BloodSpawnPoint").transform.position + new Vector3(randX, 20, randZ);
             }
 
             if (PhotonNetwork.isMasterClient)
@@ -233,14 +239,52 @@ public class NetworkManager : PunBehaviour
         {
             if((int)PhotonNetwork.player.customProperties["TheOmega"] == 1){
                 spawnPoint = new Vector3(400,1000,300);
-                BoxCollider collider = new BoxCollider();
-                collider.transform.localScale = new Vector3(10,10,10);
             }
             else
             {
                 spawnPoint = new Vector3(400, -1000, 300);
             }
         }
+    }
+
+    public GameObject sphere;
+    bool checkSpawn(Transform pos)
+    {
+        RaycastHit hit;
+        Vector3 positionCheck = new Vector3(pos.position.x,300,pos.position.z);
+        if (Physics.Raycast(positionCheck, Vector3.down, out hit, 250.0f))
+        {
+            Debug.DrawRay(positionCheck, Vector3.down * hit.distance, Color.blue, 200.0f);
+            if(hit.collider.gameObject.tag == "Terrain"){
+                Collider[] hitColliders = Physics.OverlapSphere(hit.point, 100.0f);
+                Debug.Log(hitColliders.Length);
+                if (hitColliders.Length == 0)
+                {
+                    spawnPoint = hit.point + new Vector3(0,10,0);
+                    return true;
+                }
+                else if(hitColliders.Length == 1){
+                    if(hitColliders[0].tag == "Terrain"){
+                        Debug.Log("Ready to spawn");
+                        spawnPoint = hit.point + new Vector3(0, 15, 0);
+                        return true;
+                    }
+                }
+                else
+                {
+                    foreach (Collider collider in hitColliders)
+                    {
+                        Debug.Log(collider.gameObject.name);
+                    }
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return false;
     }
     #endregion
 }

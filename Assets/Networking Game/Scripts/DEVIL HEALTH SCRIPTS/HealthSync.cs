@@ -27,12 +27,11 @@ public class HealthSync : Photon.MonoBehaviour {
 		myRect = myRectObj.GetComponent<RectTransform> ();
 
 		hurtPlayer = gameObject.GetPhotonView().owner;
-		ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
-		hash.Add("Health",100);
-		hurtPlayer.SetCustomProperties(hash);
+        //ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
+        //hash.Add("Health",100);
+        //hurtPlayer.SetCustomProperties(hash);
 		healthAmount = (int)gameObject.GetPhotonView ().owner.customProperties ["Health"];
-		//photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
-
+		photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
 	}
 
     void Update()

@@ -513,6 +513,7 @@
 				}
                 if (collision.contacts[0].thisCollider.gameObject.layer == LayerMask.NameToLayer("TankCollider") && collision.gameObject.tag != "Terrain" && collision.gameObject.tag != "TankShell")
                 {
+                    Debug.Log(collision.gameObject);
                     if (collision.gameObject.GetComponentInParent<PhotonView>().viewID != photonView.viewID)
                     {
                         Debug.Log("TankCollide");

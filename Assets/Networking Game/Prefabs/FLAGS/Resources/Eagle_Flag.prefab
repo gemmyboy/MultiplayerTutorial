@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 438548}
   - 160: {fileID: 16038552}
   - 161: {fileID: 16138552}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: InteractiveCloth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,9 +26,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 438550}
   - 33: {fileID: 3338552}
-  - 65: {fileID: 6538552}
   - 23: {fileID: 2338552}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,9 +44,11 @@ GameObject:
   - 4: {fileID: 438552}
   - 114: {fileID: 11490560}
   - 114: {fileID: 11498120}
-  m_Layer: 0
+  - 65: {fileID: 6585450}
+  - 114: {fileID: 11413710}
+  m_Layer: 12
   m_Name: Eagle_Flag
-  m_TagString: Untagged
+  m_TagString: EagleFlag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,8 +84,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 138552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.3100004, y: 0, z: -.949999988}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.04779291, y: -1.29831802e-15, z: .742943108}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 438548}
   - {fileID: 438550}
@@ -117,18 +118,30 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 138550}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &6538552
+--- !u!65 &6585450
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 138550}
+  m_GameObject: {fileID: 138552}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: .5, y: 5, z: .5}
+  m_Center: {x: -.850000024, y: 2.5, z: .699999988}
+--- !u!114 &11413710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 138552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 804c2ad001d3a8e47975caf23fce875b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canBePickedUp: 1
 --- !u!114 &11490560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -237,7 +250,7 @@ InteractiveCloth:
   m_AttachmentResponse: .200000003
   m_TearFactor: 0
   m_AttachedColliders:
-  - m_Collider: {fileID: 6538552}
+  - m_Collider: {fileID: 6585450}
     m_TwoWayInteraction: 1
     m_Tearable: 0
 --- !u!161 &16138552

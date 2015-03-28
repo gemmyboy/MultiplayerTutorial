@@ -548,7 +548,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     public void setUpTeams_FOF(PhotonView buttonView)
     {
         //setup list and hash
-        teams = new List<string>() { "Eagles", "Excorcist", "Wolves", "Angel" };
+        teams = new List<string>() { "Eagles", "Exorcist", "Wolves", "Angel" };
         ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
         if (button.GetComponentInChildren<Text>().text == "Dark Eagles")
         {
