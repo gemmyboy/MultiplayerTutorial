@@ -18,9 +18,9 @@ public class PickUpFlag : MonoBehaviour {
         {
             if(other.tag == "BloodFlag"){
                 if(PhotonNetwork.player.customProperties["Team"].ToString() != "Angel" && tankCanPickUp && other.GetComponent<Flag>().canBePickedUp){
-                    other.gameObject.transform.SetParent(gameObject.transform);
-                    other.gameObject.transform.localPosition = new Vector3(0,0,0);
-                    other.gameObject.transform.localScale = new Vector3(0,0,0);
+                    other.gameObject.transform.parent = gameObject.transform;
+                    //other.gameObject.transform.localPosition = new Vector3(0,0,0);
+                    //other.gameObject.transform.localScale = new Vector3(1, 1, 1);
                     other.GetComponent<Flag>().canBePickedUp = false;
                     tankCanPickUp = false;
                 }
@@ -29,7 +29,7 @@ public class PickUpFlag : MonoBehaviour {
                 {
                     other.gameObject.transform.SetParent(gameObject.transform);
                     other.gameObject.transform.localPosition = new Vector3(0, 0, 0);
-                    other.gameObject.transform.localScale = new Vector3(0, 0, 0);
+                    other.gameObject.transform.localScale = new Vector3(1, 1, 1);
                     other.GetComponent<Flag>().canBePickedUp = false;
                     tankCanPickUp = false;
                 }
@@ -37,7 +37,7 @@ public class PickUpFlag : MonoBehaviour {
                 if (PhotonNetwork.player.customProperties["Team"].ToString() != "Wolves" && tankCanPickUp && other.GetComponent<Flag>().canBePickedUp){
                     other.gameObject.transform.SetParent(gameObject.transform);
                     other.gameObject.transform.localPosition = new Vector3(0, 0, 0);
-                    other.gameObject.transform.localScale = new Vector3(0, 0, 0);
+                    other.gameObject.transform.localScale = new Vector3(1, 1, 1);
                     other.GetComponent<Flag>().canBePickedUp = false;
                     tankCanPickUp = false;
                 }
@@ -48,7 +48,7 @@ public class PickUpFlag : MonoBehaviour {
                 {
                     other.gameObject.transform.SetParent(gameObject.transform);
                     other.gameObject.transform.localPosition = new Vector3(0, 0, 0);
-                    other.gameObject.transform.localScale = new Vector3(0, 0, 0);
+                    other.gameObject.transform.localScale = new Vector3(1, 1, 1);
                     other.GetComponent<Flag>().canBePickedUp = false;
                     tankCanPickUp = false;
                 }
