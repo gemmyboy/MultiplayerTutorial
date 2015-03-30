@@ -58,4 +58,5 @@ MonoBehaviour:
   - fixFlag
   - AdjustHealthBar
   - AdjustPercent
+  - tankGoBoom
   DisableAutoOpenWizard: 0

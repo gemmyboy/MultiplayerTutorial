@@ -1808,22 +1808,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &133538
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 433538}
-  - 65: {fileID: 6533538}
-  m_Layer: 8
-  m_Name: Health
-  m_TagString: HealthSystem
-  m_Icon: {fileID: -1203168336, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
 --- !u!1 &136700
 GameObject:
   m_ObjectHideFlags: 0
@@ -2831,7 +2815,6 @@ Transform:
   - {fileID: 416898}
   - {fileID: 416742}
   - {fileID: 416862}
-  - {fileID: 433538}
   - {fileID: 436700}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -3295,18 +3278,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 416918}
   m_RootOrder: 2
---- !u!4 &433538
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 133538}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .330000013, y: 3.70000005, z: -.5}
-  m_LocalScale: {x: 6.75292587, y: .530788004, z: .0747099966}
-  m_Children: []
-  m_Father: {fileID: 416852}
-  m_RootOrder: 14
 --- !u!4 &436700
 Transform:
   m_ObjectHideFlags: 1
@@ -3319,7 +3290,7 @@ Transform:
   m_Children:
   - {fileID: 22406368}
   m_Father: {fileID: 416852}
-  m_RootOrder: 15
+  m_RootOrder: 14
 --- !u!12 &1216706
 ParticleAnimator:
   m_ObjectHideFlags: 1
@@ -5035,18 +5006,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.96000004, y: 2.20000005, z: 10.1099997}
   m_Center: {x: .000283837318, y: -.49000001, z: .810000002}
---- !u!65 &6533538
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 133538}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 5.5, z: 143.600006}
-  m_Center: {x: -.0500000007, y: -9.59000015, z: -10}
 --- !u!65 &6536700
 BoxCollider:
   m_ObjectHideFlags: 1

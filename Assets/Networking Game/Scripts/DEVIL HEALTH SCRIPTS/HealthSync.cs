@@ -61,8 +61,9 @@ public class HealthSync : Photon.MonoBehaviour {
 					if(((healthAmount-(int)TankShellDamage)) <= 0 && !dead)
 					{
 						dead = true;
-						if(!photonView.isMine){}
+						//if(!photonView.isMine){}
 						photonView.RPC("ReduceMyHealth",PhotonTargets.Others,gameObject.GetPhotonView().ownerId,1,theBullet.GetPhotonView().ownerId,dead);
+                        photonView.RPC("tankGoBoom", PhotonTargets.All, gameObject.GetPhotonView().viewID);
 					}else if((healthAmount-(int)TankShellDamage) > 0)
 					{
 						photonView.RPC("ReduceMyHealth",PhotonTargets.Others,gameObject.GetPhotonView().ownerId,2,theBullet.GetPhotonView().ownerId,dead);
@@ -88,7 +89,6 @@ public class HealthSync : Photon.MonoBehaviour {
 			transform.rigidbody.AddExplosionForce(150000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
 			photonView.RPC ("AdjustHealthBar",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,1);
 			photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
-            photonView.RPC("tankGoBoom", PhotonTargets.All, gameObject.GetPhotonView().viewID);
 
 		}else if(theCase == 2 && (photonView.ownerId == myViewID) && !isDead){
 
@@ -155,6 +155,9 @@ public class HealthSync : Photon.MonoBehaviour {
 
         Destroy(tank.GetComponent<TankController>());
         Destroy(tank.GetComponentInChildren<TankGunController>());
+        Destroy(tank.GetComponent<TankInterpolationMovement>());
+        Destroy(tank.GetComponent<RotateEnemyHealth>());
+
         tank.transform.DetachChildren();
 
         fixForExplosion(GameObject.Find("MainGun"));
