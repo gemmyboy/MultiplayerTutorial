@@ -140,6 +140,7 @@ public class HealthSync : Photon.MonoBehaviour {
     GameObject tank;
     Transform[] children;
     GameObject trash;
+
     [RPC]
     void tankGoBoom(int viewID)
     {
@@ -157,27 +158,28 @@ public class HealthSync : Photon.MonoBehaviour {
         Destroy(tank.GetComponentInChildren<TankGunController>());
         Destroy(tank.GetComponent<TankInterpolationMovement>());
         Destroy(tank.GetComponent<RotateEnemyHealth>());
+        Destroy(tank.GetComponentInChildren<TankGunColliders>());
 
         tank.transform.DetachChildren();
 
-        fixForExplosion(GameObject.Find("MainGun"));
+        fixForExplosion(tank.transform.Find("MainGun").gameObject);
 
-        detachMultiple(GameObject.Find("WheelTransforms_L"));
-        detachMultiple(GameObject.Find("WheelTransforms_R"));
-        detachMultiple(GameObject.Find("UselessGearsTransforms_L"));
-        detachMultiple(GameObject.Find("UselessGearsTransforms_R"));
+        detachMultiple(tank.transform.Find("WheelTransforms_L").gameObject);
+        detachMultiple(tank.transform.Find("WheelTransforms_R").gameObject);
+        detachMultiple(tank.transform.Find("UselessGearsTransforms_L").gameObject);
+        detachMultiple(tank.transform.Find("UselessGearsTransforms_R").gameObject);
 
-        DestroyHinge(GameObject.Find("Skirts_L"));
-        DestroyHinge(GameObject.Find("Skirts_R"));
+        DestroyHinge(tank.transform.Find("Skirts_L").gameObject);
+        DestroyHinge(tank.transform.Find("Skirts_R").gameObject);
 
-        detachMultiple(GameObject.Find("Skirts_L"));
-        detachMultiple(GameObject.Find("Skirts_R"));
+        detachMultiple(tank.transform.Find("Skirts_L").gameObject);
+        detachMultiple(tank.transform.Find("Skirts_R").gameObject);
 
 
-        Destroy(GameObject.Find("Tracks"));
-        Destroy(GameObject.Find("HeadLights"));
-        Destroy(GameObject.Find("HeavyExhaust"));
-        Destroy(GameObject.Find("NormalExhaust"));
+        Destroy(tank.transform.Find("Tracks").gameObject);
+        Destroy(tank.transform.Find("HeadLights").gameObject);
+        Destroy(tank.transform.Find("HeavyExhaust").gameObject);
+        Destroy(tank.transform.Find("NormalExhaust").gameObject);
 
         Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, 50);
         foreach (Collider hit in colliders)
