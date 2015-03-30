@@ -27,9 +27,6 @@ public class HealthSync : Photon.MonoBehaviour {
 		myRect = myRectObj.GetComponent<RectTransform> ();
 
 		hurtPlayer = gameObject.GetPhotonView().owner;
-        //ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
-        //hash.Add("Health",100);
-        //hurtPlayer.SetCustomProperties(hash);
 		healthAmount = (int)gameObject.GetPhotonView ().owner.customProperties ["Health"];
 		photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
 	}
@@ -91,6 +88,7 @@ public class HealthSync : Photon.MonoBehaviour {
 			transform.rigidbody.AddExplosionForce(150000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
 			photonView.RPC ("AdjustHealthBar",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,1);
 			photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
+            photonView.RPC("tankGoBoom", PhotonTargets.All, gameObject.GetPhotonView().viewID);
 
 		}else if(theCase == 2 && (photonView.ownerId == myViewID) && !isDead){
 
@@ -100,9 +98,6 @@ public class HealthSync : Photon.MonoBehaviour {
 			healthAmount = (int)hurtPlayer.customProperties["Health"] - (int)TankShellDamage;
 			hash2.Add("Health",healthAmount);
 			hurtPlayer.SetCustomProperties(hash2);
-
-			//string blah = "HEALTH: " + healthAmount.ToString();
-			//Debug.Log (blah);
 
 			transform.rigidbody.AddExplosionForce(15000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
 			
@@ -141,4 +136,110 @@ public class HealthSync : Photon.MonoBehaviour {
 			}
 		}
 	}
+
+    GameObject tank;
+    Transform[] children;
+    GameObject trash;
+    [RPC]
+    void tankGoBoom(int viewID)
+    {
+        Debug.Log(viewID);
+        PhotonView[] views = FindObjectsOfType<PhotonView>();
+        foreach(PhotonView view in views){
+            if(view.viewID == viewID){
+                tank = view.gameObject;
+            }
+        }
+
+        trash = new GameObject("TankTrash");
+
+        Destroy(tank.GetComponent<TankController>());
+        Destroy(tank.GetComponentInChildren<TankGunController>());
+        tank.transform.DetachChildren();
+
+        fixForExplosion(GameObject.Find("MainGun"));
+
+        detachMultiple(GameObject.Find("WheelTransforms_L"));
+        detachMultiple(GameObject.Find("WheelTransforms_R"));
+        detachMultiple(GameObject.Find("UselessGearsTransforms_L"));
+        detachMultiple(GameObject.Find("UselessGearsTransforms_R"));
+
+        DestroyHinge(GameObject.Find("Skirts_L"));
+        DestroyHinge(GameObject.Find("Skirts_R"));
+
+        detachMultiple(GameObject.Find("Skirts_L"));
+        detachMultiple(GameObject.Find("Skirts_R"));
+
+
+        Destroy(GameObject.Find("Tracks"));
+        Destroy(GameObject.Find("HeadLights"));
+        Destroy(GameObject.Find("HeavyExhaust"));
+        Destroy(GameObject.Find("NormalExhaust"));
+
+        Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, 50);
+        foreach (Collider hit in colliders)
+        {
+            if (hit.name != "Terrain")
+            {
+                if (hit.GetComponent<Rigidbody>() == null)
+                {
+                    hit.gameObject.AddComponent<Rigidbody>();
+                }
+            }
+            if (hit && hit.rigidbody)
+            {
+                hit.rigidbody.isKinematic = false;
+                hit.rigidbody.AddExplosionForce(1000, gameObject.transform.position, 500, 3);
+            }
+        }
+    }
+    void fixForExplosion(GameObject obj)
+    {
+        obj.AddComponent<BoxCollider>();
+        obj.GetComponent<Rigidbody>().useGravity = true;
+        if (obj.GetComponent<HingeJoint>() != null)
+        {
+            Destroy(obj.GetComponent<HingeJoint>());
+        }
+    }
+
+    void DestroyHinge(GameObject obj)
+    {
+        foreach (Transform child in obj.transform)
+        {
+            Destroy(child.GetComponent<HingeJoint>());
+        }
+    }
+
+    void detachMultiple(GameObject obj)
+    {
+        obj.tag = "Trash";
+        if (checkObject(obj))
+        {
+            return;
+        }
+        foreach (Transform child in obj.transform)
+        {
+            if (child.GetComponent<BoxCollider>() == null)
+            {
+                child.gameObject.AddComponent<BoxCollider>();
+            }
+            child.tag = "Trash";
+            child.DetachChildren();
+        }
+        obj.transform.DetachChildren();
+    }
+    bool checkObject(GameObject obj)
+    {
+        string[] list = new string[] { "Tracks", "MainGun", "Barrel" };
+        foreach (string sting in list)
+        {
+            Debug.Log(obj.name);
+            if (sting == obj.name)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
