@@ -44,6 +44,7 @@ public class HealthSync : Photon.MonoBehaviour {
 				photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
 			}
 		}
+
     }
 
 	void OnCollisionEnter(Collision col)
@@ -157,7 +158,7 @@ public class HealthSync : Photon.MonoBehaviour {
         Destroy(tank.GetComponent<TankController>());
         Destroy(tank.GetComponentInChildren<TankGunController>());
         Destroy(tank.GetComponent<TankInterpolationMovement>());
-        Destroy(tank.GetComponent<RotateEnemyHealth>());
+        //Destroy(tank.GetComponent<RotateEnemyHealth>());
         Destroy(tank.GetComponentInChildren<TankGunColliders>());
         Destroy(tank.GetComponent<Kills_Deaths_Assist>());
 
@@ -182,7 +183,7 @@ public class HealthSync : Photon.MonoBehaviour {
 
         tank.transform.DetachChildren();
 
-        Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, 10);
+        Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, 5);
         foreach (Collider hit in colliders)
         {
             Debug.Log(hit.name);

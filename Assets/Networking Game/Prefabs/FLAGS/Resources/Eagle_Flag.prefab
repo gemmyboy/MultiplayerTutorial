@@ -12,7 +12,7 @@ GameObject:
   - 135: {fileID: 13529110}
   - 23: {fileID: 2329110}
   m_Layer: 12
-  m_Name: Sphere
+  m_Name: Eagle_Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

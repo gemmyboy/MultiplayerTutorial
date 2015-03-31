@@ -65,7 +65,7 @@ GameObject:
   - 135: {fileID: 13577974}
   - 23: {fileID: 2377974}
   m_Layer: 12
-  m_Name: Sphere
+  m_Name: Exorcist_Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

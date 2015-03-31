@@ -9420,6 +9420,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 107368, guid: b23cf734c108b664bbd7ba9368c41550, type: 2}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b23cf734c108b664bbd7ba9368c41550, type: 2}
   m_RootGameObject: {fileID: 1149474945}
@@ -26804,7 +26808,7 @@ GameObject:
   - 154: {fileID: 1149474946}
   m_Layer: 0
   m_Name: Map-3-26
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
