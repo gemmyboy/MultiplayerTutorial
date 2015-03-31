@@ -182,9 +182,10 @@ public class HealthSync : Photon.MonoBehaviour {
 
         tank.transform.DetachChildren();
 
-        Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, 50);
+        Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, 10);
         foreach (Collider hit in colliders)
         {
+            Debug.Log(hit.name);
             if (hit.name != "Terrain" && hit.gameObject.layer != LayerMask.NameToLayer("Flag"))
             {
                 if (hit.GetComponent<Rigidbody>() == null)
@@ -195,7 +196,7 @@ public class HealthSync : Photon.MonoBehaviour {
             if (hit && hit.rigidbody)
             {
                 hit.rigidbody.isKinematic = false;
-                hit.rigidbody.AddExplosionForce(1000, gameObject.transform.position, 20, 3,ForceMode.Impulse);
+                hit.rigidbody.AddExplosionForce(1000, gameObject.transform.position, 10, 3,ForceMode.Impulse);
             }
         }
     }
