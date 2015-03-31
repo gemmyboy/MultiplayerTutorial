@@ -16,6 +16,8 @@ public class HealthSync : Photon.MonoBehaviour {
 	public GameObject myRectObj;
 	public static int healthAmount;
 	private GameObject theBullet;
+	private bool activateRespawn;
+	private float respawnTimer;
 	void Start()
 	{
 		dead = false;
@@ -29,6 +31,13 @@ public class HealthSync : Photon.MonoBehaviour {
 		hurtPlayer = gameObject.GetPhotonView().owner;
 		healthAmount = (int)gameObject.GetPhotonView ().owner.customProperties ["Health"];
 		photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
+
+		ExitGames.Client.Photon.Hashtable hash4 = new ExitGames.Client.Photon.Hashtable();
+		hash4.Add("Dead",0);
+		hurtPlayer.SetCustomProperties(hash4);
+
+		activateRespawn = false;
+		respawnTimer = 0.0f;
 	}
 
     void Update()
@@ -43,6 +52,16 @@ public class HealthSync : Photon.MonoBehaviour {
 				uiManager.ChangeHealth(healthAmount);
 				photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
 			}
+		}
+
+		if(photonView.isMine && activateRespawn)
+		{
+			GameObject respawner = GameObject.Find("Respawner");//.GetComponent<RespawnScript>();
+			//gameObject.GetComponentInParent<RespawnScript>().gameObject.SetActive(true);
+		}
+		if(photonView.isMine && respawnTimer <= Time.time)
+		{
+			activateRespawn = true;
 		}
     }
 
@@ -85,7 +104,13 @@ public class HealthSync : Photon.MonoBehaviour {
 			hash3.Add("Health",0);
 			hurtPlayer.SetCustomProperties(hash3);
 			healthAmount = (int)hurtPlayer.customProperties["Health"];
+			//
+			ExitGames.Client.Photon.Hashtable hash4 = new ExitGames.Client.Photon.Hashtable();
+			hash4.Add("Dead",1);
+			hurtPlayer.SetCustomProperties(hash4);
 
+			respawnTimer = Time.time + 5.0f;
+			//
 			transform.rigidbody.AddExplosionForce(150000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
 			photonView.RPC ("AdjustHealthBar",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,1);
 			photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
