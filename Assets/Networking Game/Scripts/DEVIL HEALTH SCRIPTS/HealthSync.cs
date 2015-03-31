@@ -152,28 +152,27 @@ public class HealthSync : Photon.MonoBehaviour {
             }
         }
 
-        trash = new GameObject("TankTrash");
+        //trash = new GameObject("TankTrash");
 
         Destroy(tank.GetComponent<TankController>());
         Destroy(tank.GetComponentInChildren<TankGunController>());
         Destroy(tank.GetComponent<TankInterpolationMovement>());
         Destroy(tank.GetComponent<RotateEnemyHealth>());
         Destroy(tank.GetComponentInChildren<TankGunColliders>());
-
-        tank.transform.DetachChildren();
+        Destroy(tank.GetComponent<Kills_Deaths_Assist>());
 
         fixForExplosion(tank.transform.Find("MainGun").gameObject);
 
-        detachMultiple(tank.transform.Find("WheelTransforms_L").gameObject);
-        detachMultiple(tank.transform.Find("WheelTransforms_R").gameObject);
-        detachMultiple(tank.transform.Find("UselessGearsTransforms_L").gameObject);
-        detachMultiple(tank.transform.Find("UselessGearsTransforms_R").gameObject);
+        detachMultiple(tank.transform.Find("WheelTransforms").gameObject.transform.Find("WheelTransforms_L").gameObject);
+        detachMultiple(tank.transform.Find("WheelTransforms").gameObject.transform.Find("WheelTransforms_R").gameObject);
+        detachMultiple(tank.transform.Find("UselessGearsTransforms").gameObject.transform.Find("UselessGearsTransforms_L").gameObject);
+        detachMultiple(tank.transform.Find("UselessGearsTransforms").gameObject.transform.Find("UselessGearsTransforms_R").gameObject);
 
-        DestroyHinge(tank.transform.Find("Skirts_L").gameObject);
-        DestroyHinge(tank.transform.Find("Skirts_R").gameObject);
+        DestroyHinge(tank.transform.Find("Skirts").gameObject.transform.Find("Skirts_R").gameObject);
+        DestroyHinge(tank.transform.Find("Skirts").gameObject.transform.Find("Skirts_L").gameObject);
 
-        detachMultiple(tank.transform.Find("Skirts_L").gameObject);
-        detachMultiple(tank.transform.Find("Skirts_R").gameObject);
+        detachMultiple(tank.transform.Find("Skirts").gameObject.transform.Find("Skirts_R").gameObject);
+        detachMultiple(tank.transform.Find("Skirts").gameObject.transform.Find("Skirts_L").gameObject);
 
 
         Destroy(tank.transform.Find("Tracks").gameObject);
@@ -181,10 +180,12 @@ public class HealthSync : Photon.MonoBehaviour {
         Destroy(tank.transform.Find("HeavyExhaust").gameObject);
         Destroy(tank.transform.Find("NormalExhaust").gameObject);
 
+        tank.transform.DetachChildren();
+
         Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, 50);
         foreach (Collider hit in colliders)
         {
-            if (hit.name != "Terrain")
+            if (hit.name != "Terrain" && hit.gameObject.layer != LayerMask.NameToLayer("Flag"))
             {
                 if (hit.GetComponent<Rigidbody>() == null)
                 {
@@ -194,12 +195,13 @@ public class HealthSync : Photon.MonoBehaviour {
             if (hit && hit.rigidbody)
             {
                 hit.rigidbody.isKinematic = false;
-                hit.rigidbody.AddExplosionForce(1000, gameObject.transform.position, 500, 3);
+                hit.rigidbody.AddExplosionForce(1000, gameObject.transform.position, 20, 3,ForceMode.Impulse);
             }
         }
     }
     void fixForExplosion(GameObject obj)
     {
+        Debug.Log(obj);
         obj.AddComponent<BoxCollider>();
         obj.GetComponent<Rigidbody>().useGravity = true;
         if (obj.GetComponent<HingeJoint>() != null)

@@ -21,22 +21,25 @@ public class AdjustTankSkins : Photon.MonoBehaviour {
 	{
 		if(!teamed && photonView.isMine)
 		{
-			if(this.photonView.owner.customProperties["Team"] == "Eagles")
+			if(this.photonView.owner.customProperties["Team"].ToString() == "Eagles")
 			{
 				teamed = true;
 				photonView.RPC("ChangeMyTexture",PhotonTargets.All,1);
 
-			}else if(this.photonView.owner.customProperties["Team"] == "Excorcist")
+            }
+            else if (this.photonView.owner.customProperties["Team"].ToString() == "Exorcist")
 			{
 				teamed = true;
 				photonView.RPC("ChangeMyTexture",PhotonTargets.All,2);
 
-			}else if(this.photonView.owner.customProperties["Team"] == "Wolves")
+            }
+            else if (this.photonView.owner.customProperties["Team"].ToString() == "Wolves")
 			{
 				teamed = true;
 				photonView.RPC("ChangeMyTexture",PhotonTargets.All,3);
-				
-			}else if(this.photonView.owner.customProperties["Team"] == "Angel")
+
+            }
+            else if (this.photonView.owner.customProperties["Team"].ToString() == "Angel")
 			{
 				teamed = true;
 				photonView.RPC("ChangeMyTexture",PhotonTargets.All,4);
