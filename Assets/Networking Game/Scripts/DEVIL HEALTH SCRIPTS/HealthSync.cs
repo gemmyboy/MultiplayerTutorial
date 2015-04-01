@@ -16,7 +16,7 @@ public class HealthSync : Photon.MonoBehaviour {
 	public GameObject myRectObj;
 	public static int healthAmount;
 	private GameObject theBullet;
-	private bool activateRespawn;
+	public bool activateRespawn;
 	private float respawnTimer;
 	void Start()
 	{
@@ -30,7 +30,7 @@ public class HealthSync : Photon.MonoBehaviour {
 
 		hurtPlayer = gameObject.GetPhotonView().owner;
 		healthAmount = (int)gameObject.GetPhotonView ().owner.customProperties ["Health"];
-		photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
+		//photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
 
 		ExitGames.Client.Photon.Hashtable hash4 = new ExitGames.Client.Photon.Hashtable();
 		hash4.Add("Dead",0);
@@ -53,15 +53,33 @@ public class HealthSync : Photon.MonoBehaviour {
 				photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
 			}
 		}
-
+		/*
 		if(photonView.isMine && activateRespawn)
 		{
+			if(gameObject.GetPhotonView().ownerId == 1)
+			{
+				GameObject respawner = GameObject.Find("Respawner").SendMessage("";
+			}else if(gameObject.GetPhotonView().ownerId == 2){
+
+			}else if(gameObject.GetPhotonView().ownerId == 3){
+				
+			}else if(gameObject.GetPhotonView().ownerId == 4){
+				
+			}
 			GameObject respawner = GameObject.Find("Respawner");//.GetComponent<RespawnScript>();
 			//gameObject.GetComponentInParent<RespawnScript>().gameObject.SetActive(true);
 		}
-		if(photonView.isMine && respawnTimer <= Time.time)
+		*/
+		if (photonView != null) 
 		{
-			activateRespawn = true;
+			if(photonView.isMine && respawnTimer >= Time.time)
+			{
+				if(photonView.ownerId == gameObject.GetPhotonView().ownerId)
+				{
+					//if(respawnTimer <= (Time.time+1.0f))
+						//activateRespawn = true;
+				}
+			}
 		}
     }
 
@@ -73,7 +91,6 @@ public class HealthSync : Photon.MonoBehaviour {
 
 			if((healthAmount >= 0) && (!dead) && (col.gameObject.tag == "TankShell"))
 			{
-				theBullet = new GameObject();
 				theBullet = col.gameObject;
 				if(theBullet.GetPhotonView().owner.customProperties["Team"].ToString() != gameObject.GetPhotonView().owner.customProperties["Team"].ToString())
 				{
@@ -82,7 +99,7 @@ public class HealthSync : Photon.MonoBehaviour {
 						dead = true;
 						//if(!photonView.isMine){}
 						photonView.RPC("ReduceMyHealth",PhotonTargets.Others,gameObject.GetPhotonView().ownerId,1,theBullet.GetPhotonView().ownerId,dead);
-                        photonView.RPC("tankGoBoom", PhotonTargets.All, gameObject.GetPhotonView().viewID);
+                        //photonView.RPC("tankGoBoom", PhotonTargets.All, gameObject.GetPhotonView().viewID);
 					}else if((healthAmount-(int)TankShellDamage) > 0)
 					{
 						photonView.RPC("ReduceMyHealth",PhotonTargets.Others,gameObject.GetPhotonView().ownerId,2,theBullet.GetPhotonView().ownerId,dead);
@@ -114,7 +131,9 @@ public class HealthSync : Photon.MonoBehaviour {
 			transform.rigidbody.AddExplosionForce(150000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
 			photonView.RPC ("AdjustHealthBar",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,1);
 			photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
-
+			photonView.RPC("tankGoBoom", PhotonTargets.All, gameObject.GetPhotonView().viewID,theKiller);
+			transform.rigidbody.AddExplosionForce(150000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
+			
 		}else if(theCase == 2 && (photonView.ownerId == myViewID) && !isDead){
 
 			hurtPlayer = gameObject.GetPhotonView().owner;
@@ -167,26 +186,52 @@ public class HealthSync : Photon.MonoBehaviour {
     GameObject trash;
 
     [RPC]
-    void tankGoBoom(int viewID)
+    void tankGoBoom(int viewID,int myKiller)
     {
         Debug.Log(viewID);
         PhotonView[] views = FindObjectsOfType<PhotonView>();
         foreach(PhotonView view in views){
-            if(view.viewID == viewID){
+            if(view.viewID == viewID)
+			{
                 tank = view.gameObject;
+				tank.GetComponent<HealthSync>().activateRespawn = true;
+				GameObject[] tempPlayers = GameObject.FindGameObjectsWithTag("Player");
+				foreach(GameObject tempPlayer in tempPlayers)
+				{
+					if(tempPlayer.GetPhotonView().ownerId == myKiller)
+					{
+						Camera.main.GetComponent<MouseOrbitC> ().target = tempPlayer.transform;
+					}
+				}
+				break;
             }
         }
 
         //trash = new GameObject("TankTrash");
-
+		//tank.camera.GetComponent<MouseOrbitC> ().target = null;
         Destroy(tank.GetComponent<TankController>());
-        Destroy(tank.GetComponentInChildren<TankGunController>());
         Destroy(tank.GetComponent<TankInterpolationMovement>());
         Destroy(tank.GetComponent<RotateEnemyHealth>());
-        Destroy(tank.GetComponentInChildren<TankGunColliders>());
         Destroy(tank.GetComponent<Kills_Deaths_Assist>());
+		Destroy (tank.GetComponent<AdjustTankSkins> ());
+		Destroy (tank.GetComponent<TestExplosionForceScript> ());
+		Destroy(tank.GetComponentInChildren<TankGunController>());
+		Destroy(tank.GetComponentInChildren<TankLerpMovement>());
 
-        fixForExplosion(tank.transform.Find("MainGun").gameObject);
+		GameObject[] mainGuns = GameObject.FindGameObjectsWithTag ("MainGun");
+		foreach(GameObject mainGun in mainGuns)
+		{
+			if(mainGun.transform.parent.name == "MainGun")
+				fixForExplosion(mainGun);
+			if(mainGun.transform.parent == tank.transform.parent)
+				fixForExplosion(mainGun);
+		}
+		if(tank.transform.Find("MainGun").gameObject != null)
+		{
+			Debug.Log ("Didn't skip over***");
+			Destroy (tank.transform.Find("TankHealthSystem").gameObject);
+       		fixForExplosion(tank.transform.Find("MainGun").gameObject);
+		}
 
         detachMultiple(tank.transform.Find("WheelTransforms").gameObject.transform.Find("WheelTransforms_L").gameObject);
         detachMultiple(tank.transform.Find("WheelTransforms").gameObject.transform.Find("WheelTransforms_R").gameObject);
@@ -204,30 +249,43 @@ public class HealthSync : Photon.MonoBehaviour {
         Destroy(tank.transform.Find("HeadLights").gameObject);
         Destroy(tank.transform.Find("HeavyExhaust").gameObject);
         Destroy(tank.transform.Find("NormalExhaust").gameObject);
-
+		PhotonView[] childrenViews = tank.GetComponentsInChildren<PhotonView> ();
+		foreach(PhotonView thisChildView in childrenViews)
+		{
+			if(thisChildView.GetComponent<PhotonTransformView>() != null)
+			{
+				Destroy (thisChildView.GetComponent<PhotonTransformView>());
+			}
+			Destroy (thisChildView.GetComponent<PhotonView>());
+		}
         tank.transform.DetachChildren();
+
+		Destroy(tank.GetComponentInChildren<TankGunColliders>());
 
         Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, 10);
         foreach (Collider hit in colliders)
         {
-            Debug.Log(hit.name);
-            if (hit.name != "Terrain" && hit.gameObject.layer != LayerMask.NameToLayer("Flag"))
+            //Debug.Log(hit.name);
+            if (hit.name != "Terrain" && hit.gameObject.layer != LayerMask.NameToLayer("Flag") && hit.name != "Map-3-26" && hit.tag != "Player")
             {
                 if (hit.GetComponent<Rigidbody>() == null)
                 {
                     hit.gameObject.AddComponent<Rigidbody>();
                 }
             }
+
             if (hit && hit.rigidbody)
             {
                 hit.rigidbody.isKinematic = false;
-                hit.rigidbody.AddExplosionForce(1000, gameObject.transform.position, 10, 3,ForceMode.Impulse);
+                //hit.rigidbody.AddExplosionForce(15000, hit.rigidbody.transform.position, 10.0f, 0.0f,ForceMode.Impulse);
             }
+           
         }
+		tank.transform.rigidbody.AddExplosionForce (100000.0f, tank.transform.position, 10.0f, 3.0f, ForceMode.Impulse);
     }
     void fixForExplosion(GameObject obj)
     {
-        Debug.Log(obj);
+        //Debug.Log(obj);
         obj.AddComponent<BoxCollider>();
         obj.GetComponent<Rigidbody>().useGravity = true;
         if (obj.GetComponent<HingeJoint>() != null)
@@ -253,10 +311,12 @@ public class HealthSync : Photon.MonoBehaviour {
         }
         foreach (Transform child in obj.transform)
         {
+
             if (child.GetComponent<BoxCollider>() == null)
             {
                 child.gameObject.AddComponent<BoxCollider>();
             }
+            
             child.tag = "Trash";
             child.DetachChildren();
         }

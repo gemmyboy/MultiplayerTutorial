@@ -46,23 +46,26 @@ public class TankBullet : Photon.MonoBehaviour {
     void OnCollisionEnter(Collision col)
     {
         if(col.gameObject.layer == LayerMask.NameToLayer("TankCollider")){
-            if (view.isMine && col.gameObject.GetComponent<PhotonView>().owner.customProperties["Team"] != view.owner.customProperties["Team"])
-            {
-                Debug.Log("hit tank");
-				//photonView.RPC ("BulletExplosionForce",PhotonTargets.All);
-				//transform.rigidbody.AddExplosionForce(15000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
-				Explosion ();
-				//PhotonNetwork.Destroy(gameObject);
-				//Destroy(gameObject);
+			if(col.gameObject.GetComponent<PhotonView>() != null)
+			{
+            	if (view.isMine && col.gameObject.GetComponent<PhotonView>().owner.customProperties["Team"] != view.owner.customProperties["Team"])
+	            {
+	                Debug.Log("hit tank");
+					//photonView.RPC ("BulletExplosionForce",PhotonTargets.All);
+					//transform.rigidbody.AddExplosionForce(15000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
+					Explosion ();
+					//PhotonNetwork.Destroy(gameObject);
+					//Destroy(gameObject);
 
-                //PhotonPlayer player = col.gameObject.GetComponent<PhotonView>().owner;
-                //int changedHealth = (int)player.customProperties["Health"] - 30;
+	                //PhotonPlayer player = col.gameObject.GetComponent<PhotonView>().owner;
+	                //int changedHealth = (int)player.customProperties["Health"] - 30;
 
-                //ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
-                //hash.Add("Health",changedHealth);
-                //player.SetCustomProperties(hash);
+	                //ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
+	                //hash.Add("Health",changedHealth);
+	                //player.SetCustomProperties(hash);
 
-            }
+	            }
+			}
             
         }
         else

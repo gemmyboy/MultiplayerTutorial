@@ -889,7 +889,7 @@ GameObject:
   - 114: {fileID: 11498162}
   m_Layer: 8
   m_Name: MainGun
-  m_TagString: Untagged
+  m_TagString: MainGun
   m_Icon: {fileID: -1003283189, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5492,6 +5492,7 @@ MonoBehaviour:
   TankShellDamage: 22
   myTextObj: {fileID: 165996}
   myRectObj: {fileID: 183586}
+  activateRespawn: 0
 --- !u!114 &11437554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5687,7 +5688,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 100
 --- !u!114 &11467642
 MonoBehaviour:
   m_ObjectHideFlags: 1

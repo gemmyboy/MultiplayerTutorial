@@ -56,7 +56,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     //Used for Connections
     private bool connectFailed = false;
     public static readonly string SceneNameMenu = "start_menu";
-    public static string SceneNameGame = "Demo Scene";
+    public static string SceneNameGame = "Adams_Scene";
 
     private string errorDialog;
     private double timeToClearDialog;
