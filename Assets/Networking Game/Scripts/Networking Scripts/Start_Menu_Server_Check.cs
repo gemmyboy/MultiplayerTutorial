@@ -224,7 +224,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         createLabelForPlayer();
     }
 
-
     public void OnPhotonCreateRoomFailed()
     {
         this.ErrorDialog = "Error: Can't create room (room name maybe already used).";
@@ -386,17 +385,18 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
                 //currentPlayerLabels.Add(vie.viewID);
                 GameObject obj = vie.gameObject;
                 //obj.transform.parent = ConnectingRoomWindow.transform;
-                obj.transform.SetParent(ConnectingRoomWindow.transform);
+                Debug.Log(ConnectingRoomWindow.transform.Find("GameLabelHolder"));
+                obj.transform.SetParent(ConnectingRoomWindow.transform.Find("GameLabelHolder"));
                 obj.transform.localScale = new Vector3(1, 1, 1);
                 obj.transform.rotation = new Quaternion(0, 0, 0, 0);
                 if (player.isMasterClient)
                 {
-                    obj.GetComponentInChildren<RectTransform>().localPosition = new Vector3(0, 120, 0);
-                    obj.GetComponentInChildren<Text>().text = "1. " + vie.owner.name + " - Master";
+                    //obj.GetComponentInChildren<RectTransform>().localPosition = new Vector3(0, 120, 0);
+                    obj.GetComponentInChildren<Text>().text = (i + 1) + ". " + vie.owner.name + " - Master";
                 }
                 else
                 {
-                    obj.GetComponentInChildren<RectTransform>().localPosition = new Vector3(0, (-50 * i) + 120, 0);
+                    //obj.GetComponentInChildren<RectTransform>().localPosition = new Vector3(0, (-50 * i) + 120, 0);
                     obj.GetComponentInChildren<Text>().text = (i+1) + ". " + vie.owner.name + " - Client";
                     i++;
                 }
@@ -428,7 +428,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         dropMenu.transform.SetParent(ConnectingRoomWindow.transform);
         dropMenu.transform.localScale = new Vector3(1, 1, 1);
         dropMenu.transform.rotation = new Quaternion(0, 0, 0, 0);
-        dropMenu.GetComponentInChildren<RectTransform>().localPosition = new Vector3(450, 100, 0);
+        dropMenu.GetComponent<RectTransform>().localPosition = new Vector3(450, 100, 0);
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //checking to see if the tag is this------------------------------
@@ -472,7 +472,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     //Represent a buttonclick for the server join game button
     public void ServerButtonClick(RoomInfo roomInfo)
     {
-        if(roomInfo.playerCount < roomInfo.maxPlayers){
+        if(roomInfo.playerCount < roomInfo.maxPlayers && roomInfo.open){
             PhotonNetwork.JoinRoom(roomInfo.name);
             pm.CloseCurrent();
         }
@@ -665,6 +665,8 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         emblem.transform.rotation = new Quaternion(0, 0, 0, 0);
         emblem.transform.localScale = new Vector3(1, 1, 1);
         emblem.GetComponentInChildren<RectTransform>().localPosition = new Vector3(150,0,0);
+        lab.GetComponentInParent<VerticalLayoutGroup>().enabled = false;
+        lab.GetComponentInParent<VerticalLayoutGroup>().enabled = true;
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
