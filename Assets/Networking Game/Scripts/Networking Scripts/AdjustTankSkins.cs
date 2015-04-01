@@ -59,13 +59,7 @@ public class AdjustTankSkins : Photon.MonoBehaviour {
 			{
 				if ((theMesh.name == "MainGun Mesh"))
 				{
-					foreach(Material thisMat in theMesh.gameObject.renderer.materials)
-					{
-						thisMat = eagleMaterial;
-					}
-					//theMesh.gameObject.renderer.materials[1] = eagleMaterial;
-
-					//theMesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(eagleMaterial);
+					theMesh.gameObject.renderer.materials[1].CopyPropertiesFromMaterial(eagleMaterial);
 				}
 				else{
 					theMesh.gameObject.renderer.material = eagleMaterial;

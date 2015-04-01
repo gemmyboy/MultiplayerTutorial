@@ -266,7 +266,7 @@ public class HealthSync : Photon.MonoBehaviour {
         foreach (Collider hit in colliders)
         {
             //Debug.Log(hit.name);
-            if (hit.tag != "Terrain" && hit.gameObject.layer != LayerMask.NameToLayer("Flag") && hit.name != "Map-3-26" && hit.tag != "Player")
+            if (hit.name != "Terrain" && hit.gameObject.layer != LayerMask.NameToLayer("Flag") && hit.name != "Map-3-26" && hit.tag != "Player")
             {
                 if (hit.GetComponent<Rigidbody>() == null)
                 {
