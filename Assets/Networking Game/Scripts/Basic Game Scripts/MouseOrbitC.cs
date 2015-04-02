@@ -15,6 +15,9 @@ public class MouseOrbitC : MonoBehaviour {
     private float x = 0.0f;
     private float y = 0.0f;
 
+    public float mouseAxis;
+    public float distanceMin;
+    public float distanceMax;
     void Start () {
         Screen.lockCursor = true;
         var angles = transform.eulerAngles;
@@ -38,6 +41,11 @@ public class MouseOrbitC : MonoBehaviour {
         
             transform.rotation = rotation;
             transform.position = position;
+
+            distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
+            //if(mouseAxis > 0){
+            //    distance += .01;
+            //}
         }
     }
 

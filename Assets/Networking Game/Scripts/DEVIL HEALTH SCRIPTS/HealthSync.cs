@@ -214,7 +214,6 @@ public class HealthSync : Photon.MonoBehaviour {
 		//tank.camera.GetComponent<MouseOrbitC> ().target = null;
         Destroy(tank.GetComponent<TankController>());
         Destroy(tank.GetComponent<TankInterpolationMovement>());
-
         //Destroy(tank.GetComponent<RotateEnemyHealth>());
 		Transform TankHealthSystem = (Transform)tank.transform.Find ("TankHealthSystem").FindChild ("TankHealthSystemCanvas");
 		TankHealthSystem.gameObject.SetActive(false);

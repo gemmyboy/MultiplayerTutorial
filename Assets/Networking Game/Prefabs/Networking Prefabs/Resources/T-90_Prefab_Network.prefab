@@ -5254,6 +5254,8 @@ MonoBehaviour:
   timeManager: {fileID: 0}
   m_LastProjectileID: 0
   m_LastShootTime: 0
+  lasers: {fileID: 100000, guid: bd5777402d86430419fdecf82c637d2e, type: 2}
+  laserMuzzleFlash: {fileID: 104902, guid: 47b5b671a9638ce4cb9ea41eb8ac3ba5, type: 2}
 --- !u!114 &11416710
 MonoBehaviour:
   m_ObjectHideFlags: 1

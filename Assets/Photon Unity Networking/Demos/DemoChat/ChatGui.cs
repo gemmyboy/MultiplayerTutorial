@@ -67,7 +67,6 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
             //switchVisibility();
         }
 
-        DontDestroyOnLoad(this.gameObject);
         Application.runInBackground = true; // this must run in background or it will drop connection if not focussed.
 
         if (string.IsNullOrEmpty(this.UserName))

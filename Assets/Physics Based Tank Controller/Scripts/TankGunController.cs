@@ -120,31 +120,55 @@ public class TankGunController : MonoBehaviour {
                 barrel.transform.localEulerAngles = new Vector3(Mathf.Clamp(barrel.transform.localEulerAngles.x - 360, -maximumElevationLimit, maximumElevationLimit), 0, 0);
         }
 	}
-
+    public GameObject lasers;
+    public GameObject laserMuzzleFlash;
 	void Shooting(){
 
 		loadingTime += Time.deltaTime;
 
 		if(Input.GetButtonDown("Fire1") && loadingTime > reloadTime && ammo > 0){
 			rigidbody.AddForce(-transform.forward * recoilForce, ForceMode.VelocityChange);
-            GameObject shot = PhotonNetwork.Instantiate("TankBullet", barrelOut.position, barrel.transform.rotation,0) as GameObject;
+            //GameObject shot = PhotonNetwork.Instantiate("TankBullet", barrelOut.position, barrel.transform.rotation,0) as GameObject;
 
-            Vector3 rotationDir = barrelOut.position - barrel.transform.position;
-            shot.transform.forward = rotationDir.normalized;
-            shot.transform.LookAt(shot.transform.position + shot.transform.forward);
 
-            shot.GetComponent<Rigidbody>().AddForce(barrelOut.forward * bulletVelocity, ForceMode.VelocityChange);
-            ShootingSoundEffect();
-            PhotonNetwork.Instantiate("Ground Smoke", new Vector3(tank.transform.position.x, tank.transform.position.y - 3, tank.transform.position.z), tank.transform.rotation, 0);
-            //PhotonNetwork.Instantiate("Fluffy Smoke", barrelOut.transform.position, barrelOut.transform.rotation, 0);
+            StartCoroutine(laserShoot());
 
-			ammo --;
-            guiManager.ChangeAmmo(ammo);
-			loadingTime = 0;
+            
 
 		}
 
 	}
+    IEnumerator laserShoot()
+    {
+        // play charge noise
+        GameObject flash = (GameObject)Instantiate(laserMuzzleFlash, barrelOut.position, Quaternion.identity);
+
+        flash.transform.parent = barrelOut.transform;
+
+        yield return new WaitForSeconds(1.0f);
+
+
+        GameObject laser = Instantiate(lasers, barrelOut.position, barrel.transform.rotation) as GameObject;
+        laser.GetComponent<Rigidbody>().AddForce(barrelOut.forward * bulletVelocity * 5, ForceMode.VelocityChange);
+        /*
+        Vector3 rotationDir = barrelOut.position - barrel.transform.position;
+        //shot.transform.forward = rotationDir.normalized;
+        //shot.transform.LookAt(shot.transform.position + shot.transform.forward);
+
+        //shot.GetComponent<Rigidbody>().AddForce(barrelOut.forward * bulletVelocity, ForceMode.VelocityChange);
+        ShootingSoundEffect();
+         * */
+        PhotonNetwork.Instantiate("Ground Smoke", new Vector3(tank.transform.position.x, tank.transform.position.y - 3, tank.transform.position.z), tank.transform.rotation, 0);
+        //PhotonNetwork.Instantiate("Fluffy Smoke", barrelOut.transform.position, barrelOut.transform.rotation, 0);
+
+        ammo--;
+        guiManager.ChangeAmmo(ammo);
+        loadingTime = 0;
+
+        yield return null;
+    }
+
+
 	void ShootingSoundEffect(){
 
 		fireSoundSource = new GameObject("FireSound");

@@ -65,7 +65,7 @@ GameObject:
   - 135: {fileID: 13579144}
   - 23: {fileID: 2379146}
   m_Layer: 12
-  m_Name: Sphere
+  m_Name: Wolf_Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

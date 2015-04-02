@@ -59,5 +59,7 @@ MonoBehaviour:
   - AdjustHealthBar
   - AdjustPercent
   - tankGoBoom
-  - RespawnThePlayer
+  - fixHolder
+  - resetDropDown
+  - abandonShip
   DisableAutoOpenWizard: 0
