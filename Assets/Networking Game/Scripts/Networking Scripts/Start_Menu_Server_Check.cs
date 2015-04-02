@@ -64,7 +64,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     //Used for Connections
     private bool connectFailed = false;
     public static readonly string SceneNameMenu = "start_menu";
-    public static string SceneNameGame = "Demo Scene";
+    public static string SceneNameGame = "Adams_Scene";
 
     private string errorDialog;
     private double timeToClearDialog;
@@ -93,8 +93,8 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         if (PhotonNetwork.connectionStateDetailed == PeerState.PeerCreated)
         {
             // Connect to the photon master-server. We use the settings saved in PhotonServerSettings (a .asset file in this project)
-            PhotonNetwork.ConnectToBestCloudServer("v0.1");
-            //PhotonNetwork.ConnectUsingSettings("v0.1");
+            //PhotonNetwork.ConnectToBestCloudServer("v0.1");
+            PhotonNetwork.ConnectUsingSettings("v0.1");
         }
 
         // if you wanted more debug out, turn this on:
