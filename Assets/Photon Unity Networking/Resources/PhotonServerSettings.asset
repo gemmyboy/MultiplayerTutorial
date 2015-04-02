@@ -60,4 +60,6 @@ MonoBehaviour:
   - AdjustPercent
   - tankGoBoom
   - fixHolder
+  - resetDropDown
+  - abandonShip
   DisableAutoOpenWizard: 0

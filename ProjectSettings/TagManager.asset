@@ -11,7 +11,7 @@ TagManager:
   - Server_Button
   - Server_Label
   - ConnectingWindow
-  - Plane
+  - Server_Emblem
   - Terrain
   - DropDownButton
   - Target
