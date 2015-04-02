@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Random = UnityEngine.Random;
 
 public class RespawnScript : Photon.MonoBehaviour {
 
@@ -7,11 +8,15 @@ public class RespawnScript : Photon.MonoBehaviour {
 	private PhotonPlayer player2;
 	private PhotonPlayer player3;
 	private PhotonPlayer player4;
+	private bool respawn;
 	private GameObject[] allPlayers;
+	private Vector3 position;
 
 	private Vector3 spawnPoint;
 
 	private bool notInstantiated;
+	private GameObject destroyThisGuy;
+	private bool alreadyRespawnedPlayer;
 
 	private float timer1;
 	// Use this for initialization
@@ -19,6 +24,8 @@ public class RespawnScript : Photon.MonoBehaviour {
 	{
 		notInstantiated = true;
 		timer1 = Time.time;
+		respawn = false;
+		alreadyRespawnedPlayer = false;
 	}
 	
 	// Update is called once per frame
@@ -63,45 +70,135 @@ public class RespawnScript : Photon.MonoBehaviour {
 			}
 			if(player2 != null)
 			{
-				//allPlayers = GameObject.FindGameObjectsWithTag("Player");
+				allPlayers = GameObject.FindGameObjectsWithTag("Player");
 				checkPlayer(player2);
 			}
 			if(player3 != null)
 			{
-				allPlayers = GameObject.FindGameObjectsWithTag("Player");
+				//allPlayers = GameObject.FindGameObjectsWithTag("Player");
 				checkPlayer(player3);
 			}
 			if(player4 != null)
 			{
-				allPlayers = GameObject.FindGameObjectsWithTag("Player");
+				//allPlayers = GameObject.FindGameObjectsWithTag("Player");
 				checkPlayer(player4);
 			}
 		}
 	}
 
+	MouseOrbitC orbit;
+	TankGunController tankGun;
+	GameObject Target;
 	void checkPlayer(PhotonPlayer player)
 	{
 		if(player != null)
 		{
 			foreach(GameObject currPlayer in allPlayers)
 			{
-				if(currPlayer.GetComponent<HealthSync>() != null)
+				if((respawn == false) && (currPlayer.GetComponent<HealthSync>().dead == true) && (currPlayer.GetPhotonView().owner == player) && (currPlayer.GetComponent<HealthSync>().activateRespawn == true))
 				{
+					StartCoroutine(waitFiveSeconds());
+				}
+				else if(currPlayer.GetComponent<HealthSync>().dead == true && (currPlayer.GetPhotonView().owner == player) && (currPlayer.GetComponent<HealthSync>().activateRespawn == true) && respawn == true)
+				{
+
 					Debug.Log("******ATLEAST GOT HERE******");
-					if((int)player.customProperties["Dead"] == 1 && (currPlayer.GetComponent<HealthSync>().activateRespawn == true))
+
+					respawn = false;
+					Debug.Log ("****** PERFORM RESPAWN SHIT ******");
+					//Perform necessary steps for respawning player.
+					StartCoroutine (getSpawnPoint());
+					
+					Debug.Log ("*****SHOULD BE DOING A RESPAWN******");
+					//currPlayer.GetPhotonView().RPC("RespawnThePlayer",PhotonTargets.All);
+					photonView.RPC ("RespawnThePlayer",player);
+					//GameObject currPlayerHolder = currPlayer;
+//					GameObject currPlayerHolder = PhotonNetwork.Instantiate("T-90_Prefab_Network", spawnPoint, Quaternion.identity, 0);
+//					//player = currPlayerHolder.GetPhotonView().owner;
+//					//Add the camera target
+//					orbit = FindObjectOfType<MouseOrbitC>();
+//					//add the tankgun target
+//					tankGun = currPlayerHolder.GetComponentInChildren<TankGunController>();
+//					Target = GameObject.Find("Target");
+//					orbit.target = currPlayerHolder.transform;
+//					tankGun.target = Target.transform;
+//					//Turn off own health system
+//					Transform TankHealthSystem = (Transform)currPlayerHolder.transform.Find ("TankHealthSystem").FindChild ("TankHealthSystemCanvas");
+//					TankHealthSystem.gameObject.SetActive(false);
+					if(currPlayer.GetComponent<HealthSync>().dead == true)
+						Destroy (currPlayer.gameObject);
+					GameObject[] trash = GameObject.FindGameObjectsWithTag("Trash");
+					foreach(GameObject currTrash in trash)
 					{
-						Debug.Log ("****** PERFORM RESPAWN SHIT ******");
-						//Perform necessary steps for respawning player.
+						Destroy(currTrash);
 					}
+
+					ExitGames.Client.Photon.Hashtable hash2 = new ExitGames.Client.Photon.Hashtable();
+					hash2.Add("Kills", (int)player.customProperties["Kills"]);
+					hash2.Add("Deaths",(int)player.customProperties["Deaths"]+1);
+					hash2.Add("Assist",(int)player.customProperties["Assist"]);
+					hash2.Add("Health",100);
+					player.SetCustomProperties(hash2);
+
+					allPlayers = GameObject.FindGameObjectsWithTag("Player");
+					alreadyRespawnedPlayer = false;
+					break;
 				}
 			}
 		}
+	}
+
+	[RPC]
+	void RespawnThePlayer()
+	{
+		//GameObject currPlayerHolder = PhotonNetwork.Instantiate("T-90_Prefab_Network", spawnPoint, Quaternion.identity, 0);
+		if(!alreadyRespawnedPlayer)
+		{
+			GameObject currPlayerHolder = PhotonNetwork.Instantiate("T-90_Prefab_Network", spawnPoint, Quaternion.identity,0);
+			//player = currPlayerHolder.GetPhotonView().owner;
+			//Add the camera target
+			orbit = FindObjectOfType<MouseOrbitC>();
+			//add the tankgun target
+			tankGun = currPlayerHolder.GetComponentInChildren<TankGunController>();
+			Target = GameObject.Find("Target");
+			orbit.target = currPlayerHolder.transform;
+			tankGun.target = Target.transform;
+			//Turn off own health system
+			Transform TankHealthSystem = (Transform)currPlayerHolder.transform.Find ("TankHealthSystem").FindChild ("TankHealthSystemCanvas");
+			TankHealthSystem.gameObject.SetActive(false);
+			alreadyRespawnedPlayer = true;
+		}
+	}
+	
+	IEnumerator getSpawnPoint()
+	{
+		bool goodSpawn = false;
+		position = new Vector3 (Random.Range (100, 1300), 300.0f, Random.Range (-337, 850));
+		while(!goodSpawn)
+		{
+			if(checkSpawn(position))
+			{
+				Debug.Log ("FOUND A GOOD POSITION******");
+				goodSpawn = true;
+			}else{
+				position = new Vector3 (Random.Range (100, 1300), 300.0f, Random.Range (-337, 850));
+				Debug.Log ("CHECKING FOR A GOOD POSITION*********");
+			}
+		}
+		yield return new WaitForSeconds(1.0f);
+	}
+
+	IEnumerator waitFiveSeconds()
+	{
+		yield return new WaitForSeconds (5.0f);
+		respawn = true;
 	}
 
 	public GameObject sphere;
 	bool checkSpawn(Vector3 pos)
 	{
 		RaycastHit hit;
+
 		Vector3 positionCheck = new Vector3(pos.x,300,pos.z);
 		if (Physics.Raycast(positionCheck, Vector3.down, out hit, 250.0f))
 		{

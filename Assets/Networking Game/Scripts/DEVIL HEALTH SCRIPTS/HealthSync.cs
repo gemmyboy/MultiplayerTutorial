@@ -6,7 +6,7 @@ public class HealthSync : Photon.MonoBehaviour {
 
 	public UIManager uiManager;
 	private UIManager testForManager;
-	private bool dead;
+	public bool dead;
 	private bool uiManagerStillNull;
 	public float TankShellDamage;
 	private PhotonPlayer hurtPlayer;
@@ -128,11 +128,11 @@ public class HealthSync : Photon.MonoBehaviour {
 
 			respawnTimer = Time.time + 5.0f;
 			//
-			transform.rigidbody.AddExplosionForce(150000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
+			//transform.rigidbody.AddExplosionForce(150000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
 			photonView.RPC ("AdjustHealthBar",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,1);
 			photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
 			photonView.RPC("tankGoBoom", PhotonTargets.All, gameObject.GetPhotonView().viewID,theKiller);
-			transform.rigidbody.AddExplosionForce(150000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
+			//transform.rigidbody.AddExplosionForce(150000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
 			
 		}else if(theCase == 2 && (photonView.ownerId == myViewID) && !isDead){
 
@@ -211,7 +211,11 @@ public class HealthSync : Photon.MonoBehaviour {
 		//tank.camera.GetComponent<MouseOrbitC> ().target = null;
         Destroy(tank.GetComponent<TankController>());
         Destroy(tank.GetComponent<TankInterpolationMovement>());
-        Destroy(tank.GetComponent<RotateEnemyHealth>());
+
+        //Destroy(tank.GetComponent<RotateEnemyHealth>());
+		Transform TankHealthSystem = (Transform)tank.transform.Find ("TankHealthSystem").FindChild ("TankHealthSystemCanvas");
+		TankHealthSystem.gameObject.SetActive(false);
+
         Destroy(tank.GetComponent<Kills_Deaths_Assist>());
 		Destroy (tank.GetComponent<AdjustTankSkins> ());
 		Destroy (tank.GetComponent<TestExplosionForceScript> ());
@@ -228,8 +232,8 @@ public class HealthSync : Photon.MonoBehaviour {
 		}
 		if(tank.transform.Find("MainGun").gameObject != null)
 		{
-			Debug.Log ("Didn't skip over***");
-			Destroy (tank.transform.Find("TankHealthSystem").gameObject);
+			//Debug.Log ("Didn't skip over***");
+			//Destroy (tank.transform.Find("TankHealthSystem").gameObject);
        		fixForExplosion(tank.transform.Find("MainGun").gameObject);
 		}
 
@@ -237,6 +241,7 @@ public class HealthSync : Photon.MonoBehaviour {
         detachMultiple(tank.transform.Find("WheelTransforms").gameObject.transform.Find("WheelTransforms_R").gameObject);
         detachMultiple(tank.transform.Find("UselessGearsTransforms").gameObject.transform.Find("UselessGearsTransforms_L").gameObject);
         detachMultiple(tank.transform.Find("UselessGearsTransforms").gameObject.transform.Find("UselessGearsTransforms_R").gameObject);
+
 
         DestroyHinge(tank.transform.Find("Skirts").gameObject.transform.Find("Skirts_R").gameObject);
         DestroyHinge(tank.transform.Find("Skirts").gameObject.transform.Find("Skirts_L").gameObject);
@@ -249,6 +254,7 @@ public class HealthSync : Photon.MonoBehaviour {
         Destroy(tank.transform.Find("HeadLights").gameObject);
         Destroy(tank.transform.Find("HeavyExhaust").gameObject);
         Destroy(tank.transform.Find("NormalExhaust").gameObject);
+
 		PhotonView[] childrenViews = tank.GetComponentsInChildren<PhotonView> ();
 		foreach(PhotonView thisChildView in childrenViews)
 		{
@@ -256,8 +262,18 @@ public class HealthSync : Photon.MonoBehaviour {
 			{
 				Destroy (thisChildView.GetComponent<PhotonTransformView>());
 			}
-			Destroy (thisChildView.GetComponent<PhotonView>());
+			if(thisChildView.tag != "Player")
+				Destroy (thisChildView.GetComponent<PhotonView>());
 		}
+		Destroy (tank.transform.Find ("WheelTransforms").gameObject);
+		Destroy (tank.transform.Find ("MainGunColliders").gameObject);
+		Destroy (tank.transform.Find ("EngineIdleAudioClip").gameObject);
+		Destroy (tank.transform.Find ("EngineRunningAudioClip").gameObject);
+		Destroy (tank.transform.Find ("UselessGearsTransforms").gameObject);
+		Destroy (tank.transform.Find ("Skirts").gameObject);
+		Destroy (tank.transform.Find ("Misc").gameObject);
+		Destroy (tank.transform.Find ("COM").gameObject);
+		Destroy (tank.transform.Find ("BoneTransforms").gameObject);
         tank.transform.DetachChildren();
 
 		Destroy(tank.GetComponentInChildren<TankGunColliders>());
@@ -266,28 +282,35 @@ public class HealthSync : Photon.MonoBehaviour {
         foreach (Collider hit in colliders)
         {
             //Debug.Log(hit.name);
-            if (hit.name != "Terrain" && hit.gameObject.layer != LayerMask.NameToLayer("Flag") && hit.name != "Map-3-26" && hit.tag != "Player")
+            if (hit.name != "Terrain" && hit.gameObject.layer != LayerMask.NameToLayer("Flag") && hit.name != "Map-3-26")
             {
                 if (hit.GetComponent<Rigidbody>() == null)
                 {
                     hit.gameObject.AddComponent<Rigidbody>();
+					hit.gameObject.GetComponent<Rigidbody>().mass = 3000f;
+					hit.gameObject.tag = "Trash";
                 }
             }
 
             if (hit && hit.rigidbody)
             {
                 hit.rigidbody.isKinematic = false;
-                //hit.rigidbody.AddExplosionForce(15000, hit.rigidbody.transform.position, 10.0f, 0.0f,ForceMode.Impulse);
+				hit.gameObject.GetComponent<Rigidbody>().mass = 3000f;
+				hit.gameObject.tag = "Trash";
+                hit.rigidbody.AddExplosionForce(100000, hit.rigidbody.transform.position, 10.0f, 0.0f,ForceMode.Impulse);
             }
            
         }
-		tank.transform.rigidbody.AddExplosionForce (100000.0f, tank.transform.position, 10.0f, 3.0f, ForceMode.Impulse);
+		//tank.transform.rigidbody.AddExplosionForce (100000.0f, tank.transform.position, 10.0f, 3.0f, ForceMode.Impulse);
+
     }
     void fixForExplosion(GameObject obj)
     {
         //Debug.Log(obj);
         obj.AddComponent<BoxCollider>();
         obj.GetComponent<Rigidbody>().useGravity = true;
+		obj.GetComponent<Rigidbody> ().mass = 3000f;
+		obj.tag = "Trash";
         if (obj.GetComponent<HingeJoint>() != null)
         {
             Destroy(obj.GetComponent<HingeJoint>());

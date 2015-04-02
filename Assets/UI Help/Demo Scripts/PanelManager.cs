@@ -10,7 +10,7 @@ public class PanelManager : MonoBehaviour
     public Animator initiallyOpen;
     private int m_OpenParameterId;
     private Animator m_Open;
-    private GameObject m_PreviouslySelected;
+    //private GameObject m_PreviouslySelected;
 
     const string k_OpenTransitionName = "Open";
     const string k_ClosedStateName = "Closed";
@@ -37,13 +37,13 @@ public class PanelManager : MonoBehaviour
         if (m_Open == anim)
             return;
         anim.gameObject.SetActive(true);
-        var newPreviouslySelected = EventSystem.current.currentSelectedGameObject;
+        //var newPreviouslySelected = EventSystem.current.currentSelectedGameObject;
 
         anim.transform.SetAsLastSibling();
 
         CloseCurrent();
 
-        m_PreviouslySelected = newPreviouslySelected;
+        //m_PreviouslySelected = newPreviouslySelected;
 
         m_Open = anim;
         m_Open.SetBool(m_OpenParameterId, true);
@@ -54,11 +54,11 @@ public class PanelManager : MonoBehaviour
         if (m_Open == anim)
             return;
         anim.gameObject.SetActive(true);
-        var newPreviouslySelected = EventSystem.current.currentSelectedGameObject;
+        //var newPreviouslySelected = EventSystem.current.currentSelectedGameObject;
 
         anim.transform.SetAsLastSibling();
 
-        m_PreviouslySelected = newPreviouslySelected;
+        //m_PreviouslySelected = newPreviouslySelected;
 
         anim.SetBool(m_OpenParameterId, true);
     }
@@ -72,7 +72,7 @@ public class PanelManager : MonoBehaviour
     }
     public void closeWindow(Animator anim)
     {
-        if(!anim.gameObject.active){
+        if(!anim.gameObject.activeSelf){
             return;
         }
         anim.SetBool(m_OpenParameterId, false);
@@ -83,7 +83,7 @@ public class PanelManager : MonoBehaviour
     {
         bool closedStateReached = false;
         bool wantToClose = true;
-        while (!closedStateReached && wantToClose && anim.active)
+        while (!closedStateReached && wantToClose && anim.enabled)
         {
             if (!anim.IsInTransition(0))
                 closedStateReached = anim.GetCurrentAnimatorStateInfo(0).IsName(k_ClosedStateName);
@@ -95,15 +95,15 @@ public class PanelManager : MonoBehaviour
         {
             if (anim.gameObject.tag == "Settings")
             {
-                if (GameWindow.active)
+                if (GameWindow.activeSelf)
                 {
                     GameWindow.SetActive(false);
                 }
-                else if (VideoWindow.active)
+                else if (VideoWindow.activeSelf)
                 {
                     VideoWindow.SetActive(false);
                 }
-                else if (AudioWindow.active)
+                else if (AudioWindow.activeSelf)
                 {
                     AudioWindow.SetActive(false);
                 }

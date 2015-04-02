@@ -75,21 +75,21 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
             this.UserName = PhotonNetwork.player.name; 
         }
         //Set the chat system
-        if (PhotonNetwork.player.customProperties["Team"] != null)
+		if (PhotonNetwork.player.customProperties["Team"] != null)
         {
-            if (PhotonNetwork.player.customProperties["Team"] == "Eagles")
+			if (PhotonNetwork.player.customProperties["Team"].ToString() == "Eagles")
             {
                 ChannelsToJoinOnConnect[1] = "Eagle";
             }
-            else if (PhotonNetwork.player.customProperties["Team"] == "Excorcist")
+			else if (PhotonNetwork.player.customProperties["Team"].ToString() == "Excorcist")
             {
                 ChannelsToJoinOnConnect[1] = "Excorcist";
             }
-            else if (PhotonNetwork.player.customProperties["Team"] == "Wolves")
+			else if (PhotonNetwork.player.customProperties["Team"].ToString() == "Wolves")
             {
                 ChannelsToJoinOnConnect[1] = "Wolves";
             }
-            else if (PhotonNetwork.player.customProperties["Team"] == "Angel")
+			else if (PhotonNetwork.player.customProperties["Team"].ToString() == "Angel")
             {
                 ChannelsToJoinOnConnect[1] = "Angel";
             }

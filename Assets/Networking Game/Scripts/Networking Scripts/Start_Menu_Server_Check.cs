@@ -8,7 +8,7 @@ using ExitGames.Client.Photon;
 using System.Collections.Generic;
 public class Start_Menu_Server_Check : Photon.MonoBehaviour
 {
-    private bool isRefreshingHostList = false;
+    //private bool isRefreshingHostList = false;
     public HostData[] hostList;
 
     public string gameName = "";
@@ -139,7 +139,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             ListLabel.GetComponentInChildren<Text>().text = PhotonNetwork.GetRoomList().Length + " rooms available:";
         }
         //Display the Label for Number of players online
-        if (displayPlayersOnlineLabel.active)
+        if (displayPlayersOnlineLabel.GetActive())
         {
             displayPlayersOnlineLabel.GetComponentInChildren<Text>().text = PhotonNetwork.countOfPlayers + " users are online in " + PhotonNetwork.countOfRooms + " rooms.";
         }
@@ -513,7 +513,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             dummyPod = PhotonNetwork.Instantiate("DummyPod", position, pieceRotation, 0);
             i++;
         }
-        yield return new WaitForSeconds(13.0f);
+        yield return new WaitForSeconds(2.0f);
         //PhotonNetwork.room.open = true;
         PhotonNetwork.LoadLevel(SceneNameGame);
 
@@ -527,7 +527,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
 
     IEnumerator fadeScreen()
     {
-        yield return new WaitForSeconds(10.0f);
+        yield return new WaitForSeconds(3.0f);
         GameObject screenFade = PhotonNetwork.InstantiateSceneObject("FadeScreen", canvas.transform.position, canvas.transform.rotation, 0,null);
         photonView.RPC("FixScreen", PhotonTargets.All);
     }
@@ -630,18 +630,18 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     GameObject emblem;
     public void createTeamEmlbem()
     {
-        if(PhotonNetwork.player.customProperties["Team"] == teams[0]){
+		if(PhotonNetwork.player.customProperties["Team"].ToString() == teams[0].ToString()){
             emblem = PhotonNetwork.Instantiate("Dark_Eagles_Emblem", ConnectingRoomWindow.transform.position, Quaternion.identity, 0);
         }
-        else if (PhotonNetwork.player.customProperties["Team"] == teams[1])
+		else if (PhotonNetwork.player.customProperties["Team"].ToString() == teams[1].ToString())
         {
             emblem = PhotonNetwork.Instantiate("Exorcist_Emblem", ConnectingRoomWindow.transform.position, Quaternion.identity, 0);
         }
-        else if (PhotonNetwork.player.customProperties["Team"] == teams[2])
+		else if (PhotonNetwork.player.customProperties["Team"].ToString() == teams[2].ToString())
         {
             emblem = PhotonNetwork.Instantiate("Wolves_Emblem", ConnectingRoomWindow.transform.position, Quaternion.identity, 0);
         }
-        else if (PhotonNetwork.player.customProperties["Team"] == teams[3])
+		else if (PhotonNetwork.player.customProperties["Team"].ToString() == teams[3].ToString())
         {
             emblem = PhotonNetwork.Instantiate("Blood_Angel_Emblem", ConnectingRoomWindow.transform.position, Quaternion.identity, 0);
         }

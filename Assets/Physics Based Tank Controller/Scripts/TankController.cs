@@ -514,11 +514,14 @@
                 if (collision.contacts[0].thisCollider.gameObject.layer == LayerMask.NameToLayer("TankCollider") && collision.gameObject.tag != "Terrain" && collision.gameObject.tag != "TankShell" && collision.gameObject.name != "Map-3-26")
                 {
                     Debug.Log(collision.gameObject);
-                    if (collision.gameObject.GetComponentInParent<PhotonView>().viewID != photonView.viewID)
-                    {
-                        Debug.Log("TankCollide");
-                        rigidbody.AddForce(-transform.forward * 50, ForceMode.Acceleration);
-                    }
+					if(collision.gameObject.GetComponentInParent<PhotonView>() != null)
+					{
+	                    if (collision.gameObject.GetComponentInParent<PhotonView>().viewID != photonView.viewID)
+	                    {
+	                        Debug.Log("TankCollide");
+	                        rigidbody.AddForce(-transform.forward * 50, ForceMode.Acceleration);
+	                    }
+					}
                 }
 			}
 			

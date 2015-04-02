@@ -21,7 +21,7 @@ public class TankGunController : MonoBehaviour {
 	public float maximumElevationLimit = 25;
 	public bool useLimitsForRotation = true;
 
-	private float rotationVelocity;
+	//private float rotationVelocity;
 	public float rotationOfTheGun;
 
 	public Transform target;
@@ -100,7 +100,7 @@ public class TankGunController : MonoBehaviour {
             Vector3 targetPosition = transform.InverseTransformPoint(new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z));
 
             inputSteer = (targetPosition.x / targetPosition.magnitude);
-            rotationVelocity = rigidbody.angularVelocity.y;
+            //rotationVelocity = rigidbody.angularVelocity.y;
 
             if (inputSteer > 0)
             {

@@ -9,12 +9,12 @@ public class TankBullet : Photon.MonoBehaviour {
 	public int lifeTimeOfTheBullet = 5;
 	private float lifeTime;
     PhotonView view;
-    TankGunController gunController;
+    //TankGunController gunController;
 
     public double m_CreationTime;
     public int m_projectileID;
 	void Start(){
-        gunController = FindObjectOfType<TankGunController>();
+        //gunController = FindObjectOfType<TankGunController>();
         view = GetComponent<PhotonView>();
 
 		rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
