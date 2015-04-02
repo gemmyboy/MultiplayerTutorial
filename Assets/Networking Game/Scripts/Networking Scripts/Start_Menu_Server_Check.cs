@@ -463,11 +463,8 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     [RPC]
     void fixDropDown()
     {
-        Debug.Log("Changing dropdowns");
         dropMenu = GameObject.Find("DropDownButtonMenu(Clone)");
-        Debug.Log(dropMenu);
         dropMenu.transform.SetParent(ConnectingRoomWindow.transform);
-        Debug.Log(dropMenu.transform.parent);
         dropMenu.transform.localScale = new Vector3(1, 1, 1);
         dropMenu.transform.rotation = new Quaternion(0, 0, 0, 0);
         dropMenu.GetComponent<RectTransform>().localPosition = new Vector3(450, 100, 0);
@@ -572,7 +569,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             i++;
         }
         yield return new WaitForSeconds(13.0f);
-        PhotonNetwork.DestroyAll();
+        //PhotonNetwork.DestroyAll();
         PhotonNetwork.LoadLevel(SceneNameGame);
 
     }
