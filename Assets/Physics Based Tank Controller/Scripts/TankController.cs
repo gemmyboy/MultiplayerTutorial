@@ -84,7 +84,7 @@
 	private WheelFrictionCurve forwardFrictionCurve;
 
     PhotonView m_PhotonView;
-    GameStartTimeManager timeManager;
+	public GameStartTimeManager timeManager;
 	void  Start (){
         timeManager = FindObjectOfType<GameStartTimeManager>();
         m_PhotonView = GetComponent<PhotonView>();
@@ -229,9 +229,14 @@
 
 	void SmokeInit(){
 		
-		foreach(WheelCollider w in GameObject.FindObjectsOfType(typeof(WheelCollider)))
+		//foreach(WheelCollider w in GameObject.FindObjectsOfType(typeof(WheelCollider)))
+		foreach(WheelCollider w in GetComponentsInChildren<WheelCollider>())
 		{
-			AllWheelColliders.Add (w);
+			//if(w.gameObject.transform.parent.parent.parent.gameObject.name == gameObject.name)
+			//{
+				AllWheelColliders.Add (w);
+				Debug.Log (w.gameObject);
+			//}
 		}
 
         //for (int i = 0; i < AllWheelColliders.Count; i++)
@@ -511,14 +516,17 @@
 					Destroy(crashAudio, crashAudio.audio.clip.length);
 					
 				}
-                if (collision.contacts[0].thisCollider.gameObject.layer == LayerMask.NameToLayer("TankCollider") && collision.gameObject.tag != "Terrain" && collision.gameObject.tag != "TankShell")
+                if (collision.contacts[0].thisCollider.gameObject.layer == LayerMask.NameToLayer("TankCollider") && collision.gameObject.tag != "Terrain" && collision.gameObject.tag != "TankShell" && collision.gameObject.name != "Map-3-26")
                 {
                     Debug.Log(collision.gameObject);
-                    if (collision.gameObject.GetComponentInParent<PhotonView>().viewID != photonView.viewID)
-                    {
-                        Debug.Log("TankCollide");
-                        rigidbody.AddForce(-transform.forward * 50, ForceMode.Acceleration);
-                    }
+					if(collision.gameObject.GetComponentInParent<PhotonView>() != null)
+					{
+	                    if (collision.gameObject.GetComponentInParent<PhotonView>().viewID != photonView.viewID)
+	                    {
+	                        Debug.Log("TankCollide");
+	                        rigidbody.AddForce(-transform.forward * 50, ForceMode.Acceleration);
+	                    }
+					}
                 }
 			}
 			

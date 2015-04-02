@@ -62,4 +62,5 @@ MonoBehaviour:
   - fixHolder
   - resetDropDown
   - abandonShip
+  - RespawnThePlayer
   DisableAutoOpenWizard: 0

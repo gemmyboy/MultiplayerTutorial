@@ -19,7 +19,7 @@ public class UIManager : Photon.MonoBehaviour {
     private int frames = 0; // Frames drawn over the interval
     private float timeleft; // Left time for current interval
 
-    Color pingColor;
+    //Color pingColor;
 	// Use this for initializatio
 	void Start () {
         if(!photonView.isMine){
@@ -27,7 +27,7 @@ public class UIManager : Photon.MonoBehaviour {
         }
 
         timeleft = updateInterval;
-        pingColor = PingLabel.GetComponent<Image>().color;
+        //pingColor = PingLabel.GetComponent<Image>().color;
 
         GameTimeUI.GetComponentInChildren<Text>().text = "" + roundTimeLimitMins + ":00";
 	}
@@ -80,7 +80,7 @@ public class UIManager : Photon.MonoBehaviour {
     public void ChangeAmmo(int ammo)
     {
         ammoLabel.GetComponentInChildren<Text>().text = "" + ammo;
-        Color ammoColor = ammoLabel.GetComponentInChildren<Image>().color;
+        //Color ammoColor = ammoLabel.GetComponentInChildren<Image>().color;
     }
 
     public void ChangeHealth(int health)

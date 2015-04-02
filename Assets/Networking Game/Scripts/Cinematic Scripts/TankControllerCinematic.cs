@@ -9,7 +9,7 @@ public class TankControllerCinematic : Photon.MonoBehaviour
     GameObject trash;
     void Start()
     {
-        trash = new GameObject("TankTrash");
+        //trash = new GameObject("TankTrash");
 
         GetComponent<TankController>().enabled = false;
         Destroy(GetComponentInChildren<TankGunController>());

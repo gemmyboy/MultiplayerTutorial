@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using Photon;
 public class Start_Menu_Server_Check : Photon.MonoBehaviour
 {
+
     private bool isRefreshingHostList = false;
     public HostData[] hostList;
 
@@ -92,8 +93,8 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         if (PhotonNetwork.connectionStateDetailed == PeerState.PeerCreated)
         {
             // Connect to the photon master-server. We use the settings saved in PhotonServerSettings (a .asset file in this project)
-            PhotonNetwork.ConnectToBestCloudServer("v0.1");
-            //PhotonNetwork.ConnectUsingSettings("v0.1");
+            //PhotonNetwork.ConnectToBestCloudServer("v0.1");
+            PhotonNetwork.ConnectUsingSettings("v0.1");
         }
 
         // if you wanted more debug out, turn this on:
@@ -568,7 +569,11 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             dummyPod = PhotonNetwork.Instantiate("DummyPod", position, pieceRotation, 0);
             i++;
         }
+<<<<<<< HEAD
         yield return new WaitForSeconds(13.0f);
+=======
+        yield return new WaitForSeconds(2.0f);
+>>>>>>> origin/Adams_Newest_Branch
         //PhotonNetwork.DestroyAll();
         PhotonNetwork.LoadLevel(SceneNameGame);
 
@@ -582,7 +587,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
 
     IEnumerator fadeScreen()
     {
-        yield return new WaitForSeconds(10.0f);
+        yield return new WaitForSeconds(1.0f);
         GameObject screenFade = PhotonNetwork.InstantiateSceneObject("FadeScreen", canvas.transform.position, canvas.transform.rotation, 0,null);
         photonView.RPC("FixScreen", PhotonTargets.All);
     }
@@ -639,7 +644,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             {
                 buttonColor = vie.GetComponentInChildren<Image>().color;
                 button = vie.GetComponent<PhotonView>();
-                if((string)PhotonNetwork.room.customProperties["GameType"] == "Free For All"){
+                if((string)PhotonNetwork.room.customProperties["GameType"].ToString() == "Free For All"){
                     button.GetComponent<Button>().interactable = false;
                     button.GetComponentInChildren<Image>().color = Color.grey;
                 }
@@ -682,18 +687,18 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     GameObject emblem;
     public void createTeamEmlbem()
     {
-        if(PhotonNetwork.player.customProperties["Team"] == teams[0]){
+        if(PhotonNetwork.player.customProperties["Team"].ToString () == teams[0]){
             emblem = PhotonNetwork.Instantiate("Dark_Eagles_Emblem", ConnectingRoomWindow.transform.position, Quaternion.identity, 0);
         }
-        else if (PhotonNetwork.player.customProperties["Team"] == teams[1])
+		else if (PhotonNetwork.player.customProperties["Team"].ToString () == teams[1])
         {
             emblem = PhotonNetwork.Instantiate("Exorcist_Emblem", ConnectingRoomWindow.transform.position, Quaternion.identity, 0);
         }
-        else if (PhotonNetwork.player.customProperties["Team"] == teams[2])
+		else if (PhotonNetwork.player.customProperties["Team"].ToString () == teams[2])
         {
             emblem = PhotonNetwork.Instantiate("Wolves_Emblem", ConnectingRoomWindow.transform.position, Quaternion.identity, 0);
         }
-        else if (PhotonNetwork.player.customProperties["Team"] == teams[3])
+		else if (PhotonNetwork.player.customProperties["Team"].ToString () == teams[3])
         {
             emblem = PhotonNetwork.Instantiate("Blood_Angel_Emblem", ConnectingRoomWindow.transform.position, Quaternion.identity, 0);
         }
