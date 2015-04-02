@@ -12,7 +12,7 @@ public class RotateEnemyHealth : MonoBehaviour {
 		tanks = GameObject.FindGameObjectsWithTag("Player");
 		currentTankHealth = null;
 		timer = Time.time;
-		tempObj = new GameObject();
+		//tempObj = new GameObject();
 		myTanks = new System.Collections.Generic.List<GameObject>(tanks);
 	}
 	

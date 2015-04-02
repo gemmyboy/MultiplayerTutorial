@@ -72,7 +72,7 @@ public class NetworkManager : PunBehaviour
         Debug.Log("OnPlayerDisconneced: " + player);
 
 		//attempting to fix unity crash bug.
-		PhotonNetwork.DestroyPlayerObjects(player);
+		//PhotonNetwork.DestroyPlayerObjects(player);
     }
 
     public void OnFailedToConnectToPhoton()
@@ -94,7 +94,10 @@ public class NetworkManager : PunBehaviour
     MeshRenderer[] meshes;
     void OnLevelWasLoaded(int level)
     {
-        if (level == 1)
+		Debug.Log ("The LEVEL IS: ");
+		Debug.Log (level);
+
+        if (level == 1 || Start_Menu_Server_Check.SceneNameGame == "Demo Scene")
         {
             CreatePlayerObject();
         }
@@ -142,6 +145,7 @@ public class NetworkManager : PunBehaviour
 
         //Instanitate Tank
         GameObject newPlayerObject = PhotonNetwork.Instantiate("T-90_Prefab_Network", spawnPoint, Quaternion.identity, 0);
+		Debug.Log ("SHOULD HAVE SPAWNED PLAYER - INITIAL");
         //Add the camera target
         orbit = FindObjectOfType<MouseOrbitC>();
         //add the tankgun target

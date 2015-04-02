@@ -276,7 +276,7 @@ public class HealthSync : Photon.MonoBehaviour {
 		Destroy (tank.transform.Find ("Misc").gameObject);
 		Destroy (tank.transform.Find ("COM").gameObject);
 		Destroy (tank.transform.Find ("BoneTransforms").gameObject);
-		if(tank.transform.Find ("Dynamic Com").gameObject != null)
+		if(tank.transform.Find ("Dynamic Com") != null)
 			Destroy (tank.transform.Find ("Dynamic Com").gameObject);
         tank.transform.DetachChildren();
 
