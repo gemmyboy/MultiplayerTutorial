@@ -2229,6 +2229,9 @@ MonoBehaviour:
   ySpeed: 120
   yMinLimit: -20
   yMaxLimit: 80
+  mouseAxis: 0
+  distanceMin: 15
+  distanceMax: 45
 --- !u!114 &70252060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2264,7 +2267,7 @@ Skybox:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 70252053}
   m_Enabled: 1
-  m_CustomSkybox: {fileID: 2100000, guid: 88ec9a13802800449aaf825aff3aadc7, type: 2}
+  m_CustomSkybox: {fileID: 2100000, guid: 361dab9c2b852485aa772a32c0291264, type: 2}
 --- !u!1 &70873037
 GameObject:
   m_ObjectHideFlags: 0
