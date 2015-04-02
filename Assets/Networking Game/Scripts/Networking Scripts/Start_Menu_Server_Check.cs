@@ -53,6 +53,12 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     public string gameMode = "";
     //Photon View ID for the label you own
     public int myLabelViewID;
+
+    //button text boxes for server listing
+    public GameObject GameName;
+    public GameObject GameType;
+    public GameObject GamePlayers;
+    public GameObject GamePing;
     //---------------------------------------------------------------------------------------
     //Used for Connections
     private bool connectFailed = false;
@@ -86,7 +92,8 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         if (PhotonNetwork.connectionStateDetailed == PeerState.PeerCreated)
         {
             // Connect to the photon master-server. We use the settings saved in PhotonServerSettings (a .asset file in this project)
-            PhotonNetwork.ConnectUsingSettings("v0.1");
+            PhotonNetwork.ConnectToBestCloudServer("v0.1");
+            //PhotonNetwork.ConnectUsingSettings("v0.1");
         }
 
         // if you wanted more debug out, turn this on:
@@ -208,7 +215,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             //string[] roomPropsInLobby = { "map", "ai" };
             ExitGames.Client.Photon.Hashtable customRoomProperties = new ExitGames.Client.Photon.Hashtable();
             customRoomProperties.Add("GameType",gameMode);
-            //PhotonNetwork.CreateRoom(this.gameName, new RoomOptions() { maxPlayers = connections }, null);
             //Game name   isVisible  isOpen   Maxplayers   customproperties
             PhotonNetwork.CreateRoom(this.gameName,true,true,connections,customRoomProperties,null);
         }
@@ -302,7 +308,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    GameObject ServerButton;
+    //GameObject ServerButton;
     public void RefreshServerList()
     {
         if (PhotonNetwork.GetRoomList().Length == 0)
@@ -317,45 +323,47 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             ListLabel.SetActive(true);
             layout.SetActive(true);
 
-            int i = 0;
             ClearButtons();
+            int i = 0;
+            GameObject.Find("Server_Button_Layout").GetComponent<VerticalLayoutGroup>().padding.bottom = 0;
             foreach (RoomInfo roomInfo in PhotonNetwork.GetRoomList())
             {
-                ServerButton = Instantiate(preFabButton, refreshWindow.transform.position, refreshWindow.transform.rotation) as GameObject;
+                GameObject ServerButton = Instantiate(preFabButton, refreshWindow.transform.position, refreshWindow.transform.rotation) as GameObject;
                 ServerButton.name = "ServerButton";
+
+                ServerButton.transform.SetParent(GameObject.Find("Server_Button_Layout").transform);
+                ServerButton.transform.localScale = new Vector3(1, 1, 1);
+
+                //Display info of game and room
+                GameObject background = ServerButton.transform.Find("Background").gameObject;
+
+                GameName = background.transform.Find("GameName").gameObject;
+                GameType = background.transform.Find("GameType").gameObject;
+                GamePing = background.transform.Find("GamePing").gameObject;
+                GamePlayers = background.transform.Find("GamePlayers").gameObject;
+
+                GameName.GetComponent<Text>().text = roomInfo.name;
+                GameType.GetComponent<Text>().text = roomInfo.customProperties["GameType"].ToString();
+                GamePing.GetComponent<Text>().text = PhotonNetwork.GetPing().ToString();
+                GamePlayers.GetComponent<Text>().text = roomInfo.playerCount + "/" + roomInfo.maxPlayers;
+
                 if(roomInfo.open == false){
-                    ServerButton.GetComponentInChildren<Text>().text = String.Format("{0,-22}{1,-28}{2,-15}{3,10}", roomInfo.name, roomInfo.customProperties["GameType"].ToString(), (roomInfo.playerCount.ToString() + "/" + roomInfo.maxPlayers.ToString()), PhotonNetwork.GetPing());
                     ServerButton.GetComponent<Animator>().enabled = false;
                     ServerButton.GetComponentInChildren<Image>().color = Color.grey;
                 }
-                else
-                {
-                    Debug.Log(roomInfo.name);
-                    Debug.Log(roomInfo.customProperties["GameType"].ToString());
-                    Debug.Log(roomInfo.playerCount.ToString() + "/" + roomInfo.maxPlayers.ToString());
-                    Debug.Log(PhotonNetwork.GetPing());
-                    ServerButton.GetComponentInChildren<Text>().text = String.Format("{0,-22}{1,-28}{2,-15}{3,10}", roomInfo.name, roomInfo.customProperties["GameType"].ToString(), (roomInfo.playerCount.ToString() + "/" + roomInfo.maxPlayers.ToString()), PhotonNetwork.GetPing());
+
+                if(i > 0){
+                    Debug.Log("heyo");
+                    GameObject.Find("Server_Button_Layout").GetComponent<VerticalLayoutGroup>().padding.bottom -= 60;
                 }
-            //    //Fix Button Position
-                fixButton(ServerButton,i);
-            //    //Adding an Event Trigger
-                ServerButton.GetComponent<Button>().onClick.AddListener(() => ServerButtonClick(roomInfo));
                 i++;
+                ServerButton.GetComponent<Button>().onClick.AddListener(() => ServerButtonClick(roomInfo));
             }
         }
     }
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    //For adding game buttons to server list window
-    public void fixButton(GameObject button,int i)
-    {
-        //button.transform.parent = refreshWindow.transform;
-        button.transform.SetParent(refreshWindow.transform);
-        button.transform.localScale = new Vector3(1, 1, 1);
-        button.GetComponent<RectTransform>().localPosition = new Vector3(0, (-80 * i) - 20, 0);
-    }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Creating the label and assigning it the right spot
     public void createLabelForPlayer(){
@@ -564,7 +572,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             i++;
         }
         yield return new WaitForSeconds(13.0f);
-        //PhotonNetwork.room.open = true;
+        PhotonNetwork.DestroyAll();
         PhotonNetwork.LoadLevel(SceneNameGame);
 
     }
@@ -707,7 +715,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
                 emblem = vie.gameObject;
             }
         }
-        //emblem.transform.parent = lab.transform;
         emblem.transform.SetParent(lab.transform);
         emblem.transform.rotation = new Quaternion(0, 0, 0, 0);
         emblem.transform.localScale = new Vector3(1, 1, 1);
