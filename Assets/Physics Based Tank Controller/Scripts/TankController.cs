@@ -84,7 +84,7 @@
 	private WheelFrictionCurve forwardFrictionCurve;
 
     PhotonView m_PhotonView;
-    GameStartTimeManager timeManager;
+	public GameStartTimeManager timeManager;
 	void  Start (){
         timeManager = FindObjectOfType<GameStartTimeManager>();
         m_PhotonView = GetComponent<PhotonView>();
@@ -229,9 +229,14 @@
 
 	void SmokeInit(){
 		
-		foreach(WheelCollider w in GameObject.FindObjectsOfType(typeof(WheelCollider)))
+		//foreach(WheelCollider w in GameObject.FindObjectsOfType(typeof(WheelCollider)))
+		foreach(WheelCollider w in GetComponentsInChildren<WheelCollider>())
 		{
-			AllWheelColliders.Add (w);
+			//if(w.gameObject.transform.parent.parent.parent.gameObject.name == gameObject.name)
+			//{
+				AllWheelColliders.Add (w);
+				Debug.Log (w.gameObject);
+			//}
 		}
 
         //for (int i = 0; i < AllWheelColliders.Count; i++)

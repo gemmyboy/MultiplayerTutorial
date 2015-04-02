@@ -158,7 +158,10 @@ public class HealthSync : Photon.MonoBehaviour {
 	void AdjustPercent(int myViewID, int health)
 	{
 		if(photonView.ownerId == myViewID)
-			myText.text = health.ToString ();
+		{
+			if(myText != null)
+				myText.text = health.ToString ();
+		}
 	}
 
 	[RPC]
@@ -241,7 +244,7 @@ public class HealthSync : Photon.MonoBehaviour {
         detachMultiple(tank.transform.Find("WheelTransforms").gameObject.transform.Find("WheelTransforms_R").gameObject);
         detachMultiple(tank.transform.Find("UselessGearsTransforms").gameObject.transform.Find("UselessGearsTransforms_L").gameObject);
         detachMultiple(tank.transform.Find("UselessGearsTransforms").gameObject.transform.Find("UselessGearsTransforms_R").gameObject);
-
+		Destroy (tank.transform.Find ("WheelColliders").gameObject);
 
         DestroyHinge(tank.transform.Find("Skirts").gameObject.transform.Find("Skirts_R").gameObject);
         DestroyHinge(tank.transform.Find("Skirts").gameObject.transform.Find("Skirts_L").gameObject);
@@ -274,6 +277,8 @@ public class HealthSync : Photon.MonoBehaviour {
 		Destroy (tank.transform.Find ("Misc").gameObject);
 		Destroy (tank.transform.Find ("COM").gameObject);
 		Destroy (tank.transform.Find ("BoneTransforms").gameObject);
+		if(tank.transform.Find ("Dynamic Com").gameObject != null)
+			Destroy (tank.transform.Find ("Dynamic Com").gameObject);
         tank.transform.DetachChildren();
 
 		Destroy(tank.GetComponentInChildren<TankGunColliders>());

@@ -42,7 +42,7 @@ public class TankGunController : MonoBehaviour {
 
     public PhotonView m_PhotonView;
     UIManager guiManager;
-    GameStartTimeManager timeManager;
+    public GameStartTimeManager timeManager;
 
     public int m_LastProjectileID;
     public float m_LastShootTime;

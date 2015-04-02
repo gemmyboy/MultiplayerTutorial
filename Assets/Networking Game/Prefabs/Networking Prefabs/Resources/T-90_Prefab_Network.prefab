@@ -5251,6 +5251,7 @@ MonoBehaviour:
   groundSmoke: {fileID: 100000, guid: 4b31b1caadab1ee4b8606c9f35713992, type: 2}
   fireSmoke: {fileID: 100004, guid: ac8c1c4fd62d44c809ced6a1696a9d62, type: 2}
   m_PhotonView: {fileID: 11469966}
+  timeManager: {fileID: 0}
   m_LastProjectileID: 0
   m_LastShootTime: 0
 --- !u!114 &11416710
@@ -5366,6 +5367,7 @@ MonoBehaviour:
   WheelSlipPrefab: {fileID: 100000, guid: efc89a6b0a1d15549921ca5c02b0cf7a, type: 2}
   normalExhaustGas: {fileID: 1516708}
   heavyExhaustGas: {fileID: 1516706}
+  timeManager: {fileID: 0}
 --- !u!114 &11416712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5489,7 +5491,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 0}
-  TankShellDamage: 22
+  dead: 0
+  TankShellDamage: 150
   myTextObj: {fileID: 165996}
   myRectObj: {fileID: 183586}
   activateRespawn: 0

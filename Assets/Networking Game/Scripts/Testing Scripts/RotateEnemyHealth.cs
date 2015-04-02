@@ -36,7 +36,7 @@ public class RotateEnemyHealth : MonoBehaviour {
 				else if(tank.GetComponent<HealthSync>().dead == false)
 				{
 					//tempObj = tank.transform.Find("TankHealthSystem").parent.gameObject;
-					if(tank.transform.Find ("TankHealthSystem").gameObject != null)
+					if(tank.transform.Find ("TankHealthSystem") != null)
 					{
 						currentTankHealth = (GameObject)tank.transform.Find("TankHealthSystem").gameObject;
 					}

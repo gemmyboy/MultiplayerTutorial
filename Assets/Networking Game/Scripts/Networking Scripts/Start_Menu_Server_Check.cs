@@ -86,6 +86,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         {
             // Connect to the photon master-server. We use the settings saved in PhotonServerSettings (a .asset file in this project)
             PhotonNetwork.ConnectUsingSettings("v0.1");
+			//PhotonNetwork.ConnectToBestCloudServer("v0.1");
         }
 
         // if you wanted more debug out, turn this on:

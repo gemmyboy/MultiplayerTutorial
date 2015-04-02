@@ -99,50 +99,47 @@ public class RespawnScript : Photon.MonoBehaviour {
 				{
 					StartCoroutine(waitFiveSeconds());
 				}
-				else if(currPlayer.GetComponent<HealthSync>().dead == true && (currPlayer.GetPhotonView().owner == player) && (currPlayer.GetComponent<HealthSync>().activateRespawn == true) && respawn == true)
+				else if(/*currPlayer.GetComponent<HealthSync>().dead == true &&*/ (currPlayer.GetPhotonView().owner == player) && (currPlayer.GetComponent<HealthSync>().activateRespawn == true) && respawn == true)
 				{
 
 					Debug.Log("******ATLEAST GOT HERE******");
 
-					respawn = false;
+
 					Debug.Log ("****** PERFORM RESPAWN SHIT ******");
 					//Perform necessary steps for respawning player.
 					StartCoroutine (getSpawnPoint());
 					
 					Debug.Log ("*****SHOULD BE DOING A RESPAWN******");
 					//currPlayer.GetPhotonView().RPC("RespawnThePlayer",PhotonTargets.All);
-					photonView.RPC ("RespawnThePlayer",player);
-					//GameObject currPlayerHolder = currPlayer;
-//					GameObject currPlayerHolder = PhotonNetwork.Instantiate("T-90_Prefab_Network", spawnPoint, Quaternion.identity, 0);
-//					//player = currPlayerHolder.GetPhotonView().owner;
-//					//Add the camera target
-//					orbit = FindObjectOfType<MouseOrbitC>();
-//					//add the tankgun target
-//					tankGun = currPlayerHolder.GetComponentInChildren<TankGunController>();
-//					Target = GameObject.Find("Target");
-//					orbit.target = currPlayerHolder.transform;
-//					tankGun.target = Target.transform;
-//					//Turn off own health system
-//					Transform TankHealthSystem = (Transform)currPlayerHolder.transform.Find ("TankHealthSystem").FindChild ("TankHealthSystemCanvas");
-//					TankHealthSystem.gameObject.SetActive(false);
-					if(currPlayer.GetComponent<HealthSync>().dead == true)
-						Destroy (currPlayer.gameObject);
-					GameObject[] trash = GameObject.FindGameObjectsWithTag("Trash");
-					foreach(GameObject currTrash in trash)
+					if(photonView.isMine)
 					{
-						Destroy(currTrash);
+						photonView.RPC ("RespawnThePlayer",player);
+						//GameObject currPlayerHolder = currPlayer;
+	//					GameObject currPlayerHolder = PhotonNetwork.Instantiate("T-90_Prefab_Network", spawnPoint, Quaternion.identity, 0);
+	//					//player = currPlayerHolder.GetPhotonView().owner;
+	//					//Add the camera target
+	//					orbit = FindObjectOfType<MouseOrbitC>();
+	//					//add the tankgun target
+	//					tankGun = currPlayerHolder.GetComponentInChildren<TankGunController>();
+	//					Target = GameObject.Find("Target");
+	//					orbit.target = currPlayerHolder.transform;
+	//					tankGun.target = Target.transform;
+	//					//Turn off own health system
+	//					Transform TankHealthSystem = (Transform)currPlayerHolder.transform.Find ("TankHealthSystem").FindChild ("TankHealthSystemCanvas");
+	//					TankHealthSystem.gameObject.SetActive(false);
+						if(currPlayer.GetComponent<HealthSync>().dead == true)
+							Destroy (currPlayer.gameObject);
+						GameObject[] trash = GameObject.FindGameObjectsWithTag("Trash");
+						foreach(GameObject currTrash in trash)
+						{
+							Destroy(currTrash);
+						}
+
+
+						allPlayers = GameObject.FindGameObjectsWithTag("Player");
+						alreadyRespawnedPlayer = false;
+						break;
 					}
-
-					ExitGames.Client.Photon.Hashtable hash2 = new ExitGames.Client.Photon.Hashtable();
-					hash2.Add("Kills", (int)player.customProperties["Kills"]);
-					hash2.Add("Deaths",(int)player.customProperties["Deaths"]+1);
-					hash2.Add("Assist",(int)player.customProperties["Assist"]);
-					hash2.Add("Health",100);
-					player.SetCustomProperties(hash2);
-
-					allPlayers = GameObject.FindGameObjectsWithTag("Player");
-					alreadyRespawnedPlayer = false;
-					break;
 				}
 			}
 		}
@@ -154,6 +151,12 @@ public class RespawnScript : Photon.MonoBehaviour {
 		//GameObject currPlayerHolder = PhotonNetwork.Instantiate("T-90_Prefab_Network", spawnPoint, Quaternion.identity, 0);
 		if(!alreadyRespawnedPlayer)
 		{
+			respawn = false;
+			Debug.Log("********************************");
+			Debug.Log(PhotonNetwork.player);
+			Debug.Log("********************************");
+
+			//Destroy(GameObject.Find("WheelColliders").gameObject);
 			GameObject currPlayerHolder = PhotonNetwork.Instantiate("T-90_Prefab_Network", spawnPoint, Quaternion.identity,0);
 			//player = currPlayerHolder.GetPhotonView().owner;
 			//Add the camera target
@@ -167,6 +170,13 @@ public class RespawnScript : Photon.MonoBehaviour {
 			Transform TankHealthSystem = (Transform)currPlayerHolder.transform.Find ("TankHealthSystem").FindChild ("TankHealthSystemCanvas");
 			TankHealthSystem.gameObject.SetActive(false);
 			alreadyRespawnedPlayer = true;
+
+			ExitGames.Client.Photon.Hashtable hash2 = new ExitGames.Client.Photon.Hashtable();
+			hash2.Add("Kills", (int)PhotonNetwork.player.customProperties["Kills"]);
+			hash2.Add("Deaths",(int)PhotonNetwork.player.customProperties["Deaths"]+1);
+			hash2.Add("Assist",(int)PhotonNetwork.player.customProperties["Assist"]);
+			hash2.Add("Health",100);
+			PhotonNetwork.player.SetCustomProperties(hash2);
 		}
 	}
 	
@@ -194,7 +204,7 @@ public class RespawnScript : Photon.MonoBehaviour {
 		respawn = true;
 	}
 
-	public GameObject sphere;
+	//public GameObject sphere;
 	bool checkSpawn(Vector3 pos)
 	{
 		RaycastHit hit;
@@ -208,13 +218,13 @@ public class RespawnScript : Photon.MonoBehaviour {
 				Debug.Log(hitColliders.Length);
 				if (hitColliders.Length == 0)
 				{
-					spawnPoint = hit.point + new Vector3(0,10,0);
+					spawnPoint = hit.point + new Vector3(0,50,0);
 					return true;
 				}
 				else if(hitColliders.Length == 1){
 					if(hitColliders[0].tag == "Terrain"){
 						Debug.Log("Ready to spawn");
-						spawnPoint = hit.point + new Vector3(0, 15, 0);
+						spawnPoint = hit.point + new Vector3(0, 50, 0);
 						return true;
 					}
 				}
