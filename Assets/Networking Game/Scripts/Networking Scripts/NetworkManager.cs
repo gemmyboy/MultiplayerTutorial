@@ -61,13 +61,18 @@ public class NetworkManager : PunBehaviour
     {
         Debug.Log("OnDisconnectedFromPhoton");
 
-        // back to main menu        
+        // back to main menu
+
         Application.LoadLevel(Start_Menu_Server_Check.SceneNameMenu);
+
     }
 
     public void OnPhotonPlayerDisconnected(PhotonPlayer player)
     {
         Debug.Log("OnPlayerDisconneced: " + player);
+
+		//attempting to fix unity crash bug.
+		//PhotonNetwork.DestroyPlayerObjects(player);
     }
 
     public void OnFailedToConnectToPhoton()
@@ -89,7 +94,10 @@ public class NetworkManager : PunBehaviour
     MeshRenderer[] meshes;
     void OnLevelWasLoaded(int level)
     {
-        if (level == 1)
+		Debug.Log ("The LEVEL IS: ");
+		Debug.Log (level);
+
+        if (level == 1 || Start_Menu_Server_Check.SceneNameGame == "Demo Scene")
         {
             CreatePlayerObject();
         }
@@ -137,6 +145,7 @@ public class NetworkManager : PunBehaviour
 
         //Instanitate Tank
         GameObject newPlayerObject = PhotonNetwork.Instantiate("T-90_Prefab_Network", spawnPoint, Quaternion.identity, 0);
+		Debug.Log ("SHOULD HAVE SPAWNED PLAYER - INITIAL");
         //Add the camera target
         orbit = FindObjectOfType<MouseOrbitC>();
         //add the tankgun target
@@ -156,7 +165,7 @@ public class NetworkManager : PunBehaviour
 
         //Setup scoring system
         ExitGames.Client.Photon.Hashtable hash2 = new ExitGames.Client.Photon.Hashtable();
-        if(PhotonNetwork.room.customProperties["GameType"] != "Free For All"){
+        if(PhotonNetwork.room.customProperties["GameType"].ToString() != "Free For All"){
             hash2.Add("TeamScore",0);
             PhotonNetwork.player.SetScore(0);
         }
@@ -178,19 +187,19 @@ public class NetworkManager : PunBehaviour
         {
             GameObject spawnPoints = Instantiate(spawnpointsFFA,transform.position,transform.rotation) as GameObject;
             spawnPoints.transform.localPosition = new Vector3(400,0,300);
-            if (PhotonNetwork.player.customProperties["Team"] == "Eagles")
+            if (PhotonNetwork.player.customProperties["Team"].ToString() == "Eagles")
             {
                 spawnPoint = GameObject.Find("EaglesSpawnPoint").transform.position;
             }
-            else if (PhotonNetwork.player.customProperties["Team"] == "Exorcist")
+			else if (PhotonNetwork.player.customProperties["Team"].ToString() == "Exorcist")
             {
                 spawnPoint = GameObject.Find("ExorcistSpawnPoint").transform.position;
             }
-            else if (PhotonNetwork.player.customProperties["Team"] == "Wolves")
+			else if (PhotonNetwork.player.customProperties["Team"].ToString() == "Wolves")
             {
                 spawnPoint = GameObject.Find("WolfSpawnPoint").transform.position;
             }
-            else if (PhotonNetwork.player.customProperties["Team"] == "Angel")
+			else if (PhotonNetwork.player.customProperties["Team"].ToString() == "Angel")
             {
                 spawnPoint = GameObject.Find("BloodSpawnPoint").transform.position;
             }
@@ -202,25 +211,25 @@ public class NetworkManager : PunBehaviour
             spawnPoints.transform.localPosition = new Vector3(400, 0, 300);
 
             //Now spawn the player
-            if (PhotonNetwork.player.customProperties["Team"] == "Eagles")
+			if (PhotonNetwork.player.customProperties["Team"].ToString() == "Eagles")
             {
                 int randX = Random.Range(0, 30);
                 int randZ = Random.Range(0, 30);
                 spawnPoint = GameObject.Find("EaglesSpawnPoint").transform.position + new Vector3(randX, 20, randZ);
             }
-            else if (PhotonNetwork.player.customProperties["Team"] == "Exorcist")
+			else if (PhotonNetwork.player.customProperties["Team"].ToString() == "Exorcist")
             {
                 int randX = Random.Range(0, 30);
                 int randZ = Random.Range(0, 30);
                 spawnPoint = GameObject.Find("ExorcistSpawnPoint").transform.position + new Vector3(randX, 20, randZ);
             }
-            else if (PhotonNetwork.player.customProperties["Team"] == "Wolves")
+			else if (PhotonNetwork.player.customProperties["Team"].ToString() == "Wolves")
             {
                 int randX = Random.Range(0, 30);
                 int randZ = Random.Range(0, 30);
                 spawnPoint = GameObject.Find("WolfSpawnPoint").transform.position + new Vector3(randX, 20, randZ);
             }
-            else if (PhotonNetwork.player.customProperties["Team"] == "Angel")
+			else if (PhotonNetwork.player.customProperties["Team"].ToString() == "Angel")
             {
                 int randX = Random.Range(0, 30);
                 int randZ = Random.Range(0, 30);

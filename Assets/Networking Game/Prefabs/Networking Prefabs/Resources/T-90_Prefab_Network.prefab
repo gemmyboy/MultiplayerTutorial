@@ -889,7 +889,7 @@ GameObject:
   - 114: {fileID: 11498162}
   m_Layer: 8
   m_Name: MainGun
-  m_TagString: Untagged
+  m_TagString: MainGun
   m_Icon: {fileID: -1003283189, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5249,8 +5249,9 @@ MonoBehaviour:
   barrelOut: {fileID: 416722}
   fireSoundClip: {fileID: 8300000, guid: f4577b6ab5693e446bcf9765748510dd, type: 3}
   groundSmoke: {fileID: 100000, guid: 4b31b1caadab1ee4b8606c9f35713992, type: 2}
-  fireSmoke: {fileID: 100000, guid: 44b3febaf5142a5429938ef0a0de2395, type: 2}
+  fireSmoke: {fileID: 100004, guid: ac8c1c4fd62d44c809ced6a1696a9d62, type: 2}
   m_PhotonView: {fileID: 11469966}
+  timeManager: {fileID: 0}
   m_LastProjectileID: 0
   m_LastShootTime: 0
   lasers: {fileID: 100000, guid: bd5777402d86430419fdecf82c637d2e, type: 2}
@@ -5368,6 +5369,7 @@ MonoBehaviour:
   WheelSlipPrefab: {fileID: 100000, guid: efc89a6b0a1d15549921ca5c02b0cf7a, type: 2}
   normalExhaustGas: {fileID: 1516708}
   heavyExhaustGas: {fileID: 1516706}
+  timeManager: {fileID: 0}
 --- !u!114 &11416712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5491,9 +5493,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 0}
-  TankShellDamage: 22
+  dead: 0
+  TankShellDamage: 150
   myTextObj: {fileID: 165996}
   myRectObj: {fileID: 183586}
+  activateRespawn: 0
 --- !u!114 &11437554
 MonoBehaviour:
   m_ObjectHideFlags: 1

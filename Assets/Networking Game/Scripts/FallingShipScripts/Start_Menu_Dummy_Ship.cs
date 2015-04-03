@@ -15,7 +15,7 @@ public class Start_Menu_Dummy_Ship : MonoBehaviour {
     IEnumerator WaitToLaunch()
     {
 
-        yield return new WaitForSeconds(10.0f);
+        yield return new WaitForSeconds(0.5f);
         rigidbody.AddForce(Vector3.down * 10, ForceMode.VelocityChange);
         gameObject.GetComponentInChildren<ParticleSystem>().enableEmission = true;
     }

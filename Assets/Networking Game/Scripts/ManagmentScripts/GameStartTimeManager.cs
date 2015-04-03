@@ -69,6 +69,7 @@ public class GameStartTimeManager : PunBehaviour
     System.Collections.IEnumerator waitFrame()
     {
         yield return new WaitForSeconds(1.0f);
-        Destroy(startTimeUI);
+		//startTimeUI.SetActive (false);
+        //Destroy(startTimeUI);
     }
 }

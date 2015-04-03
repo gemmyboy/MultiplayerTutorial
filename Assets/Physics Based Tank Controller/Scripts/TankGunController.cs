@@ -21,7 +21,7 @@ public class TankGunController : MonoBehaviour {
 	public float maximumElevationLimit = 25;
 	public bool useLimitsForRotation = true;
 
-	private float rotationVelocity;
+	//private float rotationVelocity;
 	public float rotationOfTheGun;
 
 	public Transform target;
@@ -42,7 +42,7 @@ public class TankGunController : MonoBehaviour {
 
     public PhotonView m_PhotonView;
     UIManager guiManager;
-    GameStartTimeManager timeManager;
+    public GameStartTimeManager timeManager;
 
     public int m_LastProjectileID;
     public float m_LastShootTime;
@@ -100,7 +100,7 @@ public class TankGunController : MonoBehaviour {
             Vector3 targetPosition = transform.InverseTransformPoint(new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z));
 
             inputSteer = (targetPosition.x / targetPosition.magnitude);
-            rotationVelocity = rigidbody.angularVelocity.y;
+            //rotationVelocity = rigidbody.angularVelocity.y;
 
             if (inputSteer > 0)
             {
@@ -126,18 +126,57 @@ public class TankGunController : MonoBehaviour {
 
 		loadingTime += Time.deltaTime;
 
-		if(Input.GetButtonDown("Fire1") && loadingTime > reloadTime && ammo > 0){
-			rigidbody.AddForce(-transform.forward * recoilForce, ForceMode.VelocityChange);
-            //GameObject shot = PhotonNetwork.Instantiate("TankBullet", barrelOut.position, barrel.transform.rotation,0) as GameObject;
-
-            StartCoroutine(laserShoot());
+		if(Input.GetButtonDown("Fire1") && loadingTime > reloadTime && ammo > 0)
+		{
+			//rigidbody.AddForce(-transform.forward * recoilForce, ForceMode.VelocityChange);
+            GameObject shot = PhotonNetwork.Instantiate("TankBullet", barrelOut.position, barrel.transform.rotation,0) as GameObject;
+		
+			Vector3 rotationDir = barrelOut.position - barrel.transform.position;
+			shot.transform.forward = rotationDir.normalized;
+			shot.transform.LookAt(shot.transform.position + shot.transform.forward);
+			
+			shot.GetComponent<Rigidbody>().AddForce(barrelOut.forward * bulletVelocity, ForceMode.VelocityChange);
+			ShootingSoundEffect();
+			
+			PhotonNetwork.Instantiate("Ground Smoke", new Vector3(tank.transform.position.x, tank.transform.position.y - 3, tank.transform.position.z), tank.transform.rotation, 0);
+			//PhotonNetwork.Instantiate("Fluffy Smoke", barrelOut.transform.position, barrelOut.transform.rotation, 0);
+			
+			ammo--;
+			guiManager.ChangeAmmo(ammo);
+			loadingTime = 0;
+			//StartCoroutine(bulletShoot());
 
             
 
 		}
 
+		if(Input.GetButtonDown("Fire2") && loadingTime > reloadTime && ammo > 0)
+		{
+			rigidbody.AddForce(-transform.forward * recoilForce, ForceMode.VelocityChange);
+
+			StartCoroutine(laserShoot());
+		}
+
 	}
-    IEnumerator laserShoot()
+	/*
+	IEnumerator bulletShoot()
+	{
+        Vector3 rotationDir = barrelOut.position - barrel.transform.position;
+        //shot.transform.forward = rotationDir.normalized;
+        //shot.transform.LookAt(shot.transform.position + shot.transform.forward);
+
+        //shot.GetComponent<Rigidbody>().AddForce(barrelOut.forward * bulletVelocity, ForceMode.VelocityChange);
+        ShootingSoundEffect();
+
+		PhotonNetwork.Instantiate("Ground Smoke", new Vector3(tank.transform.position.x, tank.transform.position.y - 3, tank.transform.position.z), tank.transform.rotation, 0);
+		//PhotonNetwork.Instantiate("Fluffy Smoke", barrelOut.transform.position, barrelOut.transform.rotation, 0);
+		
+		ammo--;
+		guiManager.ChangeAmmo(ammo);
+		loadingTime = 0;
+	}
+	*/
+	IEnumerator laserShoot()
     {
         // play charge noise
         GameObject flash = (GameObject)Instantiate(laserMuzzleFlash, barrelOut.position, Quaternion.identity);
