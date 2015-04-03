@@ -569,11 +569,8 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
             dummyPod = PhotonNetwork.Instantiate("DummyPod", position, pieceRotation, 0);
             i++;
         }
-<<<<<<< HEAD
-        yield return new WaitForSeconds(13.0f);
-=======
+        //yield return new WaitForSeconds(13.0f);
         yield return new WaitForSeconds(2.0f);
->>>>>>> origin/Adams_Newest_Branch
         //PhotonNetwork.DestroyAll();
         PhotonNetwork.LoadLevel(SceneNameGame);
 

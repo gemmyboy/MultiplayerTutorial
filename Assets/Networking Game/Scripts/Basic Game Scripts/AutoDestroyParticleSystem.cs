@@ -14,17 +14,18 @@ public class AutoDestroyParticleSystem : PunBehaviour {
 	void Update () {
         if(particleEmitter == null){
 	        if(particleSystem.isStopped){
-                if(photonView.isMine){
-                    if (particleSystem.GetComponent<PhotonView>() != null)
+                if (particleSystem.GetComponent<PhotonView>() != null)
+                {
+                    if (photonView.isMine)
                     {
                         Debug.Log("Online particle");
                         PhotonNetwork.Destroy(particleSystem.gameObject);
                     }
-                    else
-                    {
-                        Debug.Log("Just particle");
-                        Destroy(particleSystem.gameObject);
-                    }
+                }
+                else
+                {
+                    Debug.Log("Just particle");
+                    Destroy(particleSystem.gameObject);
                 }
             }
         }
