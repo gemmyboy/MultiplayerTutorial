@@ -102,18 +102,12 @@ public class RespawnScript : Photon.MonoBehaviour {
 				}
 				else if(((int)currPlayer.GetPhotonView().owner.customProperties["Dead"] == 1) && (currPlayer.GetPhotonView().owner == player) && (currPlayer.GetComponent<HealthSync>().activateRespawn == true) && respawn == true && photonView.isMine)
 				{
-					//Perform necessary steps for respawning player.
 					StartCoroutine (getSpawnPoint(player));
-
-					//photonView.RPC ("RespawnThePlayer",player);
-
-
 
 					photonView.RPC ("RemoveNetworkTrash",PhotonTargets.All,currPlayer.GetPhotonView().viewID);
 
 					allPlayers = GameObject.FindGameObjectsWithTag("Player");
 					break;
-
 				}
 			}
 		}
@@ -122,7 +116,7 @@ public class RespawnScript : Photon.MonoBehaviour {
 	[RPC]
 	void RespawnThePlayer(Vector3 thePosition)
 	{
-			respawn = false;
+			//respawn = false;
 
 			GameObject currPlayerHolder = PhotonNetwork.Instantiate("T-90_Prefab_Network", thePosition, Quaternion.identity,0);
 
@@ -150,14 +144,12 @@ public class RespawnScript : Photon.MonoBehaviour {
 	[RPC]
 	void RemoveNetworkTrash(int viewID)
 	{
-		//Destroy (currPlayer.gameObject);
 		foreach(GameObject eachMofo in allPlayers)
 		{
 			if(eachMofo.GetPhotonView().viewID == viewID)
 				Destroy (eachMofo.gameObject);
 		}
-		//Destroy (allPlayers [objIndex].gameObject);
-		
+
 		GameObject[] trash = GameObject.FindGameObjectsWithTag("Trash");
 		foreach(GameObject currTrash in trash)
 		{
@@ -174,14 +166,13 @@ public class RespawnScript : Photon.MonoBehaviour {
 			{
 				if(checkSpawn(position))
 				{
-					Debug.Log ("FOUND A GOOD POSITION******");
 					goodSpawn = true;
 				}else{
 					position = new Vector3 (Random.Range (140, 1230), 200.0f, Random.Range (-315, 580));
-					Debug.Log ("CHECKING FOR A GOOD POSITION*********");
 				}
 			}
 			yield return new WaitForSeconds(1.0f);
+			respawn = false;
 			photonView.RPC ("RespawnThePlayer",thePlayer,position);
 		}
 	}
