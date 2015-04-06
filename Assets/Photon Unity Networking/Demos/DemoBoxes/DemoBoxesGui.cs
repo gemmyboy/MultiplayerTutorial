@@ -5,7 +5,15 @@ public class DemoBoxesGui : MonoBehaviour
 {
     public bool HideUI = false;
 
-    void OnGUI(){
+    void OnGUI()
+    {
+        if (HideUI)
+        {
+            return;
+        }
+
+        GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
+
         if (!PhotonNetwork.connected)
         {
             if (GUILayout.Button("Connect"))

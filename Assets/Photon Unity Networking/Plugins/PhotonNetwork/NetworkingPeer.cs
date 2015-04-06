@@ -134,12 +134,15 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
 
     /// <summary>Stat value: Count of Players in rooms</summary>
     public int mPlayersInRoomsCount { get; internal set; }
-    
+
     private HashSet<int> allowedReceivingGroups = new HashSet<int>();
 
     private HashSet<int> blockSendingGroups = new HashSet<int>();
 
     internal protected Dictionary<int, PhotonView> photonViewList = new Dictionary<int, PhotonView>(); //TODO: make private again
+
+    private readonly Dictionary<int, Hashtable> dataPerGroupReliable = new Dictionary<int, Hashtable>();    // only used in RunViewUpdate()
+    private readonly Dictionary<int, Hashtable> dataPerGroupUnreliable = new Dictionary<int, Hashtable>();  // only used in RunViewUpdate()
 
     internal protected short currentLevelPrefix = 0;
 
@@ -181,6 +184,8 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
 
     public NetworkingPeer(IPhotonPeerListener listener, string playername, ConnectionProtocol connectionProtocol) : base(listener, connectionProtocol)
     {
+        // TODO: CAS must be implemented for OfflineMode
+
         #if !UNITY_EDITOR && (UNITY_WINRT)
         // this automatically uses a separate assembly-file with Win8-style Socket usage (not possible in Editor)
         Debug.LogWarning("Using PingWindowsStore");
@@ -503,12 +508,12 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
             HashSet<GameObject> instantiatedGos = new HashSet<GameObject>();
             foreach (PhotonView view in this.photonViewList.Values)
             {
-                if (!view.isSceneView)
+                if (view.isRuntimeInstantiated)
                 {
                     instantiatedGos.Add(view.gameObject); // HashSet keeps each object only once
                 }
             }
-            
+
             foreach (GameObject go in instantiatedGos)
             {
                 this.RemoveInstantiatedGO(go, true);
@@ -810,7 +815,7 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
             properties[ActorProperties.PlayerName] = this.PlayerName;
             if (this.mLocalActor.ID > 0)
             {
-                this.OpSetPropertiesOfActor(this.mLocalActor.ID, properties, true, (byte)0);
+                this.OpSetPropertiesOfActor(this.mLocalActor.ID, properties, true, (byte)0, null);
                 this.mPlayernameHasToBeUpdated = false;
             }
         }
@@ -1204,7 +1209,7 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
                             if (PhotonNetwork.logLevel >= PhotonLogLevel.Informational)
                                 Debug.LogWarning(string.Format("CreateRoom failed, client stays on masterserver: {0}.", operationResponse.ToStringFull()));
 
-                            SendMonoMessage(PhotonNetworkingMessage.OnPhotonCreateRoomFailed);
+                            SendMonoMessage(PhotonNetworkingMessage.OnPhotonCreateRoomFailed, operationResponse.ReturnCode, operationResponse.DebugMessage);
                             break;
                         }
 
@@ -2367,6 +2372,7 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
             resourcePVs[i].viewID = viewsIDs[i];
             resourcePVs[i].prefix = objLevelPrefix;
             resourcePVs[i].instantiationId = instantiationId;
+            resourcePVs[i].isRuntimeInstantiated = true;
         }
 
         this.StoreInstantiationData(instantiationId, incomingInstantiationData);
@@ -2382,14 +2388,14 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
             resourcePVs[i].prefix = -1;
             resourcePVs[i].prefixBackup = -1;
             resourcePVs[i].instantiationId = -1;
+            resourcePVs[i].isRuntimeInstantiated = false;
         }
 
         this.RemoveInstantiationData(instantiationId);
-        
+
         // Send OnPhotonInstantiate callback to newly created GO.
         // GO will be enabled when instantiated from Prefab and it does not matter if the script is enabled or disabled.
         go.SendMessage(PhotonNetworkingMessage.OnPhotonInstantiate.ToString(), new PhotonMessageInfo(photonPlayer, serverTime, null), SendMessageOptions.DontRequireReceiver);
-
         return go;
     }
 
@@ -2495,7 +2501,7 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
         }
 
         // Don't remove the GO if it doesn't have any PhotonView
-        PhotonView[] views = go.GetComponentsInChildren<PhotonView>();
+        PhotonView[] views = go.GetComponentsInChildren<PhotonView>(true);
         if (views == null || views.Length <= 0)
         {
             Debug.LogError("Failed to 'network-remove' GameObject because has no PhotonView components: " + go);
@@ -2527,7 +2533,7 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
         // cleanup instantiation (event and local list)
         if (!localOnly)
         {
-            this.ServerCleanInstantiateAndDestroy(instantiationId, creatorId);   // server cleaning
+            this.ServerCleanInstantiateAndDestroy(instantiationId, creatorId, viewZero.isRuntimeInstantiated);   // server cleaning
         }
 
 
@@ -2585,7 +2591,7 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
     /// <summary>
     /// Removes an instantiation event from the server's cache. Needs id and actorNr of player who instantiated.
     /// </summary>
-    private void ServerCleanInstantiateAndDestroy(int instantiateId, int creatorId)
+    private void ServerCleanInstantiateAndDestroy(int instantiateId, int creatorId, bool isRuntimeInstantiated)
     {
         Hashtable removeFilter = new Hashtable();
         removeFilter[(byte)7] = instantiateId;
@@ -2597,9 +2603,9 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
         Hashtable evData = new Hashtable();
         evData[(byte)0] = instantiateId;
         options = null;
-        if (instantiateId > 0 && instantiateId < PhotonNetwork.MAX_VIEW_IDS)
+        if (!isRuntimeInstantiated)
         {
-            // if the view gets loaded with the scene, the EvDestroy must be cached
+            // if the view got loaded with the scene, the EvDestroy must be cached (there is no Instantiate-msg which we can remove)
             // reason: joining players will load the obj and have to destroy it (too)
             options = new RaiseEventOptions();
             options.CachingOption = EventCaching.AddToRoomCacheGlobal;
@@ -2703,8 +2709,11 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
             {
                 Debug.LogError(string.Format("PhotonView ID duplicate found: {0}. New: {1} old: {2}. Maybe one wasn't destroyed on scene load?! Check for 'DontDestroyOnLoad'. Destroying old entry, adding new.", netView.viewID, netView, photonViewList[netView.viewID]));
             }
+            else
+            {
+                return;
+            }
 
-            //this.photonViewList.Remove(netView.viewID); // TODO check if we chould Destroy the GO of this view?!
             this.RemoveInstantiatedGO(photonViewList[netView.viewID].gameObject, true);
         }
 
@@ -2713,7 +2722,9 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
         //Debug.LogError("view being added. " + netView);	// Exit Games internal log
 
         if (PhotonNetwork.logLevel >= PhotonLogLevel.Full)
+        {
             Debug.Log("Registered PhotonView: " + netView.viewID);
+        }
     }
 
     ///// <summary>
@@ -2828,7 +2839,7 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
         //}
     }
 
-    internal void RPC(PhotonView view, string methodName, PhotonPlayer player, params object[] parameters)
+    internal void RPC(PhotonView view, string methodName, PhotonPlayer player, bool encrypt, params object[] parameters)
     {
         if (this.blockSendingGroups.Contains(view.group))
         {
@@ -2841,7 +2852,9 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
         }
 
         if (PhotonNetwork.logLevel >= PhotonLogLevel.Full)
+        {
             Debug.Log("Sending RPC \"" + methodName + "\" to player[" + player + "]");
+        }
 
 
         //ts: changed RPCs to a one-level hashtable as described in internal.txt
@@ -2875,10 +2888,8 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
         }
         else
         {
-            RaiseEventOptions options = new RaiseEventOptions() { TargetActors = new int[] { player.ID } };
+            RaiseEventOptions options = new RaiseEventOptions() { TargetActors = new int[] { player.ID }, Encrypt = encrypt };
             this.OpRaiseEvent(PunEvent.RPC, rpcEvent, true, options);
-            //int[] targetActors = new int[] { player.ID };
-            //this.OpRaiseEvent(PunEvent.RPC, rpcEvent, true, 0, targetActors);
         }
     }
 
@@ -2892,7 +2903,7 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
     ///
     /// This is sent as event (code: 200) which will contain a sender (origin of this RPC).
 
-    internal void RPC(PhotonView view, string methodName, PhotonTargets target, params object[] parameters)
+    internal void RPC(PhotonView view, string methodName, PhotonTargets target, bool encrypt, params object[] parameters)
     {
         if (this.blockSendingGroups.Contains(view.group))
         {
@@ -2937,21 +2948,20 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
         // Check scoping
         if (target == PhotonTargets.All)
         {
-            RaiseEventOptions options = new RaiseEventOptions() { InterestGroup = (byte)view.group };
+            RaiseEventOptions options = new RaiseEventOptions() { InterestGroup = (byte)view.group, Encrypt = encrypt };
             this.OpRaiseEvent(PunEvent.RPC, rpcEvent, true, options);
-            //this.OpRaiseEvent(PunEvent.RPC, (byte)view.group, rpcEvent, true, 0);
 
             // Execute local
             this.ExecuteRPC(rpcEvent, this.mLocalActor);
         }
         else if (target == PhotonTargets.Others)
         {
-            RaiseEventOptions options = new RaiseEventOptions() { InterestGroup = (byte)view.group };
+            RaiseEventOptions options = new RaiseEventOptions() { InterestGroup = (byte)view.group, Encrypt = encrypt };
             this.OpRaiseEvent(PunEvent.RPC, rpcEvent, true, options);
         }
         else if (target == PhotonTargets.AllBuffered)
         {
-            RaiseEventOptions options = new RaiseEventOptions() { CachingOption = EventCaching.AddToRoomCache};
+            RaiseEventOptions options = new RaiseEventOptions() { CachingOption = EventCaching.AddToRoomCache, Encrypt = encrypt };
             this.OpRaiseEvent(PunEvent.RPC, rpcEvent, true, options);
 
             // Execute local
@@ -2959,7 +2969,7 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
         }
         else if (target == PhotonTargets.OthersBuffered)
         {
-            RaiseEventOptions options = new RaiseEventOptions() { CachingOption = EventCaching.AddToRoomCache };
+            RaiseEventOptions options = new RaiseEventOptions() { CachingOption = EventCaching.AddToRoomCache, Encrypt = encrypt };
             this.OpRaiseEvent(PunEvent.RPC, rpcEvent, true, options);
         }
         else if (target == PhotonTargets.MasterClient)
@@ -2970,13 +2980,13 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
             }
             else
             {
-                RaiseEventOptions options = new RaiseEventOptions() { Receivers = ReceiverGroup.MasterClient };
+                RaiseEventOptions options = new RaiseEventOptions() { Receivers = ReceiverGroup.MasterClient, Encrypt = encrypt };
                 this.OpRaiseEvent(PunEvent.RPC, rpcEvent, true, options);
             }
         }
         else if (target == PhotonTargets.AllViaServer)
         {
-            RaiseEventOptions options = new RaiseEventOptions() { InterestGroup = (byte)view.group, Receivers = ReceiverGroup.All };
+            RaiseEventOptions options = new RaiseEventOptions() { InterestGroup = (byte)view.group, Receivers = ReceiverGroup.All, Encrypt = encrypt };
             this.OpRaiseEvent(PunEvent.RPC, rpcEvent, true, options);
             if (PhotonNetwork.offlineMode)
             {
@@ -2985,7 +2995,7 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
         }
         else if (target == PhotonTargets.AllBufferedViaServer)
         {
-            RaiseEventOptions options = new RaiseEventOptions() { InterestGroup = (byte)view.group, Receivers = ReceiverGroup.All, CachingOption = EventCaching.AddToRoomCache };
+            RaiseEventOptions options = new RaiseEventOptions() { InterestGroup = (byte)view.group, Receivers = ReceiverGroup.All, CachingOption = EventCaching.AddToRoomCache, Encrypt = encrypt };
             this.OpRaiseEvent(PunEvent.RPC, rpcEvent, true, options);
             if (PhotonNetwork.offlineMode)
             {
@@ -3139,6 +3149,7 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
         }
     }
 
+
     // this is called by Update() and in Unity that means it's single threaded.
     public void RunViewUpdate()
     {
@@ -3156,8 +3167,8 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
             return; // No need to send OnSerialize messages (these are never buffered anyway)
         }
 
-        Dictionary<int, Hashtable> dataPerGroupReliable = new Dictionary<int, Hashtable>();
-        Dictionary<int, Hashtable> dataPerGroupUnreliable = new Dictionary<int, Hashtable>();
+        dataPerGroupReliable.Clear();
+        dataPerGroupUnreliable.Clear();
 
         /* Format of the data hashtable:
          * Hasthable dataPergroup*
@@ -3256,13 +3267,11 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
         {
             options.InterestGroup = (byte)kvp.Key;
             this.OpRaiseEvent(PunEvent.SendSerializeReliable, kvp.Value, true, options);
-            //this.OpRaiseEvent(PunEvent.SendSerializeReliable, (byte)kvp.Key, kvp.Value, true, 0);
         }
         foreach (KeyValuePair<int, Hashtable> kvp in dataPerGroupUnreliable)
         {
             options.InterestGroup = (byte)kvp.Key;
             this.OpRaiseEvent(PunEvent.SendSerialize, kvp.Value, false, options);
-            //this.OpRaiseEvent(PunEvent.SendSerialize, (byte)kvp.Key, kvp.Value, false, 0);
         }
     }
 

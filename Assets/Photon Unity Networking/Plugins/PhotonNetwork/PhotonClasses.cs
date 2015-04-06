@@ -321,7 +321,7 @@ public interface IPunCallbacks
     /// During development of a game, it might also fail due to wrong configuration on the server side. 
     /// In those cases, logging the debugMessage is very important. 
     /// 
-    /// Unless you setup a custom authentication service for your app (in the [Dashboard](https://cloud.exitgames.com/dashboard)), 
+    /// Unless you setup a custom authentication service for your app (in the [Dashboard](https://www.exitgames.com/dashboard)), 
     /// this won't be called!
     /// </remarks>
     /// <param name="debugMessage">Contains a debug message why authentication failed. This has to be fixed during development time.</param>
@@ -690,7 +690,7 @@ namespace Photon
         /// During development of a game, it might also fail due to wrong configuration on the server side. 
         /// In those cases, logging the debugMessage is very important. 
         /// 
-        /// Unless you setup a custom authentication service for your app (in the [Dashboard](https://cloud.exitgames.com/dashboard)), 
+        /// Unless you setup a custom authentication service for your app (in the [Dashboard](https://www.exitgames.com/dashboard)), 
         /// this won't be called!
         /// </remarks>
         /// <param name="debugMessage">Contains a debug message why authentication failed. This has to be fixed during development time.</param>
@@ -903,6 +903,9 @@ public class RaiseEventOptions
 
     /// <summary>Used along with CachingOption SliceSetIndex, SlicePurgeIndex or SlicePurgeUpToIndex if you want to set or purge a specific cache-slice.</summary>
     public int CacheSliceIndex;
+
+    /// <summary>Use rarely. The binary message gets encrpted before being sent. Any receiver in the room will be able to decrypt the message, of course.</summary>
+    public bool Encrypt;
 }
 
 /// <summary>Defines Photon event-codes as used by PUN.</summary>

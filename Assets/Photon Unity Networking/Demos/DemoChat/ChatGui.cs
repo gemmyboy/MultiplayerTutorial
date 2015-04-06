@@ -26,7 +26,7 @@ using UnityEngine;
 /// Note: 
 /// Don't forget to call ChatClient.Service(). Might later on be integrated into PUN but for now don't forget.
 /// </remarks>
-public class ChatGui : Photon.MonoBehaviour, IChatClientListener
+public class ChatGui : MonoBehaviour, IChatClientListener
 {
     public string ChatAppId;                    // set in inspector. Your Chat AppId (don't mix it with Realtime/Turnbased Apps).
     public string[] ChannelsToJoinOnConnect;    // set in inspector. Demo channels to join automatically.
@@ -35,14 +35,13 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
 
     public string UserName { get; set; }
 
-    public ChatChannel selectedChannel;
-    public string selectedChannelName;     // mainly used for GUI/input
-    public int selectedChannelIndex = 0;   // mainly used for GUI/input
+    private ChatChannel selectedChannel;
+    private string selectedChannelName;     // mainly used for GUI/input
+    private int selectedChannelIndex = 0;   // mainly used for GUI/input
     bool doingPrivateChat;
     
     
     public ChatClient chatClient;
-    public ChatClient chatClient2;
     
     // GUI stuff:
     public Rect GuiRect = new Rect(0, 0, 250, 300);
@@ -50,58 +49,24 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
     public bool AlignBottom = false;
     public bool FullScreen = false;
 
-    public string inputLine = "";
+    private string inputLine = "";
     private string userIdInput = "";
     private Vector2 scrollPos = Vector2.zero;
     private static string WelcomeText = "Welcome to chat.\\help lists commands.";
     private static string HelpText = "\n\\subscribe <list of channelnames> subscribes channels.\n\\unsubscribe <list of channelnames> leaves channels.\n\\msg <username> <message> send private message to user.\n\\clear clears the current chat tab. private chats get closed.\n\\help gets this help message.";
 
-    public bool displayedMessage = false;
     public void Start()
     {
-        if(!photonView.isMine){
-            this.enabled = false;
-        }
-        else
-        {
-            //switchVisibility();
-        }
-
+        DontDestroyOnLoad(this.gameObject);
         Application.runInBackground = true; // this must run in background or it will drop connection if not focussed.
 
         if (string.IsNullOrEmpty(this.UserName))
         {
-            this.UserName = PhotonNetwork.player.name; 
+            this.UserName = "user" + Environment.TickCount%99; //made-up username
         }
-        //Set the chat system
-		if (PhotonNetwork.player.customProperties["Team"] != null)
-        {
-			if (PhotonNetwork.player.customProperties["Team"].ToString() == "Eagles")
-            {
-                ChannelsToJoinOnConnect[1] = "Eagle";
-            }
-			else if (PhotonNetwork.player.customProperties["Team"].ToString() == "Excorcist")
-            {
-                ChannelsToJoinOnConnect[1] = "Excorcist";
-            }
-			else if (PhotonNetwork.player.customProperties["Team"].ToString() == "Wolves")
-            {
-                ChannelsToJoinOnConnect[1] = "Wolves";
-            }
-			else if (PhotonNetwork.player.customProperties["Team"].ToString() == "Angel")
-            {
-                ChannelsToJoinOnConnect[1] = "Angel";
-            }
-        }
-        //Start the chat client
+
         chatClient = new ChatClient(this);
         chatClient.Connect(ChatAppId, "1.0", this.UserName, null);
-
-        if(PhotonNetwork.isMasterClient){
-            //server client
-            chatClient2 = new ChatClient(this);
-            chatClient2.Connect(ChatAppId, "1.0", "Server", null);
-        }
 
         if (this.AlignBottom)
         {
@@ -114,6 +79,8 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
             this.GuiRect.width = Screen.width;
             this.GuiRect.height = Screen.height;
         }
+
+        Debug.Log(this.UserName);
     }
 
     /// <summary>To avoid that the Editor becomes unresponsive, disconnect all Photon connections in OnApplicationQuit.</summary>
@@ -135,7 +102,6 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
 
     public void OnGUI()
     {
-
         if (!this.IsVisible)
         {
             return;
@@ -152,13 +118,11 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
             {
                 // focus on input -> submit it
                 GuiSendsMsg();
-                Screen.lockCursor = true;
                 return; // showing the now modified list would result in an error. to avoid this, we just skip this single frame
             }
             else
             {
                 // assign focus to input
-                Screen.lockCursor = false;
                 GUI.FocusControl("ChatInput");
             }
         }
@@ -215,11 +179,6 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
 
                 GUILayout.EndScrollView();
             }
-            if(PhotonNetwork.player.isMasterClient && PhotonNetwork.room.customProperties["GameType"].ToString() == "Omega Tank" && !displayedMessage){
-                string message = "OMEGA TANK HAS SPAWNED!";
-                this.chatClient2.PublishMessage(this.selectedChannelName, message);
-                displayedMessage = true;
-            }
         }
 
 
@@ -253,7 +212,7 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
         GUILayout.EndArea();
     }
 
-    public void GuiSendsMsg()
+    private void GuiSendsMsg()
     {
         if (string.IsNullOrEmpty(this.inputLine))
         {
@@ -399,16 +358,5 @@ public class ChatGui : Photon.MonoBehaviour, IChatClientListener
         }
         
         Debug.LogWarning("status: " + string.Format("{0} is {1}. Msg:{2}", user, status, message));
-    }
-
-    void switchVisibility()
-    {
-        if(IsVisible){
-            IsVisible = false;
-        }
-        else
-        {
-            IsVisible = true;
-        }
     }
 }

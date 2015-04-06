@@ -26,6 +26,8 @@ namespace ExitGames.Client.Photon
     /// </remarks>
     internal class LoadbalancingPeer : PhotonPeer
     {
+        private readonly Dictionary<byte, object> opParameters = new Dictionary<byte, object>();    // used in OpRaiseEvent() (avoids lots of new Dictionary() calls)
+
         public LoadbalancingPeer(IPhotonPeerListener listener, ConnectionProtocol protocolType) : base(listener, protocolType)
         {
         }
@@ -279,10 +281,10 @@ namespace ExitGames.Client.Photon
 
         public bool OpSetCustomPropertiesOfActor(int actorNr, Hashtable actorProperties, bool broadcast, byte channelId)
         {
-            return this.OpSetPropertiesOfActor(actorNr, actorProperties.StripToStringKeys(), broadcast, channelId);
+            return this.OpSetPropertiesOfActor(actorNr, actorProperties.StripToStringKeys(), broadcast, channelId, null);
         }
 
-        protected bool OpSetPropertiesOfActor(int actorNr, Hashtable actorProperties, bool broadcast, byte channelId)
+        protected internal bool OpSetPropertiesOfActor(int actorNr, Hashtable actorProperties, bool broadcast, byte channelId, Hashtable expectedValues)
         {
             if (this.DebugOut >= DebugLevel.INFO)
             {
@@ -306,6 +308,12 @@ namespace ExitGames.Client.Photon
                 opParameters.Add(ParameterCode.Broadcast, broadcast);
             }
 
+            if (expectedValues != null && expectedValues.Count > 0)
+            {
+                // UnityEngine.Debug.Log("Expected values: " + expectedValues.ToStringFull());
+                opParameters.Add(ParameterCode.ExpectedValues, expectedValues);
+            }
+
             return this.OpCustom((byte)OperationCode.SetProperties, opParameters, broadcast, channelId);
         }
 
@@ -313,15 +321,15 @@ namespace ExitGames.Client.Photon
         {
             Hashtable properties = new Hashtable();
             properties[propCode] = value;
-            this.OpSetPropertiesOfRoom(properties, true, (byte)0);
+            this.OpSetPropertiesOfRoom(properties, true, (byte)0, null);
         }
 
         public bool OpSetCustomPropertiesOfRoom(Hashtable gameProperties, bool broadcast, byte channelId)
         {
-            return this.OpSetPropertiesOfRoom(gameProperties.StripToStringKeys(), broadcast, channelId);
+            return this.OpSetPropertiesOfRoom(gameProperties.StripToStringKeys(), broadcast, channelId, null);
         }
 
-        public bool OpSetPropertiesOfRoom(Hashtable gameProperties, bool broadcast, byte channelId)
+        protected internal bool OpSetPropertiesOfRoom(Hashtable gameProperties, bool broadcast, byte channelId, Hashtable expectedValues)
         {
             if (this.DebugOut >= DebugLevel.INFO)
             {
@@ -333,6 +341,12 @@ namespace ExitGames.Client.Photon
             if (broadcast)
             {
                 opParameters.Add(ParameterCode.Broadcast, true);
+            }
+
+            if (expectedValues != null && expectedValues.Count > 0)
+            {
+                // UnityEngine.Debug.Log("Expected values: " + expectedValues.ToStringFull());
+                opParameters.Add(ParameterCode.ExpectedValues, expectedValues);
             }
 
             return this.OpCustom((byte)OperationCode.SetProperties, opParameters, broadcast, channelId);
@@ -448,6 +462,7 @@ namespace ExitGames.Client.Photon
             return this.OpCustom((byte)LiteOpCode.ChangeGroups, opParameters, true, 0);
         }
 
+
         /// <summary>
         /// Send an event with custom code/type and any content to the other players in the same room.
         /// </summary>
@@ -459,7 +474,7 @@ namespace ExitGames.Client.Photon
         /// <returns>If operation could be enqueued for sending. Sent when calling: Service or SendOutgoingCommands.</returns>
         public virtual bool OpRaiseEvent(byte eventCode, object customEventContent, bool sendReliable, RaiseEventOptions raiseEventOptions)
         {
-            Dictionary<byte, object> opParameters = new Dictionary<byte, object>();
+            opParameters.Clear();   // re-used private variable to avoid many new Dictionary() calls (garbage collection)
             opParameters[(byte)LiteOpKey.Code] = (byte)eventCode;
             if (customEventContent != null)
             {
@@ -494,7 +509,7 @@ namespace ExitGames.Client.Photon
                 }
             }
 
-            return this.OpCustom((byte)LiteOpCode.RaiseEvent, opParameters, sendReliable, raiseEventOptions.SequenceChannel, false);
+            return this.OpCustom((byte)LiteOpCode.RaiseEvent, opParameters, sendReliable, raiseEventOptions.SequenceChannel, raiseEventOptions.Encrypt);
         }
     }
 
@@ -576,7 +591,7 @@ namespace ExitGames.Client.Photon
         /// <remarks>
         /// Some subscription plans for the Photon Cloud are region-bound. Servers of other regions can't be used then.
         /// Check your master server address and compare it with your Photon Cloud Dashboard's info.
-        /// https://cloud.exitgames.com/dashboard
+        /// https://www.exitgames.com/dashboard
         ///
         /// OpAuthorize is part of connection workflow but only on the Photon Cloud, this error can happen.
         /// Self-hosted Photon servers with a CCU limited license won't let a client connect at all.
@@ -689,6 +704,9 @@ namespace ExitGames.Client.Photon
 
         /// <summary>(232) Used when creating rooms to define if any userid can join the room only once.</summary>
         public const byte CheckUserOnJoin = (byte)232;
+
+        /// <summary>(231) Code for "Check And Swap" (CAS) when changing properties.</summary>
+        public const byte ExpectedValues = (byte)231;
 
         /// <summary>(230) Address of a (game) server to use.</summary>
         public const byte Address = 230;
@@ -903,7 +921,7 @@ public enum CustomAuthenticationType : byte
 /// values to Photon which will verify them before granting access or disconnecting the client.
 ///
 /// The Photon Cloud Dashboard will let you enable this feature and set important server values for it.
-/// https://cloud.exitgames.com/dashboard
+/// https://www.exitgames.com/dashboard
 /// </remarks>
 public class AuthenticationValues
 {

@@ -13,54 +13,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HostType: 1
   Protocol: 0
-  ServerAddress: 192.168.0.17
+  ServerAddress: 
   ServerPort: 5055
   PreferredRegion: 1
   AppID: dcf78fbe-323b-4c20-918b-09b33e0cbdc8
   PingCloudServersOnAwake: 0
   RpcList:
+  - abandonShip
+  - AdjustHealthBar
+  - AdjustPercent
+  - ChangeColor
   - ChangeColorTo
+  - ChangeMyTexture
   - Chat
+  - closePanelForPlayers
   - ColorRpc
   - DestroyRpc
   - DoJump
+  - fixChatMessage
+  - fixDropDown
+  - fixEmblem
+  - fixLabel
+  - FixScreen
   - InstantiateRpc
   - Marco
+  - noFaction
   - OnAwakeRPC
   - PickupItemInit
+  - PlayCountDown
   - Polo
   - PunPickup
   - PunPickupSimple
   - PunRespawn
-  - RequestForPickupTimes
-  - TaggedPlayer
-  - fixLabel
-  - UpdateParticleSystem
-  - StartGameCountdown
-  - PlayCountDown
-  - fadeScreen
-  - FixScreen
-  - closePanelForPlayers
-  - ChangeColor
-  - fixDropDown
   - rebuildLabelLobby
-  - fixEmblem
-  - explosionRadius
-  - ChangeTankMaterial
-  - fixChatMessage
-  - shootShell
-  - updateTime
-  - createMusic
-  - ChangeMyTexture
   - ReduceMyHealth
-  - MakeBulletExplode
-  - noFaction
-  - fixFlag
-  - AdjustHealthBar
-  - AdjustPercent
-  - tankGoBoom
-  - fixHolder
+  - RequestForPickupTimes
   - resetDropDown
-  - abandonShip
   - RespawnThePlayer
+  - TaggedPlayer
+  - tankGoBoom
   DisableAutoOpenWizard: 0
