@@ -2231,11 +2231,7 @@ MonoBehaviour:
   yMaxLimit: 80
   mouseAxis: 0
   distanceMin: 15
-<<<<<<< HEAD
-  distanceMax: 45
-=======
   distanceMax: 25
->>>>>>> origin/JACOB'S-NEW-BRANCH!!!
 --- !u!114 &70252060
 MonoBehaviour:
   m_ObjectHideFlags: 0

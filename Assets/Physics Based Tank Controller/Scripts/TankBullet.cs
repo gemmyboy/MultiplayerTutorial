@@ -9,18 +9,15 @@ public class TankBullet : Photon.MonoBehaviour {
 	public int lifeTimeOfTheBullet = 5;
 	private float lifeTime;
     PhotonView view;
-    //TankGunController gunController;
 
     public double m_CreationTime;
     public int m_projectileID;
 	void Start(){
-        //gunController = FindObjectOfType<TankGunController>();
         view = GetComponent<PhotonView>();
 
 		rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
 		rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
 
-		//Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Bullet"), LayerMask.NameToLayer("TankCollider"));
 		Physics.minPenetrationForPenalty = 0;
 
 		if(LayerMask.LayerToName(10) != "Bullet"){
@@ -51,19 +48,7 @@ public class TankBullet : Photon.MonoBehaviour {
             	if (view.isMine && col.gameObject.GetComponent<PhotonView>().owner.customProperties["Team"] != view.owner.customProperties["Team"])
 	            {
 	                Debug.Log("hit tank");
-					//photonView.RPC ("BulletExplosionForce",PhotonTargets.All);
-					//transform.rigidbody.AddExplosionForce(15000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
 					Explosion ();
-					//PhotonNetwork.Destroy(gameObject);
-					//Destroy(gameObject);
-
-	                //PhotonPlayer player = col.gameObject.GetComponent<PhotonView>().owner;
-	                //int changedHealth = (int)player.customProperties["Health"] - 30;
-
-	                //ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
-	                //hash.Add("Health",changedHealth);
-	                //player.SetCustomProperties(hash);
-
 	            }
 			}
             
@@ -71,11 +56,28 @@ public class TankBullet : Photon.MonoBehaviour {
         else
         {
             Debug.Log("hit something else");
-			//Explosion ();
-			//PhotonNetwork.Destroy (gameObject);
             if (view.isMine)
             {
            	 	Explosion();
+            }
+        }
+    }
+    void OnTriggerEnter(Collider col)
+    {
+        Debug.Log("Shield Hit");
+        Debug.Log(col.gameObject);
+        if (col.gameObject.layer == LayerMask.NameToLayer("Shield"))
+        {
+            Debug.Log(col.gameObject.GetComponentInParent<PhotonView>().owner);
+            Debug.Log(PhotonNetwork.player.customProperties["Team"].ToString());
+            if (col.gameObject.GetComponentInParent<PhotonView>().owner.customProperties["Team"].ToString() != gameObject.GetPhotonView().owner.customProperties["Team"].ToString())
+            {
+                if (photonView.isMine)
+                {
+                    //Quaternion rot = Quaternion.Inverse(transform.rotation);
+                    transform.Rotate(0,180,0);
+                    GetComponent<Rigidbody>().AddForce(transform.forward * (.5f * GetComponent<Rigidbody>().velocity.magnitude), ForceMode.VelocityChange);
+                }
             }
         }
     }
@@ -88,10 +90,4 @@ public class TankBullet : Photon.MonoBehaviour {
 			PhotonNetwork.Destroy(gameObject);
 		}
 	}
-
-//	[RPC]
-//	void BulletExplosionForce()
-//	{
-//		transform.rigidbody.AddExplosionForce(15000.0f,transform.position,5.0f,0.0f,ForceMode.Impulse);
-//	}
 }
