@@ -1235,6 +1235,7 @@ GameObject:
   - 114: {fileID: 11451082}
   - 114: {fileID: 11434562}
   - 114: {fileID: 11426272}
+  - 114: {fileID: 11476696}
   m_Layer: 8
   m_Name: T-90_Prefab_Network
   m_TagString: Player
@@ -5421,6 +5422,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &11418300
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5456,6 +5458,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &11419436
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5668,6 +5671,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &11465996
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5718,6 +5722,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &11468410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5757,6 +5762,21 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
+  isRuntimeInstantiated: 0
+--- !u!114 &11476696
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79d72df68c8e2794e9652c80219386a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shield: {fileID: 100004, guid: a834a5d6d31d88b40ba5978e6d6c8094, type: 2}
+  cooldownTime: 10
+  timer: 0
 --- !u!114 &11483586
 MonoBehaviour:
   m_ObjectHideFlags: 1
