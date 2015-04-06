@@ -48,7 +48,8 @@ public class GameStartTimeManager : PunBehaviour
             }
         }
         time = this.SecondsUntilItsTime;
-        startTimeUI.GetComponentInChildren<Text>().text = "" + (int)time;
+		if(startTimeUI.GetComponentInChildren<Text>())
+       		startTimeUI.GetComponentInChildren<Text>().text = "" + (int)time;
         if((int)time == 0){
             StartCoroutine("waitFrame");
         }
@@ -70,6 +71,7 @@ public class GameStartTimeManager : PunBehaviour
     {
         yield return new WaitForSeconds(1.0f);
 		//startTimeUI.SetActive (false);
+		startTimeUI.transform.Find("PlayerOnlineLabel").gameObject.SetActive (false);
         //Destroy(startTimeUI);
     }
 }

@@ -215,8 +215,11 @@ public class HealthSync : Photon.MonoBehaviour {
         Destroy(tank.GetComponent<TankController>());
         Destroy(tank.GetComponent<TankInterpolationMovement>());
         //Destroy(tank.GetComponent<RotateEnemyHealth>());
-		Transform TankHealthSystem = (Transform)tank.transform.Find ("TankHealthSystem").FindChild ("TankHealthSystemCanvas");
-		TankHealthSystem.gameObject.SetActive(false);
+		//Transform TankHealthSystem = (Transform)tank.transform.Find ("TankHealthSystem").FindChild ("TankHealthSystemCanvas");
+		//TankHealthSystem.gameObject.SetActive(false);
+
+		if(tank.transform.Find ("TankHealthSystem"))
+			tank.transform.Find ("TankHealthSystem").tag = "Trash";
 
         Destroy(tank.GetComponent<Kills_Deaths_Assist>());
 		Destroy (tank.GetComponent<AdjustTankSkins> ());
@@ -305,8 +308,6 @@ public class HealthSync : Photon.MonoBehaviour {
             }
            
         }
-		//tank.transform.rigidbody.AddExplosionForce (100000.0f, tank.transform.position, 10.0f, 3.0f, ForceMode.Impulse);
-
     }
     void fixForExplosion(GameObject obj)
     {
