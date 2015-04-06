@@ -63,4 +63,5 @@ MonoBehaviour:
   - resetDropDown
   - abandonShip
   - RespawnThePlayer
+  - RemoveNetworkTrash
   DisableAutoOpenWizard: 0

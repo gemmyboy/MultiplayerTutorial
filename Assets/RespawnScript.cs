@@ -93,83 +93,51 @@ public class RespawnScript : Photon.MonoBehaviour {
 	{
 		if(player != null)
 		{
+			allPlayers = GameObject.FindGameObjectsWithTag("Player");
 			foreach(GameObject currPlayer in allPlayers)
 			{
-				if((respawn == false) && (currPlayer.GetComponent<HealthSync>().dead == true) && (currPlayer.GetPhotonView().owner == player) && (currPlayer.GetComponent<HealthSync>().activateRespawn == true))
+				if((respawn == false) && ((int)currPlayer.GetPhotonView().owner.customProperties["Dead"] == 1) && (currPlayer.GetPhotonView().owner == player) && (currPlayer.GetComponent<HealthSync>().activateRespawn == true) && photonView.isMine)
 				{
 					StartCoroutine(waitFiveSeconds());
 				}
-				else if(/*currPlayer.GetComponent<HealthSync>().dead == true &&*/ (currPlayer.GetPhotonView().owner == player) && (currPlayer.GetComponent<HealthSync>().activateRespawn == true) && respawn == true)
+				else if(((int)currPlayer.GetPhotonView().owner.customProperties["Dead"] == 1) && (currPlayer.GetPhotonView().owner == player) && (currPlayer.GetComponent<HealthSync>().activateRespawn == true) && respawn == true && photonView.isMine)
 				{
-
-					Debug.Log("******ATLEAST GOT HERE******");
-
-
-					Debug.Log ("****** PERFORM RESPAWN SHIT ******");
 					//Perform necessary steps for respawning player.
-					StartCoroutine (getSpawnPoint());
-					
-					Debug.Log ("*****SHOULD BE DOING A RESPAWN******");
-					//currPlayer.GetPhotonView().RPC("RespawnThePlayer",PhotonTargets.All);
-					if(photonView.isMine)
-					{
-						photonView.RPC ("RespawnThePlayer",player);
-						//GameObject currPlayerHolder = currPlayer;
-	//					GameObject currPlayerHolder = PhotonNetwork.Instantiate("T-90_Prefab_Network", spawnPoint, Quaternion.identity, 0);
-	//					//player = currPlayerHolder.GetPhotonView().owner;
-	//					//Add the camera target
-	//					orbit = FindObjectOfType<MouseOrbitC>();
-	//					//add the tankgun target
-	//					tankGun = currPlayerHolder.GetComponentInChildren<TankGunController>();
-	//					Target = GameObject.Find("Target");
-	//					orbit.target = currPlayerHolder.transform;
-	//					tankGun.target = Target.transform;
-	//					//Turn off own health system
-	//					Transform TankHealthSystem = (Transform)currPlayerHolder.transform.Find ("TankHealthSystem").FindChild ("TankHealthSystemCanvas");
-	//					TankHealthSystem.gameObject.SetActive(false);
-						if(currPlayer.GetComponent<HealthSync>().dead == true)
-							Destroy (currPlayer.gameObject);
-						GameObject[] trash = GameObject.FindGameObjectsWithTag("Trash");
-						foreach(GameObject currTrash in trash)
-						{
-							Destroy(currTrash);
-						}
+					StartCoroutine (getSpawnPoint(player));
+
+					//photonView.RPC ("RespawnThePlayer",player);
 
 
-						allPlayers = GameObject.FindGameObjectsWithTag("Player");
-						alreadyRespawnedPlayer = false;
-						break;
-					}
+
+					photonView.RPC ("RemoveNetworkTrash",PhotonTargets.All,currPlayer.GetPhotonView().viewID);
+
+					allPlayers = GameObject.FindGameObjectsWithTag("Player");
+					break;
+
 				}
 			}
 		}
 	}
 
 	[RPC]
-	void RespawnThePlayer()
+	void RespawnThePlayer(Vector3 thePosition)
 	{
-		//GameObject currPlayerHolder = PhotonNetwork.Instantiate("T-90_Prefab_Network", spawnPoint, Quaternion.identity, 0);
-		if(!alreadyRespawnedPlayer)
-		{
 			respawn = false;
-			Debug.Log("********************************");
-			Debug.Log(PhotonNetwork.player);
-			Debug.Log("********************************");
 
-			//Destroy(GameObject.Find("WheelColliders").gameObject);
-			GameObject currPlayerHolder = PhotonNetwork.Instantiate("T-90_Prefab_Network", spawnPoint, Quaternion.identity,0);
-			//player = currPlayerHolder.GetPhotonView().owner;
+			GameObject currPlayerHolder = PhotonNetwork.Instantiate("T-90_Prefab_Network", thePosition, Quaternion.identity,0);
+
 			//Add the camera target
 			orbit = FindObjectOfType<MouseOrbitC>();
+
 			//add the tankgun target
 			tankGun = currPlayerHolder.GetComponentInChildren<TankGunController>();
 			Target = GameObject.Find("Target");
 			orbit.target = currPlayerHolder.transform;
 			tankGun.target = Target.transform;
+
 			//Turn off own health system
 			Transform TankHealthSystem = (Transform)currPlayerHolder.transform.Find ("TankHealthSystem").FindChild ("TankHealthSystemCanvas");
 			TankHealthSystem.gameObject.SetActive(false);
-			alreadyRespawnedPlayer = true;
 
 			ExitGames.Client.Photon.Hashtable hash2 = new ExitGames.Client.Photon.Hashtable();
 			hash2.Add("Kills", (int)PhotonNetwork.player.customProperties["Kills"]);
@@ -177,31 +145,54 @@ public class RespawnScript : Photon.MonoBehaviour {
 			hash2.Add("Assist",(int)PhotonNetwork.player.customProperties["Assist"]);
 			hash2.Add("Health",100);
 			PhotonNetwork.player.SetCustomProperties(hash2);
+	}
+
+	[RPC]
+	void RemoveNetworkTrash(int viewID)
+	{
+		//Destroy (currPlayer.gameObject);
+		foreach(GameObject eachMofo in allPlayers)
+		{
+			if(eachMofo.GetPhotonView().viewID == viewID)
+				Destroy (eachMofo.gameObject);
+		}
+		//Destroy (allPlayers [objIndex].gameObject);
+		
+		GameObject[] trash = GameObject.FindGameObjectsWithTag("Trash");
+		foreach(GameObject currTrash in trash)
+		{
+			Destroy(currTrash);
 		}
 	}
 	
-	IEnumerator getSpawnPoint()
+	IEnumerator getSpawnPoint(PhotonPlayer thePlayer)
 	{
-		bool goodSpawn = false;
-		position = new Vector3 (Random.Range (100, 1300), 300.0f, Random.Range (-337, 850));
-		while(!goodSpawn)
-		{
-			if(checkSpawn(position))
+		if(photonView.isMine){
+			bool goodSpawn = false;
+			position = new Vector3 (Random.Range (140, 1230), 200.0f, Random.Range (-315, 580));
+			while(!goodSpawn)
 			{
-				Debug.Log ("FOUND A GOOD POSITION******");
-				goodSpawn = true;
-			}else{
-				position = new Vector3 (Random.Range (100, 1300), 300.0f, Random.Range (-337, 850));
-				Debug.Log ("CHECKING FOR A GOOD POSITION*********");
+				if(checkSpawn(position))
+				{
+					Debug.Log ("FOUND A GOOD POSITION******");
+					goodSpawn = true;
+				}else{
+					position = new Vector3 (Random.Range (140, 1230), 200.0f, Random.Range (-315, 580));
+					Debug.Log ("CHECKING FOR A GOOD POSITION*********");
+				}
 			}
+			yield return new WaitForSeconds(1.0f);
+			photonView.RPC ("RespawnThePlayer",thePlayer,position);
 		}
-		yield return new WaitForSeconds(1.0f);
 	}
 
 	IEnumerator waitFiveSeconds()
 	{
-		yield return new WaitForSeconds (5.0f);
-		respawn = true;
+		if(photonView.isMine)
+		{
+			yield return new WaitForSeconds (5.0f);
+			respawn = true;
+		}
 	}
 
 	//public GameObject sphere;
@@ -209,23 +200,20 @@ public class RespawnScript : Photon.MonoBehaviour {
 	{
 		RaycastHit hit;
 
-		Vector3 positionCheck = new Vector3(pos.x,300,pos.z);
-		if (Physics.Raycast(positionCheck, Vector3.down, out hit, 250.0f))
+		Vector3 positionCheck = new Vector3(pos.x,200f,pos.z);
+		if (Physics.Raycast(positionCheck, Vector3.down, out hit,250f))
 		{
-			Debug.DrawRay(positionCheck, Vector3.down * hit.distance, Color.blue, 200.0f);
+			Debug.DrawRay(positionCheck, Vector3.down * hit.distance, Color.blue, 200f);
 			if(hit.collider.gameObject.tag == "Terrain"){
 				Collider[] hitColliders = Physics.OverlapSphere(hit.point, 100.0f);
 				Debug.Log(hitColliders.Length);
-				if (hitColliders.Length == 0)
-				{
-					spawnPoint = hit.point + new Vector3(0,50,0);
-					return true;
-				}
-				else if(hitColliders.Length == 1){
+
+				if(hitColliders.Length == 1){
 					if(hitColliders[0].tag == "Terrain"){
 						Debug.Log("Ready to spawn");
-						spawnPoint = hit.point + new Vector3(0, 50, 0);
 						return true;
+					}else{
+						return false;
 					}
 				}
 				else
