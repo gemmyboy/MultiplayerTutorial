@@ -52,4 +52,5 @@ MonoBehaviour:
   - RespawnThePlayer
   - TaggedPlayer
   - tankGoBoom
+  - RemoveNetworkTrash
   DisableAutoOpenWizard: 0

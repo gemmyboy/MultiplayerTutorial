@@ -16,31 +16,15 @@ public class Shield : Photon.MonoBehaviour {
             timer += Time.deltaTime;
             if (gameObject.activeSelf && timer > lifeTime)
             {
-                Explosion();
+                GetComponent<Animator>().SetBool("Dying",true);
+                StartCoroutine(Explosion());
             }
         }
 	}
-
-    void OnTriggerEnter(Collider col)
+    IEnumerator Explosion()
     {
-        Debug.Log("Shield Hit");
-        if (col.gameObject.layer == LayerMask.NameToLayer("Bullet"))
-        {
-            Debug.Log(col.gameObject.GetComponent<PhotonView>().owner.customProperties["Team"].ToString());
-            Debug.Log(PhotonNetwork.player.customProperties["Team"].ToString());
-            if(col.gameObject.GetComponent<PhotonView>().owner.customProperties["Team"].ToString() != gameObject.GetPhotonView().owner.customProperties["Team"].ToString()){
-                if(photonView.isMine){
-                    Quaternion rot = Quaternion.Inverse(transform.rotation);
-                    transform.rotation = rot;
-                    GetComponent<Rigidbody>().AddForce(transform.forward * (.5f * GetComponent<Rigidbody>().velocity.magnitude), ForceMode.VelocityChange);
-                }
-            }
-        }
-    }
-    void Explosion()
-    {
-        //PhotonNetwork.Instantiate("large flames", transform.position, transform.rotation, 0);
-
+        yield return new WaitForSeconds(1.0f);
+        PhotonNetwork.Instantiate("FireWorksExplosion", transform.position, transform.rotation, 0);
         if (photonView.isMine && gameObject != null)
         {
             PhotonNetwork.Destroy(gameObject);

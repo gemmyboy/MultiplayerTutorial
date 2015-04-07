@@ -6,7 +6,7 @@ public class ShieldPlacement : Photon.MonoBehaviour {
     public float cooldownTime = 10.0f;
     public float timer = 0.0f;
 	void Start () {
-	    
+        timer = cooldownTime;
 	}
 	
 	// Update is called once per frame

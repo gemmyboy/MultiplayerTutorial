@@ -21,19 +21,19 @@ MonoBehaviour:
   settingsPathFoldout: 0
   extensionsFoldout: 1
   presetsFoldout: 1
-  playgroundManagerFoldout: 0
+  playgroundManagerFoldout: 1
   particleSystemFoldout: 1
   limitsFoldout: 0
   particlesFoldout: 1
   statesFoldout: 1
-  sourceFoldout: 0
+  sourceFoldout: 1
   createNewStateFoldout: 1
   particleSettingsFoldout: 1
-  forcesFoldout: 0
+  forcesFoldout: 1
   manipulatorsFoldout: 0
   eventsFoldout: 0
-  collisionFoldout: 1
-  renderingFoldout: 0
+  collisionFoldout: 0
+  renderingFoldout: 1
   advancedFoldout: 0
   saveLoadFoldout: 0
   toolboxFoldout: 1
@@ -41,7 +41,7 @@ MonoBehaviour:
   sortingFoldout: 0
   textureSheetAnimationFoldout: 0
   splineListFoldout: 1
-  transformListFoldout: 0
+  transformListFoldout: 1
   particleSettingsParticleCountFoldout: 1
   particleSettingsOverflowOffsetFoldout: 0
   particleSettingsScatterFoldout: 0
