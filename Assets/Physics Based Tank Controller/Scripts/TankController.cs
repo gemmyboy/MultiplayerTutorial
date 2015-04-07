@@ -235,7 +235,6 @@
 			//if(w.gameObject.transform.parent.parent.parent.gameObject.name == gameObject.name)
 			//{
 				AllWheelColliders.Add (w);
-				Debug.Log (w.gameObject);
 			//}
 		}
 

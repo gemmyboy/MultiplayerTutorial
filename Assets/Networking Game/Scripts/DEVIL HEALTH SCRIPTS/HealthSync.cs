@@ -148,10 +148,12 @@ public class HealthSync : Photon.MonoBehaviour {
 			photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
 			photonView.RPC ("AdjustHealthBar",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,2);
 
-		}else if(true)//if photonView == theKiller && theCase == 1
-		{
-
 		}
+//		if(theCase == 1 && photonView.ownerId == theKiller)//if photonView == theKiller && theCase == 1
+//		{
+//			Debug.Log ("GOT HERE FAGGOT");
+//			uiManager.SendMessage("updateKills",SendMessageOptions.RequireReceiver);
+//		}
 	}
 
 	[RPC]
@@ -191,7 +193,6 @@ public class HealthSync : Photon.MonoBehaviour {
     [RPC]
     void tankGoBoom(int viewID,int myKiller)
     {
-        Debug.Log(viewID);
         PhotonView[] views = FindObjectsOfType<PhotonView>();
         foreach(PhotonView view in views){
             if(view.viewID == viewID)
@@ -235,30 +236,48 @@ public class HealthSync : Photon.MonoBehaviour {
 			if(mainGun.transform.parent == tank.transform.parent)
 				fixForExplosion(mainGun);
 		}
-		if(tank.transform.Find("MainGun").gameObject != null)
+		if(tank.transform.Find("MainGun") != null)
 		{
-			//Debug.Log ("Didn't skip over***");
-			//Destroy (tank.transform.Find("TankHealthSystem").gameObject);
        		fixForExplosion(tank.transform.Find("MainGun").gameObject);
 		}
+		if(tank.transform.Find("WheelTransforms"))
+		{
+			if(tank.transform.Find("WheelTransforms").gameObject.transform.Find("WheelTransforms_L"))
+        		detachMultiple(tank.transform.Find("WheelTransforms").gameObject.transform.Find("WheelTransforms_L").gameObject);
+			if(tank.transform.Find("WheelTransforms").gameObject.transform.Find("WheelTransforms_R"))
+       			detachMultiple(tank.transform.Find("WheelTransforms").gameObject.transform.Find("WheelTransforms_R").gameObject);
+		}
+		if(tank.transform.Find("UselessGearsTransforms"))
+		{
+			if(tank.transform.Find("UselessGearsTransforms").gameObject.transform.Find("UselessGearsTransforms_L"))
+       			detachMultiple(tank.transform.Find("UselessGearsTransforms").gameObject.transform.Find("UselessGearsTransforms_L").gameObject);
+			if(tank.transform.Find("UselessGearsTransforms").gameObject.transform.Find("UselessGearsTransforms_R"))
+        		detachMultiple(tank.transform.Find("UselessGearsTransforms").gameObject.transform.Find("UselessGearsTransforms_R").gameObject);
+		}
+		if(tank.transform.Find ("WheelColliders"))
+			Destroy (tank.transform.Find ("WheelColliders").gameObject);
+		if(tank.transform.Find("Skirts"))
+		{
+			if(tank.transform.Find("Skirts").gameObject.transform.Find("Skirts_R"))
+			{
+       			DestroyHinge(tank.transform.Find("Skirts").gameObject.transform.Find("Skirts_R").gameObject);
+				detachMultiple(tank.transform.Find("Skirts").gameObject.transform.Find("Skirts_R").gameObject);
+			}
+			if(tank.transform.Find("Skirts").gameObject.transform.Find("Skirts_L"))
+			{
+        		DestroyHinge(tank.transform.Find("Skirts").gameObject.transform.Find("Skirts_L").gameObject);
+				detachMultiple(tank.transform.Find("Skirts").gameObject.transform.Find("Skirts_L").gameObject);
+			}
+		}
 
-        detachMultiple(tank.transform.Find("WheelTransforms").gameObject.transform.Find("WheelTransforms_L").gameObject);
-        detachMultiple(tank.transform.Find("WheelTransforms").gameObject.transform.Find("WheelTransforms_R").gameObject);
-        detachMultiple(tank.transform.Find("UselessGearsTransforms").gameObject.transform.Find("UselessGearsTransforms_L").gameObject);
-        detachMultiple(tank.transform.Find("UselessGearsTransforms").gameObject.transform.Find("UselessGearsTransforms_R").gameObject);
-		Destroy (tank.transform.Find ("WheelColliders").gameObject);
-
-        DestroyHinge(tank.transform.Find("Skirts").gameObject.transform.Find("Skirts_R").gameObject);
-        DestroyHinge(tank.transform.Find("Skirts").gameObject.transform.Find("Skirts_L").gameObject);
-
-        detachMultiple(tank.transform.Find("Skirts").gameObject.transform.Find("Skirts_R").gameObject);
-        detachMultiple(tank.transform.Find("Skirts").gameObject.transform.Find("Skirts_L").gameObject);
-
-
-        Destroy(tank.transform.Find("Tracks").gameObject);
-        Destroy(tank.transform.Find("HeadLights").gameObject);
-        Destroy(tank.transform.Find("HeavyExhaust").gameObject);
-        Destroy(tank.transform.Find("NormalExhaust").gameObject);
+		if(tank.transform.Find("Tracks"))
+       		Destroy(tank.transform.Find("Tracks").gameObject);
+		if(tank.transform.Find("HeadLights"))
+        	Destroy(tank.transform.Find("HeadLights").gameObject);
+		if(tank.transform.Find("HeavyExhaust"))
+       		Destroy(tank.transform.Find("HeavyExhaust").gameObject);
+		if(tank.transform.Find("NormalExhaust"))
+        	Destroy(tank.transform.Find("NormalExhaust").gameObject);
 
 		PhotonView[] childrenViews = tank.GetComponentsInChildren<PhotonView> ();
 		foreach(PhotonView thisChildView in childrenViews)
@@ -270,18 +289,30 @@ public class HealthSync : Photon.MonoBehaviour {
 			if(thisChildView.tag != "Player")
 				Destroy (thisChildView.GetComponent<PhotonView>());
 		}
-		Destroy (tank.transform.Find ("WheelTransforms").gameObject);
-		Destroy (tank.transform.Find ("MainGunColliders").gameObject);
-		Destroy (tank.transform.Find ("EngineIdleAudioClip").gameObject);
-		Destroy (tank.transform.Find ("EngineRunningAudioClip").gameObject);
-		Destroy (tank.transform.Find ("UselessGearsTransforms").gameObject);
-		Destroy (tank.transform.Find ("Skirts").gameObject);
-		Destroy (tank.transform.Find ("Misc").gameObject);
-		Destroy (tank.transform.Find ("COM").gameObject);
-		Destroy (tank.transform.Find ("BoneTransforms").gameObject);
-		if(tank.transform.Find ("Dynamic Com") != null)
+
+		if(tank.transform.Find ("WheelTransforms"))
+			Destroy (tank.transform.Find ("WheelTransforms").gameObject);
+		if(tank.transform.Find ("MainGunColliders"))
+			Destroy (tank.transform.Find ("MainGunColliders").gameObject);
+		if(tank.transform.Find ("EngineIdleAudioClip"))
+			Destroy (tank.transform.Find ("EngineIdleAudioClip").gameObject);
+		if(tank.transform.Find ("EngineRunningAudioClip"))
+			Destroy (tank.transform.Find ("EngineRunningAudioClip").gameObject);
+		if(tank.transform.Find ("UselessGearsTransforms"))
+			Destroy (tank.transform.Find ("UselessGearsTransforms").gameObject);
+		if(tank.transform.Find ("Skirts"))
+			Destroy (tank.transform.Find ("Skirts").gameObject);
+		if(tank.transform.Find ("Misc"))
+			Destroy (tank.transform.Find ("Misc").gameObject);
+		if(tank.transform.Find ("COM"))
+			Destroy (tank.transform.Find ("COM").gameObject);
+		if(tank.transform.Find ("BoneTransforms"))
+			Destroy (tank.transform.Find ("BoneTransforms").gameObject);
+		if(tank.transform.Find ("Dynamic Com"))
 			Destroy (tank.transform.Find ("Dynamic Com").gameObject);
+
         tank.transform.DetachChildren();
+
 
 		Destroy(tank.GetComponentInChildren<TankGunColliders>());
 
@@ -289,7 +320,7 @@ public class HealthSync : Photon.MonoBehaviour {
         foreach (Collider hit in colliders)
         {
             //Debug.Log(hit.name);
-            if (hit.name != "Terrain" && hit.gameObject.layer != LayerMask.NameToLayer("Flag") && hit.name != "Map-3-26")
+            if (hit.tag != "Terrain" && hit.gameObject.layer != LayerMask.NameToLayer("Flag") && hit.name != "Map-3-26")
             {
                 if (hit.GetComponent<Rigidbody>() == null)
                 {
@@ -308,6 +339,10 @@ public class HealthSync : Photon.MonoBehaviour {
             }
            
         }
+
+		GameObject.Find ("Respawner").SendMessage ("ActivateRespawn", tank.GetPhotonView ().owner, SendMessageOptions.RequireReceiver);
+		GameObject.Find ("Respawner").SendMessage ("AddKill", PhotonPlayer.Find(myKiller), SendMessageOptions.RequireReceiver);
+
     }
     void fixForExplosion(GameObject obj)
     {
@@ -355,7 +390,6 @@ public class HealthSync : Photon.MonoBehaviour {
         string[] list = new string[] { "Tracks", "MainGun", "Barrel" };
         foreach (string sting in list)
         {
-            Debug.Log(obj.name);
             if (sting == obj.name)
             {
                 return true;

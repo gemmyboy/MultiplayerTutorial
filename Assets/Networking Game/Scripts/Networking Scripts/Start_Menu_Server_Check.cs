@@ -226,7 +226,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     // We have two options here: we either joined(by title, list or random) or created a room.
     public void OnJoinedRoom()
     {
-        Debug.Log("OnJoinedRoom");
         pm.closeWindow(RefreshListAnimator);
         pm.OpenPanel(ConnectingToRoomAnimator);
         createLabelForPlayer();

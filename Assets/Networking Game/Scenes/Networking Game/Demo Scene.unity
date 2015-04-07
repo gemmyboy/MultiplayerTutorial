@@ -45732,7 +45732,7 @@ MonoBehaviour:
   deathLabel: {fileID: 193560799}
   assistLabel: {fileID: 1249744060}
   GameTimeUI: {fileID: 232411419}
-  roundTimeLimitMins: 5
+  roundTimeLimitMins: 60
   updateInterval: .5
 --- !u!224 &2107818047
 RectTransform:
