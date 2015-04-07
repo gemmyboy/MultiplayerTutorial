@@ -148,10 +148,12 @@ public class HealthSync : Photon.MonoBehaviour {
 			photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
 			photonView.RPC ("AdjustHealthBar",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,2);
 
-		}else if(true)//if photonView == theKiller && theCase == 1
-		{
-
 		}
+//		if(theCase == 1 && photonView.ownerId == theKiller)//if photonView == theKiller && theCase == 1
+//		{
+//			Debug.Log ("GOT HERE FAGGOT");
+//			uiManager.SendMessage("updateKills",SendMessageOptions.RequireReceiver);
+//		}
 	}
 
 	[RPC]
@@ -318,7 +320,7 @@ public class HealthSync : Photon.MonoBehaviour {
         foreach (Collider hit in colliders)
         {
             //Debug.Log(hit.name);
-            if (hit.name != "Terrain" && hit.gameObject.layer != LayerMask.NameToLayer("Flag") && hit.name != "Map-3-26")
+            if (hit.tag != "Terrain" && hit.gameObject.layer != LayerMask.NameToLayer("Flag") && hit.name != "Map-3-26")
             {
                 if (hit.GetComponent<Rigidbody>() == null)
                 {
@@ -339,6 +341,7 @@ public class HealthSync : Photon.MonoBehaviour {
         }
 
 		GameObject.Find ("Respawner").SendMessage ("ActivateRespawn", tank.GetPhotonView ().owner, SendMessageOptions.RequireReceiver);
+		GameObject.Find ("Respawner").SendMessage ("AddKill", PhotonPlayer.Find(myKiller), SendMessageOptions.RequireReceiver);
 
     }
     void fixForExplosion(GameObject obj)
