@@ -214,6 +214,7 @@ public class RespawnScript : Photon.MonoBehaviour {
 
 	void ActivateRespawn(PhotonPlayer thePlayer)
 	{
+
 		if(player1 != null)
 		{
 			if(player1 == thePlayer)
@@ -241,6 +242,52 @@ public class RespawnScript : Photon.MonoBehaviour {
 			{
 				allPlayers = GameObject.FindGameObjectsWithTag("Player");
 				checkPlayer(player4);
+			}
+		}
+	}
+	
+	void AddKill(PhotonPlayer theKiller)
+	{
+		
+		if(player1 != null)
+		{
+
+			if(player1 == theKiller)
+			{
+				ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
+				int kills = (int)player1.customProperties["Kills"] + 1;
+				hash.Add("Kills", kills);
+				player1.SetCustomProperties(hash);
+			}
+		}
+		if(player2 != null)
+		{
+			if(player2 == theKiller)
+			{
+				ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
+				int kills = (int)player2.customProperties["Kills"] + 1;
+				hash.Add("Kills", kills);
+				player2.SetCustomProperties(hash);
+			}
+		}
+		if(player3 != null){
+
+			if(player3 == theKiller)
+			{
+				ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
+				int kills = (int)player3.customProperties["Kills"] + 1;
+				hash.Add("Kills", kills);
+				player3.SetCustomProperties(hash);
+			}
+		}
+		if(player4 != null){
+
+			if(player4 == theKiller)
+			{
+				ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
+				int kills = (int)player4.customProperties["Kills"] + 1;
+				hash.Add("Kills", kills);
+				player4.SetCustomProperties(hash);
 			}
 		}
 	}
