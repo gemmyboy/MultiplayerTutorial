@@ -245,14 +245,14 @@ public class RespawnScript : Photon.MonoBehaviour {
 			}
 		}
 	}
-	
+	/*
 	void AddKill(PhotonPlayer theKiller)
 	{
 		
 		if(player1 != null)
 		{
 
-			if(player1 == theKiller)
+			if(player1 == theKiller && photonView.isMine && player1 == photonView.owner)
 			{
 				ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
 				int kills = (int)player1.customProperties["Kills"] + 1;
@@ -262,7 +262,7 @@ public class RespawnScript : Photon.MonoBehaviour {
 		}
 		if(player2 != null)
 		{
-			if(player2 == theKiller)
+			if(player2 == theKiller && photonView.isMine && player2 == photonView.owner)
 			{
 				ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
 				int kills = (int)player2.customProperties["Kills"] + 1;
@@ -272,7 +272,7 @@ public class RespawnScript : Photon.MonoBehaviour {
 		}
 		if(player3 != null){
 
-			if(player3 == theKiller)
+			if(player3 == theKiller && photonView.isMine && player3 == photonView.owner)
 			{
 				ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
 				int kills = (int)player3.customProperties["Kills"] + 1;
@@ -282,7 +282,7 @@ public class RespawnScript : Photon.MonoBehaviour {
 		}
 		if(player4 != null){
 
-			if(player4 == theKiller)
+			if(player4 == theKiller && photonView.isMine && player4 == photonView.owner)
 			{
 				ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
 				int kills = (int)player4.customProperties["Kills"] + 1;
@@ -291,4 +291,5 @@ public class RespawnScript : Photon.MonoBehaviour {
 			}
 		}
 	}
+	*/
 }

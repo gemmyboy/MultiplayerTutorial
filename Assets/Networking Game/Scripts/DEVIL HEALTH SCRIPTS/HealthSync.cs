@@ -339,9 +339,13 @@ public class HealthSync : Photon.MonoBehaviour {
             }
            
         }
-
+		PhotonPlayer theKiller = PhotonPlayer.Find (myKiller);
+		ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
+		int kills = (int)theKiller.customProperties["Kills"] + 1;
+		hash.Add("Kills", kills);
+		theKiller.SetCustomProperties(hash);
 		GameObject.Find ("Respawner").SendMessage ("ActivateRespawn", tank.GetPhotonView ().owner, SendMessageOptions.RequireReceiver);
-		GameObject.Find ("Respawner").SendMessage ("AddKill", PhotonPlayer.Find(myKiller), SendMessageOptions.RequireReceiver);
+		//GameObject.Find ("Respawner").SendMessage ("AddKill", PhotonPlayer.Find(myKiller), SendMessageOptions.RequireReceiver);
 
     }
     void fixForExplosion(GameObject obj)
