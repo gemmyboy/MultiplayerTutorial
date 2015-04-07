@@ -67,7 +67,7 @@ public class GameTimeManager : PunBehaviour{
             changeToNormalTime((int)time);
             if ((int)time == 0)
             {
-                Debug.Log("Ready Freddy");
+                //Debug.Log("Ready Freddy");
             }
         }
     }

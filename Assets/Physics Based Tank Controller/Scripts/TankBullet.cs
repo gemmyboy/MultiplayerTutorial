@@ -70,7 +70,6 @@ public class TankBullet : Photon.MonoBehaviour {
         }
         else
         {
-            Debug.Log("hit something else");
 			//Explosion ();
 			//PhotonNetwork.Destroy (gameObject);
             if (view.isMine)

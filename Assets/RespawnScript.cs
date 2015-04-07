@@ -11,21 +11,16 @@ public class RespawnScript : Photon.MonoBehaviour {
 	private bool respawn;
 	private GameObject[] allPlayers;
 	private Vector3 position;
-
-	private Vector3 spawnPoint;
-
+	
 	private bool notInstantiated;
-	private GameObject destroyThisGuy;
-	private bool alreadyRespawnedPlayer;
+	private bool goodSpawn;
 
-	private float timer1;
 	// Use this for initialization
 	void Start () 
 	{
+		goodSpawn = false;
 		notInstantiated = true;
-		timer1 = Time.time;
 		respawn = false;
-		alreadyRespawnedPlayer = false;
 	}
 	
 	// Update is called once per frame
@@ -37,32 +32,30 @@ public class RespawnScript : Photon.MonoBehaviour {
 			{
 				player1 = PhotonPlayer.Find (1);
 				notInstantiated = false;
-				Debug.Log ("Player 1 set!***");
+				//Debug.Log ("Player 1 set!***");
 			}
 			if(PhotonPlayer.Find (2) != null)
 			{
 				player2 = PhotonPlayer.Find (2);
-				Debug.Log ("Player 2 set!***");
+				//Debug.Log ("Player 2 set!***");
 			}
 			if(PhotonPlayer.Find (3) != null)
 			{
 				player3 = PhotonPlayer.Find (3);
-				Debug.Log ("Player 3 set!***");
+				//Debug.Log ("Player 3 set!***");
 			}
 			if(PhotonPlayer.Find (4) != null)
 			{
 				player4 = PhotonPlayer.Find (4);
-				Debug.Log ("Player 4 set!***");
+				//Debug.Log ("Player 4 set!***");
 			}
 
 			if(!notInstantiated)
 				allPlayers = GameObject.FindGameObjectsWithTag("Player");
 
 		}
-		if(timer1 <= Time.time)
+		if(respawn == true)
 		{
-			timer1 += 1.0f;
-
 			if(player1 != null)
 			{
 				allPlayers = GameObject.FindGameObjectsWithTag("Player");
@@ -75,12 +68,12 @@ public class RespawnScript : Photon.MonoBehaviour {
 			}
 			if(player3 != null)
 			{
-				//allPlayers = GameObject.FindGameObjectsWithTag("Player");
+				allPlayers = GameObject.FindGameObjectsWithTag("Player");
 				checkPlayer(player3);
 			}
 			if(player4 != null)
 			{
-				//allPlayers = GameObject.FindGameObjectsWithTag("Player");
+				allPlayers = GameObject.FindGameObjectsWithTag("Player");
 				checkPlayer(player4);
 			}
 		}
@@ -100,7 +93,7 @@ public class RespawnScript : Photon.MonoBehaviour {
 				{
 					StartCoroutine(waitFiveSeconds());
 				}
-				else if(((int)currPlayer.GetPhotonView().owner.customProperties["Dead"] == 1) && (currPlayer.GetPhotonView().owner == player) && (currPlayer.GetComponent<HealthSync>().activateRespawn == true) && respawn == true && photonView.isMine)
+				if(((int)currPlayer.GetPhotonView().owner.customProperties["Dead"] == 1) && (currPlayer.GetPhotonView().owner == player) && (currPlayer.GetComponent<HealthSync>().activateRespawn == true) && respawn == true && photonView.isMine)
 				{
 					StartCoroutine (getSpawnPoint(player));
 
@@ -116,8 +109,6 @@ public class RespawnScript : Photon.MonoBehaviour {
 	[RPC]
 	void RespawnThePlayer(Vector3 thePosition)
 	{
-			//respawn = false;
-
 			GameObject currPlayerHolder = PhotonNetwork.Instantiate("T-90_Prefab_Network", thePosition, Quaternion.identity,0);
 
 			//Add the camera target
@@ -160,7 +151,7 @@ public class RespawnScript : Photon.MonoBehaviour {
 	IEnumerator getSpawnPoint(PhotonPlayer thePlayer)
 	{
 		if(photonView.isMine){
-			bool goodSpawn = false;
+			goodSpawn = false;
 			position = new Vector3 (Random.Range (140, 1230), 200.0f, Random.Range (-315, 580));
 			while(!goodSpawn)
 			{
@@ -171,6 +162,7 @@ public class RespawnScript : Photon.MonoBehaviour {
 					position = new Vector3 (Random.Range (140, 1230), 200.0f, Random.Range (-315, 580));
 				}
 			}
+			goodSpawn = false;
 			yield return new WaitForSeconds(1.0f);
 			respawn = false;
 			photonView.RPC ("RespawnThePlayer",thePlayer,position);
@@ -186,7 +178,6 @@ public class RespawnScript : Photon.MonoBehaviour {
 		}
 	}
 
-	//public GameObject sphere;
 	bool checkSpawn(Vector3 pos)
 	{
 		RaycastHit hit;
@@ -197,11 +188,8 @@ public class RespawnScript : Photon.MonoBehaviour {
 			Debug.DrawRay(positionCheck, Vector3.down * hit.distance, Color.blue, 200f);
 			if(hit.collider.gameObject.tag == "Terrain"){
 				Collider[] hitColliders = Physics.OverlapSphere(hit.point, 100.0f);
-				Debug.Log(hitColliders.Length);
-
 				if(hitColliders.Length == 1){
 					if(hitColliders[0].tag == "Terrain"){
-						Debug.Log("Ready to spawn");
 						return true;
 					}else{
 						return false;
@@ -222,5 +210,38 @@ public class RespawnScript : Photon.MonoBehaviour {
 			}
 		}
 		return false;
+	}
+
+	void ActivateRespawn(PhotonPlayer thePlayer)
+	{
+		if(player1 != null)
+		{
+			if(player1 == thePlayer)
+			{
+				allPlayers = GameObject.FindGameObjectsWithTag("Player");
+				checkPlayer(player1);
+			}
+		}
+		if(player2 != null){
+			if(player2 == thePlayer)
+			{
+				allPlayers = GameObject.FindGameObjectsWithTag("Player");
+				checkPlayer(player2);
+			}
+		}
+		if(player3 != null){
+			if(player3 == thePlayer)
+			{
+				allPlayers = GameObject.FindGameObjectsWithTag("Player");
+				checkPlayer(player3);
+			}
+		}
+		if(player4 != null){
+			if(player4 == thePlayer)
+			{
+				allPlayers = GameObject.FindGameObjectsWithTag("Player");
+				checkPlayer(player4);
+			}
+		}
 	}
 }

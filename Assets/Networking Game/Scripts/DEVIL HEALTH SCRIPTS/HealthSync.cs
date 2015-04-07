@@ -191,7 +191,6 @@ public class HealthSync : Photon.MonoBehaviour {
     [RPC]
     void tankGoBoom(int viewID,int myKiller)
     {
-        Debug.Log(viewID);
         PhotonView[] views = FindObjectsOfType<PhotonView>();
         foreach(PhotonView view in views){
             if(view.viewID == viewID)
@@ -338,6 +337,9 @@ public class HealthSync : Photon.MonoBehaviour {
             }
            
         }
+
+		GameObject.Find ("Respawner").SendMessage ("ActivateRespawn", tank.GetPhotonView ().owner, SendMessageOptions.RequireReceiver);
+
     }
     void fixForExplosion(GameObject obj)
     {
@@ -385,7 +387,6 @@ public class HealthSync : Photon.MonoBehaviour {
         string[] list = new string[] { "Tracks", "MainGun", "Barrel" };
         foreach (string sting in list)
         {
-            Debug.Log(obj.name);
             if (sting == obj.name)
             {
                 return true;

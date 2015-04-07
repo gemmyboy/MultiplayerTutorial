@@ -226,7 +226,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     // We have two options here: we either joined(by title, list or random) or created a room.
     public void OnJoinedRoom()
     {
-        Debug.Log("OnJoinedRoom");
         pm.closeWindow(RefreshListAnimator);
         pm.OpenPanel(ConnectingToRoomAnimator);
         createLabelForPlayer();
@@ -464,11 +463,8 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     [RPC]
     void fixDropDown()
     {
-        Debug.Log("Changing dropdowns");
         dropMenu = GameObject.Find("DropDownButtonMenu(Clone)");
-        Debug.Log(dropMenu);
         dropMenu.transform.SetParent(ConnectingRoomWindow.transform);
-        Debug.Log(dropMenu.transform.parent);
         dropMenu.transform.localScale = new Vector3(1, 1, 1);
         dropMenu.transform.rotation = new Quaternion(0, 0, 0, 0);
         dropMenu.GetComponent<RectTransform>().localPosition = new Vector3(450, 100, 0);
