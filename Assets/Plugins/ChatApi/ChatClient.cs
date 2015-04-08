@@ -566,7 +566,7 @@ namespace ExitGames.Client.Photon.Chat
             }
             else
             {
-                UnityEngine.Debug.Log(message);
+                //UnityEngine.Debug.Log(message);
             }
 #else
             Debug.WriteLine(message);

@@ -53,4 +53,5 @@ MonoBehaviour:
   - TaggedPlayer
   - tankGoBoom
   - RemoveNetworkTrash
+  - askForOwnership
   DisableAutoOpenWizard: 0

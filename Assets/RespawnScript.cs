@@ -91,6 +91,10 @@ public class RespawnScript : Photon.MonoBehaviour {
 			{
 				if((respawn == false) && ((int)currPlayer.GetPhotonView().owner.customProperties["Dead"] == 1) && (currPlayer.GetPhotonView().owner == player) && (currPlayer.GetComponent<HealthSync>().activateRespawn == true) && photonView.isMine)
 				{
+                    ExitGames.Client.Photon.Hashtable hash2 = new ExitGames.Client.Photon.Hashtable();
+                    hash2.Add("Deaths", (int)PhotonNetwork.player.customProperties["Deaths"] + 1);
+                    PhotonNetwork.player.SetCustomProperties(hash2);
+
 					StartCoroutine(waitFiveSeconds());
 				}
 				if(((int)currPlayer.GetPhotonView().owner.customProperties["Dead"] == 1) && (currPlayer.GetPhotonView().owner == player) && (currPlayer.GetComponent<HealthSync>().activateRespawn == true) && respawn == true && photonView.isMine)
@@ -125,9 +129,9 @@ public class RespawnScript : Photon.MonoBehaviour {
 			TankHealthSystem.gameObject.SetActive(false);
 
 			ExitGames.Client.Photon.Hashtable hash2 = new ExitGames.Client.Photon.Hashtable();
-			hash2.Add("Kills", (int)PhotonNetwork.player.customProperties["Kills"]);
-			hash2.Add("Deaths",(int)PhotonNetwork.player.customProperties["Deaths"]+1);
-			hash2.Add("Assist",(int)PhotonNetwork.player.customProperties["Assist"]);
+			//hash2.Add("Kills", (int)PhotonNetwork.player.customProperties["Kills"]);
+			//hash2.Add("Deaths",(int)PhotonNetwork.player.customProperties["Deaths"]+1);
+			//hash2.Add("Assist",(int)PhotonNetwork.player.customProperties["Assist"]);
 			hash2.Add("Health",100);
 			PhotonNetwork.player.SetCustomProperties(hash2);
 	}

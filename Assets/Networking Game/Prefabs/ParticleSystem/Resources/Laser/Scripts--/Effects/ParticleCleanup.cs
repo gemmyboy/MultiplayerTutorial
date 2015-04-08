@@ -6,6 +6,11 @@ using System.Collections;
 /// </summary>
 public class ParticleCleanup : MonoBehaviour 
 {
+    ParticleSystem system;
+    void Start()
+    {
+        system = particleSystem;
+    }
 	void Update () 
     {
         if (particleSystem.emissionRate == 0)

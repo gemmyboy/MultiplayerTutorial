@@ -15,27 +15,27 @@ Material:
     m_TexEnvs:
       data:
         first:
-          name: _Diffuse
-        second:
-          m_Texture: {fileID: 2800000, guid: 8993b617f08498f43adcbd90697f1c5d, type: 3}
-          m_Scale: {x: 16, y: 16}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
           name: _Normals
         second:
           m_Texture: {fileID: 2800000, guid: c6dfb00dbee6bc044a8a3bb22e56e064, type: 3}
           m_Scale: {x: 32, y: 32}
           m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Diffuse
+        second:
+          m_Texture: {fileID: 2800000, guid: 8993b617f08498f43adcbd90697f1c5d, type: 3}
+          m_Scale: {x: 16, y: 16}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
           name: _Gloss
-        second: 1
+        second: .410714298
       data:
         first:
           name: _Bands
-        second: 100
+        second: 5
     m_Colors:
       data:
         first:

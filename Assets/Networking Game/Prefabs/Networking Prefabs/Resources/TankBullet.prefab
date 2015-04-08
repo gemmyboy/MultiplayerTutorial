@@ -135,12 +135,13 @@ MonoBehaviour:
   synchronization: 1
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
+  ownershipTransfer: 1
   ObservedComponents:
   - {fileID: 11420342}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &11440066
 MonoBehaviour:
   m_ObjectHideFlags: 1

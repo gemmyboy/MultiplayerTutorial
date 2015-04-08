@@ -24,7 +24,7 @@ MonoBehaviour:
   playgroundManagerFoldout: 1
   particleSystemFoldout: 1
   limitsFoldout: 0
-  particlesFoldout: 1
+  particlesFoldout: 0
   statesFoldout: 1
   sourceFoldout: 1
   createNewStateFoldout: 1

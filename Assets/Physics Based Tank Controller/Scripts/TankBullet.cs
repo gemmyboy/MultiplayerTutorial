@@ -54,29 +54,30 @@ public class TankBullet : Photon.MonoBehaviour {
         }
         else
         {
-            Debug.Log("hit something else");
-            if (view.isMine)
-            {
-           	 	Explosion();
+            Debug.LogError(view.owner);
+            Debug.LogError(view.isMine);
+            if(view.isMine){
+                Explosion();
             }
         }
     }
 
     void OnTriggerEnter(Collider col)
     {
-        Debug.Log("Shield Hit");
         if (col.gameObject.layer == LayerMask.NameToLayer("Shield"))
         {
-            Debug.Log("Sheild: " + col.gameObject.GetComponentInParent<PhotonView>().owner.customProperties["Team"].ToString());
-            Debug.Log("Bullet: " + gameObject.GetPhotonView().owner.customProperties["Team"].ToString());
+            Debug.Log(col.gameObject.GetComponentInParent<PhotonView>().owner.customProperties["Team"].ToString() + " "  +  gameObject.GetPhotonView().owner.customProperties["Team"].ToString());
             if (col.gameObject.GetComponentInParent<PhotonView>().owner.customProperties["Team"].ToString() != gameObject.GetPhotonView().owner.customProperties["Team"].ToString())
             {
                 if (view.isMine)
                 {
-                    Debug.Log("Photon Change Directiion");
+                    Debug.Log("Other way");
                     GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
+                    //transform.Rotate(0, 180, 0);
+                    PhotonNetwork.Instantiate("Sparks_Manager", transform.position, transform.rotation, 0);
                     GetComponent<Rigidbody>().AddForce(-transform.forward * 50, ForceMode.VelocityChange);
                     GetComponent<Rigidbody>().AddForce(transform.up * 25, ForceMode.VelocityChange);
+                    photonView.RPC("askForOwnership", PhotonNetwork.player, col.gameObject.GetComponentInParent<PhotonView>().owner);
                 }
             }
         }
@@ -90,4 +91,17 @@ public class TankBullet : Photon.MonoBehaviour {
 			PhotonNetwork.Destroy(gameObject);
 		}
 	}
+
+    PhotonView bulletView;
+    [RPC]
+    void askForOwnership(PhotonPlayer player)
+    {
+        StartCoroutine(wait(player));
+    }
+
+    IEnumerator wait(PhotonPlayer player)
+    {
+        yield return new WaitForSeconds(.1f);
+        view.TransferOwnership(player);
+    }
 }

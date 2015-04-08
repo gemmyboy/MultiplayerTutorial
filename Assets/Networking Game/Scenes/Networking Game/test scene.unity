@@ -501,6 +501,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 1
   instantiationId: 1
+  isRuntimeInstantiated: 0
 --- !u!1 &353261584
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,6 +633,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 2
   instantiationId: 2
+  isRuntimeInstantiated: 0
 --- !u!4 &353261589
 Transform:
   m_ObjectHideFlags: 0
@@ -872,6 +874,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 3
   instantiationId: 3
+  isRuntimeInstantiated: 0
 --- !u!1001 &1022257508
 Prefab:
   m_ObjectHideFlags: 0
@@ -1406,6 +1409,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 4
   instantiationId: 4
+  isRuntimeInstantiated: 0
 --- !u!1 &1666606630
 GameObject:
   m_ObjectHideFlags: 0

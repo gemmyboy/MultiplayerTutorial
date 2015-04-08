@@ -22,13 +22,6 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Diffuse
-        second:
-          m_Texture: {fileID: 2800000, guid: b66bceaf0cc0ace4e9bdc92f14bba709, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
           name: _Normal
         second:
           m_Texture: {fileID: 2800000, guid: 839587738573a48e28a59f1905941428, type: 3}
@@ -36,16 +29,16 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _FloorNormal
+          name: _Diffuse
         second:
-          m_Texture: {fileID: 2800000, guid: 839587738573a48e28a59f1905941428, type: 3}
+          m_Texture: {fileID: 2800000, guid: b66bceaf0cc0ace4e9bdc92f14bba709, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _EdgeNormal
+          name: _node2
         second:
-          m_Texture: {fileID: 2800000, guid: 80286949e259c2d44876306923857245, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -60,13 +53,6 @@ Material:
           name: _DirtMask
         second:
           m_Texture: {fileID: 2800000, guid: e958c6041cfe445e987c73751e8d4082, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _node2
-        second:
-          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -99,16 +85,26 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
+          name: _FloorNormal
+        second:
+          m_Texture: {fileID: 2800000, guid: 839587738573a48e28a59f1905941428, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _EdgeNormal
+        second:
+          m_Texture: {fileID: 2800000, guid: 80286949e259c2d44876306923857245, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
           name: _EdgeDiffuse
         second:
           m_Texture: {fileID: 2800000, guid: 3d403fe3184a448fa8bc190c7f07f28c, type: 3}
           m_Scale: {x: 8, y: 8}
           m_Offset: {x: 0, y: 0}
     m_Floats:
-      data:
-        first:
-          name: _EdgeNormalScale
-        second: 22.3099995
       data:
         first:
           name: _MetalNormalScale
@@ -121,6 +117,10 @@ Material:
         first:
           name: _Brightness
         second: 1
+      data:
+        first:
+          name: _EdgeNormalScale
+        second: 22.3099995
     m_Colors:
       data:
         first:

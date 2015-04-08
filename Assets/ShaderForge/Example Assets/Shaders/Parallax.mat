@@ -22,13 +22,6 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _AORGBHeightA
-        second:
-          m_Texture: {fileID: 2800000, guid: 5fb7986dd6d0a8e4093ba82369dd6a4d, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
           name: _DiffuseRGB
         second:
           m_Texture: {fileID: 2800000, guid: 5fb7986dd6d0a8e4093ba82369dd6a4d, type: 3}
@@ -53,6 +46,13 @@ Material:
           name: _node113
         second:
           m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _AORGBHeightA
+        second:
+          m_Texture: {fileID: 2800000, guid: 5fb7986dd6d0a8e4093ba82369dd6a4d, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:

@@ -11,6 +11,7 @@ GameObject:
   - 198: {fileID: 19822464}
   - 199: {fileID: 19922464}
   - 114: {fileID: 11422458}
+  - 114: {fileID: 11445744}
   m_Layer: 0
   m_Name: Particles With Trails
   m_TagString: Untagged
@@ -29,7 +30,7 @@ GameObject:
   - 114: {fileID: 11422462}
   - 114: {fileID: 11422464}
   m_Layer: 0
-  m_Name: FireWorksExplosion
+  m_Name: Particle_Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,9 +76,9 @@ MonoBehaviour:
   activeState: 0
   emit: 1
   loop: 0
-  clearParticlesOnEmissionStop: 1
-  disableOnDone: 0
-  disableOnDoneRoutine: 0
+  clearParticlesOnEmissionStop: 0
+  disableOnDone: 1
+  disableOnDoneRoutine: 1
   updateRate: 1
   calculate: 1
   calculateDeltaMovement: 0
@@ -597,7 +598,7 @@ MonoBehaviour:
   sourceTransform: {fileID: 422460}
   sourceTransforms:
   - transform: {fileID: 422460}
-    instanceID: -2115576
+    instanceID: -1612478
     available: 1
     position: {x: -.610000014, y: 0, z: 15.25}
     localPosition: {x: 0, y: 0, z: 0}
@@ -776,10 +777,10 @@ MonoBehaviour:
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: 247.862778
-  localDeltaTime: .016998291
+  localTime: 103.077881
+  localDeltaTime: .0180740356
   previousActiveState: 0
-  simulationStarted: 231.594986
+  simulationStarted: 102.042915
   loopExceeded: 1
   loopExceededOnParticle: 0
 --- !u!114 &11422462
@@ -838,6 +839,17 @@ MonoBehaviour:
   viewIdField: 0
   instantiationId: -1
   isRuntimeInstantiated: 0
+--- !u!114 &11445744
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 122460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 198a11194b3c85b4298f4375e5ce11fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &19822464
 ParticleSystem:
   m_ObjectHideFlags: 1
