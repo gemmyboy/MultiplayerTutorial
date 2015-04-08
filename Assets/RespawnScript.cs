@@ -11,6 +11,11 @@ public class RespawnScript : Photon.MonoBehaviour {
 	private bool respawn;
 	private GameObject[] allPlayers;
 	private Vector3 position;
+
+	//gameMode bools to determine what kind of respawns we're going to use
+	private bool FreeForAll;
+	private bool OmegaTank;
+	private bool CaptureTheFlag;
 	
 	private bool notInstantiated;
 	private bool goodSpawn;
@@ -24,11 +29,28 @@ public class RespawnScript : Photon.MonoBehaviour {
 		notInstantiated = true;
 		respawn = false;
 		RespawnTime = 10.0f;
+
+		FreeForAll = false;
+		OmegaTank = false;
+		CaptureTheFlag = false;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+		if(FreeForAll == false && OmegaTank == false && CaptureTheFlag == false)
+		{
+
+			
+			Debug.Log ("Respawn GAMEMODE has been set!****:  ");
+			if(FreeForAll)
+				Debug.Log (FreeForAll);
+			if(OmegaTank)
+				Debug.Log(OmegaTank);
+			if(CaptureTheFlag)
+				Debug.Log(CaptureTheFlag);
+		}
+
 		if(notInstantiated)
 		{
 			if(PhotonPlayer.Find(1) != null)
