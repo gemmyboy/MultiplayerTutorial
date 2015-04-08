@@ -17,16 +17,22 @@ public class RotateEnemyHealth : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		if(timer <= Time.time)
 		{
 			tanks = GameObject.FindGameObjectsWithTag("Player");
+			timer = Time.time+2.0f;
+		}
 
-			foreach(GameObject tank in tanks){
-				if(!myTanks.Contains(tank))
-				{
-					myTanks.Add (tank);
-				}
+		foreach(GameObject tank in tanks)
+		{
+			if(!myTanks.Contains(tank))
+			{
+				myTanks.Add (tank);
+			}
+			if(tank.GetComponent<HealthSync>())
+			{
 				if(tank.GetComponent<HealthSync>().dead == true)
 				{
 					//myTanks = new System.Collections.Generic.List<GameObject>(tanks);
@@ -46,7 +52,6 @@ public class RotateEnemyHealth : MonoBehaviour {
 						currentTankHealth = null;
 					}
 				}
-				timer = Time.time+0.1f;
 			}
 		}
 	}

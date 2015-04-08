@@ -15,12 +15,15 @@ public class RespawnScript : Photon.MonoBehaviour {
 	private bool notInstantiated;
 	private bool goodSpawn;
 
+	public float RespawnTime;
+
 	// Use this for initialization
 	void Start () 
 	{
 		goodSpawn = false;
 		notInstantiated = true;
 		respawn = false;
+		RespawnTime = 10.0f;
 	}
 	
 	// Update is called once per frame
@@ -173,7 +176,7 @@ public class RespawnScript : Photon.MonoBehaviour {
 	{
 		if(photonView.isMine)
 		{
-			yield return new WaitForSeconds (5.0f);
+			yield return new WaitForSeconds (RespawnTime);
 			respawn = true;
 		}
 	}
