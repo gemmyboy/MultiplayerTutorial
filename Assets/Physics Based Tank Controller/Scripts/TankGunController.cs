@@ -33,6 +33,10 @@ public class TankGunController : MonoBehaviour {
 	public float reloadTime = 3f;
 	private float loadingTime = 3f;
 
+    public float laserReloadTime = 15.0f;
+    private float laserLoadingTime = 15.0f;
+    public int laserRecoilForce = 500;
+
 	public Transform barrelOut;
 
 	public AudioClip fireSoundClip;
@@ -142,13 +146,15 @@ public class TankGunController : MonoBehaviour {
 			ammo--;
 			guiManager.ChangeAmmo(ammo);
 			loadingTime = 0;
+            guiManager.bulletShot = true;
+            guiManager.setToZero(guiManager.bulletTimer);
 		}
-
-		if(Input.GetButtonDown("Fire2") && loadingTime > reloadTime && ammo > 0)
-		{
-			StartCoroutine(laserShoot());
-		}
-
+        if(PhotonNetwork.room.customProperties["GameType"].ToString() == "OmegaTank" && PhotonNetwork.player.customProperties["TheOmega"].ToString() == "1"){
+            if (Input.GetButtonDown("Fire2") && laserLoadingTime > laserReloadTime)
+            {
+                StartCoroutine(laserShoot());
+            }
+        }
 	}
 
 	IEnumerator laserShoot()
@@ -159,13 +165,13 @@ public class TankGunController : MonoBehaviour {
         flash.transform.parent = barrelOut.transform;
         yield return new WaitForSeconds(1.0f);
 
-        rigidbody.AddForce(-transform.forward * recoilForce, ForceMode.VelocityChange);
+        rigidbody.AddForce(-transform.forward * laserRecoilForce, ForceMode.VelocityChange);
         GameObject laser = PhotonNetwork.Instantiate("Laserssss", barrelOut.position + (barrelOut.forward * 10), barrel.transform.rotation, 0) as GameObject;
         laser.GetComponent<Rigidbody>().AddForce(barrelOut.forward * bulletVelocity * 5, ForceMode.VelocityChange);
 
         PhotonNetwork.Instantiate("Ground Smoke", new Vector3(tank.transform.position.x, tank.transform.position.y - 3, tank.transform.position.z), tank.transform.rotation, 0);
 
-        loadingTime = 0;
+        laserLoadingTime = 0;
 
         yield return null;
     }

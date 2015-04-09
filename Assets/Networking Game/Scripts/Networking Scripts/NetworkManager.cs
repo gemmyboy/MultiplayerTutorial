@@ -247,7 +247,7 @@ public class NetworkManager : PunBehaviour
             }
             else
             {
-                spawnPoint = new Vector3(400, -1000, 300);
+                spawnPoint = new Vector3(400, 400, 300);
             }
         }
     }

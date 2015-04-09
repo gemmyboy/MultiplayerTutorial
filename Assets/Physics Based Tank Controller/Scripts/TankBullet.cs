@@ -54,8 +54,6 @@ public class TankBullet : Photon.MonoBehaviour {
         }
         else
         {
-            Debug.LogError(view.owner);
-            Debug.LogError(view.isMine);
             if(view.isMine){
                 Explosion();
             }
@@ -73,7 +71,6 @@ public class TankBullet : Photon.MonoBehaviour {
                 {
                     Debug.Log("Other way");
                     GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
-                    //transform.Rotate(0, 180, 0);
                     PhotonNetwork.Instantiate("Sparks_Manager", transform.position, transform.rotation, 0);
                     GetComponent<Rigidbody>().AddForce(-transform.forward * 50, ForceMode.VelocityChange);
                     GetComponent<Rigidbody>().AddForce(transform.up * 25, ForceMode.VelocityChange);

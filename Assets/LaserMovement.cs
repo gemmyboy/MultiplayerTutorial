@@ -23,6 +23,23 @@ public class LaserMovement : Photon.MonoBehaviour {
             Explosion();
         }
     }
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.layer == LayerMask.NameToLayer("Shield"))
+        {
+            Debug.Log(col.gameObject.GetComponentInParent<PhotonView>().owner.customProperties["Team"].ToString() + " " + gameObject.GetPhotonView().owner.customProperties["Team"].ToString());
+            if (col.gameObject.GetComponentInParent<PhotonView>().owner.customProperties["Team"].ToString() != gameObject.GetPhotonView().owner.customProperties["Team"].ToString())
+            {
+                if (photonView.isMine)
+                {
+                    Debug.Log("Other way");
+                    GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+                    PhotonNetwork.Instantiate("Sparks_Manager", transform.position, transform.rotation, 0);
+                    GetComponent<Rigidbody>().AddForce(-transform.forward * 50, ForceMode.VelocityChange);
+                }
+            }
+        }
+    }
 
     void Explosion()
     {
