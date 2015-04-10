@@ -149,11 +149,6 @@ public class HealthSync : Photon.MonoBehaviour {
 			photonView.RPC ("AdjustHealthBar",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,2);
 
 		}
-//		if(theCase == 1 && photonView.ownerId == theKiller)//if photonView == theKiller && theCase == 1
-//		{
-//			Debug.Log ("GOT HERE FAGGOT");
-//			uiManager.SendMessage("updateKills",SendMessageOptions.RequireReceiver);
-//		}
 	}
 
 	[RPC]
@@ -204,6 +199,15 @@ public class HealthSync : Photon.MonoBehaviour {
 				{
 					if(tempPlayer.GetPhotonView().ownerId == myKiller)
 					{
+						ExitGames.Client.Photon.Hashtable hash10 = new ExitGames.Client.Photon.Hashtable();
+						int kills = (int)tempPlayer.GetPhotonView().owner.customProperties["Kills"] + 1;
+						hash10.Add("Kills", kills);
+						tempPlayer.GetPhotonView().owner.SetCustomProperties(hash10);
+						uiManager.changeKills(kills);
+						Debug.Log ("ADDED A KILL");
+						kills = 0;
+						//GameObject.Find ("Respawner").SendMessage ("AddKill", PhotonPlayer.Find(myKiller), SendMessageOptions.RequireReceiver);
+
 						Camera.main.GetComponent<MouseOrbitC> ().target = tempPlayer.transform;
 					}
 				}
@@ -317,35 +321,28 @@ public class HealthSync : Photon.MonoBehaviour {
 		Destroy(tank.GetComponentInChildren<TankGunColliders>());
 
         Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, 10);
-        foreach (Collider hit in colliders)
-        {
-            //Debug.Log(hit.name);
-            if (hit.tag != "Terrain" && hit.gameObject.layer != LayerMask.NameToLayer("Flag") && hit.name != "Map-3-26")
-            {
-                if (hit.GetComponent<Rigidbody>() == null)
-                {
-                    hit.gameObject.AddComponent<Rigidbody>();
-					hit.gameObject.GetComponent<Rigidbody>().mass = 3000f;
+        foreach (Collider hit in colliders) {
+			//Debug.Log(hit.name);
+			if (hit.tag != "Terrain" && hit.gameObject.layer != LayerMask.NameToLayer ("Flag") && hit.name != "Map-3-26") {
+				if (hit.GetComponent<Rigidbody> () == null) {
+					hit.gameObject.AddComponent<Rigidbody> ();
+					hit.gameObject.GetComponent<Rigidbody> ().mass = 3000f;
 					hit.gameObject.tag = "Trash";
-                }
-            }
+				}
+			}
 
-            if (hit && hit.rigidbody)
-            {
-                hit.rigidbody.isKinematic = false;
-				hit.gameObject.GetComponent<Rigidbody>().mass = 3000f;
+			if (hit && hit.rigidbody) {
+				hit.rigidbody.isKinematic = false;
+				hit.gameObject.GetComponent<Rigidbody> ().mass = 3000f;
 				hit.gameObject.tag = "Trash";
-                hit.rigidbody.AddExplosionForce(100000, hit.rigidbody.transform.position, 10.0f, 0.0f,ForceMode.Impulse);
-            }
+				hit.rigidbody.AddExplosionForce (100000, hit.rigidbody.transform.position, 10.0f, 0.0f, ForceMode.Impulse);
+			}
            
-        }
-		PhotonPlayer theKiller = PhotonPlayer.Find (myKiller);
-		ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
-		int kills = (int)theKiller.customProperties["Kills"] + 1;
-		hash.Add("Kills", kills);
-		theKiller.SetCustomProperties(hash);
+		}
+		
+		//PhotonPlayer theKiller = PhotonPlayer.Find (myKiller);
+
 		GameObject.Find ("Respawner").SendMessage ("ActivateRespawn", tank.GetPhotonView ().owner, SendMessageOptions.RequireReceiver);
-		//GameObject.Find ("Respawner").SendMessage ("AddKill", PhotonPlayer.Find(myKiller), SendMessageOptions.RequireReceiver);
 
     }
     void fixForExplosion(GameObject obj)

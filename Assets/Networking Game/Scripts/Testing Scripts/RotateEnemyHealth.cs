@@ -31,25 +31,28 @@ public class RotateEnemyHealth : MonoBehaviour {
 			{
 				myTanks.Add (tank);
 			}
-			if(tank.GetComponent<HealthSync>())
+			if(tank)
 			{
-				if(tank.GetComponent<HealthSync>().dead == true)
+				if(tank.GetComponent<HealthSync>())
 				{
-					//myTanks = new System.Collections.Generic.List<GameObject>(tanks);
-					myTanks.Remove(tank);
-					tanks = myTanks.ToArray ();
-				}
-				else if(tank.GetComponent<HealthSync>().dead == false)
-				{
-					//tempObj = tank.transform.Find("TankHealthSystem").parent.gameObject;
-					if(tank.transform.Find ("TankHealthSystem") != null)
+					if(tank.GetComponent<HealthSync>().dead == true)
 					{
-						currentTankHealth = (GameObject)tank.transform.Find("TankHealthSystem").gameObject;
+						//myTanks = new System.Collections.Generic.List<GameObject>(tanks);
+						myTanks.Remove(tank);
+						tanks = myTanks.ToArray ();
 					}
-					if(currentTankHealth != null)
+					else if(tank.GetComponent<HealthSync>().dead == false)
 					{
-						currentTankHealth.transform.LookAt(Camera.main.transform);
-						currentTankHealth = null;
+						//tempObj = tank.transform.Find("TankHealthSystem").parent.gameObject;
+						if(tank.transform.Find ("TankHealthSystem") != null)
+						{
+							currentTankHealth = (GameObject)tank.transform.Find("TankHealthSystem").gameObject;
+						}
+						if(currentTankHealth != null)
+						{
+							currentTankHealth.transform.LookAt(Camera.main.transform);
+							currentTankHealth = null;
+						}
 					}
 				}
 			}

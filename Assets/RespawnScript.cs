@@ -42,7 +42,7 @@ public class RespawnScript : Photon.MonoBehaviour {
 		{
 
 			
-			Debug.Log ("Respawn GAMEMODE has been set!****:  ");
+			//Debug.Log ("Respawn GAMEMODE has been set!****:  ");
 			if(FreeForAll)
 				Debug.Log (FreeForAll);
 			if(OmegaTank)
@@ -83,6 +83,7 @@ public class RespawnScript : Photon.MonoBehaviour {
 		{
 			if(player1 != null)
 			{
+				StartCoroutine(spamForFiveSeconds());
 				allPlayers = GameObject.FindGameObjectsWithTag("Player");
 				checkPlayer(player1);
 			}
@@ -150,11 +151,13 @@ public class RespawnScript : Photon.MonoBehaviour {
 			TankHealthSystem.gameObject.SetActive(false);
 
 			ExitGames.Client.Photon.Hashtable hash2 = new ExitGames.Client.Photon.Hashtable();
-			hash2.Add("Kills", (int)PhotonNetwork.player.customProperties["Kills"]);
+			//hash2.Add("Kills", (int)PhotonNetwork.player.customProperties["Kills"]);
 			hash2.Add("Deaths",(int)PhotonNetwork.player.customProperties["Deaths"]+1);
-			hash2.Add("Assist",(int)PhotonNetwork.player.customProperties["Assist"]);
+			//hash2.Add("Assist",(int)PhotonNetwork.player.customProperties["Assist"]);
 			hash2.Add("Health",100);
 			PhotonNetwork.player.SetCustomProperties(hash2);
+			GameObject tempUI = GameObject.FindObjectOfType<UIManager> ().gameObject;
+			tempUI.GetComponent<UIManager>().changeDeaths((int)PhotonNetwork.player.customProperties["Deaths"]);
 	}
 
 	[RPC]
@@ -194,6 +197,26 @@ public class RespawnScript : Photon.MonoBehaviour {
 		}
 	}
 
+
+	IEnumerator spamForFiveSeconds()
+	{
+		bool doThis = true;
+		int currCount = 0;
+		while(doThis)
+		{
+			if(currCount > 15)
+			{
+				doThis = false;
+			}
+			allPlayers = GameObject.FindGameObjectsWithTag("Player");
+			currCount++;
+			yield return new WaitForSeconds (1f);
+		}
+		currCount = 0;
+
+	}
+
+
 	IEnumerator waitFiveSeconds()
 	{
 		if(photonView.isMine)
@@ -222,10 +245,10 @@ public class RespawnScript : Photon.MonoBehaviour {
 				}
 				else
 				{
-					foreach (Collider collider in hitColliders)
-					{
-						Debug.Log(collider.gameObject.name);
-					}
+//					foreach (Collider collider in hitColliders)
+//					{
+//						Debug.Log(collider.gameObject.name);
+//					}
 					return false;
 				}
 			}
@@ -270,51 +293,4 @@ public class RespawnScript : Photon.MonoBehaviour {
 			}
 		}
 	}
-	/*
-	void AddKill(PhotonPlayer theKiller)
-	{
-		
-		if(player1 != null)
-		{
-
-			if(player1 == theKiller && photonView.isMine && player1 == photonView.owner)
-			{
-				ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
-				int kills = (int)player1.customProperties["Kills"] + 1;
-				hash.Add("Kills", kills);
-				player1.SetCustomProperties(hash);
-			}
-		}
-		if(player2 != null)
-		{
-			if(player2 == theKiller && photonView.isMine && player2 == photonView.owner)
-			{
-				ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
-				int kills = (int)player2.customProperties["Kills"] + 1;
-				hash.Add("Kills", kills);
-				player2.SetCustomProperties(hash);
-			}
-		}
-		if(player3 != null){
-
-			if(player3 == theKiller && photonView.isMine && player3 == photonView.owner)
-			{
-				ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
-				int kills = (int)player3.customProperties["Kills"] + 1;
-				hash.Add("Kills", kills);
-				player3.SetCustomProperties(hash);
-			}
-		}
-		if(player4 != null){
-
-			if(player4 == theKiller && photonView.isMine && player4 == photonView.owner)
-			{
-				ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
-				int kills = (int)player4.customProperties["Kills"] + 1;
-				hash.Add("Kills", kills);
-				player4.SetCustomProperties(hash);
-			}
-		}
-	}
-	*/
 }
