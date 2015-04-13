@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &105350
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 405350}
+  m_Layer: 8
+  m_Name: BarrelOut
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &129970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1494,8 +1509,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 430176}
+  - 114: {fileID: 11408822}
   m_Layer: 8
-  m_Name: BarrelOut
+  m_Name: laserOut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1862,6 +1878,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &405350
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 105350}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .0270000007, y: -.0860000029, z: 9.44400024}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 430174}
+  m_RootOrder: 0
 --- !u!4 &429978
 Transform:
   m_ObjectHideFlags: 1
@@ -3157,6 +3185,7 @@ Transform:
   m_LocalPosition: {x: .0642395169, y: -.0459756851, z: 1.97583008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 405350}
   - {fileID: 430176}
   m_Father: {fileID: 429998}
   m_RootOrder: 1
@@ -3167,11 +3196,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 130156}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .0270000007, y: -.0860000029, z: 9.44400024}
+  m_LocalPosition: {x: .0270000007, y: -.0860000029, z: 8.76000023}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 430174}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!4 &430178
 Transform:
   m_ObjectHideFlags: 1
@@ -4698,7 +4727,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .341757447, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -3.01197124, y: -1.35730112, z: -.250228912}
+  m_ConnectedAnchor: {x: -3.01197124, y: -1.35730112, z: -.250228882}
   m_UseSpring: 1
   m_Spring:
     spring: 1
@@ -4818,7 +4847,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .330844134, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 3.15484691, y: -1.35957742, z: -.266906798}
+  m_ConnectedAnchor: {x: 3.15484715, y: -1.35957742, z: -.266906738}
   m_UseSpring: 1
   m_Spring:
     spring: 1
@@ -4848,7 +4877,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .333941609, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 3.13546824, y: -1.34682405, z: -2.65229869}
+  m_ConnectedAnchor: {x: 3.13546848, y: -1.34682405, z: -2.65229869}
   m_UseSpring: 1
   m_Spring:
     spring: 1
@@ -4878,7 +4907,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .328484148, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 3.13665843, y: -1.33784473, z: -4.60920811}
+  m_ConnectedAnchor: {x: 3.13665867, y: -1.33784473, z: -4.60920811}
   m_UseSpring: 1
   m_Spring:
     spring: 1
@@ -4938,7 +4967,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .183448121, z: .209999993}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 2.48092771, y: -1.31473053, z: -6.85450697}
+  m_ConnectedAnchor: {x: 2.48092747, y: -1.31473053, z: -6.85450697}
   m_UseSpring: 1
   m_Spring:
     spring: 1
@@ -5089,6 +5118,17 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11408822
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f92a1ef44340e3439c018321f12a073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11430146
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5227,6 +5267,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &11430150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5360,6 +5401,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &11430168
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5446,7 +5488,9 @@ MonoBehaviour:
   recoilForce: 50
   ammo: 100
   reloadTime: 3
-  barrelOut: {fileID: 430176}
+  laserReloadTime: 15
+  laserRecoilForce: 500
+  barrelOut: {fileID: 405350}
   fireSoundClip: {fileID: 8300000, guid: f4577b6ab5693e446bcf9765748510dd, type: 3}
   groundSmoke: {fileID: 100000, guid: 4b31b1caadab1ee4b8606c9f35713992, type: 2}
   fireSmoke: {fileID: 100000, guid: 44b3febaf5142a5429938ef0a0de2395, type: 2}
@@ -5454,8 +5498,6 @@ MonoBehaviour:
   timeManager: {fileID: 0}
   m_LastProjectileID: 0
   m_LastShootTime: 0
-  lasers: {fileID: 100000, guid: bd5777402d86430419fdecf82c637d2e, type: 2}
-  laserMuzzleFlash: {fileID: 104902, guid: 47b5b671a9638ce4cb9ea41eb8ac3ba5, type: 2}
 --- !u!114 &11430172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5480,6 +5522,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &11430174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5515,6 +5558,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &11430178
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5599,6 +5643,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &11430182
 MonoBehaviour:
   m_ObjectHideFlags: 1
