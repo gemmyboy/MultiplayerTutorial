@@ -62,7 +62,7 @@ public class ChatGui : MonoBehaviour, IChatClientListener
 
         if (string.IsNullOrEmpty(this.UserName))
         {
-            this.UserName = PhotonNetwork.player.name;
+            this.UserName = "user" + Environment.TickCount%99; //made-up username
         }
 
         chatClient = new ChatClient(this);

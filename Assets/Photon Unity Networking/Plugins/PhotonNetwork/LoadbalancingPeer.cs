@@ -281,10 +281,10 @@ namespace ExitGames.Client.Photon
 
         public bool OpSetCustomPropertiesOfActor(int actorNr, Hashtable actorProperties, bool broadcast, byte channelId)
         {
-            return this.OpSetPropertiesOfActor(actorNr, actorProperties.StripToStringKeys(), broadcast, channelId, null);
+            return this.OpSetPropertiesOfActor(actorNr, actorProperties.StripToStringKeys(), broadcast, channelId);
         }
 
-        protected internal bool OpSetPropertiesOfActor(int actorNr, Hashtable actorProperties, bool broadcast, byte channelId, Hashtable expectedValues)
+        protected bool OpSetPropertiesOfActor(int actorNr, Hashtable actorProperties, bool broadcast, byte channelId)
         {
             if (this.DebugOut >= DebugLevel.INFO)
             {
@@ -308,12 +308,6 @@ namespace ExitGames.Client.Photon
                 opParameters.Add(ParameterCode.Broadcast, broadcast);
             }
 
-            if (expectedValues != null && expectedValues.Count > 0)
-            {
-                // UnityEngine.Debug.Log("Expected values: " + expectedValues.ToStringFull());
-                opParameters.Add(ParameterCode.ExpectedValues, expectedValues);
-            }
-
             return this.OpCustom((byte)OperationCode.SetProperties, opParameters, broadcast, channelId);
         }
 
@@ -321,15 +315,15 @@ namespace ExitGames.Client.Photon
         {
             Hashtable properties = new Hashtable();
             properties[propCode] = value;
-            this.OpSetPropertiesOfRoom(properties, true, (byte)0, null);
+            this.OpSetPropertiesOfRoom(properties, true, (byte)0);
         }
 
         public bool OpSetCustomPropertiesOfRoom(Hashtable gameProperties, bool broadcast, byte channelId)
         {
-            return this.OpSetPropertiesOfRoom(gameProperties.StripToStringKeys(), broadcast, channelId, null);
+            return this.OpSetPropertiesOfRoom(gameProperties.StripToStringKeys(), broadcast, channelId);
         }
 
-        protected internal bool OpSetPropertiesOfRoom(Hashtable gameProperties, bool broadcast, byte channelId, Hashtable expectedValues)
+        public bool OpSetPropertiesOfRoom(Hashtable gameProperties, bool broadcast, byte channelId)
         {
             if (this.DebugOut >= DebugLevel.INFO)
             {
@@ -341,12 +335,6 @@ namespace ExitGames.Client.Photon
             if (broadcast)
             {
                 opParameters.Add(ParameterCode.Broadcast, true);
-            }
-
-            if (expectedValues != null && expectedValues.Count > 0)
-            {
-                // UnityEngine.Debug.Log("Expected values: " + expectedValues.ToStringFull());
-                opParameters.Add(ParameterCode.ExpectedValues, expectedValues);
             }
 
             return this.OpCustom((byte)OperationCode.SetProperties, opParameters, broadcast, channelId);
@@ -591,7 +579,7 @@ namespace ExitGames.Client.Photon
         /// <remarks>
         /// Some subscription plans for the Photon Cloud are region-bound. Servers of other regions can't be used then.
         /// Check your master server address and compare it with your Photon Cloud Dashboard's info.
-        /// https://www.exitgames.com/dashboard
+        /// https://cloud.exitgames.com/dashboard
         ///
         /// OpAuthorize is part of connection workflow but only on the Photon Cloud, this error can happen.
         /// Self-hosted Photon servers with a CCU limited license won't let a client connect at all.
@@ -704,9 +692,6 @@ namespace ExitGames.Client.Photon
 
         /// <summary>(232) Used when creating rooms to define if any userid can join the room only once.</summary>
         public const byte CheckUserOnJoin = (byte)232;
-
-        /// <summary>(231) Code for "Check And Swap" (CAS) when changing properties.</summary>
-        public const byte ExpectedValues = (byte)231;
 
         /// <summary>(230) Address of a (game) server to use.</summary>
         public const byte Address = 230;
@@ -921,7 +906,7 @@ public enum CustomAuthenticationType : byte
 /// values to Photon which will verify them before granting access or disconnecting the client.
 ///
 /// The Photon Cloud Dashboard will let you enable this feature and set important server values for it.
-/// https://www.exitgames.com/dashboard
+/// https://cloud.exitgames.com/dashboard
 /// </remarks>
 public class AuthenticationValues
 {

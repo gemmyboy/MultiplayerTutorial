@@ -23254,8 +23254,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 996029371}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: .0238095243}
+  m_AnchorMax: {x: 1, y: .976190448}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -46816,9 +46816,9 @@ MonoBehaviour:
   deathLabel: {fileID: 193560799}
   assistLabel: {fileID: 1249744060}
   GameTimeUI: {fileID: 232411419}
-  bulletTimer: {fileID: 996029370}
-  laserTimer: {fileID: 1222372484}
-  shieldTimer: {fileID: 978210136}
+  bulletTimerRect: {fileID: 996029371}
+  laserTimerRect: {fileID: 1222372485}
+  shieldTimerRect: {fileID: 978210137}
   bulletShot: 0
   laserShot: 0
   shieldShot: 0

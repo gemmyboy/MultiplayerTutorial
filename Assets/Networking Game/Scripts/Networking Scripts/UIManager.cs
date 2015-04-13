@@ -12,9 +12,10 @@ public class UIManager : Photon.MonoBehaviour {
     public GameObject assistLabel;
     public GameObject GameTimeUI;
 
-    public GameObject bulletTimer;
-    public GameObject laserTimer;
-    public GameObject shieldTimer;
+
+    public RectTransform bulletTimerRect;
+    public RectTransform laserTimerRect;
+    public RectTransform shieldTimerRect;
 
     public bool bulletShot = false;
     public bool laserShot = false;
@@ -30,6 +31,9 @@ public class UIManager : Photon.MonoBehaviour {
     //Color pingColor;
 	// Use this for initializatio
 	void Start () {
+        bulletTimerRect = GameObject.Find("ReloadBulletTimer").transform.Find("GreenImage").GetComponent<RectTransform>();
+        shieldTimerRect = GameObject.Find("ShieldTimer").transform.Find("GreenImage").GetComponent<RectTransform>();
+        
         timeleft = updateInterval;
         GameTimeUI.GetComponentInChildren<Text>().text = "" + roundTimeLimitMins + ":00";
         activateLaserTimer();
@@ -83,14 +87,33 @@ public class UIManager : Photon.MonoBehaviour {
         //-----------------------------------------------------------------------------------------
         //-----------------------------------------------------------------------------------------
         if(bulletShot){
-            Debug.Log("Yes");
-
+            if(bulletTimerRect.offsetMax.x < 0){
+                bulletTimerRect.offsetMax += new Vector2(Time.deltaTime * 65, 0.0f);
+            }
+            else
+            {
+                bulletShot = false;
+            }
         }
         if(laserShot){
-            setToZero(shieldTimer);
+            if (laserTimerRect.offsetMax.x < 0)
+            {
+                laserTimerRect.offsetMax += new Vector2(Time.deltaTime * 100, 0.0f);
+            }
+            else
+            {
+                laserShot = false;
+            }
         }
         if(shieldShot){
-            setToZero(laserTimer);
+            if (shieldTimerRect.offsetMax.x < 0)
+            {
+                shieldTimerRect.offsetMax += new Vector2(Time.deltaTime * 19.5f, 0.0f);
+            }
+            else
+            {
+                shieldShot = false;
+            }
         }
 	}
 
@@ -121,7 +144,8 @@ public class UIManager : Photon.MonoBehaviour {
     public void activateLaserTimer(){
         if(PhotonNetwork.room.customProperties["GameType"].ToString() == "OmegaTank"){
             if(PhotonNetwork.player.customProperties["TheOmega"].ToString() == "1"){
-                laserTimer.SetActive(true);
+                laserTimerRect.parent.gameObject.SetActive(true);
+                laserTimerRect = GameObject.Find("LaserTimer").transform.Find("GreenImage").GetComponent<RectTransform>();
             }
         }
     }
@@ -129,6 +153,6 @@ public class UIManager : Photon.MonoBehaviour {
     public void setToZero(GameObject obj)
     {
         RectTransform rectTransform = obj.transform.Find("GreenImage").GetComponent<RectTransform>();
-        rectTransform.rect.Set(-195, 0, 0, 0);
+        rectTransform.offsetMax = new Vector2(-197,0);
     }
 }

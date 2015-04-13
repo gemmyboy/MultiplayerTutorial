@@ -147,7 +147,7 @@ public class TankGunController : MonoBehaviour {
 			guiManager.ChangeAmmo(ammo);
 			loadingTime = 0;
             guiManager.bulletShot = true;
-            guiManager.setToZero(guiManager.bulletTimer);
+            guiManager.setToZero(guiManager.bulletTimerRect.parent.gameObject);
 		}
         if(PhotonNetwork.room.customProperties["GameType"].ToString() == "OmegaTank" && PhotonNetwork.player.customProperties["TheOmega"].ToString() == "1"){
             if (Input.GetButtonDown("Fire2") && laserLoadingTime > laserReloadTime)
