@@ -52,6 +52,10 @@ public class TankGunController : MonoBehaviour {
     public float m_LastShootTime;
 	private float healthRefreshTimer;
 	private float tempHealth;
+
+	public Transform BoostSpawn;
+	private float boostTime = 2000.0f;
+	private bool boostRegenerate = false;
 	void Start () {
         timeManager = FindObjectOfType<GameStartTimeManager>();
         guiManager = FindObjectOfType<UIManager>();
@@ -78,6 +82,10 @@ public class TankGunController : MonoBehaviour {
         if (m_PhotonView.isMine && timeManager.IsItTimeYet)
         {
             Shooting();
+			if (boostTime >= 2000)
+				boostRegenerate = false;
+			if (boostRegenerate)
+				boostTime = boostTime + 0.5f;
             //JointConfiguration();
         }
 		if(healthRefreshTimer <= Time.time)
@@ -149,12 +157,35 @@ public class TankGunController : MonoBehaviour {
             guiManager.bulletShot = true;
             guiManager.setToZero(guiManager.bulletTimerRect.parent.gameObject);
 		}
+
         if(PhotonNetwork.room.customProperties["GameType"].ToString() == "OmegaTank" && PhotonNetwork.player.customProperties["TheOmega"].ToString() == "1"){
+			Debug.Log("Omeaga Shooting");
+			laserLoadingTime += Time.deltaTime;
             if (Input.GetButtonDown("Fire2") && laserLoadingTime > laserReloadTime)
             {
                 StartCoroutine(laserShoot());
             }
         }
+
+		if (Input.GetButton ("Jump")) { 
+			if (boostTime > 0 && !boostRegenerate) {
+				rigidbody.AddForce (BoostSpawn.transform.forward * 10, ForceMode.VelocityChange);
+				rigidbody.AddForce (BoostSpawn.transform.up * -10, ForceMode.VelocityChange);
+				GameObject BoostClone = PhotonNetwork.Instantiate ("Boost", BoostSpawn.position, barrelOut.rotation, 0) as GameObject;//Quaternion.Inverse(barrelOut.rotation), 0) as GameObject;
+				
+				BoostClone.GetComponent<Rigidbody> ().AddForce (BoostSpawn.forward * -100, ForceMode.VelocityChange);
+				ShootingSoundEffect ();
+				
+				guiManager.ChangeAmmo (ammo);
+				loadingTime = 0;
+				boostRegenerate = false;
+				boostTime = boostTime -10;
+			}
+			else if (boostTime >= 2000)
+				boostRegenerate = false;
+			else 
+				boostRegenerate = true;
+		}
 	}
 
 	IEnumerator laserShoot()

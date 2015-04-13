@@ -142,7 +142,7 @@ public class NetworkManager : PunBehaviour
         //--------------------------------------------------------------------------------------------------------------
 
         //Instanitate Tank
-        if(PhotonNetwork.room.customProperties["GameType"].ToString() != "Omega Tank"){
+        if(PhotonNetwork.room.customProperties["GameType"].ToString() == "Omega Tank"){
             if(PhotonNetwork.player.customProperties["TheOmega"].ToString() == "1"){
                 Debug.Log("spawn omega");
                 newPlayerObject = PhotonNetwork.Instantiate("T-90_Prefab_Network_Omega", spawnPoint, Quaternion.identity, 0);
