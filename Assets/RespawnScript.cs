@@ -152,7 +152,7 @@ public class RespawnScript : Photon.MonoBehaviour {
 
 			ExitGames.Client.Photon.Hashtable hash2 = new ExitGames.Client.Photon.Hashtable();
 			//hash2.Add("Kills", (int)PhotonNetwork.player.customProperties["Kills"]);
-			hash2.Add("Deaths",(int)PhotonNetwork.player.customProperties["Deaths"]+1);
+			//hash2.Add("Deaths",(int)PhotonNetwork.player.customProperties["Deaths"]+1);
 			//hash2.Add("Assist",(int)PhotonNetwork.player.customProperties["Assist"]);
 			hash2.Add("Health",100);
 			PhotonNetwork.player.SetCustomProperties(hash2);
