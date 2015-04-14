@@ -170,8 +170,7 @@ public class TankGunController : MonoBehaviour {
 				rigidbody.AddForce (BoostSpawn.transform.forward * -10, ForceMode.VelocityChange);
 				rigidbody.AddForce (BoostSpawn.transform.up * -10, ForceMode.VelocityChange);
 				GameObject BoostClone = PhotonNetwork.Instantiate ("Boost", BoostSpawn.position, BoostSpawn.rotation, 0) as GameObject;
-				
-				//BoostClone.GetComponent<Rigidbody> ().AddForce (BoostSpawn.forward * -100, ForceMode.VelocityChange);
+
 				ShootingSoundEffect ();
 
 				boostRegenerate = false;
