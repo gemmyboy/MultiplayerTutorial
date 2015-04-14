@@ -93,7 +93,6 @@ public class NetworkManager : PunBehaviour
     GameObject Target;
     MeshRenderer[] meshes;
     GameObject newPlayerObject;
-	public GameObject uiManager;
     void OnLevelWasLoaded(int level)
     {
         if (level == 1 || Start_Menu_Server_Check.SceneNameGame == "Demo Scene")
@@ -155,8 +154,6 @@ public class NetworkManager : PunBehaviour
         }else{
             newPlayerObject = PhotonNetwork.Instantiate("T-90_Prefab_Network", spawnPoint, Quaternion.identity, 0);
         }
-		//Add the UI Manager
-		GameObject manager = Instantiate(uiManager,transform.position,transform.rotation) as GameObject;
         //Add the camera target
         orbit = FindObjectOfType<MouseOrbitC>();
         //add the tankgun target
