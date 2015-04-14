@@ -175,7 +175,7 @@ public class TankGunController : MonoBehaviour {
 				ShootingSoundEffect ();
 
 				boostRegenerate = false;
-				boostTime = boostTime -5;
+				boostTime = boostTime -1;
 			}
 			else if (boostTime >= 500)
 				boostRegenerate = false;
