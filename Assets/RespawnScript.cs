@@ -214,7 +214,7 @@ public class RespawnScript : Photon.MonoBehaviour {
 			{
 				int randX = Random.Range(0, 30);
 				int randZ = Random.Range(0, 30);
-				position = GameObject.Find("EaglesSpawnPoint").transform.position + new Vector3(randX, 200, randZ);
+				position = GameObject.Find("EaglesSpawnPoint").transform.position + new Vector3(randX, 100, randZ);
 				yield return new WaitForSeconds(1.0f);
 				respawn = false;
 				photonView.RPC ("RespawnThePlayer",thePlayer,position);
@@ -223,7 +223,7 @@ public class RespawnScript : Photon.MonoBehaviour {
 			{
 				int randX = Random.Range(0, 30);
 				int randZ = Random.Range(0, 30);
-				position = GameObject.Find("ExorcistSpawnPoint").transform.position + new Vector3(randX, 200, randZ);
+				position = GameObject.Find("ExorcistSpawnPoint").transform.position + new Vector3(randX, 100, randZ);
 				yield return new WaitForSeconds(1.0f);
 				respawn = false;
 				photonView.RPC ("RespawnThePlayer",thePlayer,position);
@@ -232,7 +232,7 @@ public class RespawnScript : Photon.MonoBehaviour {
 			{
 				int randX = Random.Range(0, 30);
 				int randZ = Random.Range(0, 30);
-				position = GameObject.Find("WolfSpawnPoint").transform.position + new Vector3(randX, 200, randZ);
+				position = GameObject.Find("WolfSpawnPoint").transform.position + new Vector3(randX, 100, randZ);
 				yield return new WaitForSeconds(1.0f);
 				respawn = false;
 				photonView.RPC ("RespawnThePlayer",thePlayer,position);
@@ -241,7 +241,7 @@ public class RespawnScript : Photon.MonoBehaviour {
 			{
 				int randX = Random.Range(0, 30);
 				int randZ = Random.Range(0, 30);
-				position = GameObject.Find("BloodSpawnPoint").transform.position + new Vector3(randX, 200, randZ);
+				position = GameObject.Find("BloodSpawnPoint").transform.position + new Vector3(randX, 100, randZ);
 				yield return new WaitForSeconds(1.0f);
 				respawn = false;
 				photonView.RPC ("RespawnThePlayer",thePlayer,position);
