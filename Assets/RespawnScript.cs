@@ -43,12 +43,21 @@ public class RespawnScript : Photon.MonoBehaviour {
 
 			
 			//Debug.Log ("Respawn GAMEMODE has been set!****:  ");
-			if(FreeForAll)
+			if((PhotonNetwork.room.customProperties["GameType"].ToString() != "Free For All"))
+			{
+				FreeForAll = true;
 				Debug.Log (FreeForAll);
-			if(OmegaTank)
+			}
+			if((PhotonNetwork.room.customProperties["GameType"].ToString() != "Capture The Flag"))
+			{
+				CaptureTheFlag = true;
 				Debug.Log(OmegaTank);
-			if(CaptureTheFlag)
+			}
+			if((PhotonNetwork.room.customProperties["GameType"].ToString() != "Omega Tank"))
+			{
+				OmegaTank = true;
 				Debug.Log(CaptureTheFlag);
+			}
 		}
 
 		if(notInstantiated)
@@ -178,22 +187,65 @@ public class RespawnScript : Photon.MonoBehaviour {
 	
 	IEnumerator getSpawnPoint(PhotonPlayer thePlayer)
 	{
-		if(photonView.isMine){
-			goodSpawn = false;
-			position = new Vector3 (Random.Range (140, 1230), 200.0f, Random.Range (-315, 580));
-			while(!goodSpawn)
-			{
-				if(checkSpawn(position))
+		if(FreeForAll)
+		{
+			if(photonView.isMine){
+				goodSpawn = false;
+				position = new Vector3 (Random.Range (140, 1230), 200.0f, Random.Range (-315, 580));
+				while(!goodSpawn)
 				{
-					goodSpawn = true;
-				}else{
-					position = new Vector3 (Random.Range (140, 1230), 200.0f, Random.Range (-315, 580));
+					if(checkSpawn(position))
+					{
+						goodSpawn = true;
+					}else{
+						position = new Vector3 (Random.Range (140, 1230), 200.0f, Random.Range (-315, 580));
+					}
 				}
+				goodSpawn = false;
+				yield return new WaitForSeconds(1.0f);
+				respawn = false;
+				photonView.RPC ("RespawnThePlayer",thePlayer,position);
 			}
-			goodSpawn = false;
-			yield return new WaitForSeconds(1.0f);
-			respawn = false;
-			photonView.RPC ("RespawnThePlayer",thePlayer,position);
+		}else if(CaptureTheFlag){
+
+			if (photonView.isMine && photonView.owner.customProperties["Team"].ToString() == "Eagles")
+			{
+				int randX = Random.Range(0, 30);
+				int randZ = Random.Range(0, 30);
+				position = GameObject.Find("EaglesSpawnPoint").transform.position + new Vector3(randX, 20, randZ);
+				photonView.RPC ("RespawnThePlayer",thePlayer,position);
+			}
+			else if (photonView.isMine && photonView.owner.customProperties["Team"].ToString() == "Exorcist")
+			{
+				int randX = Random.Range(0, 30);
+				int randZ = Random.Range(0, 30);
+				position = GameObject.Find("ExorcistSpawnPoint").transform.position + new Vector3(randX, 20, randZ);
+				photonView.RPC ("RespawnThePlayer",thePlayer,position);
+			}
+			else if (photonView.isMine && photonView.owner.customProperties["Team"].ToString() == "Wolves")
+			{
+				int randX = Random.Range(0, 30);
+				int randZ = Random.Range(0, 30);
+				position = GameObject.Find("WolfSpawnPoint").transform.position + new Vector3(randX, 20, randZ);
+				photonView.RPC ("RespawnThePlayer",thePlayer,position);
+			}
+			else if (photonView.isMine && photonView.owner.customProperties["Team"].ToString() == "Angel")
+			{
+				int randX = Random.Range(0, 30);
+				int randZ = Random.Range(0, 30);
+				position = GameObject.Find("BloodSpawnPoint").transform.position + new Vector3(randX, 20, randZ);
+				photonView.RPC ("RespawnThePlayer",thePlayer,position);
+			}
+
+		}else if(OmegaTank){
+
+			if(photonView.isMine && photonView.owner.customProperties["TheOmega"] == 1)
+			{
+				Debug.Log("NOT GOING TO RESPAWN - OMEGA TANK");
+			}else{
+				
+			}
+
 		}
 	}
 
