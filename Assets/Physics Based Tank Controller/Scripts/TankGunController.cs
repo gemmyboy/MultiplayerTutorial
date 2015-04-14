@@ -176,7 +176,6 @@ public class TankGunController : MonoBehaviour {
 				BoostClone.GetComponent<Rigidbody> ().AddForce (BoostSpawn.forward * -100, ForceMode.VelocityChange);
 				ShootingSoundEffect ();
 				
-				guiManager.ChangeAmmo (ammo);
 				loadingTime = 0;
 				boostRegenerate = false;
 				boostTime = boostTime -10;
