@@ -131,6 +131,27 @@ public class HealthSync : Photon.MonoBehaviour {
 			//transform.rigidbody.AddExplosionForce(150000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
 			photonView.RPC ("AdjustHealthBar",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,1);
 			photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
+
+			//person killed gets his ui health updated
+			photonView.RPC ("UpdateHealthUI",hurtPlayer,(int)hurtPlayer.customProperties["Health"]);
+
+
+
+			//killer gets his kills updated
+			PhotonPlayer tempPlayer = PhotonPlayer.Find(theKiller);
+			ExitGames.Client.Photon.Hashtable hash10 = new ExitGames.Client.Photon.Hashtable();
+			int kills = (int)tempPlayer.customProperties["Kills"] + 1;
+			hash10.Add("Kills", kills);
+			tempPlayer.SetCustomProperties(hash10);
+			photonView.RPC ("UpdateKillsUI",tempPlayer, kills);
+
+			//person killed gets deaths updated
+			tempPlayer = PhotonPlayer.Find(myViewID);
+			ExitGames.Client.Photon.Hashtable hash2 = new ExitGames.Client.Photon.Hashtable();
+			hash2.Add("Deaths",(int)tempPlayer.customProperties["Deaths"]+1);
+			tempPlayer.SetCustomProperties(hash2);
+			photonView.RPC ("UpdateDeathsUI",tempPlayer,(int)tempPlayer.customProperties["Deaths"]);
+
 			photonView.RPC("tankGoBoom", PhotonTargets.All, gameObject.GetPhotonView().viewID,theKiller);
 			//transform.rigidbody.AddExplosionForce(150000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
 			
@@ -138,10 +159,10 @@ public class HealthSync : Photon.MonoBehaviour {
 
 			hurtPlayer = gameObject.GetPhotonView().owner;
 			ExitGames.Client.Photon.Hashtable hash2 = new ExitGames.Client.Photon.Hashtable();
-
 			healthAmount = (int)hurtPlayer.customProperties["Health"] - (int)TankShellDamage;
 			hash2.Add("Health",healthAmount);
 			hurtPlayer.SetCustomProperties(hash2);
+			photonView.RPC ("UpdateHealthUI",hurtPlayer,(int)hurtPlayer.customProperties["Health"]);
 
 			transform.rigidbody.AddExplosionForce(15000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
 			
@@ -149,11 +170,6 @@ public class HealthSync : Photon.MonoBehaviour {
 			photonView.RPC ("AdjustHealthBar",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,2);
 
 		}
-//		if(theCase == 1 && photonView.ownerId == theKiller)//if photonView == theKiller && theCase == 1
-//		{
-//			Debug.Log ("GOT HERE FAGGOT");
-//			uiManager.SendMessage("updateKills",SendMessageOptions.RequireReceiver);
-//		}
 	}
 
 	[RPC]
@@ -204,6 +220,15 @@ public class HealthSync : Photon.MonoBehaviour {
 				{
 					if(tempPlayer.GetPhotonView().ownerId == myKiller)
 					{
+//						ExitGames.Client.Photon.Hashtable hash10 = new ExitGames.Client.Photon.Hashtable();
+//						int kills = (int)tempPlayer.GetPhotonView().owner.customProperties["Kills"] + 1;
+//						hash10.Add("Kills", kills);
+//						tempPlayer.GetPhotonView().owner.SetCustomProperties(hash10);
+//						uiManager.changeKills(kills);
+//						Debug.Log ("ADDED A KILL");
+//						kills = 0;
+//						//GameObject.Find ("Respawner").SendMessage ("AddKill", PhotonPlayer.Find(myKiller), SendMessageOptions.RequireReceiver);
+//
 						Camera.main.GetComponent<MouseOrbitC> ().target = tempPlayer.transform;
 					}
 				}
@@ -317,28 +342,26 @@ public class HealthSync : Photon.MonoBehaviour {
 		Destroy(tank.GetComponentInChildren<TankGunColliders>());
 
         Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, 10);
-        foreach (Collider hit in colliders)
-        {
-            //Debug.Log(hit.name);
-            if (hit.tag != "Terrain" && hit.gameObject.layer != LayerMask.NameToLayer("Flag") && hit.name != "Map-3-26")
-            {
-                if (hit.GetComponent<Rigidbody>() == null)
-                {
-                    hit.gameObject.AddComponent<Rigidbody>();
-					hit.gameObject.GetComponent<Rigidbody>().mass = 3000f;
+        foreach (Collider hit in colliders) {
+			//Debug.Log(hit.name);
+			if (hit.tag != "Terrain" && hit.gameObject.layer != LayerMask.NameToLayer ("Flag") && hit.name != "Map-3-26") {
+				if (hit.GetComponent<Rigidbody> () == null) {
+					hit.gameObject.AddComponent<Rigidbody> ();
+					hit.gameObject.GetComponent<Rigidbody> ().mass = 3000f;
 					hit.gameObject.tag = "Trash";
-                }
-            }
+				}
+			}
 
-            if (hit && hit.rigidbody)
-            {
-                hit.rigidbody.isKinematic = false;
-				hit.gameObject.GetComponent<Rigidbody>().mass = 3000f;
+			if (hit && hit.rigidbody) {
+				hit.rigidbody.isKinematic = false;
+				hit.gameObject.GetComponent<Rigidbody> ().mass = 3000f;
 				hit.gameObject.tag = "Trash";
-                hit.rigidbody.AddExplosionForce(100000, hit.rigidbody.transform.position, 10.0f, 0.0f,ForceMode.Impulse);
-            }
+				hit.rigidbody.AddExplosionForce (100000, hit.rigidbody.transform.position, 10.0f, 0.0f, ForceMode.Impulse);
+			}
            
-        }
+		}
+		
+		//PhotonPlayer theKiller = PhotonPlayer.Find (myKiller);
 
         GameObject.Find("Respawner").SendMessage("AddKill", PhotonPlayer.Find(myKiller), SendMessageOptions.RequireReceiver);
 		GameObject.Find ("Respawner").SendMessage ("ActivateRespawn", tank.GetPhotonView ().owner, SendMessageOptions.RequireReceiver);
@@ -397,4 +420,22 @@ public class HealthSync : Photon.MonoBehaviour {
         }
         return false;
     }
+
+	[RPC]
+	void UpdateKillsUI(int kills)
+	{
+		uiManager.changeKills(kills);
+	}
+
+	[RPC]
+	void UpdateDeathsUI(int deaths)
+	{
+		uiManager.changeDeaths (deaths);
+	}
+
+	[RPC]
+	void UpdateHealthUI(int health)
+	{
+		uiManager.ChangeHealth (health);
+	}
 }

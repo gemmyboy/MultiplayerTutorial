@@ -16,7 +16,7 @@ public class Kills_Deaths_Assist : MonoBehaviour {
         uiManager.changeDeaths(deaths);
         uiManager.changeAssist(assist);
 	}
-
+	/*
     public void updateKills()
     {
         ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
@@ -38,4 +38,5 @@ public class Kills_Deaths_Assist : MonoBehaviour {
         hash.Add("Deaths", assist);
         PhotonNetwork.SetPlayerCustomProperties(hash);
     }
+    */
 }

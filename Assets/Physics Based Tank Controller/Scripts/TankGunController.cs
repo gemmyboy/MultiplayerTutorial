@@ -86,17 +86,17 @@ public class TankGunController : MonoBehaviour {
 				boostTime = boostTime + 0.5f;
             //JointConfiguration();
         }
-		if(healthRefreshTimer <= Time.time)
-		{
-			healthRefreshTimer+=1.0f;
-
-			//tempHealth = (int)HealthSync.healthAmount;
-			if(m_PhotonView.isMine)
-			{
-				tempHealth = (int)m_PhotonView.owner.customProperties["Health"];
-				guiManager.ChangeHealth((int)tempHealth);
-			}
-		}
+//		if(healthRefreshTimer <= Time.time)
+//		{
+//			healthRefreshTimer+=1.0f;
+//
+//			//tempHealth = (int)HealthSync.healthAmount;
+//			if(m_PhotonView.isMine)
+//			{
+//				tempHealth = (int)m_PhotonView.owner.customProperties["Health"];
+//				guiManager.ChangeHealth((int)tempHealth);
+//			}
+//		}
 	}
 
 	void FixedUpdate () {
