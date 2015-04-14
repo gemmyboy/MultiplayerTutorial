@@ -88,7 +88,7 @@ public class UIManager : Photon.MonoBehaviour {
         //-----------------------------------------------------------------------------------------
         if(bulletShot){
             if(bulletTimerRect.offsetMax.x < 0){
-                bulletTimerRect.offsetMax += new Vector2(Time.deltaTime * 65, 0.0f);
+                bulletTimerRect.offsetMax += new Vector2(Time.deltaTime * 250/3, 0.0f);
             }
             else
             {
@@ -153,6 +153,6 @@ public class UIManager : Photon.MonoBehaviour {
     public void setToZero(GameObject obj)
     {
         RectTransform rectTransform = obj.transform.Find("GreenImage").GetComponent<RectTransform>();
-        rectTransform.offsetMax = new Vector2(-197,0);
+        rectTransform.offsetMax = new Vector2(-250,0);
     }
 }

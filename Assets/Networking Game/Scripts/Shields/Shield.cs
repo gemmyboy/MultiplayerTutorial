@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Shield : Photon.MonoBehaviour {
-    public float lifeTime = 20.0f;
+    public float lifeTime = 15.0f;
     public float timer = 0.0f;
 	// Use this for initialization
 	void Start () {

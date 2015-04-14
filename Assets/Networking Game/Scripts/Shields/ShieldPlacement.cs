@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ShieldPlacement : Photon.MonoBehaviour {
     public GameObject shield;
-    public float cooldownTime = 10.0f;
+    public float cooldownTime = 60.0f;
     public float timer = 0.0f;
     UIManager guiManager;
 	void Start () {

@@ -47,14 +47,12 @@ public class TankGunController : MonoBehaviour {
     public PhotonView m_PhotonView;
     UIManager guiManager;
     public GameStartTimeManager timeManager;
-
-    public int m_LastProjectileID;
-    public float m_LastShootTime;
+	
 	private float healthRefreshTimer;
 	private float tempHealth;
 
 	public Transform BoostSpawn;
-	private float boostTime = 2000.0f;
+	private float boostTime = 500.0f;
 	private bool boostRegenerate = false;
 	void Start () {
         timeManager = FindObjectOfType<GameStartTimeManager>();
@@ -82,7 +80,7 @@ public class TankGunController : MonoBehaviour {
         if (m_PhotonView.isMine && timeManager.IsItTimeYet)
         {
             Shooting();
-			if (boostTime >= 2000)
+			if (boostTime >= 500)
 				boostRegenerate = false;
 			if (boostRegenerate)
 				boostTime = boostTime + 0.5f;
@@ -169,18 +167,17 @@ public class TankGunController : MonoBehaviour {
 
 		if (Input.GetButton ("Jump")) { 
 			if (boostTime > 0 && !boostRegenerate) {
-				rigidbody.AddForce (BoostSpawn.transform.forward * 10, ForceMode.VelocityChange);
+				rigidbody.AddForce (BoostSpawn.transform.forward * -10, ForceMode.VelocityChange);
 				rigidbody.AddForce (BoostSpawn.transform.up * -10, ForceMode.VelocityChange);
-				GameObject BoostClone = PhotonNetwork.Instantiate ("Boost", BoostSpawn.position, barrelOut.rotation, 0) as GameObject;//Quaternion.Inverse(barrelOut.rotation), 0) as GameObject;
+				GameObject BoostClone = PhotonNetwork.Instantiate ("Boost", BoostSpawn.position, BoostSpawn.rotation, 0) as GameObject;
 				
-				BoostClone.GetComponent<Rigidbody> ().AddForce (BoostSpawn.forward * -100, ForceMode.VelocityChange);
+				//BoostClone.GetComponent<Rigidbody> ().AddForce (BoostSpawn.forward * -100, ForceMode.VelocityChange);
 				ShootingSoundEffect ();
-				
-				loadingTime = 0;
+
 				boostRegenerate = false;
-				boostTime = boostTime -10;
+				boostTime = boostTime -5;
 			}
-			else if (boostTime >= 2000)
+			else if (boostTime >= 500)
 				boostRegenerate = false;
 			else 
 				boostRegenerate = true;
