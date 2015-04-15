@@ -54,4 +54,12 @@ MonoBehaviour:
   - tankGoBoom
   - RemoveNetworkTrash
   - askForOwnership
+  - UpdateDeathsUI
+  - UpdateHealthUI
+  - UpdateKillsUI
+  - AdjustCameraView
+  - checkPlayer
+  - getPointCoroutine
+  - getSpawnPoint
+  - respawnTimeCoroutine
   DisableAutoOpenWizard: 0

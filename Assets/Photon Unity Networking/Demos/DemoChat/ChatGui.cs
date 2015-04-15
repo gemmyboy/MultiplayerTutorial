@@ -80,7 +80,7 @@ public class ChatGui : MonoBehaviour, IChatClientListener
             this.GuiRect.height = Screen.height;
         }
 
-        Debug.Log(this.UserName);
+        //Debug.Log(this.UserName);
     }
 
     /// <summary>To avoid that the Editor becomes unresponsive, disconnect all Photon connections in OnApplicationQuit.</summary>
