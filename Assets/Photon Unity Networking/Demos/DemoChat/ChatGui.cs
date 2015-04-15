@@ -62,7 +62,7 @@ public class ChatGui : MonoBehaviour, IChatClientListener
 
         if (string.IsNullOrEmpty(this.UserName))
         {
-            this.UserName = "user" + Environment.TickCount%99; //made-up username
+            this.UserName = PhotonNetwork.player.name;
         }
 
         chatClient = new ChatClient(this);
@@ -79,8 +79,6 @@ public class ChatGui : MonoBehaviour, IChatClientListener
             this.GuiRect.width = Screen.width;
             this.GuiRect.height = Screen.height;
         }
-
-        Debug.Log(this.UserName);
     }
 
     /// <summary>To avoid that the Editor becomes unresponsive, disconnect all Photon connections in OnApplicationQuit.</summary>
@@ -111,9 +109,9 @@ public class ChatGui : MonoBehaviour, IChatClientListener
         //GUI.skin.button.richText = true;      // this allows toolbar buttons to have bold/colored text. nice to indicate new msgs
         //GUILayout.Button("<b>lala</b>");      // as richText, html tags could be in text
 
-
-        if (Event.current.type == EventType.KeyDown && (Event.current.keyCode == KeyCode.KeypadEnter || Event.current.keyCode == KeyCode.Return))
+        if (Event.current.type == EventType.KeyDown && (Event.current.keyCode == KeyCode.Return))
         {
+            Debug.Log("hola");
             if ("ChatInput".Equals(GUI.GetNameOfFocusedControl()))
             {
                 // focus on input -> submit it
