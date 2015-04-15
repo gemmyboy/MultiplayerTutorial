@@ -54,4 +54,12 @@ MonoBehaviour:
   - tankGoBoom
   - RemoveNetworkTrash
   - askForOwnership
+  - UpdateDeathsUI
+  - UpdateHealthUI
+  - UpdateKillsUI
+  - setNormal
+  - setBoost
+  - setHeavy
+  - showParticle
+  - stopParticle
   DisableAutoOpenWizard: 0

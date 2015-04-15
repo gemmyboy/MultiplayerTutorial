@@ -52,7 +52,8 @@ public class TankGunController : MonoBehaviour {
 	private float tempHealth;
 
 	public Transform BoostSpawn;
-	private float boostTime = 500.0f;
+	public float boostTime = 500.0f;
+	private float boostReload = 500f;
 	private bool boostRegenerate = false;
 	void Start () {
         timeManager = FindObjectOfType<GameStartTimeManager>();
@@ -80,23 +81,12 @@ public class TankGunController : MonoBehaviour {
         if (m_PhotonView.isMine && timeManager.IsItTimeYet)
         {
             Shooting();
-			if (boostTime >= 500)
+			if (boostTime >= boostReload)
 				boostRegenerate = false;
 			if (boostRegenerate)
 				boostTime = boostTime + 0.5f;
             //JointConfiguration();
         }
-//		if(healthRefreshTimer <= Time.time)
-//		{
-//			healthRefreshTimer+=1.0f;
-//
-//			//tempHealth = (int)HealthSync.healthAmount;
-//			if(m_PhotonView.isMine)
-//			{
-//				tempHealth = (int)m_PhotonView.owner.customProperties["Health"];
-//				guiManager.ChangeHealth((int)tempHealth);
-//			}
-//		}
 	}
 
 	void FixedUpdate () {
@@ -165,21 +155,29 @@ public class TankGunController : MonoBehaviour {
             }
         }
 
+
+		if(Input.GetButtonDown("Jump")){
+			m_PhotonView.RPC("showParticle",PhotonTargets.All,gameObject.transform.parent.transform.Find("BoostLocator").transform.Find("Boost").GetComponent<PhotonView>().viewID);
+		}
+		if(Input.GetButtonUp("Jump")){
+			m_PhotonView.RPC("stopParticle",PhotonTargets.All,gameObject.transform.parent.transform.Find("BoostLocator").transform.Find("Boost").GetComponent<PhotonView>().viewID);
+		}
 		if (Input.GetButton ("Jump")) { 
 			if (boostTime > 0 && !boostRegenerate) {
-				rigidbody.AddForce (BoostSpawn.transform.forward * -10, ForceMode.VelocityChange);
-				rigidbody.AddForce (BoostSpawn.transform.up * -10, ForceMode.VelocityChange);
-				GameObject BoostClone = PhotonNetwork.Instantiate ("Boost", BoostSpawn.position, BoostSpawn.rotation, 0) as GameObject;
+				rigidbody.AddForce (gameObject.transform.parent.gameObject.transform.forward * 10, ForceMode.VelocityChange);
+				rigidbody.AddForce (gameObject.transform.parent.gameObject.transform.up * -10, ForceMode.VelocityChange);
 
 				ShootingSoundEffect ();
 
 				boostRegenerate = false;
-				boostTime = boostTime -1;
+				boostTime = boostTime -2;
 			}
-			else if (boostTime >= 500)
+			else if (boostTime >= boostReload)
 				boostRegenerate = false;
-			else 
+			else{ 
 				boostRegenerate = true;
+				gameObject.transform.parent.transform.Find("BoostLocator").transform.Find("Boost").GetComponent<ParticleSystem>().enableEmission = false;
+			}
 		}
 	}
 
@@ -234,5 +232,31 @@ public class TankGunController : MonoBehaviour {
 		}
 
 	}
+
+	GameObject system;
+	[RPC]
+	public void showParticle(int particleSystemID){
+		PhotonView[] views = FindObjectsOfType<PhotonView>();
+		foreach(PhotonView view in views){
+			if(view.viewID == particleSystemID){
+				system = view.gameObject;
+			}
+		}
+
+		system.GetComponent<ParticleSystem> ().enableEmission = true;
+	}
+
+	[RPC]
+	public void stopParticle(int particleSystemID){
+		PhotonView[] views = FindObjectsOfType<PhotonView>();
+		foreach(PhotonView view in views){
+			if(view.viewID == particleSystemID){
+				system = view.gameObject;
+			}
+		}
+
+		system.GetComponent<ParticleSystem> ().enableEmission = false;
+	}
+
 
 }

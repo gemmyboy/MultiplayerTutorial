@@ -1560,26 +1560,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &116894
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 416894}
-  - 15: {fileID: 1516706}
-  - 12: {fileID: 1216706}
-  - 26: {fileID: 2616706}
-  - 114: {fileID: 11419172}
-  - 114: {fileID: 11400446}
-  m_Layer: 8
-  m_Name: HeavyExhaust
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &116896
 GameObject:
   m_ObjectHideFlags: 1
@@ -1591,26 +1571,6 @@ GameObject:
   - 146: {fileID: 14616726}
   m_Layer: 8
   m_Name: Wheel6R
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &116898
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 416898}
-  - 15: {fileID: 1516708}
-  - 12: {fileID: 1216708}
-  - 26: {fileID: 2616708}
-  - 114: {fileID: 11459114}
-  - 114: {fileID: 11439674}
-  m_Layer: 8
-  m_Name: NormalExhaust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1810,6 +1770,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &118590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 418590}
+  m_Layer: 8
+  m_Name: Exhaust_Location
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &136700
 GameObject:
   m_ObjectHideFlags: 0
@@ -1855,7 +1830,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 471284}
   m_Layer: 0
-  m_Name: BoostLocator--BatmanHole
+  m_Name: BoostLocator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2118,7 +2093,7 @@ Transform:
   - {fileID: 416812}
   - {fileID: 416796}
   m_Father: {fileID: 416852}
-  m_RootOrder: 12
+  m_RootOrder: 11
 --- !u!4 &416744
 Transform:
   m_ObjectHideFlags: 1
@@ -2828,8 +2803,7 @@ Transform:
   - {fileID: 416920}
   - {fileID: 416728}
   - {fileID: 416810}
-  - {fileID: 416894}
-  - {fileID: 416898}
+  - {fileID: 418590}
   - {fileID: 416742}
   - {fileID: 416862}
   - {fileID: 436700}
@@ -2903,7 +2877,7 @@ Transform:
   - {fileID: 416884}
   - {fileID: 416836}
   m_Father: {fileID: 416852}
-  m_RootOrder: 13
+  m_RootOrder: 12
 --- !u!4 &416864
 Transform:
   m_ObjectHideFlags: 1
@@ -3100,18 +3074,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 416852}
   m_RootOrder: 2
---- !u!4 &416894
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116894}
-  m_LocalRotation: {x: .202926159, y: -.677363217, z: .202926174, w: .677363336}
-  m_LocalPosition: {x: -3.05529737, y: -1.28442192, z: -4.72857714}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 416852}
-  m_RootOrder: 10
 --- !u!4 &416896
 Transform:
   m_ObjectHideFlags: 1
@@ -3124,18 +3086,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 416776}
   m_RootOrder: 5
---- !u!4 &416898
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116898}
-  m_LocalRotation: {x: -.117029451, y: .697355092, z: -.117029451, w: -.697355092}
-  m_LocalPosition: {x: -3.05529737, y: -1.28442192, z: -4.72857714}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 416852}
-  m_RootOrder: 11
 --- !u!4 &416900
 Transform:
   m_ObjectHideFlags: 1
@@ -3296,6 +3246,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 416918}
   m_RootOrder: 2
+--- !u!4 &418590
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118590}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.24799991, y: -1.31299996, z: -4.73400021}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 416852}
+  m_RootOrder: 10
 --- !u!4 &436700
 Transform:
   m_ObjectHideFlags: 1
@@ -3308,133 +3270,19 @@ Transform:
   m_Children:
   - {fileID: 22406368}
   m_Father: {fileID: 416852}
-  m_RootOrder: 14
+  m_RootOrder: 13
 --- !u!4 &471284
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171284}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
+  m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106829}
   m_LocalPosition: {x: 0, y: -2.44000244, z: -7.56000137}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 416852}
-  m_RootOrder: 15
---- !u!12 &1216706
-ParticleAnimator:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116894}
-  Does Animate Color?: 1
-  colorAnimation[0]:
-    serializedVersion: 2
-    rgba: 1143153443
-  colorAnimation[1]:
-    serializedVersion: 2
-    rgba: 2904892709
-  colorAnimation[2]:
-    serializedVersion: 2
-    rgba: 2904300572
-  colorAnimation[3]:
-    serializedVersion: 2
-    rgba: 1158943764
-  colorAnimation[4]:
-    serializedVersion: 2
-    rgba: 335544320
-  worldRotationAxis: {x: 0, y: 0, z: 0}
-  localRotationAxis: {x: 0, y: 0, z: 0}
-  sizeGrow: 6.13999987
-  rndForce: {x: 0, y: 0, z: 0}
-  force: {x: 0, y: 5, z: 0}
-  damping: 1
-  stopSimulation: 0
-  autodestruct: 0
---- !u!12 &1216708
-ParticleAnimator:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116898}
-  Does Animate Color?: 1
-  colorAnimation[0]:
-    serializedVersion: 2
-    rgba: 3361956707
-  colorAnimation[1]:
-    serializedVersion: 2
-    rgba: 4283519313
-  colorAnimation[2]:
-    serializedVersion: 2
-    rgba: 3076744035
-  colorAnimation[3]:
-    serializedVersion: 2
-    rgba: 2538688849
-  colorAnimation[4]:
-    serializedVersion: 2
-    rgba: 1835361637
-  worldRotationAxis: {x: 0, y: 0, z: 0}
-  localRotationAxis: {x: 0, y: 0, z: 0}
-  sizeGrow: 1
-  rndForce: {x: 0, y: 0, z: 0}
-  force: {x: 0, y: 0, z: 0}
-  damping: 1
-  stopSimulation: 0
-  autodestruct: 0
---- !u!15 &1516706
-EllipsoidParticleEmitter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116894}
-  serializedVersion: 2
-  m_Enabled: 1
-  m_Emit: 0
-  minSize: .25
-  maxSize: 1
-  minEnergy: .5
-  maxEnergy: 1
-  minEmission: 1
-  maxEmission: 500
-  worldVelocity: {x: 0, y: 0, z: 0}
-  localVelocity: {x: 0, y: 0, z: 7.5}
-  rndVelocity: {x: 1, y: 1, z: 0}
-  emitterVelocityScale: .699999988
-  tangentVelocity: {x: 0, y: 0, z: 0}
-  angularVelocity: 50
-  rndAngularVelocity: 50
-  rndRotation: 1
-  Simulate in Worldspace?: 1
-  m_OneShot: 0
-  m_Ellipsoid: {x: .5, y: 0, z: 0}
-  m_MinEmitterRange: 0
---- !u!15 &1516708
-EllipsoidParticleEmitter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116898}
-  serializedVersion: 2
-  m_Enabled: 1
-  m_Emit: 0
-  minSize: .25
-  maxSize: 1
-  minEnergy: .25
-  maxEnergy: 1
-  minEmission: 1
-  maxEmission: 50
-  worldVelocity: {x: 0, y: 0, z: 0}
-  localVelocity: {x: 0, y: 0, z: 2.5}
-  rndVelocity: {x: 1, y: 1, z: 0}
-  emitterVelocityScale: .5
-  tangentVelocity: {x: 0, y: 0, z: 0}
-  angularVelocity: 50
-  rndAngularVelocity: 50
-  rndRotation: 1
-  Simulate in Worldspace?: 1
-  m_OneShot: 0
-  m_Ellipsoid: {x: .349999994, y: 0, z: 0}
-  m_MinEmitterRange: 0
+  m_RootOrder: 14
 --- !u!23 &2316706
 Renderer:
   m_ObjectHideFlags: 1
@@ -4096,66 +3944,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!26 &2616706
-ParticleRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116894}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 2100000, guid: a3ef8d32dc02a0b449851c5e6cd781f7, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  serializedVersion: 2
-  m_CameraVelocityScale: 0
-  m_StretchParticles: 0
-  m_LengthScale: 2
-  m_VelocityScale: 0
-  m_MaxParticleSize: .25
-  UV Animation:
-    x Tile: 1
-    y Tile: 1
-    cycles: 1
---- !u!26 &2616708
-ParticleRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116898}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 2100000, guid: d066427e891607c44b68fd477dab6bb2, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  serializedVersion: 2
-  m_CameraVelocityScale: 0
-  m_StretchParticles: 0
-  m_LengthScale: 2
-  m_VelocityScale: 0
-  m_MaxParticleSize: .25
-  UV Animation:
-    x Tile: 1
-    y Tile: 1
-    cycles: 1
 --- !u!33 &3316706
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -5118,66 +4906,6 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
---- !u!114 &11400446
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PositionModel:
-    SynchronizeEnabled: 1
-    TeleportEnabled: 1
-    TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 2
-    InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 1
-    InterpolateMoveTowardsAcceleration: 2
-    InterpolateMoveTowardsDeceleration: 2
-    InterpolateSpeedCurve:
-      serializedVersion: 2
-      m_Curve:
-      - time: -1
-        value: 0
-        inSlope: 0
-        outSlope: Infinity
-        tangentMode: 0
-      - time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 1
-        tangentMode: 0
-      - time: 4
-        value: 4
-        inSlope: 1
-        outSlope: 0
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-    ExtrapolateOption: 0
-    ExtrapolateSpeed: 1
-    ExtrapolateIncludingRoundTripTime: 1
-    ExtrapolateNumberOfStoredPositions: 1
-    DrawErrorGizmo: 1
-  m_RotationModel:
-    SynchronizeEnabled: 1
-    InterpolateOption: 1
-    InterpolateRotateTowardsSpeed: 180
-    InterpolateLerpSpeed: 5
-  m_ScaleModel:
-    SynchronizeEnabled: 1
-    InterpolateOption: 0
-    InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 0
 --- !u!114 &11406366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5284,6 +5012,7 @@ MonoBehaviour:
   m_PhotonView: {fileID: 11469966}
   timeManager: {fileID: 0}
   BoostSpawn: {fileID: 471284}
+  boostTime: 500
 --- !u!114 &11416710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5395,8 +5124,8 @@ MonoBehaviour:
   engineRunningAudioClip: {fileID: 8300000, guid: 28383e20e2d5db84b9dc96832c27db3b,
     type: 3}
   WheelSlipPrefab: {fileID: 100000, guid: efc89a6b0a1d15549921ca5c02b0cf7a, type: 2}
-  normalExhaustGas: {fileID: 1516708}
-  heavyExhaustGas: {fileID: 1516706}
+  normalExhaustGas: {fileID: 0}
+  heavyExhaustGas: {fileID: 0}
   timeManager: {fileID: 0}
 --- !u!114 &11416712
 MonoBehaviour:
@@ -5461,31 +5190,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a9de26b9c5a0e45b7fb52806daaa60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11419172
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  prefixBackup: -1
-  observed: {fileID: 0}
-  synchronization: 3
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 11400446}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
-  isRuntimeInstantiated: 0
 --- !u!114 &11419436
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5539,66 +5243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1bfd302df41a644aa4967e8ef13bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11439674
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PositionModel:
-    SynchronizeEnabled: 1
-    TeleportEnabled: 1
-    TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 3
-    InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 1
-    InterpolateMoveTowardsAcceleration: 2
-    InterpolateMoveTowardsDeceleration: 2
-    InterpolateSpeedCurve:
-      serializedVersion: 2
-      m_Curve:
-      - time: -1
-        value: 0
-        inSlope: 0
-        outSlope: Infinity
-        tangentMode: 0
-      - time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 1
-        tangentMode: 0
-      - time: 4
-        value: 4
-        inSlope: 1
-        outSlope: 0
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-    ExtrapolateOption: 0
-    ExtrapolateSpeed: 1
-    ExtrapolateIncludingRoundTripTime: 1
-    ExtrapolateNumberOfStoredPositions: 1
-    DrawErrorGizmo: 1
-  m_RotationModel:
-    SynchronizeEnabled: 0
-    InterpolateOption: 1
-    InterpolateRotateTowardsSpeed: 180
-    InterpolateLerpSpeed: 5
-  m_ScaleModel:
-    SynchronizeEnabled: 0
-    InterpolateOption: 0
-    InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 0
 --- !u!114 &11451082
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5674,31 +5318,6 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!114 &11459114
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  prefixBackup: -1
-  observed: {fileID: 0}
-  synchronization: 3
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 11439674}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
-  isRuntimeInstantiated: 0
 --- !u!114 &11465996
 MonoBehaviour:
   m_ObjectHideFlags: 1

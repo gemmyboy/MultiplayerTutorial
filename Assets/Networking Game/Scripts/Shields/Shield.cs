@@ -24,7 +24,7 @@ public class Shield : Photon.MonoBehaviour {
     IEnumerator Explosion()
     {
         yield return new WaitForSeconds(1.0f);
-        PhotonNetwork.Instantiate("Particle_Manager", transform.position, transform.rotation, 0);
+        PhotonNetwork.Instantiate("Shield_Explosion", transform.position, transform.rotation, 0);
         if (photonView.isMine && gameObject != null)
         {
             PhotonNetwork.Destroy(gameObject);

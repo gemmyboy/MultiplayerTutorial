@@ -86,6 +86,12 @@ public class NetworkManager : PunBehaviour
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	public void leaveGame(){
+		PhotonNetwork.LeaveRoom ();
+	}
+	//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     #region Photon
     MouseOrbitC orbit;
@@ -93,6 +99,7 @@ public class NetworkManager : PunBehaviour
     GameObject Target;
     MeshRenderer[] meshes;
     GameObject newPlayerObject;
+
     void OnLevelWasLoaded(int level)
     {
         if (level == 1 || Start_Menu_Server_Check.SceneNameGame == "Demo Scene")
@@ -154,6 +161,15 @@ public class NetworkManager : PunBehaviour
         }else{
             newPlayerObject = PhotonNetwork.Instantiate("T-90_Prefab_Network", spawnPoint, Quaternion.identity, 0);
         }
+		//spawn particle systems
+		GameObject normalExhaust = PhotonNetwork.Instantiate("NormalExhaust", newPlayerObject.transform.Find("Exhaust_Location").transform.position, transform.rotation, 0) as GameObject;
+		GameObject heavyExhaust = PhotonNetwork.Instantiate("HeavyExhaust", newPlayerObject.transform.Find("Exhaust_Location").transform.position, transform.rotation, 0) as GameObject;
+		GameObject boost = PhotonNetwork.Instantiate("Boost", newPlayerObject.transform.Find("BoostLocator").transform.position, new Quaternion(0,-90,0,0), 0) as GameObject;
+
+		photonView.RPC ("setNormal",PhotonTargets.AllBuffered,newPlayerObject.GetComponent<PhotonView>().viewID,normalExhaust.GetComponent<PhotonView>().viewID);
+		photonView.RPC ("setHeavy",PhotonTargets.AllBuffered,newPlayerObject.GetComponent<PhotonView>().viewID,heavyExhaust.GetComponent<PhotonView>().viewID);
+		photonView.RPC ("setBoost",PhotonTargets.AllBuffered,newPlayerObject.GetComponent<PhotonView>().viewID,boost.GetComponent<PhotonView>().viewID);
+
         //Add the camera target
         orbit = FindObjectOfType<MouseOrbitC>();
         //add the tankgun target
@@ -264,4 +280,57 @@ public class NetworkManager : PunBehaviour
         }
     }
     #endregion
+
+	GameObject tank;
+	GameObject system;
+	[RPC]
+	public void setNormal(int tankView,int particleSystemView){
+		PhotonView[] views = FindObjectsOfType<PhotonView>();
+		foreach(PhotonView view in views){
+			if(view.viewID == tankView){
+				tank = view.gameObject;
+			}
+			if(view.viewID == particleSystemView){
+				system = view.gameObject;
+			}
+		}
+		system.name = "Normal Exhaust";
+		system.transform.parent = tank.transform.Find ("Exhaust_Location");
+		system.transform.Rotate (0, 270, 0);
+	}
+
+	[RPC]
+	public void setHeavy(int tankView,int particleSystemView){
+		PhotonView[] views = FindObjectsOfType<PhotonView>();
+		foreach(PhotonView view in views){
+			if(view.viewID == tankView){
+				tank = view.gameObject;
+			}
+			if(view.viewID == particleSystemView){
+				system = view.gameObject;
+			}
+		}
+		system.name = "Heavy Exhaust";
+		system.transform.parent = tank.transform.Find ("Exhaust_Location");
+		system.transform.Rotate (0, 270, 0);
+	}
+
+	[RPC]
+	public void setBoost(int tankView,int particleSystemView){
+		PhotonView[] views = FindObjectsOfType<PhotonView>();
+		foreach(PhotonView view in views){
+			if(view.viewID == tankView){
+				tank = view.gameObject;
+			}
+			if(view.viewID == particleSystemView){
+				system = view.gameObject;
+			}
+		}
+		system.name = "Boost";
+		system.transform.parent = tank.transform.Find ("BoostLocator");
+		
+	}
+
+
+
 }

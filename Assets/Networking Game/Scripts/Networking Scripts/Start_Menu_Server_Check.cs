@@ -266,6 +266,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     public void DisconnectFromRoom()
     {
         if(PhotonNetwork.playerList.Length > 1){
+			numberInLabel = 0;
             if(PhotonNetwork.player.isMasterClient){
                 StartTheGameButton.SetActive(false);
                 PhotonNetwork.DestroyAll();
@@ -384,7 +385,7 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         }
     }
     //number to represent where the label is placed
-    int i = 0;
+    int numberInLabel = 0;
     //Fixing the label so everyone can see
     [RPC]
     public void fixLabel(PhotonPlayer player,int view)
@@ -401,13 +402,13 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
                 obj.transform.GetComponent<RectTransform>().localPosition = new Vector3(0,0,0); ;
                 if (player.isMasterClient)
                 {
-                    obj.GetComponentInChildren<Text>().text = (i + 1) + ". " + vie.owner.name + " - Master";
-                    i++;
+					obj.GetComponentInChildren<Text>().text = (numberInLabel + 1) + ". " + vie.owner.name + " - Master";
+					numberInLabel++;
                 }
                 else
                 {
-                    obj.GetComponentInChildren<Text>().text = (i+1) + ". " + vie.owner.name + " - Client";
-                    i++;
+					obj.GetComponentInChildren<Text>().text = (numberInLabel+1) + ". " + vie.owner.name + " - Client";
+					numberInLabel++;
                 }
             }
         }
@@ -418,37 +419,8 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     {
         DeleteLabels();
         DeleteEmblems();
-        i = 0;
+		numberInLabel = 0;
         createLabelForPlayer();
-    }
-    GameObject dropButton;
-    [RPC]
-    void resetDropDown()
-    {
-        foreach(PhotonPlayer player in PhotonNetwork.playerList){
-            if(player.customProperties["Team"] != null){
-                if(player.customProperties["Team"].ToString() == "Eagles"){
-                    dropButton = GameObject.Find("DropDownButton-Eagles");
-                    dropButton.GetComponent<Button>().interactable = false;
-                    dropButton.GetComponentInChildren<Image>().color = Color.grey;
-
-                }else if(player.customProperties["Team"].ToString() == "Exorcist"){
-                    dropButton = GameObject.Find("DropDownButton-Eagles");
-                    dropButton.GetComponent<Button>().interactable = false;
-                    dropButton.GetComponentInChildren<Image>().color = Color.grey;
-
-                }else if(player.customProperties["Team"].ToString() == "Wolves"){
-                    dropButton = GameObject.Find("DropDownButton-Eagles");
-                    dropButton.GetComponent<Button>().interactable = false;
-                    dropButton.GetComponentInChildren<Image>().color = Color.grey;
-                    
-                }else if(player.customProperties["Team"].ToString() == "Angel"){
-                    dropButton = GameObject.Find("DropDownButton-Eagles");
-                    dropButton.GetComponent<Button>().interactable = false;
-                    dropButton.GetComponentInChildren<Image>().color = Color.grey;
-                }
-            }
-        }
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Making the drop down menu
@@ -457,7 +429,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
     {
         dropMenu = PhotonNetwork.InstantiateSceneObject("DropDownButtonMenu", ConnectingRoomWindow.transform.position, Quaternion.identity, 0, null);
         photonView.RPC("fixDropDown", PhotonTargets.AllBuffered);
-        //photonView.RPC("resetDropDown", PhotonTargets.AllBuffered);
     }
     //Fixing the drop down menu for everyone
     [RPC]
@@ -500,7 +471,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         {
             return;
         }
-        i = 0;
         foreach (GameObject obj in objects)
         {
             if(obj.GetComponent<PhotonView>().isMine){
@@ -516,7 +486,6 @@ public class Start_Menu_Server_Check : Photon.MonoBehaviour
         {
             return;
         }
-        i = 0;
         foreach (GameObject obj in objects)
         {
             if(obj.GetComponent<PhotonView>().isMine){

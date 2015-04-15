@@ -90,12 +90,13 @@
         m_PhotonView = GetComponent<PhotonView>();
         RotationValueL = new float[WheelColliders_L.Length];
         RotationValueR = new float[WheelColliders_R.Length];
-
         EngineStart();
         SetStiffness();
         SoundsInit();
 
 		if(m_PhotonView.isMine){
+			normalExhaustGas = transform.Find ("Exhaust_Location").Find("Normal Exhaust").gameObject.GetComponent<ParticleEmitter>();
+			heavyExhaustGas = transform.Find ("Exhaust_Location").Find ("Heavy Exhaust").gameObject.GetComponent<ParticleEmitter>();
             SetTags();
             GearInit();
             
@@ -228,8 +229,6 @@
 	}
 
 	void SmokeInit(){
-		
-		//foreach(WheelCollider w in GameObject.FindObjectsOfType(typeof(WheelCollider)))
 		foreach(WheelCollider w in GetComponentsInChildren<WheelCollider>())
 		{
 			//if(w.gameObject.transform.parent.parent.parent.gameObject.name == gameObject.name)
@@ -552,17 +551,56 @@
 		}
 			
 		if(normalExhaustGas){
-			if(Speed < 15)
-				normalExhaustGas.emit = true;
-			else normalExhaustGas.emit = false;
+			if(Speed < 15){
+				if(!normalExhaustGas.emit){
+					m_PhotonView.RPC("showParticle",PhotonTargets.All,normalExhaustGas.GetComponent<PhotonView>().viewID);
+				}
+			}
+			else{
+				if(normalExhaustGas.emit){
+					m_PhotonView.RPC("stopParticle",PhotonTargets.All,normalExhaustGas.GetComponent<PhotonView>().viewID);
+				}
+			}
 		}
 		
 		if(heavyExhaustGas){
-			if(motorInput > 0)
-				heavyExhaustGas.emit = true;
-			else heavyExhaustGas.emit = false;
+			if(motorInput > 0){
+				if(!heavyExhaustGas.emit){
+					m_PhotonView.RPC("showParticle",PhotonTargets.All,heavyExhaustGas.GetComponent<PhotonView>().viewID);
+				}
+			}
+			else{
+				if(normalExhaustGas.emit){
+					m_PhotonView.RPC("stopParticle",PhotonTargets.All,heavyExhaustGas.GetComponent<PhotonView>().viewID);
+				}
+			}
 		}
 		
+	}
+
+	GameObject emmiter;
+	[RPC]
+	public void showParticle(int particleSystemID){
+		PhotonView[] views = FindObjectsOfType<PhotonView>();
+		foreach(PhotonView view in views){
+			if(view.viewID == particleSystemID){
+				emmiter = view.gameObject;
+			}
+		}
+		
+		emmiter.GetComponent<ParticleEmitter> ().emit = true;
+	}
+	
+	[RPC]
+	public void stopParticle(int particleSystemID){
+		PhotonView[] views = FindObjectsOfType<PhotonView>();
+		foreach(PhotonView view in views){
+			if(view.viewID == particleSystemID){
+				emmiter = view.gameObject;
+			}
+		}
+		
+		emmiter.GetComponent<ParticleEmitter> ().emit = false;
 	}
 		
 }
