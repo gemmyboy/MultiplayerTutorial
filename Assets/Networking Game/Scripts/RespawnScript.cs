@@ -62,14 +62,12 @@ public class RespawnScript : Photon.MonoBehaviour {
 
 	void checkPlayer(int playerId)
 	{
-			Debug.Log("GOT TO checkPlayer");
 			allPlayers = GameObject.FindGameObjectsWithTag("Player");
 			StartCoroutine(waitFiveSeconds(playerId));
 	}
 
 	void RespawnThePlayer(Vector3 thePosition)
 	{
-		Debug.Log("GOT TO RespawnThePlayer");
 		GameObject currPlayerHolder = PhotonNetwork.Instantiate("T-90_Prefab_Network", thePosition, Quaternion.identity,0);
 		
 		//Add the camera target
@@ -97,8 +95,6 @@ public class RespawnScript : Photon.MonoBehaviour {
 	[RPC]
 	void RemoveNetworkTrash(int ownerID)
 	{
-		Debug.Log("GOT TO RemoveNetworkTrash");
-
 		allPlayers = GameObject.FindGameObjectsWithTag("Player");
 
 		GameObject[] trash = GameObject.FindGameObjectsWithTag("Trash");
@@ -210,14 +206,11 @@ public class RespawnScript : Photon.MonoBehaviour {
 	{
 		yield return new WaitForSeconds (RespawnTime);
 		photonView.RPC ("RemoveNetworkTrash",PhotonTargets.All,thisOwnerId);
-		
-		Debug.Log("GOT TO waitFiveSeconds");
 		StartCoroutine(getSpawnPoint());
 	}
 	
 	bool checkSpawn(Vector3 pos)
 	{
-		Debug.Log("GOT TO checkSpawn");
 		RaycastHit hit;
 		
 		Vector3 positionCheck = new Vector3(pos.x,200f,pos.z);
@@ -336,10 +329,7 @@ public class RespawnScript : Photon.MonoBehaviour {
 	{
 		if(photonView.owner == thePlayer && photonView.isMine)
 		{
-			Debug.Log("GOT TO ActivateRespawn");
 			checkPlayer(thePlayer.ID);
 		}
 	}
-	
-	
 }
