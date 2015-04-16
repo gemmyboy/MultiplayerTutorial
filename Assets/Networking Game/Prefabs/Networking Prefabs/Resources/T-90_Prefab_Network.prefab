@@ -1236,6 +1236,7 @@ GameObject:
   - 114: {fileID: 11434562}
   - 114: {fileID: 11426272}
   - 114: {fileID: 11476696}
+  - 114: {fileID: 11471040}
   m_Layer: 8
   m_Name: T-90_Prefab_Network
   m_TagString: Player
@@ -5232,6 +5233,8 @@ MonoBehaviour:
   myTextObj: {fileID: 165996}
   myRectObj: {fileID: 183586}
   activateRespawn: 0
+  mainCam: {fileID: 0}
+  respawnTimePassed: 0
 --- !u!114 &11437554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5409,6 +5412,18 @@ MonoBehaviour:
   viewIdField: 0
   instantiationId: -1
   isRuntimeInstantiated: 0
+--- !u!114 &11471040
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19d15d90676961149b39f30953ade09f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RespawnTime: 5
 --- !u!114 &11476696
 MonoBehaviour:
   m_ObjectHideFlags: 1

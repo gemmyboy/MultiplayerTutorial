@@ -25959,6 +25959,7 @@ GameObject:
   - 4: {fileID: 1108332912}
   - 114: {fileID: 1108332911}
   - 114: {fileID: 1108332913}
+  - 114: {fileID: 1108332914}
   m_Layer: 0
   m_Name: Respawner
   m_TagString: Untagged
@@ -26015,6 +26016,18 @@ MonoBehaviour:
   viewIdField: 331
   instantiationId: 331
   isRuntimeInstantiated: 0
+--- !u!114 &1108332914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1108332910}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c60716c602aece48bdae7c12362f967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RespawnTime: 0
 --- !u!1 &1112007929
 GameObject:
   m_ObjectHideFlags: 0
@@ -40566,7 +40579,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnpointsFFA: {fileID: 129562, guid: d104e5d46b258fb438e364ad78c52f79, type: 2}
   spawnpointsCTF: {fileID: 103444, guid: 9e82037f66b24d640bde5f5da529856f, type: 2}
-  sphere: {fileID: 162690, guid: 61402de9ddb0d124e8651d43ede94037, type: 2}
 --- !u!4 &1847502932
 Transform:
   m_ObjectHideFlags: 0
@@ -46062,6 +46074,16 @@ MonoBehaviour:
   deathLabel: {fileID: 193560799}
   assistLabel: {fileID: 1249744060}
   GameTimeUI: {fileID: 232411419}
+  bulletTimerRect: {fileID: 0}
+  laserTimerRect: {fileID: 0}
+  shieldTimerRect: {fileID: 0}
+  bulletTimerText: {fileID: 0}
+  laserTimerText: {fileID: 0}
+  shieldTimerText: {fileID: 0}
+  bulletShot: 0
+  laserShot: 0
+  shieldShot: 0
+  boostShot: 0
   roundTimeLimitMins: 60
   updateInterval: .5
 --- !u!224 &2107818047

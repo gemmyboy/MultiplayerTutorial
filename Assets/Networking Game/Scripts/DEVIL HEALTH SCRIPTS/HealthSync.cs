@@ -18,8 +18,11 @@ public class HealthSync : Photon.MonoBehaviour {
 	private GameObject theBullet;
 	public bool activateRespawn;
 	private float respawnTimer;
+	public GameObject mainCam;
+	public bool respawnTimePassed;
 	void Start()
 	{
+		respawnTimePassed = false;
 		dead = false;
 		uiManagerStillNull = true;
 		uiManager = null;
@@ -38,6 +41,7 @@ public class HealthSync : Photon.MonoBehaviour {
 
 		activateRespawn = false;
 		respawnTimer = 0.0f;
+		mainCam = GameObject.Find ("Main Camera");
 	}
 
     void Update()
@@ -53,23 +57,7 @@ public class HealthSync : Photon.MonoBehaviour {
 				photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
 			}
 		}
-		/*
-		if(photonView.isMine && activateRespawn)
-		{
-			if(gameObject.GetPhotonView().ownerId == 1)
-			{
-				GameObject respawner = GameObject.Find("Respawner").SendMessage("";
-			}else if(gameObject.GetPhotonView().ownerId == 2){
 
-			}else if(gameObject.GetPhotonView().ownerId == 3){
-				
-			}else if(gameObject.GetPhotonView().ownerId == 4){
-				
-			}
-			GameObject respawner = GameObject.Find("Respawner");//.GetComponent<RespawnScript>();
-			//gameObject.GetComponentInParent<RespawnScript>().gameObject.SetActive(true);
-		}
-		*/
 		if (photonView != null) 
 		{
 			if(photonView.isMine && respawnTimer >= Time.time)
@@ -218,7 +206,7 @@ public class HealthSync : Photon.MonoBehaviour {
 				GameObject[] tempPlayers = GameObject.FindGameObjectsWithTag("Player");
 				foreach(GameObject tempPlayer in tempPlayers)
 				{
-					if(tempPlayer.GetPhotonView().ownerId == myKiller)
+					if(tempPlayer.GetPhotonView().ownerId == myKiller && photonView == tank.GetPhotonView())
 					{
 //						ExitGames.Client.Photon.Hashtable hash10 = new ExitGames.Client.Photon.Hashtable();
 //						int kills = (int)tempPlayer.GetPhotonView().owner.customProperties["Kills"] + 1;
@@ -228,11 +216,12 @@ public class HealthSync : Photon.MonoBehaviour {
 //						Debug.Log ("ADDED A KILL");
 //						kills = 0;
 //						//GameObject.Find ("Respawner").SendMessage ("AddKill", PhotonPlayer.Find(myKiller), SendMessageOptions.RequireReceiver);
-//
-						Camera.main.GetComponent<MouseOrbitC> ().target = tempPlayer.transform;
+						//mainCam.GetComponent<MouseOrbitC>().target = tempPlayer.transform;
+						//Camera.main.GetComponent<MouseOrbitC> ().target = tempPlayer.transform;
+						photonView.RPC("AdjustCameraView",tank.GetPhotonView().owner,myKiller);
 					}
 				}
-				break;
+				//break;
             }
         }
 
@@ -363,8 +352,10 @@ public class HealthSync : Photon.MonoBehaviour {
 		
 		//PhotonPlayer theKiller = PhotonPlayer.Find (myKiller);
 
-        GameObject.Find("Respawner").SendMessage("AddKill", PhotonPlayer.Find(myKiller), SendMessageOptions.RequireReceiver);
-		GameObject.Find ("Respawner").SendMessage ("ActivateRespawn", tank.GetPhotonView ().owner, SendMessageOptions.RequireReceiver);
+        //GameObject.Find("Respawner").SendMessage("AddKill", PhotonPlayer.Find(myKiller), SendMessageOptions.RequireReceiver);
+		//GameObject.Find ("Respawner").SendMessage ("ActivateRespawn", tank.GetPhotonView ().owner, SendMessageOptions.RequireReceiver);
+		if(photonView.isMine)
+			photonView.RPC ("ActivateRespawn",tank.GetPhotonView().owner,tank.GetPhotonView ().owner);
 
     }
     void fixForExplosion(GameObject obj)
@@ -438,4 +429,19 @@ public class HealthSync : Photon.MonoBehaviour {
 	{
 		uiManager.ChangeHealth (health);
 	}
+
+	[RPC]
+	void AdjustCameraView(int ourKiller)
+	{
+		GameObject[] tempPlayers = GameObject.FindGameObjectsWithTag("Player");
+
+		foreach(GameObject tempPlayer in tempPlayers)
+		{
+			if(tempPlayer.GetPhotonView().ownerId == ourKiller)
+			{
+				mainCam.GetComponent<MouseOrbitC> ().target = tempPlayer.transform;
+			}
+		}
+	}
+
 }
