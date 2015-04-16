@@ -353,7 +353,9 @@ public class HealthSync : Photon.MonoBehaviour {
 		//PhotonPlayer theKiller = PhotonPlayer.Find (myKiller);
 
         //GameObject.Find("Respawner").SendMessage("AddKill", PhotonPlayer.Find(myKiller), SendMessageOptions.RequireReceiver);
-		GameObject.Find ("Respawner").SendMessage ("ActivateRespawn", tank.GetPhotonView ().owner, SendMessageOptions.RequireReceiver);
+		//GameObject.Find ("Respawner").SendMessage ("ActivateRespawn", tank.GetPhotonView ().owner, SendMessageOptions.RequireReceiver);
+		if(photonView.isMine)
+			photonView.RPC ("ActivateRespawn",tank.GetPhotonView().owner,tank.GetPhotonView ().owner);
 
     }
     void fixForExplosion(GameObject obj)

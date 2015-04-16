@@ -3,17 +3,7 @@ using System.Collections;
 using Random = UnityEngine.Random;
 
 public class RespawnScript : Photon.MonoBehaviour {
-	
-	private PhotonPlayer player1;
-	private PhotonPlayer player2;
-	private PhotonPlayer player3;
-	private PhotonPlayer player4;
 
-	private bool respawn;
-	private bool respawn1;
-	private bool respawn2;
-	private bool respawn3;
-	private bool respawn4;
 	private GameObject[] allPlayers;
 	private Vector3 position;
 	
@@ -33,18 +23,11 @@ public class RespawnScript : Photon.MonoBehaviour {
 		goodSpawn = false;
 		notInstantiated = true;
 
-		respawn = false;
-		respawn1 = false;
-		respawn2 = false;
-		respawn3 = false;
-		respawn4 = false;
-
 		RespawnTime = 5.0f;
 		
 		FreeForAll = false;
 		OmegaTank = false;
 		CaptureTheFlag = false;
-		
 	}
 	
 	// Update is called once per frame
@@ -52,9 +35,6 @@ public class RespawnScript : Photon.MonoBehaviour {
 	{
 		if(FreeForAll == false && OmegaTank == false && CaptureTheFlag == false)
 		{
-			
-			
-			//Debug.Log ("Respawn GAMEMODE has been set!****:  ");
 			if((PhotonNetwork.room.customProperties["GameType"].ToString() == "Free For All"))
 			{
 				FreeForAll = true;
@@ -71,31 +51,8 @@ public class RespawnScript : Photon.MonoBehaviour {
 		
 		if(notInstantiated)
 		{
-			if(PhotonPlayer.Find(1) != null)
-			{
-				player1 = PhotonPlayer.Find (1);
-				notInstantiated = false;
-				//Debug.Log ("Player 1 set!***");
-			}
-			if(PhotonPlayer.Find (2) != null)
-			{
-				player2 = PhotonPlayer.Find (2);
-				//Debug.Log ("Player 2 set!***");
-			}
-			if(PhotonPlayer.Find (3) != null)
-			{
-				player3 = PhotonPlayer.Find (3);
-				//Debug.Log ("Player 3 set!***");
-			}
-			if(PhotonPlayer.Find (4) != null)
-			{
-				player4 = PhotonPlayer.Find (4);
-				//Debug.Log ("Player 4 set!***");
-			}
-			
 			if(!notInstantiated)
 				allPlayers = GameObject.FindGameObjectsWithTag("Player");
-			
 		}
 	}
 	
@@ -103,44 +60,15 @@ public class RespawnScript : Photon.MonoBehaviour {
 	TankGunController tankGun;
 	GameObject Target;
 
-	[RPC]
 	void checkPlayer(int playerId)
 	{
-		if(player1.ID == playerId && photonView.isMine)
-		{
-			Debug.Log("GOT TO checkPlayer1");
+			Debug.Log("GOT TO checkPlayer");
 			allPlayers = GameObject.FindGameObjectsWithTag("Player");
-			StartCoroutine(waitFiveSeconds(player1.ID));
-
-			photonView.RPC ("RemoveNetworkTrash",PhotonTargets.All,player1.ID);
-		}else if(player2.ID == playerId && photonView.isMine)
-		{
-			Debug.Log("GOT TO checkPlayer2");
-			allPlayers = GameObject.FindGameObjectsWithTag("Player");
-			StartCoroutine(waitFiveSeconds(player2.ID));
-			
-			photonView.RPC ("RemoveNetworkTrash",PhotonTargets.All,player2.ID);
-		}else if(player3.ID == playerId && photonView.isMine)
-		{
-			Debug.Log("GOT TO checkPlayer3");
-			allPlayers = GameObject.FindGameObjectsWithTag("Player");
-			StartCoroutine(waitFiveSeconds(player3.ID));
-			
-			photonView.RPC ("RemoveNetworkTrash",PhotonTargets.All,player3.ID);
-		}else if(player4.ID == playerId && photonView.isMine)
-		{
-			Debug.Log("GOT TO checkPlayer4");
-			allPlayers = GameObject.FindGameObjectsWithTag("Player");
-			StartCoroutine(waitFiveSeconds(player4.ID));
-			
-			photonView.RPC ("RemoveNetworkTrash",PhotonTargets.All,player4.ID);
-		}
+			StartCoroutine(waitFiveSeconds(playerId));
 	}
-	
-	[RPC]
+
 	void RespawnThePlayer(Vector3 thePosition)
 	{
-
 		Debug.Log("GOT TO RespawnThePlayer");
 		GameObject currPlayerHolder = PhotonNetwork.Instantiate("T-90_Prefab_Network", thePosition, Quaternion.identity,0);
 		
@@ -162,18 +90,17 @@ public class RespawnScript : Photon.MonoBehaviour {
 		PhotonNetwork.player.SetCustomProperties(hash2);
 		GameObject tempUI = GameObject.FindObjectOfType<UIManager> ().gameObject;
 		tempUI.GetComponent<UIManager>().changeDeaths((int)PhotonNetwork.player.customProperties["Deaths"]);
+
+		PhotonNetwork.Destroy(gameObject);
 	}
-	
+
 	[RPC]
 	void RemoveNetworkTrash(int ownerID)
 	{
 		Debug.Log("GOT TO RemoveNetworkTrash");
-		foreach(GameObject eachMofo in allPlayers)
-		{
-			if(eachMofo.GetPhotonView().ownerId == ownerID)
-				Destroy (eachMofo.gameObject);
-		}
-		
+
+		allPlayers = GameObject.FindGameObjectsWithTag("Player");
+
 		GameObject[] trash = GameObject.FindGameObjectsWithTag("Trash");
 		foreach(GameObject currTrash in trash)
 		{
@@ -181,75 +108,61 @@ public class RespawnScript : Photon.MonoBehaviour {
 		}
 	}
 
-	IEnumerator getSpawnPoint(PhotonPlayer thePlayer)
+	IEnumerator getSpawnPoint()
 	{
 		if(FreeForAll)
 		{
-			if(photonView.isMine){
-				Debug.Log("GOT TO getSpawnPoint");
-				goodSpawn = false;
-				position = new Vector3 (Random.Range (140, 1230), 200.0f, Random.Range (-315, 580));
-				while(!goodSpawn)
+			goodSpawn = false;
+			position = new Vector3 (Random.Range (140, 1230), 50.0f, Random.Range (-315, 580));
+			while(!goodSpawn)
+			{
+				if(checkSpawn(position))
 				{
-					if(checkSpawn(position))
-					{
-						goodSpawn = true;
-					}else{
-						position = new Vector3 (Random.Range (140, 1230), 200.0f, Random.Range (-315, 580));
-					}
+					goodSpawn = true;
+				}else{
+					position = new Vector3 (Random.Range (140, 1230), 50.0f, Random.Range (-315, 580));
 				}
-				goodSpawn = false;
-
-				yield return new WaitForSeconds(1.0f);
-
-				respawn = false;
-				photonView.RPC ("RespawnThePlayer",thePlayer,position);
 			}
+			goodSpawn = false;
+			yield return new WaitForSeconds(1.0f);
+			RespawnThePlayer(position);
+
 		}else if(CaptureTheFlag){
-			Debug.Log (thePlayer);
-			Debug.Log(thePlayer.customProperties["Team"].ToString());
-			if (photonView.isMine && thePlayer.customProperties["Team"].ToString() == "Eagles")
+			if (PhotonNetwork.player.customProperties["Team"].ToString() == "Eagles")
 			{
 				int randX = Random.Range(0, 30);
 				int randZ = Random.Range(0, 30);
-				position = GameObject.Find("EaglesSpawnPoint").transform.position + new Vector3(randX, 100, randZ);
+				position = GameObject.Find("EaglesSpawnPoint").transform.position + new Vector3(randX, 50, randZ);
 				yield return new WaitForSeconds(1.0f);
-
-				respawn = false;
-				photonView.RPC ("RespawnThePlayer",thePlayer,position);
+				RespawnThePlayer(position);
 			}
-			else if (photonView.isMine && thePlayer.customProperties["Team"].ToString() == "Exorcist")
+			else if (PhotonNetwork.player.customProperties["Team"].ToString() == "Exorcist")
 			{
 				int randX = Random.Range(0, 30);
 				int randZ = Random.Range(0, 30);
-				position = GameObject.Find("ExorcistSpawnPoint").transform.position + new Vector3(randX, 100, randZ);
+				position = GameObject.Find("ExorcistSpawnPoint").transform.position + new Vector3(randX, 50, randZ);
 				yield return new WaitForSeconds(1.0f);
-
-				respawn = false;
-				photonView.RPC ("RespawnThePlayer",thePlayer,position);
+				RespawnThePlayer(position);
 			}
-			else if (photonView.isMine && thePlayer.customProperties["Team"].ToString() == "Wolves")
+			else if (PhotonNetwork.player.customProperties["Team"].ToString() == "Wolves")
 			{
 				int randX = Random.Range(0, 30);
 				int randZ = Random.Range(0, 30);
-				position = GameObject.Find("WolfSpawnPoint").transform.position + new Vector3(randX, 100, randZ);
+				position = GameObject.Find("WolfSpawnPoint").transform.position + new Vector3(randX, 50, randZ);
 				yield return new WaitForSeconds(1.0f);
-
-				respawn = false;
-				photonView.RPC ("RespawnThePlayer",thePlayer,position);
+				RespawnThePlayer(position);
 			}
-			else if (photonView.isMine && thePlayer.customProperties["Team"].ToString() == "Angel")
+			else if (PhotonNetwork.player.customProperties["Team"].ToString() == "Angel")
 			{
 				int randX = Random.Range(0, 30);
 				int randZ = Random.Range(0, 30);
-				position = GameObject.Find("BloodSpawnPoint").transform.position + new Vector3(randX, 100, randZ);
+				position = GameObject.Find("BloodSpawnPoint").transform.position + new Vector3(randX, 50, randZ);
 				yield return new WaitForSeconds(1.0f);
-
-				respawn = false;
-				photonView.RPC ("RespawnThePlayer",thePlayer,position);
+				RespawnThePlayer(position);
+			}else
+			{
+				Debug.LogError("THIS GUY DOESN'T HAVE A TEAM WTF");
 			}
-			
-			
 			
 		}else if(OmegaTank){
 			
@@ -258,23 +171,20 @@ public class RespawnScript : Photon.MonoBehaviour {
 				Debug.Log("NOT GOING TO RESPAWN - OMEGA TANK");
 			}else if(photonView.isMine){
 				goodSpawn = false;
-				position = new Vector3 (Random.Range (140, 1230), 200.0f, Random.Range (-315, 580));
+				position = new Vector3 (Random.Range (140, 1230), 50.0f, Random.Range (-315, 580));
 				while(!goodSpawn)
 				{
 					if(checkSpawn(position))
 					{
 						goodSpawn = true;
 					}else{
-						position = new Vector3 (Random.Range (140, 1230), 200.0f, Random.Range (-315, 580));
+						position = new Vector3 (Random.Range (140, 1230),50.0f, Random.Range (-315, 580));
 					}
 				}
 				goodSpawn = false;
 				yield return new WaitForSeconds(1.0f);
-
-				respawn = false;
-				photonView.RPC ("RespawnThePlayer",thePlayer,position);
+				RespawnThePlayer(position);
 			}
-			
 		}
 	}
 
@@ -298,13 +208,11 @@ public class RespawnScript : Photon.MonoBehaviour {
 
 	IEnumerator waitFiveSeconds(int thisOwnerId)
 	{
-		//if(photonView.ownerId == thisOwnerId)
-		//{
-			yield return new WaitForSeconds (RespawnTime);
-			respawn = true;
-			Debug.Log("GOT TO waitFiveSeconds");
-			StartCoroutine(getSpawnPoint(PhotonPlayer.Find (thisOwnerId)));
-		//}
+		yield return new WaitForSeconds (RespawnTime);
+		photonView.RPC ("RemoveNetworkTrash",PhotonTargets.All,thisOwnerId);
+		
+		Debug.Log("GOT TO waitFiveSeconds");
+		StartCoroutine(getSpawnPoint());
 	}
 	
 	bool checkSpawn(Vector3 pos)
@@ -422,16 +330,15 @@ public class RespawnScript : Photon.MonoBehaviour {
 		}
 		return false;
 	}
-	
+
+	[RPC]
 	void ActivateRespawn(PhotonPlayer thePlayer)
 	{
-		if(photonView.isMine)
+		if(photonView.owner == thePlayer && photonView.isMine)
 		{
 			Debug.Log("GOT TO ActivateRespawn");
-			photonView.RPC("checkPlayer",PhotonTargets.All,thePlayer.ID);
+			checkPlayer(thePlayer.ID);
 		}
-		//allPlayers = GameObject.FindGameObjectsWithTag("Player");
-		//checkPlayer(thePlayer);
 	}
 	
 	

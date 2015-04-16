@@ -62,4 +62,5 @@ MonoBehaviour:
   - getPointCoroutine
   - getSpawnPoint
   - respawnTimeCoroutine
+  - ActivateRespawn
   DisableAutoOpenWizard: 0
