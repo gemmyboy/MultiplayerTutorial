@@ -12,7 +12,7 @@ public class FallingObjectGenerator : MonoBehaviour {
 	public int xMax = 80;
 	public int zMax = 80;
 
-	public int yDropHeight = 20;
+	public int yDropHeight = 1000;
 
 	//Instantiation limit
 	static public int spawned = 0;

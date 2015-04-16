@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTimeOfTheBullet: 10
-  explosion: {fileID: 129700, guid: 0b5b64f8f0100de44b6120c2fdec07e8, type: 2}
+  explosion: {fileID: 124968, guid: 4a65147d0748f204d8d4668637cecf1e, type: 2}
 --- !u!135 &13582940
 SphereCollider:
   m_ObjectHideFlags: 1

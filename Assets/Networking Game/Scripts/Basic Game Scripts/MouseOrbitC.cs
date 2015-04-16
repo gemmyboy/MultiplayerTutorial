@@ -40,7 +40,7 @@ public class MouseOrbitC : MonoBehaviour {
             var position = rotation * new Vector3(0.0f, 0.0f, -distance) + target.position;
         
             transform.rotation = rotation;
-            transform.position = position;
+			transform.position = position;
 
             distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
             //if(mouseAxis > 0){
