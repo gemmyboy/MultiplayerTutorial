@@ -62,4 +62,6 @@ MonoBehaviour:
   - setHeavy
   - showParticle
   - stopParticle
+  - ActivateRespawn
+  - AdjustCameraView
   DisableAutoOpenWizard: 0
