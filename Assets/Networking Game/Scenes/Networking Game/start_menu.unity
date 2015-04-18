@@ -9238,7 +9238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameName: 
-  connections: 3
+  connections: 2
   StartButton: {fileID: 1387689732}
   RefreshButton: {fileID: 54934078}
   preFabButton: {fileID: 103174, guid: 53d30868622110549a91f90ef40b501d, type: 2}
