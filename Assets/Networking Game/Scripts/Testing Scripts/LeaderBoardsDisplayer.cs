@@ -35,15 +35,6 @@ public class LeaderBoardsDisplayer : PunBehaviour {
         }
 	}
 
-    public void fixLabel(PhotonPlayer player,int j)
-    {
-        //label.transform.parent = LeaderBoardsWindow.gameObject.transform;
-        //label.transform.localScale = new Vector3(1, 1, 1);
-        //label.GetComponentInChildren<RectTransform>().localPosition = new Vector3(0, (-50 * j) + 140, 0);
-        //label.transform.rotation = new Quaternion(0, 0, 0, 0);
-        //label.GetComponentInChildren<Text>().text = (j + 1) + ". " + player.name + "--" + player.GetScore();
-    }
-
 	List<string> teams = new List<string>();
 	List<string> playerList = new List<string>();
 
@@ -63,11 +54,13 @@ public class LeaderBoardsDisplayer : PunBehaviour {
 
 
 			GameObject plyLayout = Instantiate(playerLayout,LeaderBoardsWindow.transform.position,LeaderBoardsWindow.transform.rotation) as GameObject;
-			plyLayout.transform.SetParent(LeaderBoardsWindow.transform.Find("LayoutTeamNames"));
 			plyLayout.name = "LayoutPlayer";
 
 			GameObject playerLabel = Instantiate(playerlabel,LeaderBoardsWindow.transform.position,LeaderBoardsWindow.transform.rotation) as GameObject;
-			playerLabel.transform.SetParent(LeaderBoardsWindow.transform.Find("LayoutTeamNames").transform.Find("LayoutPlayer"));
+			//---playerLabel.transform.SetParent(LeaderBoardsWindow.transform.Find("LayoutTeamNames").transform.Find("LayoutPlayer"));
+            playerLabel.transform.SetParent(GameObject.Find("LayoutPlayer").transform);
+            plyLayout.transform.SetParent(LeaderBoardsWindow.transform.Find("LayoutTeamNames"));
+
 			playerLabel.GetComponentInChildren<Text>().text = playerList[i];
 			checkColor(playerLabel,team);
 			i++;
@@ -88,4 +81,15 @@ public class LeaderBoardsDisplayer : PunBehaviour {
 			obj.GetComponentInChildren<Image>().color = bloodColor;
 		}
 	}
+
+    [RPC]
+    public void clearBoard()
+    {
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Leaderboards");
+        foreach(GameObject obj in objs){
+            Destroy(obj);
+        }
+
+        createLeaderboards();
+    }
 }

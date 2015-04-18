@@ -72,7 +72,7 @@ Transform:
   m_GameObject: {fileID: 191048}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -25.1997185, y: .50000006, z: -21.9226608}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 491050}
   - {fileID: 441124}
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTimeOfTheBullet: 10
-  explosion: {fileID: 124968, guid: 4a65147d0748f204d8d4668637cecf1e, type: 2}
+  explosion: {fileID: 110904, guid: 702082480772e9441829daacbcfae9f1, type: 2}
 --- !u!135 &13539708
 SphereCollider:
   m_ObjectHideFlags: 1

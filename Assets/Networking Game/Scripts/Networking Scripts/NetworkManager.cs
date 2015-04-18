@@ -53,7 +53,7 @@ public class NetworkManager : PunBehaviour
         if(PhotonNetwork.player.isLocal == false){
             chatComponent.AddLine(message);
         }
-        // back to main menu        
+        // back to main menu
         Application.LoadLevel(Start_Menu_Server_Check.SceneNameMenu);
     }
 
@@ -88,6 +88,7 @@ public class NetworkManager : PunBehaviour
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	public void leaveGame(){
 		PhotonNetwork.LeaveRoom ();
+        photonView.RPC("clearBoard", PhotonTargets.Others);
 	}
 	//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

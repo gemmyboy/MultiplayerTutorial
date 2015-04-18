@@ -64,4 +64,5 @@ MonoBehaviour:
   - stopParticle
   - ActivateRespawn
   - AdjustCameraView
+  - clearBoard
   DisableAutoOpenWizard: 0

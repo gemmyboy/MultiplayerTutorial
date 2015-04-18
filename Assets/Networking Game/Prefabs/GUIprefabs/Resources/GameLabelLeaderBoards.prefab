@@ -46,7 +46,7 @@ GameObject:
   - 222: {fileID: 22217412}
   m_Layer: 0
   m_Name: GameLabelLeaderBoards
-  m_TagString: Respawn
+  m_TagString: Leaderboards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

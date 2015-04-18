@@ -1026,7 +1026,7 @@ public class UltimateRope : MonoBehaviour
         {
             if(CoilObject != null)
             {
-                for(int nChild = 0; nChild < CoilObject.transform.childCount; nChild++)
+                for(int nChild = 0; nChild < CoilObject.transform.GetChildCount(); nChild++)
                 {
                     Transform tfChild = CoilObject.transform.GetChild(nChild);
 
@@ -1040,7 +1040,7 @@ public class UltimateRope : MonoBehaviour
 
             if(RopeStart != null)
             {
-                for(int nChild = 0; nChild < RopeStart.transform.childCount; nChild++)
+                for(int nChild = 0; nChild < RopeStart.transform.GetChildCount(); nChild++)
                 {
                     Transform tfChild = RopeStart.transform.GetChild(nChild);
 
@@ -1052,7 +1052,7 @@ public class UltimateRope : MonoBehaviour
                 }
             }
 
-            for(int nChild = 0; nChild < transform.childCount; nChild++)
+            for(int nChild = 0; nChild < transform.GetChildCount(); nChild++)
             {
                 Transform tfChild = transform.GetChild(nChild);
 
@@ -1067,7 +1067,7 @@ public class UltimateRope : MonoBehaviour
             {
                 if(node.goNode)
                 {
-                    for(int nChild = 0; nChild < node.goNode.transform.childCount; nChild++)
+                    for(int nChild = 0; nChild < node.goNode.transform.GetChildCount(); nChild++)
                     {
                         Transform tfChild = node.goNode.transform.GetChild(nChild);
 
@@ -3987,7 +3987,7 @@ public class UltimateRope : MonoBehaviour
 
     bool BuildBoneHashString2GameObject(GameObject goRoot, GameObject goCurrent, ref Dictionary<string, GameObject> outHashString2GameObjects, ref string strErrorMessage)
     {
-        for(int i = 0; i < goCurrent.transform.childCount; i++)
+        for(int i = 0; i < goCurrent.transform.GetChildCount(); i++)
         {
             GameObject goChild = goCurrent.transform.GetChild(i).gameObject;
 
