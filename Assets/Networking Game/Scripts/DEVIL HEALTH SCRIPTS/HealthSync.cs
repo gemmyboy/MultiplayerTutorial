@@ -208,20 +208,9 @@ public class HealthSync : Photon.MonoBehaviour {
 				{
 					if(tempPlayer.GetPhotonView().ownerId == myKiller && photonView == tank.GetPhotonView())
 					{
-//						ExitGames.Client.Photon.Hashtable hash10 = new ExitGames.Client.Photon.Hashtable();
-//						int kills = (int)tempPlayer.GetPhotonView().owner.customProperties["Kills"] + 1;
-//						hash10.Add("Kills", kills);
-//						tempPlayer.GetPhotonView().owner.SetCustomProperties(hash10);
-//						uiManager.changeKills(kills);
-//						Debug.Log ("ADDED A KILL");
-//						kills = 0;
-//						//GameObject.Find ("Respawner").SendMessage ("AddKill", PhotonPlayer.Find(myKiller), SendMessageOptions.RequireReceiver);
-						//mainCam.GetComponent<MouseOrbitC>().target = tempPlayer.transform;
-						//Camera.main.GetComponent<MouseOrbitC> ().target = tempPlayer.transform;
 						photonView.RPC("AdjustCameraView",tank.GetPhotonView().owner,myKiller);
 					}
 				}
-				//break;
             }
         }
 
@@ -349,14 +338,8 @@ public class HealthSync : Photon.MonoBehaviour {
 			}
            
 		}
-		
-		//PhotonPlayer theKiller = PhotonPlayer.Find (myKiller);
-
-        //GameObject.Find("Respawner").SendMessage("AddKill", PhotonPlayer.Find(myKiller), SendMessageOptions.RequireReceiver);
-		//GameObject.Find ("Respawner").SendMessage ("ActivateRespawn", tank.GetPhotonView ().owner, SendMessageOptions.RequireReceiver);
 		if(photonView.isMine)
 			photonView.RPC ("ActivateRespawn",tank.GetPhotonView().owner,tank.GetPhotonView ().owner);
-
     }
     void fixForExplosion(GameObject obj)
     {
