@@ -69,7 +69,17 @@ public class RespawnScript : Photon.MonoBehaviour {
 	void RespawnThePlayer(Vector3 thePosition)
 	{
 		GameObject currPlayerHolder = PhotonNetwork.Instantiate("T-90_Prefab_Network", thePosition, Quaternion.identity,0);
+
+		//spawn particle systems
+		GameObject normalExhaust = PhotonNetwork.Instantiate("NormalExhaust", currPlayerHolder.transform.Find("Exhaust_Location").transform.position, transform.rotation, 0) as GameObject;
+		GameObject heavyExhaust = PhotonNetwork.Instantiate("HeavyExhaust", currPlayerHolder.transform.Find("Exhaust_Location").transform.position, transform.rotation, 0) as GameObject;
+		GameObject boost = PhotonNetwork.Instantiate("Boost", currPlayerHolder.transform.Find("BoostLocator").transform.position, new Quaternion(0,-90,0,0), 0) as GameObject;
 		
+		photonView.RPC ("setNormal",PhotonTargets.AllBuffered,currPlayerHolder.GetComponent<PhotonView>().viewID,normalExhaust.GetComponent<PhotonView>().viewID);
+		photonView.RPC ("setHeavy",PhotonTargets.AllBuffered,currPlayerHolder.GetComponent<PhotonView>().viewID,heavyExhaust.GetComponent<PhotonView>().viewID);
+		photonView.RPC ("setBoost",PhotonTargets.AllBuffered,currPlayerHolder.GetComponent<PhotonView>().viewID,boost.GetComponent<PhotonView>().viewID);
+
+
 		//Add the camera target
 		orbit = FindObjectOfType<MouseOrbitC>();
 		
@@ -88,6 +98,11 @@ public class RespawnScript : Photon.MonoBehaviour {
 		PhotonNetwork.player.SetCustomProperties(hash2);
 		GameObject tempUI = GameObject.FindObjectOfType<UIManager> ().gameObject;
 		tempUI.GetComponent<UIManager>().changeDeaths((int)PhotonNetwork.player.customProperties["Deaths"]);
+
+		if (PhotonNetwork.room.customProperties["GameType"].ToString() == "Capture The Flag")
+		{
+			currPlayerHolder.AddComponent<PickUpFlag>();
+		}
 
 		PhotonNetwork.Destroy(gameObject);
 	}
@@ -109,14 +124,14 @@ public class RespawnScript : Photon.MonoBehaviour {
 		if(FreeForAll)
 		{
 			goodSpawn = false;
-			position = new Vector3 (Random.Range (140, 1230), 50.0f, Random.Range (-315, 580));
+			position = new Vector3 (Random.Range (140, 1230), 250.0f, Random.Range (-315, 580));
 			while(!goodSpawn)
 			{
 				if(checkSpawn(position))
 				{
 					goodSpawn = true;
 				}else{
-					position = new Vector3 (Random.Range (140, 1230), 50.0f, Random.Range (-315, 580));
+					position = new Vector3 (Random.Range (140, 1230), 250.0f, Random.Range (-315, 580));
 				}
 			}
 			goodSpawn = false;
@@ -167,14 +182,14 @@ public class RespawnScript : Photon.MonoBehaviour {
 				Debug.Log("NOT GOING TO RESPAWN - OMEGA TANK");
 			}else if(photonView.isMine){
 				goodSpawn = false;
-				position = new Vector3 (Random.Range (140, 1230), 50.0f, Random.Range (-315, 580));
+				position = new Vector3 (Random.Range (140, 1230), 250.0f, Random.Range (-315, 580));
 				while(!goodSpawn)
 				{
 					if(checkSpawn(position))
 					{
 						goodSpawn = true;
 					}else{
-						position = new Vector3 (Random.Range (140, 1230),50.0f, Random.Range (-315, 580));
+						position = new Vector3 (Random.Range (140, 1230),250.0f, Random.Range (-315, 580));
 					}
 				}
 				goodSpawn = false;
@@ -213,10 +228,10 @@ public class RespawnScript : Photon.MonoBehaviour {
 	{
 		RaycastHit hit;
 		
-		Vector3 positionCheck = new Vector3(pos.x,200f,pos.z);
+		Vector3 positionCheck = new Vector3(pos.x,250f,pos.z);
 		if (Physics.Raycast(positionCheck, Vector3.down, out hit,250f) && !OmegaTank)
 		{
-			Debug.DrawRay(positionCheck, Vector3.down * hit.distance, Color.blue, 200f);
+			Debug.DrawRay(positionCheck, Vector3.down * hit.distance, Color.blue, 300f);
 			if(hit.collider.gameObject.tag == "Terrain"){
 				Collider[] hitColliders = Physics.OverlapSphere(hit.point, 100.0f);
 				if(hitColliders.Length == 1){
@@ -332,4 +347,55 @@ public class RespawnScript : Photon.MonoBehaviour {
 			checkPlayer(thePlayer.ID);
 		}
 	}
+
+	GameObject tank;
+	GameObject system;
+	[RPC]
+	public void setNormal(int tankView,int particleSystemView){
+		PhotonView[] views = FindObjectsOfType<PhotonView>();
+		foreach(PhotonView view in views){
+			if(view.viewID == tankView){
+				tank = view.gameObject;
+			}
+			if(view.viewID == particleSystemView){
+				system = view.gameObject;
+			}
+		}
+		system.name = "Normal Exhaust";
+		system.transform.parent = tank.transform.Find ("Exhaust_Location");
+		system.transform.Rotate (0, 270, 0);
+	}
+	
+	[RPC]
+	public void setHeavy(int tankView,int particleSystemView){
+		PhotonView[] views = FindObjectsOfType<PhotonView>();
+		foreach(PhotonView view in views){
+			if(view.viewID == tankView){
+				tank = view.gameObject;
+			}
+			if(view.viewID == particleSystemView){
+				system = view.gameObject;
+			}
+		}
+		system.name = "Heavy Exhaust";
+		system.transform.parent = tank.transform.Find ("Exhaust_Location");
+		system.transform.Rotate (0, 270, 0);
+	}
+	
+	[RPC]
+	public void setBoost(int tankView,int particleSystemView){
+		PhotonView[] views = FindObjectsOfType<PhotonView>();
+		foreach(PhotonView view in views){
+			if(view.viewID == tankView){
+				tank = view.gameObject;
+			}
+			if(view.viewID == particleSystemView){
+				system = view.gameObject;
+			}
+		}
+		system.name = "Boost";
+		system.transform.parent = tank.transform.Find ("BoostLocator");
+		
+	}
+
 }
