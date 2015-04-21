@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Networking Game/Prefabs/Scenes/Networking Game/start_menu.unity
+    path: Assets/Networking Game/Scenes/Networking Game/start_menu.unity
   - enabled: 1
-    path: Assets/Networking Game/Prefabs/Scenes/Networking Game/Demo Scene.unity
+    path: Assets/Networking Game/Scenes/Networking Game/Demo Scene.unity

@@ -102,7 +102,6 @@ Transform:
   m_LocalScale: {x: 4.19999981, y: 4.19999981, z: 4.19999981}
   m_Children: []
   m_Father: {fileID: 551315474}
-  m_RootOrder: 0
 --- !u!23 &237011155
 Renderer:
   m_ObjectHideFlags: 0
@@ -121,8 +120,9 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
+  m_SortingLayerID: 0
 --- !u!33 &237011156
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -206,7 +206,6 @@ MonoBehaviour:
   lifetimeMin: 5
   lifetimeOffset: 0
   lifetimeEmission: 1
-  minShurikenLifetime: .0799999982
   applyLifetimeSize: 1
   lifetimeSize:
     serializedVersion: 2
@@ -240,12 +239,6 @@ MonoBehaviour:
     m_PostInfinity: 2
   applyParticleArraySize: 0
   particleArraySize:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  transitionBackToSource: 0
-  transitionBackToSourceAmount:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
@@ -656,12 +649,7 @@ MonoBehaviour:
   applyInitialColorOnRebirth: 0
   applyRandomLifetimeOnRebirth: 0
   applyDeltaOnRebirth: 1
-  calculateManipulatorOnRebirth: 0
   pauseCalculationWhenInvisible: 0
-  calculationTriggerSizeGizmo: 0
-  calculationTriggerTransform: {fileID: 0}
-  calculationTriggerSize: {x: 1, y: 1, z: 1}
-  calculationTriggerOffset: {x: 0, y: 0, z: 0}
   forceVisibilityWhenOutOfFrustrum: 1
   syncPositionsOnMainThread: 1
   applyLockPosition: 0
@@ -683,7 +671,6 @@ MonoBehaviour:
   particleMaskTime: 0
   particleMaskSorting: 0
   stretchSpeed: 1
-  applyStretchStartDirection: 0
   stretchStartDirection: {x: 0, y: 0, z: 0}
   applyLifetimeStretching: 0
   stretchLifetime:
@@ -773,11 +760,10 @@ MonoBehaviour:
     downResolution: 0
     renderer: {fileID: 0}
     isDoneThread: 1
-  forceSkinnedMeshUpdateOnMainThread: 0
   sourceTransform: {fileID: 551315474}
   sourceTransforms:
   - transform: {fileID: 551315474}
-    instanceID: 438834
+    instanceID: 16156
     available: 1
     position: {x: 0, y: 0, z: 0}
     localPosition: {x: 0, y: 0, z: 0}
@@ -906,7 +892,6 @@ MonoBehaviour:
     isNonBirthed: 
     isFirstLoop: 
     simulate: 
-    isCalculatedThisFrame: 
     changedByProperty: 
     changedByPropertyColor: 
     changedByPropertyColorLerp: 
@@ -941,17 +926,18 @@ MonoBehaviour:
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
-  isReadyForThreadedCalculations: 1
+  isReadyForThreadedCalculations: 0
   prewarm: 0
   prewarmTime: 1
   prewarmCycles: 16
-  particleTimescale: 1
-  localTime: 1.18838084
-  localDeltaTime: 1.18838084
+  localTime: 64.5494156
+  localDeltaTime: .0178279877
   previousActiveState: 0
-  simulationStarted: .100000001
+  simulationStarted: .0215889812
   loopExceeded: 0
   loopExceededOnParticle: -1
+  particleTimescale: 1
+  isDoneThread: 1
 --- !u!199 &551315472
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -970,8 +956,9 @@ ParticleSystemRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
+  m_SortingLayerID: 0
   m_RenderMode: 0
   m_MaxParticleSize: .5
   m_CameraVelocityScale: 0
@@ -2048,7 +2035,6 @@ Transform:
   m_Children:
   - {fileID: 237011154}
   m_Father: {fileID: 2147420585}
-  m_RootOrder: 2
 --- !u!114 &551315475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2140,7 +2126,6 @@ MonoBehaviour:
   lifetimeMin: 3
   lifetimeOffset: 0
   lifetimeEmission: 1
-  minShurikenLifetime: .0799999982
   applyLifetimeSize: 1
   lifetimeSize:
     serializedVersion: 2
@@ -2176,12 +2161,6 @@ MonoBehaviour:
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  transitionBackToSource: 0
-  transitionBackToSourceAmount:
-    serializedVersion: 2
-    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
   onlySourcePositioning: 0
@@ -2499,12 +2478,7 @@ MonoBehaviour:
   applyInitialColorOnRebirth: 0
   applyRandomLifetimeOnRebirth: 1
   applyDeltaOnRebirth: 1
-  calculateManipulatorOnRebirth: 0
   pauseCalculationWhenInvisible: 0
-  calculationTriggerSizeGizmo: 0
-  calculationTriggerTransform: {fileID: 0}
-  calculationTriggerSize: {x: 1, y: 1, z: 1}
-  calculationTriggerOffset: {x: 0, y: 0, z: 0}
   forceVisibilityWhenOutOfFrustrum: 1
   syncPositionsOnMainThread: 1
   applyLockPosition: 0
@@ -2526,7 +2500,6 @@ MonoBehaviour:
   particleMaskTime: 0
   particleMaskSorting: 0
   stretchSpeed: 1
-  applyStretchStartDirection: 0
   stretchStartDirection: {x: 0, y: 0, z: 0}
   applyLifetimeStretching: 0
   stretchLifetime:
@@ -2616,11 +2589,10 @@ MonoBehaviour:
     downResolution: 0
     renderer: {fileID: 0}
     isDoneThread: 1
-  forceSkinnedMeshUpdateOnMainThread: 0
   sourceTransform: {fileID: 1466169076}
   sourceTransforms:
   - transform: {fileID: 1466169076}
-    instanceID: 438846
+    instanceID: 16168
     available: 1
     position: {x: 0, y: 0, z: 0}
     localPosition: {x: 0, y: 0, z: 0}
@@ -2713,16 +2685,6 @@ MonoBehaviour:
     property:
       type: 10
       transition: 0
-      mathProperty:
-        type: 0
-        property: 0
-        clamp: 0
-        clampCeil: 10
-        clampFloor: 0
-        value: 1
-        value3: {x: 0, y: 1, z: 0}
-        rate: 1
-        rate3: {x: 0, y: 1, z: 0}
       velocity: {x: 0, y: 0, z: 0}
       localVelocity: {x: 0, y: 0, z: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
@@ -2906,7 +2868,7 @@ MonoBehaviour:
       m_Bits: 4294967295
     transform:
       transform: {fileID: 1671098066}
-      instanceID: 438856
+      instanceID: 16178
       available: 1
       position: {x: -6.02219963, y: 2.1170001, z: 0}
       localPosition: {x: -6.02219963, y: 2.1170001, z: 0}
@@ -2945,7 +2907,8 @@ MonoBehaviour:
     strengthDistanceEffect: 1
     enabled: 1
     inverseBounds: 0
-    manipulatorId: 438856
+    manipulatorId: 16178
+    willAffect: 1
     applyLifetimeFilter: 0
     lifetimeFilterMinimum: 0
     lifetimeFilterMaximum: 1
@@ -2954,7 +2917,6 @@ MonoBehaviour:
     particleFilterMaximum: 1
     unfolded: 0
     trackParticles: 0
-    trackingMethod: 0
     sendEventEnter: 1
     sendEventExit: 1
     sendEventBirth: 1
@@ -2966,7 +2928,6 @@ MonoBehaviour:
       size: 0
       rotation: 0
       life: 0
-      totalLifetime: 0
       birth: 0
       birthDelay: 0
       death: 0
@@ -3022,16 +2983,6 @@ MonoBehaviour:
     property:
       type: 4
       transition: 0
-      mathProperty:
-        type: 0
-        property: 0
-        clamp: 0
-        clampCeil: 10
-        clampFloor: 0
-        value: 1
-        value3: {x: 0, y: 1, z: 0}
-        rate: 1
-        rate3: {x: 0, y: 1, z: 0}
       velocity: {x: 0, y: 0, z: 0}
       localVelocity: {x: 0, y: 0, z: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
@@ -3215,7 +3166,7 @@ MonoBehaviour:
       m_Bits: 4294967295
     transform:
       transform: {fileID: 2139525891}
-      instanceID: 438882
+      instanceID: 16204
       available: 1
       position: {x: 5.82500076, y: .75, z: 0}
       localPosition: {x: 5.82500076, y: .75, z: 0}
@@ -3254,7 +3205,8 @@ MonoBehaviour:
     strengthDistanceEffect: 1
     enabled: 1
     inverseBounds: 0
-    manipulatorId: 438882
+    manipulatorId: 16204
+    willAffect: 1
     applyLifetimeFilter: 0
     lifetimeFilterMinimum: 0
     lifetimeFilterMaximum: 1
@@ -3263,7 +3215,6 @@ MonoBehaviour:
     particleFilterMaximum: 1
     unfolded: 0
     trackParticles: 0
-    trackingMethod: 0
     sendEventEnter: 1
     sendEventExit: 1
     sendEventBirth: 1
@@ -3275,7 +3226,6 @@ MonoBehaviour:
       size: 0
       rotation: 0
       life: 0
-      totalLifetime: 0
       birth: 0
       birthDelay: 0
       death: 0
@@ -3331,16 +3281,6 @@ MonoBehaviour:
     property:
       type: 12
       transition: 2
-      mathProperty:
-        type: 0
-        property: 0
-        clamp: 0
-        clampCeil: 10
-        clampFloor: 0
-        value: 1
-        value3: {x: 0, y: 1, z: 0}
-        rate: 1
-        rate3: {x: 0, y: 1, z: 0}
       velocity: {x: 0, y: 0, z: 0}
       localVelocity: {x: 0, y: 0, z: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
@@ -3419,7 +3359,7 @@ MonoBehaviour:
           e32: 0
           e33: 0
         unfolded: 0
-      targetPointer: 40
+      targetPointer: 0
       meshTarget:
         gameObject: {fileID: 237011153}
         transform: {fileID: 237011154}
@@ -4604,7 +4544,7 @@ MonoBehaviour:
       m_Bits: 4294967295
     transform:
       transform: {fileID: 551315474}
-      instanceID: 438834
+      instanceID: 16156
       available: 1
       position: {x: -6.5, y: -3.5, z: 0}
       localPosition: {x: -6.5, y: -3.5, z: 0}
@@ -4643,7 +4583,8 @@ MonoBehaviour:
     strengthDistanceEffect: 1
     enabled: 1
     inverseBounds: 0
-    manipulatorId: 438834
+    manipulatorId: 16156
+    willAffect: 1
     applyLifetimeFilter: 0
     lifetimeFilterMinimum: 0
     lifetimeFilterMaximum: 1
@@ -4652,7 +4593,6 @@ MonoBehaviour:
     particleFilterMaximum: 1
     unfolded: 1
     trackParticles: 0
-    trackingMethod: 0
     sendEventEnter: 1
     sendEventExit: 1
     sendEventBirth: 1
@@ -4664,7 +4604,6 @@ MonoBehaviour:
       size: 0
       rotation: 0
       life: 0
-      totalLifetime: 0
       birth: 0
       birthDelay: 0
       death: 0
@@ -4756,7 +4695,6 @@ MonoBehaviour:
     isNonBirthed: 
     isFirstLoop: 
     simulate: 
-    isCalculatedThisFrame: 
     changedByProperty: 
     changedByPropertyColor: 
     changedByPropertyColorLerp: 
@@ -4791,17 +4729,18 @@ MonoBehaviour:
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
-  isReadyForThreadedCalculations: 1
+  isReadyForThreadedCalculations: 0
   prewarm: 0
   prewarmTime: 1
   prewarmCycles: 16
-  particleTimescale: 1
-  localTime: 1.18838084
-  localDeltaTime: 1.14220679
+  localTime: 64.5494156
+  localDeltaTime: .0178279877
   previousActiveState: 0
-  simulationStarted: .0461740866
+  simulationStarted: .0215889812
   loopExceeded: 0
   loopExceededOnParticle: -1
+  particleTimescale: 1
+  isDoneThread: 1
 --- !u!199 &1466169074
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -4820,8 +4759,9 @@ ParticleSystemRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
+  m_SortingLayerID: 0
   m_RenderMode: 0
   m_MaxParticleSize: .5
   m_CameraVelocityScale: 0
@@ -5897,7 +5837,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2147420585}
-  m_RootOrder: 0
 --- !u!1 &1671098062
 GameObject:
   m_ObjectHideFlags: 0
@@ -5974,7 +5913,6 @@ MonoBehaviour:
   lifetimeMin: 5
   lifetimeOffset: 0
   lifetimeEmission: 1
-  minShurikenLifetime: .0799999982
   applyLifetimeSize: 0
   lifetimeSize:
     serializedVersion: 2
@@ -6008,12 +5946,6 @@ MonoBehaviour:
     m_PostInfinity: 2
   applyParticleArraySize: 0
   particleArraySize:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  transitionBackToSource: 0
-  transitionBackToSourceAmount:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
@@ -6338,12 +6270,7 @@ MonoBehaviour:
   applyInitialColorOnRebirth: 0
   applyRandomLifetimeOnRebirth: 1
   applyDeltaOnRebirth: 1
-  calculateManipulatorOnRebirth: 0
   pauseCalculationWhenInvisible: 0
-  calculationTriggerSizeGizmo: 0
-  calculationTriggerTransform: {fileID: 0}
-  calculationTriggerSize: {x: 1, y: 1, z: 1}
-  calculationTriggerOffset: {x: 0, y: 0, z: 0}
   forceVisibilityWhenOutOfFrustrum: 1
   syncPositionsOnMainThread: 1
   applyLockPosition: 0
@@ -6365,7 +6292,6 @@ MonoBehaviour:
   particleMaskTime: 0
   particleMaskSorting: 0
   stretchSpeed: 1
-  applyStretchStartDirection: 0
   stretchStartDirection: {x: 0, y: 0, z: 0}
   applyLifetimeStretching: 0
   stretchLifetime:
@@ -6455,11 +6381,10 @@ MonoBehaviour:
     downResolution: 0
     renderer: {fileID: 0}
     isDoneThread: 1
-  forceSkinnedMeshUpdateOnMainThread: 0
   sourceTransform: {fileID: 1671098066}
   sourceTransforms:
   - transform: {fileID: 1671098066}
-    instanceID: 438856
+    instanceID: 16178
     available: 1
     position: {x: 0, y: 0, z: 0}
     localPosition: {x: 0, y: 0, z: 0}
@@ -6588,7 +6513,6 @@ MonoBehaviour:
     isNonBirthed: 
     isFirstLoop: 
     simulate: 
-    isCalculatedThisFrame: 
     changedByProperty: 
     changedByPropertyColor: 
     changedByPropertyColorLerp: 
@@ -6623,17 +6547,18 @@ MonoBehaviour:
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
-  isReadyForThreadedCalculations: 1
+  isReadyForThreadedCalculations: 0
   prewarm: 0
   prewarmTime: 1
   prewarmCycles: 16
-  particleTimescale: 1
-  localTime: 1.18838084
-  localDeltaTime: 1.18838084
+  localTime: 64.5494156
+  localDeltaTime: .0178279877
   previousActiveState: 0
-  simulationStarted: .100000001
+  simulationStarted: .0215889812
   loopExceeded: 0
   loopExceededOnParticle: -1
+  particleTimescale: 1
+  isDoneThread: 1
 --- !u!199 &1671098064
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -6652,8 +6577,9 @@ ParticleSystemRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
+  m_SortingLayerID: 0
   m_RenderMode: 0
   m_MaxParticleSize: .5
   m_CameraVelocityScale: 0
@@ -7729,7 +7655,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2147420585}
-  m_RootOrder: 1
 --- !u!114 &1671098067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7814,11 +7739,8 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
   m_HDR: 0
   m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: .0219999999
 --- !u!4 &2103401855
 Transform:
   m_ObjectHideFlags: 0
@@ -7830,7 +7752,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
 --- !u!114 &2103401856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7918,7 +7839,6 @@ MonoBehaviour:
   lifetimeMin: 5
   lifetimeOffset: 0
   lifetimeEmission: 1
-  minShurikenLifetime: .0799999982
   applyLifetimeSize: 1
   lifetimeSize:
     serializedVersion: 2
@@ -7964,12 +7884,6 @@ MonoBehaviour:
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  transitionBackToSource: 0
-  transitionBackToSourceAmount:
-    serializedVersion: 2
-    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
   onlySourcePositioning: 0
@@ -8292,12 +8206,7 @@ MonoBehaviour:
   applyInitialColorOnRebirth: 0
   applyRandomLifetimeOnRebirth: 1
   applyDeltaOnRebirth: 1
-  calculateManipulatorOnRebirth: 0
   pauseCalculationWhenInvisible: 0
-  calculationTriggerSizeGizmo: 0
-  calculationTriggerTransform: {fileID: 0}
-  calculationTriggerSize: {x: 1, y: 1, z: 1}
-  calculationTriggerOffset: {x: 0, y: 0, z: 0}
   forceVisibilityWhenOutOfFrustrum: 1
   syncPositionsOnMainThread: 1
   applyLockPosition: 0
@@ -8319,7 +8228,6 @@ MonoBehaviour:
   particleMaskTime: 0
   particleMaskSorting: 0
   stretchSpeed: 1
-  applyStretchStartDirection: 0
   stretchStartDirection: {x: 0, y: 0, z: 0}
   applyLifetimeStretching: 0
   stretchLifetime:
@@ -8409,11 +8317,10 @@ MonoBehaviour:
     downResolution: 0
     renderer: {fileID: 0}
     isDoneThread: 1
-  forceSkinnedMeshUpdateOnMainThread: 0
   sourceTransform: {fileID: 2139525891}
   sourceTransforms:
   - transform: {fileID: 2139525891}
-    instanceID: 438882
+    instanceID: 16204
     available: 1
     position: {x: 0, y: 0, z: 0}
     localPosition: {x: 0, y: 0, z: 0}
@@ -8542,7 +8449,6 @@ MonoBehaviour:
     isNonBirthed: 
     isFirstLoop: 
     simulate: 
-    isCalculatedThisFrame: 
     changedByProperty: 
     changedByPropertyColor: 
     changedByPropertyColorLerp: 
@@ -8577,17 +8483,18 @@ MonoBehaviour:
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
-  isReadyForThreadedCalculations: 1
+  isReadyForThreadedCalculations: 0
   prewarm: 0
   prewarmTime: 1
   prewarmCycles: 16
-  particleTimescale: 1
-  localTime: 1.18838084
-  localDeltaTime: 1.18838084
+  localTime: 64.5494156
+  localDeltaTime: .0178279877
   previousActiveState: 0
-  simulationStarted: .100000001
+  simulationStarted: .0215889812
   loopExceeded: 0
   loopExceededOnParticle: -1
+  particleTimescale: 1
+  isDoneThread: 1
 --- !u!199 &2139525889
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -8606,8 +8513,9 @@ ParticleSystemRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
+  m_SortingLayerID: 0
   m_RenderMode: 0
   m_MaxParticleSize: .5
   m_CameraVelocityScale: 0
@@ -9683,7 +9591,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2147420585}
-  m_RootOrder: 3
 --- !u!114 &2139525892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9765,4 +9672,3 @@ Transform:
   - {fileID: 551315474}
   - {fileID: 2139525891}
   m_Father: {fileID: 0}
-  m_RootOrder: 1

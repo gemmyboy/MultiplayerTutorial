@@ -18,6 +18,8 @@ public class MouseOrbitC : MonoBehaviour {
     public float mouseAxis;
     public float distanceMin;
     public float distanceMax;
+
+	public bool moving = false;
     void Start () {
         Screen.lockCursor = true;
         var angles = transform.eulerAngles;
@@ -35,13 +37,13 @@ public class MouseOrbitC : MonoBehaviour {
             y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
  		
  		    y = ClampAngle(y, yMinLimit, yMaxLimit);
- 		       
-            var rotation = Quaternion.Euler(y, x, 0);
-            var position = rotation * new Vector3(0.0f, 0.0f, -distance) + target.position;
-        
-            transform.rotation = rotation;
-			transform.position = position;
-
+			if(!moving){
+	            var rotation = Quaternion.Euler(y, x, 0);
+	            var position = rotation * new Vector3(0.0f, 0.0f, -distance) + target.position;
+	        
+	            transform.rotation = rotation;
+				transform.position = position;
+			}
             distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
             //if(mouseAxis > 0){
             //    distance += .01;
@@ -56,4 +58,21 @@ public class MouseOrbitC : MonoBehaviour {
 		    angle -= 360;
 	    return Mathf.Clamp (angle, min, max);
     }
+
+	public void Reset(Transform newtarget){
+		target = newtarget;
+
+		x += Input.GetAxis("Mouse X") * xSpeed * 0.02f;
+		y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
+		
+		y = ClampAngle(y, yMinLimit, yMaxLimit);
+		if(!moving){
+			var rotation = Quaternion.Euler(y, x, 0);
+			var position = rotation * new Vector3(0.0f, 0.0f, -distance) + target.position;
+			
+			transform.rotation = rotation;
+			transform.position = position;
+		}
+		distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
+	}
 }

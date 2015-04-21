@@ -14,14 +14,19 @@ public class HealthSync : Photon.MonoBehaviour {
 	private PhotonPlayer hurtPlayer;
 	private Text myText;
 	private RectTransform myRect;
+
 	public GameObject myTextObj;
 	public GameObject myRectObj;
+
 	public static int healthAmount;
 	private GameObject theBullet;
 	public bool activateRespawn;
 	private float respawnTimer;
 	public GameObject mainCam;
 	public bool respawnTimePassed;
+
+	public float CameraMoveTime = 1.0f;
+	public GameObject dummy;
 	void Start()
 	{
 		respawnTimePassed = false;
@@ -70,6 +75,10 @@ public class HealthSync : Photon.MonoBehaviour {
 						//activateRespawn = true;
 				}
 			}
+		}
+
+		if(Input.GetKeyDown(KeyCode.P)){
+			photonView.RPC("AdjustCameraView",PhotonTargets.All,0);
 		}
     }
 
@@ -418,9 +427,38 @@ public class HealthSync : Photon.MonoBehaviour {
 		{
 			if(tempPlayer.GetPhotonView().ownerId == ourKiller)
 			{
-				mainCam.GetComponent<MouseOrbitC> ().target = tempPlayer.transform;
+				mainCam.GetComponent<MouseOrbitC> ().moving = true;
+				StartCoroutine("lerpPosition",dummy.transform);
 			}
 		}
+	}
+
+	IEnumerator lerpPosition(Transform tempPlayer)
+	{
+		Vector3 startPos = mainCam.transform.position;
+		Vector3 directon = mainCam.transform.position - tempPlayer.transform.position;
+		directon.Normalize ();
+		Vector3 endPos = tempPlayer.position + (directon * 5);
+
+		Quaternion startRot = Quaternion.LookRotation(mainCam.GetComponent<MouseOrbitC> ().target.transform.position - mainCam.transform.position,Vector3.up);
+		Quaternion endRot = Quaternion.LookRotation(tempPlayer.transform.position - mainCam.transform.position,Vector3.up);
+		
+		float t = 0.0f;
+		float seconds = CameraMoveTime;
+		
+		while (t <= 1.0f)
+		{
+			t += Time.deltaTime / seconds;
+			
+			mainCam.transform.position = Vector3.Lerp(startPos, endPos, Mathf.SmoothStep(0.0f, 1.0f, t));
+			mainCam.transform.rotation = Quaternion.Lerp(startRot,endRot,Mathf.SmoothStep(0.0f, 1.0f, t));
+
+			yield return new WaitForFixedUpdate();
+		}
+		mainCam.GetComponent<MouseOrbitC> ().target = tempPlayer.transform;
+		mainCam.transform.LookAt (tempPlayer.transform);
+		mainCam.GetComponent<MouseOrbitC> ().moving = true;
+		yield return null;
 	}
 
 }
