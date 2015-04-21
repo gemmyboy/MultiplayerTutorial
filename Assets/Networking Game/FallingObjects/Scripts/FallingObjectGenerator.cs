@@ -18,32 +18,16 @@ public class FallingObjectGenerator : MonoBehaviour {
 	static public int spawned = 0;
 	public int spawnLimit = 40;
 
-	// Use this for initialization
-	void Start () 
-	{
-		//initialize
-		theObjects = new GameObject[8];
-
-		//Load all of the prefabs
-		theObjects[0] = Resources.LoadAssetAtPath("Assets/Networking Game/FallingObjects/Objects/AtomBall.prefab", typeof(Object));
-        theObjects[1] = Resources.LoadAssetAtPath("Assets/Networking Game/FallingObjects/Objects/BombBall.prefab", typeof(Object));
-        theObjects[2] = Resources.LoadAssetAtPath("Assets/Networking Game/FallingObjects/Objects/BuckyBall.prefab", typeof(Object));
-        theObjects[3] = Resources.LoadAssetAtPath("Assets/Networking Game/FallingObjects/Objects/EyeBall.prefab", typeof(Object));
-        theObjects[4] = Resources.LoadAssetAtPath("Assets/Networking Game/FallingObjects/Objects/SpikeBall.prefab", typeof(Object));
-        theObjects[5] = Resources.LoadAssetAtPath("Assets/Networking Game/FallingObjects/Objects/SplitMetalBall.prefab", typeof(Object));
-        theObjects[6] = Resources.LoadAssetAtPath("Assets/Networking Game/FallingObjects/Objects/WheelBall.prefab", typeof(Object));
-        theObjects[7] = Resources.LoadAssetAtPath("Assets/Networking Game/FallingObjects/Objects/WoodenBall.prefab", typeof(Object));
-
-	}//End Start()
-	
+	public float timer = 0.0f;
+	public float maxTimer = .5f;
 	// Update is called once per frame
 	void Update () 
 	{
-		if(spawned < spawnLimit)
+		timer += Time.deltaTime;
+		if(spawned < spawnLimit && timer > maxTimer && PhotonNetwork.isMasterClient)
 		{
 			int theX = 0;
 			int theZ = 0;
-			int theBall = 0;
 			GameObject temp;
 
 			//Randomly pick a point between xMin and xMax
@@ -52,13 +36,11 @@ public class FallingObjectGenerator : MonoBehaviour {
 			//Randomly pick a point between yMin and yMax
 			theZ = Random.Range(zMin, zMax);
 
-			//Randomly pick a ball
-			theBall = Random.Range(0, 8);
-
 			//Instantiate at the designated x, yDropHeight, and z
-			temp = Instantiate(theObjects[theBall], new Vector3(theX, yDropHeight, theZ), Quaternion.Euler(new Vector3(Random.Range(0,30),0,Random.Range(0,30)))) as GameObject;
+			temp = PhotonNetwork.Instantiate("Meteor", new Vector3(theX, yDropHeight, theZ), Quaternion.Euler(new Vector3(Random.Range(0,30),0,Random.Range(0,30))),0) as GameObject;
             temp.GetComponent<Rigidbody>().AddForce(Vector3.forward * 5,ForceMode.VelocityChange);
             spawned++;
+			timer = 0.0f;
 		}//End if
 	}//End Update()
 }//End FallingObjectGenerator

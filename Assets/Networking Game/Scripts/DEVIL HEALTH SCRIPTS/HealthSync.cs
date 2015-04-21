@@ -6,8 +6,10 @@ public class HealthSync : Photon.MonoBehaviour {
 
 	public UIManager uiManager;
 	private UIManager testForManager;
+
 	public bool dead;
 	private bool uiManagerStillNull;
+
 	public float TankShellDamage;
 	private PhotonPlayer hurtPlayer;
 	private Text myText;
@@ -208,30 +210,14 @@ public class HealthSync : Photon.MonoBehaviour {
 				{
 					if(tempPlayer.GetPhotonView().ownerId == myKiller && photonView == tank.GetPhotonView())
 					{
-//						ExitGames.Client.Photon.Hashtable hash10 = new ExitGames.Client.Photon.Hashtable();
-//						int kills = (int)tempPlayer.GetPhotonView().owner.customProperties["Kills"] + 1;
-//						hash10.Add("Kills", kills);
-//						tempPlayer.GetPhotonView().owner.SetCustomProperties(hash10);
-//						uiManager.changeKills(kills);
-//						Debug.Log ("ADDED A KILL");
-//						kills = 0;
-//						//GameObject.Find ("Respawner").SendMessage ("AddKill", PhotonPlayer.Find(myKiller), SendMessageOptions.RequireReceiver);
-						//mainCam.GetComponent<MouseOrbitC>().target = tempPlayer.transform;
-						//Camera.main.GetComponent<MouseOrbitC> ().target = tempPlayer.transform;
 						photonView.RPC("AdjustCameraView",tank.GetPhotonView().owner,myKiller);
 					}
 				}
 				//break;
             }
         }
-
-        //trash = new GameObject("TankTrash");
-		//tank.camera.GetComponent<MouseOrbitC> ().target = null;
         Destroy(tank.GetComponent<TankController>());
         Destroy(tank.GetComponent<TankInterpolationMovement>());
-        //Destroy(tank.GetComponent<RotateEnemyHealth>());
-		//Transform TankHealthSystem = (Transform)tank.transform.Find ("TankHealthSystem").FindChild ("TankHealthSystemCanvas");
-		//TankHealthSystem.gameObject.SetActive(false);
 
 		if(tank.transform.Find ("TankHealthSystem"))
 			tank.transform.Find ("TankHealthSystem").tag = "Trash";
