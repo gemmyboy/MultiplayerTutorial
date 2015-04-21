@@ -25,19 +25,19 @@ public class FallingObjectBehaviour : MonoBehaviour {
 			{
 				if(m_view.isMine){
 					whoIHit.gameObject.GetComponent<PhotonView>().RPC("tankGoBoom",PhotonTargets.All,whoIHit.gameObject.GetComponent<PhotonView>().viewID,null);
-					Instantiate(explosion, transform.position, transform.rotation);
+					PhotonNetwork.Instantiate("FireBlast", transform.position, transform.rotation,0);
 					//Decrement so another can be spawned
 					FallingObjectGenerator.spawned--;
-					Destroy(myself);
+					PhotonNetwork.Destroy(myself);
 				}
 			}
 		}
 		else{
 			if(m_view.isMine){
-				Instantiate(explosion, transform.position, transform.rotation);
+				PhotonNetwork.Instantiate("FireBlast", transform.position, transform.rotation,0);
 				//Decrement so another can be spawned
 				FallingObjectGenerator.spawned--;
-				Destroy(myself);
+				PhotonNetwork.Destroy(myself);
 			}
 		}
 	}//End OnCollisionEnter()
@@ -50,10 +50,11 @@ public class FallingObjectBehaviour : MonoBehaviour {
 	        lifeTime += Time.deltaTime;
 	        if (gameObject.activeSelf && lifeTime > lifeTimeOfTheBullet)
 	        {
-	            FallingObjectGenerator.spawned--;
-	            Instantiate(explosion,transform.position,transform.rotation);
-	            Destroy(myself);
-	        }
+				PhotonNetwork.Instantiate("FireBlast", transform.position, transform.rotation,0);
+				//Decrement so another can be spawned
+				FallingObjectGenerator.spawned--;
+				PhotonNetwork.Destroy(myself);
+			}
 		}
 	}//End Update()
 }//End FallingObjectBehaviour

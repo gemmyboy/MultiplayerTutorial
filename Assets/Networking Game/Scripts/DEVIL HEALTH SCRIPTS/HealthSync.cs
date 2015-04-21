@@ -428,7 +428,7 @@ public class HealthSync : Photon.MonoBehaviour {
 			if(tempPlayer.GetPhotonView().ownerId == ourKiller)
 			{
 				mainCam.GetComponent<MouseOrbitC> ().moving = true;
-				StartCoroutine("lerpPosition",dummy.transform);
+				StartCoroutine("lerpPosition",tempPlayer.transform);
 			}
 		}
 	}

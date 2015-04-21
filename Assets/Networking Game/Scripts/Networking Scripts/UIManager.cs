@@ -16,15 +16,18 @@ public class UIManager : Photon.MonoBehaviour {
     public RectTransform bulletTimerRect;
     public RectTransform laserTimerRect;
     public RectTransform shieldTimerRect;
+	public RectTransform boostTimerRect;
 
 	public Text bulletTimerText;
 	public Text laserTimerText;
 	public Text shieldTimerText;
+	public Text boostTimerText;
 
     public bool bulletShot = false;
     public bool laserShot = false;
     public bool shieldShot = false;
 	public bool boostShot = false;
+	public bool boostReloading = false;
 
     public int roundTimeLimitMins;
 
@@ -33,18 +36,12 @@ public class UIManager : Photon.MonoBehaviour {
     private int frames = 0; // Frames drawn over the interval
     private float timeleft; // Left time for current interval
 
-    //Color pingColor;
 	// Use this for initializatio
 	void Start () {
-        bulletTimerRect = GameObject.Find("ReloadBulletTimer").transform.Find("GreenImage").GetComponent<RectTransform>();
-        shieldTimerRect = GameObject.Find("ShieldTimer").transform.Find("GreenImage").GetComponent<RectTransform>();
-
-		bulletTimerText = GameObject.Find("ReloadBulletTimer").transform.Find("Text").GetComponent<Text>();
-		shieldTimerText = GameObject.Find("ShieldTimer").transform.Find("Text").GetComponent<Text>();
-        
         timeleft = updateInterval;
         GameTimeUI.GetComponentInChildren<Text>().text = "" + roundTimeLimitMins + ":00";
         activateLaserTimer();
+
 	}
 	
 	// Update is called once per frame
@@ -95,8 +92,8 @@ public class UIManager : Photon.MonoBehaviour {
         //-----------------------------------------------------------------------------------------
         //-----------------------------------------------------------------------------------------
         if(bulletShot){
-            if(bulletTimerRect.offsetMax.x < 0){
-                bulletTimerRect.offsetMax += new Vector2(Time.deltaTime * 250/3, 0.0f);
+            if(bulletTimerRect.offsetMax.x <= 0){
+                bulletTimerRect.offsetMax += new Vector2(Time.deltaTime * 450/3, 0.0f);
 				bulletTimerText.text = "Reloading Gun...";
             }
             else
@@ -106,7 +103,7 @@ public class UIManager : Photon.MonoBehaviour {
             }
         }
         if(laserShot){
-            if (laserTimerRect.offsetMax.x < 0)
+            if (laserTimerRect.offsetMax.x <= 0)
             {
                 laserTimerRect.offsetMax += new Vector2(Time.deltaTime * 100, 0.0f);
 				laserTimerText.text = "Charging Laser...";
@@ -118,7 +115,7 @@ public class UIManager : Photon.MonoBehaviour {
             }
         }
         if(shieldShot){
-            if (shieldTimerRect.offsetMax.x < 0)
+            if (shieldTimerRect.offsetMax.x <= 0)
             {
                 shieldTimerRect.offsetMax += new Vector2(Time.deltaTime * 19.5f, 0.0f);
 				shieldTimerText.text = "Powering up Shield...";
@@ -130,15 +127,16 @@ public class UIManager : Photon.MonoBehaviour {
             }
         }
 		if(boostShot){
-			if (shieldTimerRect.offsetMax.x < 0)
-			{
-				shieldTimerRect.offsetMax += new Vector2(Time.deltaTime * 19.5f, 0.0f);
-				shieldTimerText.text = "Powering up Shield...";
-			}
-			else
-			{
-				boostShot = false;
-				shieldTimerText.text = "Shield Ready!";
+			boostTimerRect.offsetMax -= new Vector2(Time.deltaTime * 100.0f,0.0f);
+			boostTimerRect.offsetMax = new Vector2(Mathf.Clamp(boostTimerRect.offsetMax.x,-450,0),0.0f);
+		}
+		else{
+			if(boostReloading){
+				boostTimerRect.offsetMax += new Vector2(Time.deltaTime * 100.0f,0.0f);
+				boostTimerRect.offsetMax = new Vector2(Mathf.Clamp(boostTimerRect.offsetMax.x,-450,0),0.0f);
+				if(boostTimerRect.offsetMax.x >= 0){
+					boostReloading = false;
+				}
 			}
 		}
 	}
@@ -171,8 +169,8 @@ public class UIManager : Photon.MonoBehaviour {
         if(PhotonNetwork.room.customProperties["GameType"].ToString() == "OmegaTank"){
             if(PhotonNetwork.player.customProperties["TheOmega"].ToString() == "1"){
                 laserTimerRect.parent.gameObject.SetActive(true);
-                laserTimerRect = GameObject.Find("LaserTimer").transform.Find("GreenImage").GetComponent<RectTransform>();
-				laserTimerText = GameObject.Find("LaserTimer").transform.Find("Text").GetComponent<Text>();
+                //laserTimerRect = GameObject.Find("LaserTimer").transform.Find("GreenImage").GetComponent<RectTransform>();
+				//laserTimerText = GameObject.Find("LaserTimer").transform.Find("Text").GetComponent<Text>();
             }
         }
     }
@@ -180,6 +178,6 @@ public class UIManager : Photon.MonoBehaviour {
     public void setToZero(GameObject obj)
     {
         RectTransform rectTransform = obj.transform.Find("GreenImage").GetComponent<RectTransform>();
-        rectTransform.offsetMax = new Vector2(-250,0);
+        rectTransform.offsetMax = new Vector2(-450,0);
     }
 }

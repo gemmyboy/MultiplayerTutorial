@@ -158,9 +158,15 @@ public class TankGunController : MonoBehaviour {
 
 		if(Input.GetButtonDown("Jump")){
 			m_PhotonView.RPC("showParticle",PhotonTargets.All,gameObject.transform.parent.transform.Find("BoostLocator").transform.Find("Boost").GetComponent<PhotonView>().viewID);
+			if (boostTime > 0 && !boostRegenerate) {
+				guiManager.boostShot = true;
+			}else{
+				guiManager.boostShot = false;
+			}
 		}
 		if(Input.GetButtonUp("Jump")){
 			m_PhotonView.RPC("stopParticle",PhotonTargets.All,gameObject.transform.parent.transform.Find("BoostLocator").transform.Find("Boost").GetComponent<PhotonView>().viewID);
+			guiManager.boostShot = false;
 		}
 		if (Input.GetButton ("Jump")) { 
 			if (boostTime > 0 && !boostRegenerate) {
@@ -172,10 +178,13 @@ public class TankGunController : MonoBehaviour {
 				boostRegenerate = false;
 				boostTime = boostTime -2;
 			}
-			else if (boostTime >= boostReload)
+			else if (boostTime >= boostReload){
 				boostRegenerate = false;
+				guiManager.boostShot = false;
+			}
 			else{ 
 				boostRegenerate = true;
+				guiManager.boostReloading = true;
 				gameObject.transform.parent.transform.Find("BoostLocator").transform.Find("Boost").GetComponent<ParticleSystem>().enableEmission = false;
 			}
 		}
