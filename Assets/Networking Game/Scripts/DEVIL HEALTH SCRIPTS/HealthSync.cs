@@ -252,11 +252,6 @@ public class HealthSync : Photon.MonoBehaviour {
        		fixForExplosion(tank.transform.Find("MainGun").gameObject);
 		}
 
-		if(tank.transform.Find("MainBody Mesh"))
-		{
-			tempSpecObject = tank.transform.Find("MainBody Mesh").gameObject;
-		}
-
 		if(tank.transform.Find("WheelTransforms"))
 		{
 			if(tank.transform.Find("WheelTransforms").gameObject.transform.Find("WheelTransforms_L"))
@@ -349,7 +344,13 @@ public class HealthSync : Photon.MonoBehaviour {
 				hit.rigidbody.isKinematic = false;
 				hit.gameObject.GetComponent<Rigidbody> ().mass = 3000f;
 				hit.gameObject.tag = "Trash";
-				hit.rigidbody.AddExplosionForce (100000, hit.rigidbody.transform.position, 10.0f, 0.0f, ForceMode.Impulse);
+				if(hit.name != "MainBody Mesh")
+					hit.rigidbody.AddExplosionForce (100000, hit.rigidbody.transform.position, 10.0f, 0.0f, ForceMode.Impulse);
+//				else if(hit.name == "MainBody Mesh")
+//				{
+//					tempSpecObject = hit.gameObject; 
+//					Debug.Log ("SHOULD HAVE WORKED");
+//				}
 			}
            
 		}
@@ -363,10 +364,11 @@ public class HealthSync : Photon.MonoBehaviour {
         obj.GetComponent<Rigidbody>().useGravity = true;
 		obj.GetComponent<Rigidbody> ().mass = 3000f;
 		obj.tag = "Trash";
+
         if (obj.GetComponent<HingeJoint>() != null)
         {
             Destroy(obj.GetComponent<HingeJoint>());
-        }
+        }	
     }
 
     void DestroyHinge(GameObject obj)
@@ -439,8 +441,8 @@ public class HealthSync : Photon.MonoBehaviour {
 			{
 				mainCam.GetComponent<MouseOrbitC> ().moving = true;
 
-				//tempSpecObject = new GameObject();
-				//tempSpecObject.transform.position = mainCam.transform.position - new Vector3(7.0f,7.0f,7.0f);
+				tempSpecObject = new GameObject();
+				tempSpecObject.transform.position = mainCam.transform.position - new Vector3(7.0f,7.0f,7.0f);
 				mainCam.GetComponent<MouseOrbitC>().target = tempSpecObject.transform;
 				StartCoroutine("lerpPosition",tempPlayer.transform);
 			}
@@ -452,7 +454,7 @@ public class HealthSync : Photon.MonoBehaviour {
 		Vector3 startPos = mainCam.transform.position;
 		Vector3 directon = mainCam.transform.position - tempPlayer.transform.position;
 		directon.Normalize ();
-		Vector3 endPos = tempPlayer.position + (directon * 5);
+		Vector3 endPos = tempPlayer.position + (directon * 20);
 
 		Quaternion startRot = Quaternion.LookRotation(mainCam.GetComponent<MouseOrbitC> ().target.transform.position - mainCam.transform.position,Vector3.up);
 		Quaternion endRot = Quaternion.LookRotation(tempPlayer.transform.position - mainCam.transform.position,Vector3.up);
@@ -460,18 +462,22 @@ public class HealthSync : Photon.MonoBehaviour {
 		float t = 0.0f;
 		float seconds = CameraMoveTime;
 
-		yield return new WaitForSeconds (2.0f);
+		yield return new WaitForSeconds (5.0f);
 
 		while (t <= 1.0f)
 		{
 			t += Time.deltaTime / seconds;
 			mainCam.transform.position = Vector3.Lerp(startPos, endPos, Mathf.SmoothStep(0.0f, 1.0f, t));
 			mainCam.transform.rotation = Quaternion.Lerp(startRot,endRot,Mathf.SmoothStep(0.0f, 1.0f, t));
-			yield return new WaitForFixedUpdate();
-		}
-		Debug.Log ("GOT HERE ***********");
 
-		//Destroy (tempSpecObject);
+			directon = mainCam.transform.position - tempPlayer.transform.position;
+			directon.Normalize ();
+			endPos = tempPlayer.position + (directon * 20);
+			endRot = Quaternion.LookRotation(tempPlayer.transform.position - mainCam.transform.position,Vector3.up*10f);
+
+			yield return new WaitForEndOfFrame();
+		}
+		Destroy (tempSpecObject);
 
 		mainCam.GetComponent<MouseOrbitC> ().target = tempPlayer.transform;
 		mainCam.transform.LookAt (tempPlayer.transform);

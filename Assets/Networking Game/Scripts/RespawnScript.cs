@@ -23,7 +23,7 @@ public class RespawnScript : Photon.MonoBehaviour {
 		goodSpawn = false;
 		notInstantiated = true;
 
-		RespawnTime = 5.0f;
+		RespawnTime = 10.0f;
 		
 		FreeForAll = false;
 		OmegaTank = false;

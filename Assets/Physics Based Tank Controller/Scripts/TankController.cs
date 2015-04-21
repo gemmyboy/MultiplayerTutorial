@@ -568,7 +568,7 @@
 				}
 			}
 			else{
-				if(normalExhaustGas.emit){
+				if(heavyExhaustGas.emit){
 					m_PhotonView.RPC("stopParticleEmitter",PhotonTargets.All,heavyExhaustGas.GetComponent<PhotonView>().viewID);
 				}
 			}
