@@ -5235,6 +5235,8 @@ MonoBehaviour:
   activateRespawn: 0
   mainCam: {fileID: 0}
   respawnTimePassed: 0
+  CameraMoveTime: 4
+  dummy: {fileID: 0}
 --- !u!114 &11437554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5423,7 +5425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19d15d90676961149b39f30953ade09f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RespawnTime: 5
+  RespawnTime: 20
 --- !u!114 &11476696
 MonoBehaviour:
   m_ObjectHideFlags: 1

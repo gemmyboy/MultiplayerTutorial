@@ -25,6 +25,9 @@ public class HealthSync : Photon.MonoBehaviour {
 	public GameObject mainCam;
 	public bool respawnTimePassed;
 
+	private GameObject tempSpecObject;
+
+
 	public float CameraMoveTime = 1.0f;
 	public GameObject dummy;
 	void Start()
@@ -248,6 +251,12 @@ public class HealthSync : Photon.MonoBehaviour {
 		{
        		fixForExplosion(tank.transform.Find("MainGun").gameObject);
 		}
+
+		if(tank.transform.Find("MainBody Mesh"))
+		{
+			tempSpecObject = tank.transform.Find("MainBody Mesh").gameObject;
+		}
+
 		if(tank.transform.Find("WheelTransforms"))
 		{
 			if(tank.transform.Find("WheelTransforms").gameObject.transform.Find("WheelTransforms_L"))
@@ -319,6 +328,7 @@ public class HealthSync : Photon.MonoBehaviour {
 		if(tank.transform.Find ("Dynamic Com"))
 			Destroy (tank.transform.Find ("Dynamic Com").gameObject);
 
+
         tank.transform.DetachChildren();
 
 
@@ -343,7 +353,7 @@ public class HealthSync : Photon.MonoBehaviour {
 			}
            
 		}
-		if(photonView.isMine)
+		if(photonView.isMine && photonView == tank.GetPhotonView())
 			photonView.RPC ("ActivateRespawn",tank.GetPhotonView().owner,tank.GetPhotonView ().owner);
     }
     void fixForExplosion(GameObject obj)
@@ -428,7 +438,11 @@ public class HealthSync : Photon.MonoBehaviour {
 			if(tempPlayer.GetPhotonView().ownerId == ourKiller)
 			{
 				mainCam.GetComponent<MouseOrbitC> ().moving = true;
-				StartCoroutine("lerpPosition",dummy.transform);
+
+				//tempSpecObject = new GameObject();
+				//tempSpecObject.transform.position = mainCam.transform.position - new Vector3(7.0f,7.0f,7.0f);
+				mainCam.GetComponent<MouseOrbitC>().target = tempSpecObject.transform;
+				StartCoroutine("lerpPosition",tempPlayer.transform);
 			}
 		}
 	}
@@ -445,19 +459,23 @@ public class HealthSync : Photon.MonoBehaviour {
 		
 		float t = 0.0f;
 		float seconds = CameraMoveTime;
-		
+
+		yield return new WaitForSeconds (2.0f);
+
 		while (t <= 1.0f)
 		{
 			t += Time.deltaTime / seconds;
-			
 			mainCam.transform.position = Vector3.Lerp(startPos, endPos, Mathf.SmoothStep(0.0f, 1.0f, t));
 			mainCam.transform.rotation = Quaternion.Lerp(startRot,endRot,Mathf.SmoothStep(0.0f, 1.0f, t));
-
 			yield return new WaitForFixedUpdate();
 		}
+		Debug.Log ("GOT HERE ***********");
+
+		//Destroy (tempSpecObject);
+
 		mainCam.GetComponent<MouseOrbitC> ().target = tempPlayer.transform;
 		mainCam.transform.LookAt (tempPlayer.transform);
-		mainCam.GetComponent<MouseOrbitC> ().moving = true;
+		mainCam.GetComponent<MouseOrbitC> ().moving = false;
 		yield return null;
 	}
 
