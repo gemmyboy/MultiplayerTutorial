@@ -16,9 +16,9 @@ MonoBehaviour:
   presetsHasPrefabConnection: 0
   hierarchyIcon: 1
   extensionIconSize: 1
-  settingsFoldout: 0
+  settingsFoldout: 1
   settingsLanguageFoldout: 0
-  settingsPathFoldout: 0
+  settingsPathFoldout: 1
   extensionsFoldout: 1
   presetsFoldout: 1
   playgroundManagerFoldout: 1
