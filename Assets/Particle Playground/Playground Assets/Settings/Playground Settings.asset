@@ -28,13 +28,13 @@ MonoBehaviour:
   statesFoldout: 1
   sourceFoldout: 1
   createNewStateFoldout: 1
-  particleSettingsFoldout: 0
-  forcesFoldout: 1
+  particleSettingsFoldout: 1
+  forcesFoldout: 0
   manipulatorsFoldout: 0
   eventsFoldout: 0
   collisionFoldout: 0
-  renderingFoldout: 0
-  advancedFoldout: 1
+  renderingFoldout: 1
+  advancedFoldout: 0
   saveLoadFoldout: 0
   toolboxFoldout: 1
   paintToolboxSettingsFoldout: 1
@@ -46,22 +46,22 @@ MonoBehaviour:
   particleSettingsOverflowOffsetFoldout: 0
   particleSettingsScatterFoldout: 0
   particleSettingsEmissionFoldout: 1
-  particleSettingsSizeFoldout: 0
+  particleSettingsSizeFoldout: 1
   particleSettingsRotationFoldout: 0
   particleSettingsLifetimeFoldout: 0
   particleSettingsMaskFoldout: 0
-  forceAnnihilationFoldout: 0
-  forceInitialVelocityFoldout: 1
-  forceLifetimeVelocityFoldout: 0
+  forceAnnihilationFoldout: 1
+  forceInitialVelocityFoldout: 0
+  forceLifetimeVelocityFoldout: 1
   forceVelocityBendingFoldout: 0
-  forceTurbulenceFoldout: 0
+  forceTurbulenceFoldout: 1
   forceConstantForceFoldout: 0
   forceVelocityScaleFoldout: 0
   collisionSettingsFoldout: 1
   collisionPlanesFoldout: 1
   collisionExclusionFoldout: 0
-  renderingMaterialFoldout: 0
-  renderingColorFoldout: 0
+  renderingMaterialFoldout: 1
+  renderingColorFoldout: 1
   renderingRenderModeFoldout: 0
   renderingShadowsFoldout: 0
   advancedTimeFoldout: 0
