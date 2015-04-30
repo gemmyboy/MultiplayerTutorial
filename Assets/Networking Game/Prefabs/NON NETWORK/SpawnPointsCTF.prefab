@@ -86,9 +86,9 @@ GameObject:
   - 33: {fileID: 3392132}
   - 135: {fileID: 13592132}
   - 23: {fileID: 2392132}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: Exorcist_Zone
-  m_TagString: Untagged
+  m_TagString: ExorcistCapture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,9 +104,9 @@ GameObject:
   - 33: {fileID: 3392134}
   - 135: {fileID: 13592134}
   - 23: {fileID: 2392134}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: Eagle_Zone
-  m_TagString: Untagged
+  m_TagString: EagleCapture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,9 +122,9 @@ GameObject:
   - 33: {fileID: 3392136}
   - 135: {fileID: 13592136}
   - 23: {fileID: 2392136}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: Blood_Zone
-  m_TagString: Untagged
+  m_TagString: BloodCapture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,9 +140,9 @@ GameObject:
   - 33: {fileID: 3392138}
   - 135: {fileID: 13592138}
   - 23: {fileID: 2392138}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: Wolf_Zone
-  m_TagString: Untagged
+  m_TagString: WolfCapture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

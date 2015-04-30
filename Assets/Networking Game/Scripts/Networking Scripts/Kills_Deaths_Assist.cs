@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Kills_Deaths_Assist : MonoBehaviour {
     public int kills;
-    public int assist;
+    public int captures;
     public int deaths;
     public UIManager uiManager;
 	// Use this for initialization
@@ -11,10 +11,10 @@ public class Kills_Deaths_Assist : MonoBehaviour {
         uiManager = FindObjectOfType<UIManager>();
         kills = (int)PhotonNetwork.player.customProperties["Kills"];
         deaths = (int)PhotonNetwork.player.customProperties["Deaths"];
-        assist = (int)PhotonNetwork.player.customProperties["Assist"];
+        captures = (int)PhotonNetwork.player.customProperties["Captures"];
         uiManager.changeKills(kills);
         uiManager.changeDeaths(deaths);
-        uiManager.changeAssist(assist);
+        uiManager.changeCaptures(captures);
 	}
 	/*
     public void updateKills()

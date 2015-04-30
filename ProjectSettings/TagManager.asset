@@ -28,6 +28,10 @@ TagManager:
   - Shield
   - 
   - Terrian
+  - WolfCapture
+  - BloodCapture
+  - ExorcistCapture
+  - EagleCapture
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
@@ -43,7 +47,7 @@ TagManager:
   User Layer 11: Fragment
   User Layer 12: Flag
   User Layer 13: Shield
-  User Layer 14: 
+  User Layer 14: FlagCapture
   User Layer 15: 
   User Layer 16: 
   User Layer 17: 

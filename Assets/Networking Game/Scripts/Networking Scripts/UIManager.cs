@@ -160,9 +160,9 @@ public class UIManager : Photon.MonoBehaviour {
         deathLabel.GetComponentInChildren<Text>().text = "" + deaths;
 
     }
-    public void changeAssist(int assist)
+    public void changeCaptures(int captures)
     {
-        assistLabel.GetComponentInChildren<Text>().text = "" + assist;
+        assistLabel.GetComponentInChildren<Text>().text = "" + captures;
     }
 
     public void activateLaserTimer(){

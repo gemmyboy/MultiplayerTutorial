@@ -14,9 +14,12 @@ GameObject:
   - 114: {fileID: 11412658}
   - 114: {fileID: 11440326}
   - 114: {fileID: 11440324}
-  m_Layer: 0
+  - 114: {fileID: 11412236}
+  - 135: {fileID: 13593776}
+  - 114: {fileID: 11497636}
+  m_Layer: 12
   m_Name: Wolf_Flag
-  m_TagString: Untagged
+  m_TagString: WolfFlag
   m_Icon: {fileID: 2800000, guid: 344d4b0036e1d401e8c6c53be26368f0, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +35,7 @@ GameObject:
   - 198: {fileID: 19812660}
   - 199: {fileID: 19912660}
   - 114: {fileID: 11412662}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Playground Swirl
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 344d4b0036e1d401e8c6c53be26368f0, type: 3}
@@ -46,7 +49,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 36.2999992, y: 1, z: 0}
+  m_LocalPosition: {x: -15, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 412660}
@@ -64,6 +67,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 412658}
   m_RootOrder: 0
+--- !u!114 &11412236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 804c2ad001d3a8e47975caf23fce875b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canBePickedUp: 1
 --- !u!114 &11412658
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -611,11 +626,11 @@ MonoBehaviour:
   sourceTransform: {fileID: 412658}
   sourceTransforms:
   - transform: {fileID: 412658}
-    instanceID: 23248
+    instanceID: -1092522
     available: 1
-    position: {x: 36.2999992, y: 1, z: 0}
+    position: {x: -15, y: 0, z: 0}
     localPosition: {x: 0, y: 0, z: 0}
-    previousPosition: {x: 36.2999992, y: 1, z: 0}
+    previousPosition: {x: -15, y: 0, z: 0}
     forward: {x: 0, y: 0, z: 1}
     up: {x: 0, y: 1, z: 0}
     right: {x: 1, y: 0, z: 0}
@@ -626,11 +641,11 @@ MonoBehaviour:
       e00: 1
       e01: 0
       e02: 0
-      e03: 36.2999992
+      e03: -15
       e10: 0
       e11: 1
       e12: 0
-      e13: 1
+      e13: 0
       e20: 0
       e21: 0
       e22: 1
@@ -759,7 +774,7 @@ MonoBehaviour:
   timeOfSnapshot: 0
   isSnapshot: 0
   shurikenParticleSystem: {fileID: 19812658}
-  particleSystemId: 3
+  particleSystemId: 6
   particleSystemGameObject: {fileID: 112658}
   particleSystemTransform: {fileID: 412658}
   particleSystemRenderer: {fileID: 19912658}
@@ -780,10 +795,10 @@ MonoBehaviour:
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: 846.665527
-  localDeltaTime: .0189819336
+  localTime: 628.575012
+  localDeltaTime: .0195922852
   previousActiveState: 0
-  simulationStarted: 845.690063
+  simulationStarted: 627.493713
   loopExceeded: 0
   loopExceededOnParticle: -1
 --- !u!114 &11412662
@@ -1343,11 +1358,11 @@ MonoBehaviour:
   sourceTransform: {fileID: 412660}
   sourceTransforms:
   - transform: {fileID: 412660}
-    instanceID: 23358
+    instanceID: -1092524
     available: 1
-    position: {x: 36.2999992, y: 1, z: 0}
+    position: {x: -15, y: 0, z: 0}
     localPosition: {x: 0, y: 0, z: 0}
-    previousPosition: {x: 36.2999992, y: 1, z: 0}
+    previousPosition: {x: -15, y: 0, z: 0}
     forward: {x: 0, y: 0, z: 1}
     up: {x: 0, y: 1, z: 0}
     right: {x: 1, y: 0, z: 0}
@@ -1358,11 +1373,11 @@ MonoBehaviour:
       e00: 1
       e01: 0
       e02: 0
-      e03: 36.2999992
+      e03: -15
       e10: 0
       e11: 1
       e12: 0
-      e13: 1
+      e13: 0
       e20: 0
       e21: 0
       e22: 1
@@ -1491,7 +1506,7 @@ MonoBehaviour:
   timeOfSnapshot: 0
   isSnapshot: 0
   shurikenParticleSystem: {fileID: 19812660}
-  particleSystemId: 4
+  particleSystemId: 7
   particleSystemGameObject: {fileID: 112660}
   particleSystemTransform: {fileID: 412660}
   particleSystemRenderer: {fileID: 19912660}
@@ -1512,10 +1527,10 @@ MonoBehaviour:
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: 846.665527
-  localDeltaTime: .0189819336
+  localTime: 628.575012
+  localDeltaTime: .0195922852
   previousActiveState: 0
-  simulationStarted: 845.690063
+  simulationStarted: 627.493713
   loopExceeded: 0
   loopExceededOnParticle: -1
 --- !u!114 &11440324
@@ -1603,9 +1618,45 @@ MonoBehaviour:
   viewIdField: 0
   instantiationId: -1
   isRuntimeInstantiated: 0
+--- !u!114 &11497636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112658}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab7d2b19eb0eef34193d34c0db71291b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minHeight: 10
+  maxHeight: 10
+  angularSpeed: 360
+  oscillationSpeed: 0
+  defaultHeight: 11
+  yOrbit: 1
+  orbitScale: 15
+  orbitObject: {fileID: 0}
+  orbitPosition: {x: 482.621735, y: 84.4588776, z: 247.470459}
+  clockwiseRotate: 1
+  rotations: 0
+  movingOrbit: 1
+  infiniteRotation: 1
+--- !u!135 &13593776
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112658}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &19812658
 ParticleSystem:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112658}

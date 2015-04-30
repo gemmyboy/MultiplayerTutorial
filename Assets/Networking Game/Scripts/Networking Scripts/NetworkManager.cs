@@ -117,7 +117,6 @@ public class NetworkManager : PunBehaviour
             Debug.Log(Random.seed = Mathf.RoundToInt(Time.time * 100));
             //Choose random omega and its faction
             int randomOmega = Random.Range(0, PhotonNetwork.playerList.Length);
-            int randomFaction = Random.Range(0, 3);
 
             //Make the things we need
             List<string> teams = new List<string>() {"Eagles", "Exorcist", "Wolves", "Angel" };
@@ -126,13 +125,12 @@ public class NetworkManager : PunBehaviour
             PhotonPlayer theOmega = players[randomOmega];
 
             //Add it and secure the baby boys
-            hash.Add("Team", teams[randomFaction]);
+            hash.Add("Team", "OmegaTeam");
             hash.Add("TheOmega",1);
             theOmega.SetCustomProperties(hash);
 
             //now to make a team for the other players
-            teams.Remove(teams[randomFaction]);
-            randomFaction = Random.Range(0, 2);
+            int randomFaction = Random.Range(0, 3);
 
             foreach (PhotonPlayer player in PhotonNetwork.playerList)
             {
@@ -184,7 +182,7 @@ public class NetworkManager : PunBehaviour
         //If Capture the flag, add the flag script
         if (PhotonNetwork.room.customProperties["GameType"].ToString() == "Capture The Flag")
         {
-            newPlayerObject.AddComponent<PickUpFlag>();
+            newPlayerObject.AddComponent<PickUpFlag_CapFlag>();
         }
         //--------------------------------------------------------------------------------------------------------------
 
@@ -192,11 +190,13 @@ public class NetworkManager : PunBehaviour
         ExitGames.Client.Photon.Hashtable hash2 = new ExitGames.Client.Photon.Hashtable();
         if(PhotonNetwork.room.customProperties["GameType"].ToString() != "Free For All"){
             hash2.Add("TeamScore",0);
-            PhotonNetwork.player.SetScore(0);
+        }
+        if (PhotonNetwork.room.customProperties["GameType"].ToString() == "Capture The Flag")
+        {
+            hash2.Add("Captures", 0);
         }
         hash2.Add("Kills", 0);
         hash2.Add("Deaths",0);
-        hash2.Add("Assist",0);
         hash2.Add("Health",100);
         PhotonNetwork.player.SetCustomProperties(hash2);
     }
@@ -263,10 +263,10 @@ public class NetworkManager : PunBehaviour
 
             if (PhotonNetwork.isMasterClient)
             {
-                GameObject eagleFlag = PhotonNetwork.Instantiate("Eagle_Flag", GameObject.Find("EaglesSpawnPoint").transform.position, Quaternion.identity, 0);
-                GameObject exorcistFlag = PhotonNetwork.Instantiate("Exorcist_Flag", GameObject.Find("ExorcistSpawnPoint").transform.position, Quaternion.identity, 0);
-                GameObject wolfFlag = PhotonNetwork.Instantiate("Wolf_Flag", GameObject.Find("WolfSpawnPoint").transform.position, Quaternion.identity, 0);
-                GameObject bloodFlag = PhotonNetwork.Instantiate("Blood_Flag", GameObject.Find("BloodSpawnPoint").transform.position, Quaternion.identity, 0);
+                GameObject eagleFlag = PhotonNetwork.Instantiate("Eagle_Flag", GameObject.Find("EaglesSpawnPoint").transform.position + new Vector3(0,15,0), Quaternion.identity, 0);
+                GameObject exorcistFlag = PhotonNetwork.Instantiate("Exorcist_Flag", GameObject.Find("ExorcistSpawnPoint").transform.position + new Vector3(0, 15, 0), Quaternion.identity, 0);
+                GameObject wolfFlag = PhotonNetwork.Instantiate("Wolf_Flag", GameObject.Find("WolfSpawnPoint").transform.position + new Vector3(0, 15, 0), Quaternion.identity, 0);
+                GameObject bloodFlag = PhotonNetwork.Instantiate("Blood_Flag", GameObject.Find("BloodSpawnPoint").transform.position + new Vector3(0, 15, 0), Quaternion.identity, 0);
             }
         }
         else if (PhotonNetwork.room.customProperties["GameType"].ToString() == "Omega Tank")

@@ -101,7 +101,7 @@ public class RespawnScript : Photon.MonoBehaviour {
 
 		if (PhotonNetwork.room.customProperties["GameType"].ToString() == "Capture The Flag")
 		{
-			currPlayerHolder.AddComponent<PickUpFlag>();
+            currPlayerHolder.AddComponent<PickUpFlag_CapFlag>();
 		}
 
 		PhotonNetwork.Destroy(gameObject);

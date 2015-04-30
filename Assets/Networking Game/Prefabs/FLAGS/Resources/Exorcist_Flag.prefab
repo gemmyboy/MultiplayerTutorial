@@ -11,7 +11,7 @@ GameObject:
   - 198: {fileID: 19866406}
   - 199: {fileID: 19966406}
   - 114: {fileID: 11466404}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Playground Swirl
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 344d4b0036e1d401e8c6c53be26368f0, type: 3}
@@ -32,9 +32,12 @@ GameObject:
   - 114: {fileID: 11466408}
   - 114: {fileID: 11434596}
   - 114: {fileID: 11434598}
-  m_Layer: 0
+  - 114: {fileID: 11412236}
+  - 135: {fileID: 13535146}
+  - 114: {fileID: 11497636}
+  m_Layer: 12
   m_Name: Exorcist_Flag
-  m_TagString: Untagged
+  m_TagString: ExorcistFlag
   m_Icon: {fileID: 2800000, guid: 344d4b0036e1d401e8c6c53be26368f0, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,12 +61,24 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 166408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -28.5, y: 1, z: 0}
+  m_LocalPosition: {x: 8.69999981, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 466406}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &11412236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 804c2ad001d3a8e47975caf23fce875b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canBePickedUp: 1
 --- !u!114 &11434596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -706,11 +721,11 @@ MonoBehaviour:
   sourceTransform: {fileID: 466406}
   sourceTransforms:
   - transform: {fileID: 466406}
-    instanceID: 23314
+    instanceID: -1092492
     available: 1
-    position: {x: -28.5, y: 1, z: 0}
+    position: {x: 8.69999981, y: 0, z: 0}
     localPosition: {x: 0, y: 0, z: 0}
-    previousPosition: {x: -28.5, y: 1, z: 0}
+    previousPosition: {x: 8.69999981, y: 0, z: 0}
     forward: {x: 0, y: 0, z: 1}
     up: {x: 0, y: 1, z: 0}
     right: {x: 1, y: 0, z: 0}
@@ -721,11 +736,11 @@ MonoBehaviour:
       e00: 1
       e01: 0
       e02: 0
-      e03: -28.5
+      e03: 8.69999981
       e10: 0
       e11: 1
       e12: 0
-      e13: 1
+      e13: 0
       e20: 0
       e21: 0
       e22: 1
@@ -854,7 +869,7 @@ MonoBehaviour:
   timeOfSnapshot: 0
   isSnapshot: 0
   shurikenParticleSystem: {fileID: 19866406}
-  particleSystemId: 6
+  particleSystemId: 4
   particleSystemGameObject: {fileID: 166406}
   particleSystemTransform: {fileID: 466406}
   particleSystemRenderer: {fileID: 19966406}
@@ -875,10 +890,10 @@ MonoBehaviour:
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: 844.309448
-  localDeltaTime: .016784668
+  localTime: 626.359985
+  localDeltaTime: .0169067383
   previousActiveState: 0
-  simulationStarted: 843.109436
+  simulationStarted: 625.470154
   loopExceeded: 0
   loopExceededOnParticle: -1
 --- !u!114 &11466406
@@ -1413,11 +1428,11 @@ MonoBehaviour:
   sourceTransform: {fileID: 466408}
   sourceTransforms:
   - transform: {fileID: 466408}
-    instanceID: 23218
+    instanceID: -1092494
     available: 1
-    position: {x: -28.5, y: 1, z: 0}
+    position: {x: 8.69999981, y: 0, z: 0}
     localPosition: {x: 0, y: 0, z: 0}
-    previousPosition: {x: -28.5, y: 1, z: 0}
+    previousPosition: {x: 8.69999981, y: 0, z: 0}
     forward: {x: 0, y: 0, z: 1}
     up: {x: 0, y: 1, z: 0}
     right: {x: 1, y: 0, z: 0}
@@ -1428,11 +1443,11 @@ MonoBehaviour:
       e00: 1
       e01: 0
       e02: 0
-      e03: -28.5
+      e03: 8.69999981
       e10: 0
       e11: 1
       e12: 0
-      e13: 1
+      e13: 0
       e20: 0
       e21: 0
       e22: 1
@@ -1582,10 +1597,10 @@ MonoBehaviour:
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  localTime: 844.309448
-  localDeltaTime: .016784668
+  localTime: 626.359985
+  localDeltaTime: .0169067383
   previousActiveState: 0
-  simulationStarted: 843.109436
+  simulationStarted: 625.470154
   loopExceeded: 0
   loopExceededOnParticle: -1
 --- !u!114 &11466408
@@ -1603,6 +1618,42 @@ MonoBehaviour:
   yvalue: 0
   xvalue: 0
   zvalue: 0
+--- !u!114 &11497636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166408}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab7d2b19eb0eef34193d34c0db71291b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minHeight: 10
+  maxHeight: 10
+  angularSpeed: 360
+  oscillationSpeed: 0
+  defaultHeight: 11
+  yOrbit: 1
+  orbitScale: 15
+  orbitObject: {fileID: 0}
+  orbitPosition: {x: 482.621735, y: 84.4588776, z: 247.470459}
+  clockwiseRotate: 1
+  rotations: 0
+  movingOrbit: 1
+  infiniteRotation: 1
+--- !u!135 &13535146
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166408}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &19866406
 ParticleSystem:
   m_ObjectHideFlags: 1

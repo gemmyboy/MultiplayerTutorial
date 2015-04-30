@@ -16,24 +16,24 @@ MonoBehaviour:
   presetsHasPrefabConnection: 0
   hierarchyIcon: 1
   extensionIconSize: 1
-  settingsFoldout: 1
+  settingsFoldout: 0
   settingsLanguageFoldout: 0
-  settingsPathFoldout: 1
+  settingsPathFoldout: 0
   extensionsFoldout: 1
   presetsFoldout: 1
-  playgroundManagerFoldout: 0
+  playgroundManagerFoldout: 1
   particleSystemFoldout: 1
   limitsFoldout: 0
   particlesFoldout: 1
   statesFoldout: 1
   sourceFoldout: 1
   createNewStateFoldout: 1
-  particleSettingsFoldout: 0
-  forcesFoldout: 0
+  particleSettingsFoldout: 1
+  forcesFoldout: 1
   manipulatorsFoldout: 0
   eventsFoldout: 0
   collisionFoldout: 0
-  renderingFoldout: 0
+  renderingFoldout: 1
   advancedFoldout: 0
   saveLoadFoldout: 0
   toolboxFoldout: 1
@@ -41,28 +41,28 @@ MonoBehaviour:
   sortingFoldout: 0
   textureSheetAnimationFoldout: 0
   splineListFoldout: 1
-  transformListFoldout: 1
+  transformListFoldout: 0
   particleSettingsParticleCountFoldout: 1
   particleSettingsOverflowOffsetFoldout: 0
   particleSettingsScatterFoldout: 0
   particleSettingsEmissionFoldout: 1
   particleSettingsSizeFoldout: 1
   particleSettingsRotationFoldout: 0
-  particleSettingsLifetimeFoldout: 0
+  particleSettingsLifetimeFoldout: 1
   particleSettingsMaskFoldout: 0
-  forceAnnihilationFoldout: 1
+  forceAnnihilationFoldout: 0
   forceInitialVelocityFoldout: 0
-  forceLifetimeVelocityFoldout: 1
+  forceLifetimeVelocityFoldout: 0
   forceVelocityBendingFoldout: 0
-  forceTurbulenceFoldout: 1
+  forceTurbulenceFoldout: 0
   forceConstantForceFoldout: 0
   forceVelocityScaleFoldout: 0
-  collisionSettingsFoldout: 1
-  collisionPlanesFoldout: 1
+  collisionSettingsFoldout: 0
+  collisionPlanesFoldout: 0
   collisionExclusionFoldout: 0
   renderingMaterialFoldout: 1
   renderingColorFoldout: 1
-  renderingRenderModeFoldout: 0
+  renderingRenderModeFoldout: 1
   renderingShadowsFoldout: 0
   advancedTimeFoldout: 0
   advancedSimulationFoldout: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
   advancedAutoPauseFoldout: 0
   advancedMiscFoldout: 0
   playgroundFoldout: 1
-  particleSystemsFoldout: 1
+  particleSystemsFoldout: 0
   globalManipulatorsFoldout: 0
   advancedSettingsFoldout: 0
   manipulatorTargetsFoldout: 1
