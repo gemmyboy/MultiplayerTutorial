@@ -65,4 +65,7 @@ MonoBehaviour:
   - ActivateRespawn
   - AdjustCameraView
   - clearBoard
+  - showEmitter
+  - stopParticleEmitter
+  - MakePersonRock
   DisableAutoOpenWizard: 0

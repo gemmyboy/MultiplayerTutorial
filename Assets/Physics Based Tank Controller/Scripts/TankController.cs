@@ -551,12 +551,12 @@
 		if(normalExhaustGas){
 			if(Speed < 15){
 				if(!normalExhaustGas.emit){
-					m_PhotonView.RPC("showParticle",PhotonTargets.All,normalExhaustGas.GetComponent<PhotonView>().viewID);
+					m_PhotonView.RPC("showEmitter",PhotonTargets.All,normalExhaustGas.GetComponent<PhotonView>().viewID);
 				}
 			}
 			else{
 				if(normalExhaustGas.emit){
-					m_PhotonView.RPC("stopParticle",PhotonTargets.All,normalExhaustGas.GetComponent<PhotonView>().viewID);
+					m_PhotonView.RPC("stopParticleEmitter",PhotonTargets.All,normalExhaustGas.GetComponent<PhotonView>().viewID);
 				}
 			}
 		}
@@ -564,12 +564,12 @@
 		if(heavyExhaustGas){
 			if(motorInput > 0){
 				if(!heavyExhaustGas.emit){
-					m_PhotonView.RPC("showParticle",PhotonTargets.All,heavyExhaustGas.GetComponent<PhotonView>().viewID);
+					m_PhotonView.RPC("showEmitter",PhotonTargets.All,heavyExhaustGas.GetComponent<PhotonView>().viewID);
 				}
 			}
 			else{
-				if(normalExhaustGas.emit){
-					m_PhotonView.RPC("stopParticle",PhotonTargets.All,heavyExhaustGas.GetComponent<PhotonView>().viewID);
+				if(heavyExhaustGas.emit){
+					m_PhotonView.RPC("stopParticleEmitter",PhotonTargets.All,heavyExhaustGas.GetComponent<PhotonView>().viewID);
 				}
 			}
 		}
@@ -578,7 +578,7 @@
 
 	GameObject emmiter;
 	[RPC]
-	public void showParticle(int particleSystemID){
+	public void showEmitter(int particleSystemID){
 		PhotonView[] views = FindObjectsOfType<PhotonView>();
 		foreach(PhotonView view in views){
 			if(view.viewID == particleSystemID){
@@ -590,7 +590,7 @@
 	}
 	
 	[RPC]
-	public void stopParticle(int particleSystemID){
+	public void stopParticleEmitter(int particleSystemID){
 		PhotonView[] views = FindObjectsOfType<PhotonView>();
 		foreach(PhotonView view in views){
 			if(view.viewID == particleSystemID){

@@ -23,7 +23,7 @@ public class RespawnScript : Photon.MonoBehaviour {
 		goodSpawn = false;
 		notInstantiated = true;
 
-		RespawnTime = 5.0f;
+		RespawnTime = 10.0f;
 		
 		FreeForAll = false;
 		OmegaTank = false;
@@ -86,6 +86,10 @@ public class RespawnScript : Photon.MonoBehaviour {
 		//add the tankgun target
 		tankGun = currPlayerHolder.GetComponentInChildren<TankGunController>();
 		Target = GameObject.Find("Target");
+
+		//flip the bool value in HealthSync script so the camera will stop lerping on the killer and can now be reassigned.
+		//GetComponent<HealthSync> ().respawnTimePassed = true;
+
 		orbit.target = currPlayerHolder.transform;
 		tankGun.target = Target.transform;
 		

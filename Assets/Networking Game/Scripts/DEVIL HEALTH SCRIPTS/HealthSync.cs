@@ -25,6 +25,9 @@ public class HealthSync : Photon.MonoBehaviour {
 	public GameObject mainCam;
 	public bool respawnTimePassed;
 
+	private GameObject tempSpecObject;
+
+
 	public float CameraMoveTime = 1.0f;
 	public GameObject dummy;
 	void Start()
@@ -53,6 +56,9 @@ public class HealthSync : Photon.MonoBehaviour {
 
     void Update()
     {
+		Debug.Log (PhotonNetwork.player.customProperties["Kills"]);
+		Debug.Log (PhotonNetwork.player.customProperties["Deaths"]);
+
 		if(uiManagerStillNull && photonView.isOwnerActive && (photonView.ownerId == gameObject.GetPhotonView().ownerId))
 		{
 			testForManager = FindObjectOfType<UIManager>();
@@ -64,44 +70,26 @@ public class HealthSync : Photon.MonoBehaviour {
 				photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
 			}
 		}
-
-		if (photonView != null) 
-		{
-			if(photonView.isMine && respawnTimer >= Time.time)
-			{
-				if(photonView.ownerId == gameObject.GetPhotonView().ownerId)
-				{
-					//if(respawnTimer <= (Time.time+1.0f))
-						//activateRespawn = true;
-				}
-			}
-		}
-
-		if(Input.GetKeyDown(KeyCode.P)){
-			photonView.RPC("AdjustCameraView",PhotonTargets.All,0);
-		}
     }
 
 	void OnCollisionEnter(Collision col)
 	{
-		if (photonView.isOwnerActive && (photonView.ownerId == gameObject.GetPhotonView().ownerId)) 
+		theBullet = col.gameObject;
+		if (photonView.isMine) 
 		{
-			healthAmount = (int)gameObject.GetPhotonView().owner.customProperties["Health"];
+			healthAmount = (int)PhotonNetwork.player.customProperties["Health"];
 
-			if((healthAmount >= 0) && (!dead) && (col.gameObject.tag == "TankShell"))
+			if((healthAmount > 0) && (col.gameObject.tag == "TankShell"))
 			{
-				theBullet = col.gameObject;
 				if(theBullet.GetPhotonView().owner.customProperties["Team"].ToString() != gameObject.GetPhotonView().owner.customProperties["Team"].ToString())
 				{
-					if(((healthAmount-(int)TankShellDamage)) <= 0 && !dead)
+					if(((healthAmount-(int)TankShellDamage)) <= 0)
 					{
-						dead = true;
-						//if(!photonView.isMine){}
-						photonView.RPC("ReduceMyHealth",PhotonTargets.Others,gameObject.GetPhotonView().ownerId,1,theBullet.GetPhotonView().ownerId,dead);
+						photonView.RPC("ReduceMyHealth",PhotonTargets.MasterClient,photonView.ownerId,1,theBullet.GetPhotonView().ownerId);
                         //photonView.RPC("tankGoBoom", PhotonTargets.All, gameObject.GetPhotonView().viewID);
 					}else if((healthAmount-(int)TankShellDamage) > 0)
 					{
-						photonView.RPC("ReduceMyHealth",PhotonTargets.Others,gameObject.GetPhotonView().ownerId,2,theBullet.GetPhotonView().ownerId,dead);
+						photonView.RPC("ReduceMyHealth",PhotonTargets.MasterClient,photonView.ownerId,2,theBullet.GetPhotonView().ownerId);
 					}
 				}
 			}
@@ -110,65 +98,77 @@ public class HealthSync : Photon.MonoBehaviour {
 
 
 	[RPC]
-	void ReduceMyHealth(int myViewID,int theCase,int theKiller,bool isDead)
+	void ReduceMyHealth(int myViewID,int theCase,int theKiller)
 	{
-		if(theCase == 1 && (photonView.ownerId == myViewID) && isDead)
+		Debug.LogError ("GOT HERE");
+		if(theCase == 1)
 		{
-			hurtPlayer = gameObject.GetPhotonView().owner;
+			Debug.LogError("PERSON GOT SHOT - master should be only one seeing this");
+
+			PhotonPlayer tempPlayer = PhotonPlayer.Find(theKiller);
+			PhotonPlayer tempPlayer2 = PhotonPlayer.Find(myViewID);
 
 			ExitGames.Client.Photon.Hashtable hash3 = new ExitGames.Client.Photon.Hashtable();
 			hash3.Add("Health",0);
-			hurtPlayer.SetCustomProperties(hash3);
-			healthAmount = (int)hurtPlayer.customProperties["Health"];
+			tempPlayer2.SetCustomProperties(hash3);
+			healthAmount = (int)tempPlayer2.customProperties["Health"];
 			//
 			ExitGames.Client.Photon.Hashtable hash4 = new ExitGames.Client.Photon.Hashtable();
 			hash4.Add("Dead",1);
-			hurtPlayer.SetCustomProperties(hash4);
+			tempPlayer2.SetCustomProperties(hash4);
 
 			respawnTimer = Time.time + 5.0f;
-			//
+
 			//transform.rigidbody.AddExplosionForce(150000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
-			photonView.RPC ("AdjustHealthBar",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,1);
-			photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
+			photonView.RPC ("AdjustHealthBar",PhotonTargets.All,myViewID,1);
+			photonView.RPC("AdjustPercent",PhotonTargets.All,myViewID,healthAmount);
 
 			//person killed gets his ui health updated
-			photonView.RPC ("UpdateHealthUI",hurtPlayer,(int)hurtPlayer.customProperties["Health"]);
-
-
+			photonView.RPC ("UpdateHealthUI",tempPlayer2,(int)tempPlayer2.customProperties["Health"]);
 
 			//killer gets his kills updated
-			PhotonPlayer tempPlayer = PhotonPlayer.Find(theKiller);
 			ExitGames.Client.Photon.Hashtable hash10 = new ExitGames.Client.Photon.Hashtable();
-			int kills = (int)tempPlayer.customProperties["Kills"] + 1;
-			hash10.Add("Kills", kills);
+			hash10.Add("Kills",((int)tempPlayer.customProperties["Kills"]+1));
 			tempPlayer.SetCustomProperties(hash10);
-			photonView.RPC ("UpdateKillsUI",tempPlayer, kills);
+			Debug.LogError(tempPlayer);
+			Debug.LogError((int)tempPlayer.customProperties["Kills"]);
+			photonView.RPC ("UpdateKillsUI",tempPlayer, tempPlayer.customProperties["Kills"]);
 
-			//person killed gets deaths updated
-			tempPlayer = PhotonPlayer.Find(myViewID);
-			ExitGames.Client.Photon.Hashtable hash2 = new ExitGames.Client.Photon.Hashtable();
-			hash2.Add("Deaths",(int)tempPlayer.customProperties["Deaths"]+1);
-			tempPlayer.SetCustomProperties(hash2);
-			photonView.RPC ("UpdateDeathsUI",tempPlayer,(int)tempPlayer.customProperties["Deaths"]);
 
-			photonView.RPC("tankGoBoom", PhotonTargets.All, gameObject.GetPhotonView().viewID,theKiller);
+			//your deaths get updated
+			ExitGames.Client.Photon.Hashtable hash11 = new ExitGames.Client.Photon.Hashtable();
+			hash11.Add("Deaths",(int)tempPlayer2.customProperties["Deaths"]+1);
+			tempPlayer2.SetCustomProperties(hash11);
+			Debug.LogError(tempPlayer2);
+			Debug.LogError((int)tempPlayer2.customProperties["Deaths"]);
+			photonView.RPC ("UpdateDeathsUI",tempPlayer2,(int)tempPlayer2.customProperties["Deaths"]);
+
+			photonView.RPC("tankGoBoom", PhotonTargets.All,tempPlayer2.ID,theKiller);
 			//transform.rigidbody.AddExplosionForce(150000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
 			
-		}else if(theCase == 2 && (photonView.ownerId == myViewID) && !isDead){
+		}else if(theCase == 2 && photonView.isMine){
+			Debug.LogError("PERSON GOT SHOT2 - master should be only one seeing this");
+			PhotonPlayer tempPlayer = PhotonPlayer.Find(theKiller);
+			PhotonPlayer tempPlayer2 = PhotonPlayer.Find(myViewID);
 
-			hurtPlayer = gameObject.GetPhotonView().owner;
 			ExitGames.Client.Photon.Hashtable hash2 = new ExitGames.Client.Photon.Hashtable();
-			healthAmount = (int)hurtPlayer.customProperties["Health"] - (int)TankShellDamage;
+			healthAmount = (int)tempPlayer2.customProperties["Health"] - (int)TankShellDamage;
 			hash2.Add("Health",healthAmount);
-			hurtPlayer.SetCustomProperties(hash2);
-			photonView.RPC ("UpdateHealthUI",hurtPlayer,(int)hurtPlayer.customProperties["Health"]);
+			tempPlayer2.SetCustomProperties(hash2);
+			photonView.RPC ("UpdateHealthUI",tempPlayer2,(int)tempPlayer2.customProperties["Health"]);
 
-			transform.rigidbody.AddExplosionForce(15000.0f,transform.position,10.0f,0.0f,ForceMode.Impulse);
-			
-			photonView.RPC("AdjustPercent",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,healthAmount);
-			photonView.RPC ("AdjustHealthBar",PhotonTargets.OthersBuffered,gameObject.GetPhotonView().ownerId,2);
+			photonView.RPC ("MakePersonRock",tempPlayer2);
+
+			photonView.RPC("AdjustPercent",PhotonTargets.All,tempPlayer2.ID,healthAmount);
+			photonView.RPC ("AdjustHealthBar",PhotonTargets.All,tempPlayer2.ID,2);
 
 		}
+	}
+
+	[RPC]
+	void MakePersonRock()
+	{
+		transform.rigidbody.AddExplosionForce (15000.0f, transform.position, 10.0f, 0.0f, ForceMode.Impulse);
 	}
 
 	[RPC]
@@ -206,14 +206,15 @@ public class HealthSync : Photon.MonoBehaviour {
     GameObject trash;
 
     [RPC]
-    void tankGoBoom(int viewID,int myKiller)
+    void tankGoBoom(int ownerID,int myKiller)
     {
         PhotonView[] views = FindObjectsOfType<PhotonView>();
         foreach(PhotonView view in views){
-            if(view.viewID == viewID)
+            if(view.ownerId == ownerID)
 			{
                 tank = view.gameObject;
-				tank.GetComponent<HealthSync>().activateRespawn = true;
+				if(tank.GetComponent<HealthSync>())
+					tank.GetComponent<HealthSync>().activateRespawn = true;
 				GameObject[] tempPlayers = GameObject.FindGameObjectsWithTag("Player");
 				foreach(GameObject tempPlayer in tempPlayers)
 				{
@@ -248,6 +249,7 @@ public class HealthSync : Photon.MonoBehaviour {
 		{
        		fixForExplosion(tank.transform.Find("MainGun").gameObject);
 		}
+
 		if(tank.transform.Find("WheelTransforms"))
 		{
 			if(tank.transform.Find("WheelTransforms").gameObject.transform.Find("WheelTransforms_L"))
@@ -319,6 +321,7 @@ public class HealthSync : Photon.MonoBehaviour {
 		if(tank.transform.Find ("Dynamic Com"))
 			Destroy (tank.transform.Find ("Dynamic Com").gameObject);
 
+
         tank.transform.DetachChildren();
 
 
@@ -339,11 +342,17 @@ public class HealthSync : Photon.MonoBehaviour {
 				hit.rigidbody.isKinematic = false;
 				hit.gameObject.GetComponent<Rigidbody> ().mass = 3000f;
 				hit.gameObject.tag = "Trash";
-				hit.rigidbody.AddExplosionForce (100000, hit.rigidbody.transform.position, 10.0f, 0.0f, ForceMode.Impulse);
+				if(hit.name != "MainBody Mesh")
+					hit.rigidbody.AddExplosionForce (100000, hit.rigidbody.transform.position, 10.0f, 0.0f, ForceMode.Impulse);
+//				else if(hit.name == "MainBody Mesh")
+//				{
+//					tempSpecObject = hit.gameObject; 
+//					Debug.Log ("SHOULD HAVE WORKED");
+//				}
 			}
            
 		}
-		if(photonView.isMine)
+		if(photonView.isMine && photonView == tank.GetPhotonView())
 			photonView.RPC ("ActivateRespawn",tank.GetPhotonView().owner,tank.GetPhotonView ().owner);
     }
     void fixForExplosion(GameObject obj)
@@ -353,10 +362,11 @@ public class HealthSync : Photon.MonoBehaviour {
         obj.GetComponent<Rigidbody>().useGravity = true;
 		obj.GetComponent<Rigidbody> ().mass = 3000f;
 		obj.tag = "Trash";
+
         if (obj.GetComponent<HingeJoint>() != null)
         {
             Destroy(obj.GetComponent<HingeJoint>());
-        }
+        }	
     }
 
     void DestroyHinge(GameObject obj)
@@ -423,12 +433,16 @@ public class HealthSync : Photon.MonoBehaviour {
 	{
 		GameObject[] tempPlayers = GameObject.FindGameObjectsWithTag("Player");
 
-		foreach(GameObject tempPlayer in tempPlayers)
+		foreach(GameObject thisPlayer in tempPlayers)
 		{
-			if(tempPlayer.GetPhotonView().ownerId == ourKiller)
+			if(thisPlayer.GetPhotonView().ownerId == ourKiller)
 			{
 				mainCam.GetComponent<MouseOrbitC> ().moving = true;
-				StartCoroutine("lerpPosition",tempPlayer.transform);
+
+				tempSpecObject = new GameObject();
+				tempSpecObject.transform.position = mainCam.transform.position - new Vector3(7.0f,7.0f,7.0f);
+				mainCam.GetComponent<MouseOrbitC>().target = tempSpecObject.transform;
+				StartCoroutine("lerpPosition",thisPlayer.transform);
 			}
 		}
 	}
@@ -438,26 +452,34 @@ public class HealthSync : Photon.MonoBehaviour {
 		Vector3 startPos = mainCam.transform.position;
 		Vector3 directon = mainCam.transform.position - tempPlayer.transform.position;
 		directon.Normalize ();
-		Vector3 endPos = tempPlayer.position + (directon * 5);
+		Vector3 endPos = tempPlayer.position + (directon * 20);
 
 		Quaternion startRot = Quaternion.LookRotation(mainCam.GetComponent<MouseOrbitC> ().target.transform.position - mainCam.transform.position,Vector3.up);
 		Quaternion endRot = Quaternion.LookRotation(tempPlayer.transform.position - mainCam.transform.position,Vector3.up);
 		
 		float t = 0.0f;
 		float seconds = CameraMoveTime;
-		
+
+		yield return new WaitForSeconds (5.0f);
+
 		while (t <= 1.0f)
 		{
 			t += Time.deltaTime / seconds;
-			
 			mainCam.transform.position = Vector3.Lerp(startPos, endPos, Mathf.SmoothStep(0.0f, 1.0f, t));
 			mainCam.transform.rotation = Quaternion.Lerp(startRot,endRot,Mathf.SmoothStep(0.0f, 1.0f, t));
 
-			yield return new WaitForFixedUpdate();
+			directon = mainCam.transform.position - tempPlayer.transform.position;
+			directon.Normalize ();
+			endPos = tempPlayer.position + (directon * 20);
+			endRot = Quaternion.LookRotation(tempPlayer.transform.position - mainCam.transform.position,Vector3.up*10f);
+
+			yield return new WaitForEndOfFrame();
 		}
+		Destroy (tempSpecObject);
+
 		mainCam.GetComponent<MouseOrbitC> ().target = tempPlayer.transform;
 		mainCam.transform.LookAt (tempPlayer.transform);
-		mainCam.GetComponent<MouseOrbitC> ().moving = true;
+		mainCam.GetComponent<MouseOrbitC> ().moving = false;
 		yield return null;
 	}
 
