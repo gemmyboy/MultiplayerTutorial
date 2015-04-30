@@ -21,19 +21,19 @@ MonoBehaviour:
   settingsPathFoldout: 1
   extensionsFoldout: 1
   presetsFoldout: 1
-  playgroundManagerFoldout: 1
+  playgroundManagerFoldout: 0
   particleSystemFoldout: 1
   limitsFoldout: 0
   particlesFoldout: 1
   statesFoldout: 1
   sourceFoldout: 1
   createNewStateFoldout: 1
-  particleSettingsFoldout: 1
+  particleSettingsFoldout: 0
   forcesFoldout: 0
   manipulatorsFoldout: 0
   eventsFoldout: 0
   collisionFoldout: 0
-  renderingFoldout: 1
+  renderingFoldout: 0
   advancedFoldout: 0
   saveLoadFoldout: 0
   toolboxFoldout: 1

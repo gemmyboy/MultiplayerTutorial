@@ -18,12 +18,7 @@ public class PickUpFlag : MonoBehaviour {
         {
             if(other.tag == "BloodFlag"){
                 if(PhotonNetwork.player.customProperties["Team"].ToString() != "Angel" && tankCanPickUp && other.GetComponent<Flag>().canBePickedUp){
-                    PhotonNetwork.Destroy(other.gameObject);
-                    GameObject bloodFlag = PhotonNetwork.Instantiate("Eagle_Flag", gameObject.transform.position + new Vector3(0,5,0), gameObject.transform.rotation, 0);
-                    bloodFlag.transform.SetParent(gameObject.transform);
-                    //other.gameObject.transform.parent = gameObject.transform;
-                    //other.gameObject.transform.localPosition = new Vector3(0,0,0);
-                    //other.gameObject.transform.localScale = new Vector3(1, 1, 1);
+                    other.transform.SetParent(gameObject.transform);
                     other.GetComponent<Flag>().canBePickedUp = false;
                     tankCanPickUp = false;
                 }
