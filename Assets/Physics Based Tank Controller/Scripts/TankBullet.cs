@@ -10,8 +10,7 @@ public class TankBullet : Photon.MonoBehaviour {
 	private float lifeTime;
     PhotonView view;
 
-    public double m_CreationTime;
-    public int m_projectileID;
+    public float TankShellDamage = 100.0f;
 	void Start(){
         view = GetComponent<PhotonView>();
 
@@ -47,7 +46,6 @@ public class TankBullet : Photon.MonoBehaviour {
 			{
             	if (view.isMine && col.gameObject.GetComponent<PhotonView>().owner.customProperties["Team"] != view.owner.customProperties["Team"])
 	            {
-	                Debug.Log("hit tank");
 					Explosion ();
 	            }
 			}

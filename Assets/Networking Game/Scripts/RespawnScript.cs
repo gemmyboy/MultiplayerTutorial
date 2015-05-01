@@ -128,14 +128,14 @@ public class RespawnScript : Photon.MonoBehaviour {
 		if(FreeForAll)
 		{
 			goodSpawn = false;
-			position = new Vector3 (Random.Range (140, 1230), 250.0f, Random.Range (-315, 580));
+			position = new Vector3 (Random.Range (140, 1230), 10.0f, Random.Range (-315, 580));
 			while(!goodSpawn)
 			{
 				if(checkSpawn(position))
 				{
 					goodSpawn = true;
 				}else{
-					position = new Vector3 (Random.Range (140, 1230), 250.0f, Random.Range (-315, 580));
+                    position = new Vector3(Random.Range(140, 1230), 10.0f, Random.Range(-315, 580));
 				}
 			}
 			goodSpawn = false;
@@ -240,6 +240,7 @@ public class RespawnScript : Photon.MonoBehaviour {
 				Collider[] hitColliders = Physics.OverlapSphere(hit.point, 100.0f);
 				if(hitColliders.Length == 1){
 					if(hitColliders[0].tag == "Terrain"){
+                        position = new Vector3(pos.x,hit.point.y + 10,pos.z);
 						return true;
 					}else{
 						return false;

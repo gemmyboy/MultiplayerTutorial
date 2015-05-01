@@ -74,26 +74,28 @@ public class HealthSync : Photon.MonoBehaviour {
 
 	void OnCollisionEnter(Collision col)
 	{
-		theBullet = col.gameObject;
-		if (photonView.isMine) 
-		{
-			healthAmount = (int)PhotonNetwork.player.customProperties["Health"];
+        theBullet = col.gameObject;
+        if (photonView.isMine)
+        {
+            healthAmount = (int)PhotonNetwork.player.customProperties["Health"];
 
-			if((healthAmount > 0) && (col.gameObject.tag == "TankShell"))
-			{
-				if(theBullet.GetPhotonView().owner.customProperties["Team"].ToString() != gameObject.GetPhotonView().owner.customProperties["Team"].ToString())
-				{
-					if(((healthAmount-(int)TankShellDamage)) <= 0)
-					{
-						photonView.RPC("ReduceMyHealth",PhotonTargets.MasterClient,photonView.ownerId,1,theBullet.GetPhotonView().ownerId);
+            if ((healthAmount > 0) && (col.gameObject.tag == "TankShell"))
+            {
+                Debug.Log("HIT TANK");
+                if (theBullet.GetPhotonView().owner.customProperties["Team"].ToString() != gameObject.GetPhotonView().owner.customProperties["Team"].ToString())
+                {
+                    if (((healthAmount - (int)TankShellDamage)) <= 0)
+                    {
+                        photonView.RPC("ReduceMyHealth", PhotonTargets.MasterClient, photonView.ownerId, 1, theBullet.GetPhotonView().ownerId);
                         //photonView.RPC("tankGoBoom", PhotonTargets.All, gameObject.GetPhotonView().viewID);
-					}else if((healthAmount-(int)TankShellDamage) > 0)
-					{
-						photonView.RPC("ReduceMyHealth",PhotonTargets.MasterClient,photonView.ownerId,2,theBullet.GetPhotonView().ownerId);
-					}
-				}
-			}
-		}
+                    }
+                    else if ((healthAmount - (int)TankShellDamage) > 0)
+                    {
+                        photonView.RPC("ReduceMyHealth", PhotonTargets.MasterClient, photonView.ownerId, 2, theBullet.GetPhotonView().ownerId);
+                    }
+                }
+            }
+        }
 	}
 
 

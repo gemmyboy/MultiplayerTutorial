@@ -11,10 +11,12 @@ public class Kills_Deaths_Assist : MonoBehaviour {
         uiManager = FindObjectOfType<UIManager>();
         kills = (int)PhotonNetwork.player.customProperties["Kills"];
         deaths = (int)PhotonNetwork.player.customProperties["Deaths"];
-        captures = (int)PhotonNetwork.player.customProperties["Captures"];
+        if(PhotonNetwork.room.customProperties["GameType"].ToString() == "Capture The Flag"){
+            captures = (int)PhotonNetwork.player.customProperties["Captures"];
+            uiManager.changeCaptures(captures);
+        }
         uiManager.changeKills(kills);
         uiManager.changeDeaths(deaths);
-        uiManager.changeCaptures(captures);
 	}
 	/*
     public void updateKills()
