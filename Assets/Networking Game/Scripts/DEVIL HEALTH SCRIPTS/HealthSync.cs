@@ -74,14 +74,17 @@ public class HealthSync : Photon.MonoBehaviour {
 
 	void OnCollisionEnter(Collision col)
 	{
+        Debug.Log("HIT TANK");
         theBullet = col.gameObject;
-        if (photonView.isMine)
+        if (photonView.isMine && (col.gameObject.tag == "TankShell"))
         {
+            Debug.Log("HIT TANK2");
             healthAmount = (int)PhotonNetwork.player.customProperties["Health"];
-
-            if ((healthAmount > 0) && (col.gameObject.tag == "TankShell"))
+            Debug.Log(healthAmount);
+            Debug.Log(col.gameObject.tag);
+            if (healthAmount > 0)
             {
-                Debug.Log("HIT TANK");
+                Debug.Log("HIT TANK3");
                 if (theBullet.GetPhotonView().owner.customProperties["Team"].ToString() != gameObject.GetPhotonView().owner.customProperties["Team"].ToString())
                 {
                     if (((healthAmount - (int)TankShellDamage)) <= 0)
@@ -238,6 +241,9 @@ public class HealthSync : Photon.MonoBehaviour {
 		Destroy (tank.GetComponent<TestExplosionForceScript> ());
 		Destroy(tank.GetComponentInChildren<TankGunController>());
 		Destroy(tank.GetComponentInChildren<TankLerpMovement>());
+        if(PhotonNetwork.room.customProperties["GameType"].ToString() == "Capture The Flag"){
+            Destroy(tank.GetComponent<PickUpFlag_CapFlag>());
+        }
 
 		GameObject[] mainGuns = GameObject.FindGameObjectsWithTag ("MainGun");
 		foreach(GameObject mainGun in mainGuns)
@@ -323,6 +329,13 @@ public class HealthSync : Photon.MonoBehaviour {
 		if(tank.transform.Find ("Dynamic Com"))
 			Destroy (tank.transform.Find ("Dynamic Com").gameObject);
 
+
+        if(tank.transform.Find ("BoostLocator"))
+            Destroy(tank.transform.Find("BoostLocator").gameObject);
+        if (tank.transform.Find("Exhaust_Location"))
+            Destroy(tank.transform.Find("Exhaust_Location").gameObject);
+        if (tank.transform.Find("TankHealthSystem"))
+            Destroy(tank.transform.Find("TankHealthSystem").gameObject);
 
         tank.transform.DetachChildren();
 
