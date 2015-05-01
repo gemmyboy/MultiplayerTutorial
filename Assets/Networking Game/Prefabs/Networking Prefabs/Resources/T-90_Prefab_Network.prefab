@@ -4821,7 +4821,7 @@ BoxCollider:
   m_GameObject: {fileID: 116718}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 5.96000004, y: 2.20000005, z: 10.1099997}
   m_Center: {x: .000283837318, y: -.49000001, z: .810000002}
@@ -5386,7 +5386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kills: 0
-  assist: 0
+  captures: 0
   deaths: 0
   uiManager: {fileID: 0}
 --- !u!114 &11469966
