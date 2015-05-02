@@ -82,6 +82,8 @@ public class PickUpFlag_CapFlag : MonoBehaviour
                     resetFlag();
                     tankCanPickUp = true;
                     UpdateUI();
+                    GameObject fireworks = PhotonNetwork.Instantiate("FireworksShow", transform.position, new Quaternion(270, 0, 0, 0), 0) as GameObject;
+                    GetComponent<PhotonView>().RPC("fixLetters", PhotonTargets.All, fireworks.GetComponent<PhotonView>().viewID);
                 }
             }
             else if (other.tag == "EagleCapture")
@@ -93,7 +95,8 @@ public class PickUpFlag_CapFlag : MonoBehaviour
                     resetFlag();
                     tankCanPickUp = true;
                     UpdateUI();
-
+                    GameObject fireworks = PhotonNetwork.Instantiate("FireworksShow", transform.position, new Quaternion(270, 0, 0, 0), 0) as GameObject;
+                    GetComponent<PhotonView>().RPC("fixLetters", PhotonTargets.All, fireworks.GetComponent<PhotonView>().viewID);
                 }
             }
             else if (other.tag == "WolfCapture")
@@ -105,6 +108,8 @@ public class PickUpFlag_CapFlag : MonoBehaviour
                     resetFlag();
                     tankCanPickUp = true;
                     UpdateUI();
+                    GameObject fireworks = PhotonNetwork.Instantiate("FireworksShow", transform.position, new Quaternion(270, 0, 0, 0), 0) as GameObject;
+                    GetComponent<PhotonView>().RPC("fixLetters", PhotonTargets.All, fireworks.GetComponent<PhotonView>().viewID);
                 }
             }
             else if (other.tag == "ExorcistCapture")
@@ -116,6 +121,8 @@ public class PickUpFlag_CapFlag : MonoBehaviour
                     resetFlag();
                     tankCanPickUp = true;
                     UpdateUI();
+                    GameObject fireworks = PhotonNetwork.Instantiate("FireworksShow", transform.position, new Quaternion(270, 0, 0, 0), 0) as GameObject;
+                    GetComponent<PhotonView>().RPC("fixLetters", PhotonTargets.All, fireworks.GetComponent<PhotonView>().viewID);
                 }
             }
             //------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -134,24 +141,41 @@ public class PickUpFlag_CapFlag : MonoBehaviour
             currentFlagPossession.GetComponent<OrbRotate>().enabled = false;
             currentFlagPossession.GetComponent<OrbRotate>().orbitObject = null;
             currentFlagPossession.transform.position = GameObject.Find("EaglesSpawnPoint").transform.position + new Vector3(0, 15, 0);
+            currentFlagPossession.GetComponent<Flag>().canBePickedUp = true;
         }
         else if (currentFlagPossession.tag == "ExorcistFlag")
         {
             currentFlagPossession.GetComponent<OrbRotate>().enabled = false;
             currentFlagPossession.GetComponent<OrbRotate>().orbitObject = null;
             currentFlagPossession.transform.position = GameObject.Find("ExorcistSpawnPoint").transform.position + new Vector3(0, 15, 0);
+            currentFlagPossession.GetComponent<Flag>().canBePickedUp = true;
         }
         else if (currentFlagPossession.tag == "BloodFlag")
         {
             currentFlagPossession.GetComponent<OrbRotate>().enabled = false;
             currentFlagPossession.GetComponent<OrbRotate>().orbitObject = null;
             currentFlagPossession.transform.position = GameObject.Find("BloodSpawnPoint").transform.position + new Vector3(0, 15, 0);
+            currentFlagPossession.GetComponent<Flag>().canBePickedUp = true;
         }
         else if (currentFlagPossession.tag == "WolfFlag")
         {
             currentFlagPossession.GetComponent<OrbRotate>().enabled = false;
             currentFlagPossession.GetComponent<OrbRotate>().orbitObject = null;
             currentFlagPossession.transform.position = GameObject.Find("WolfSpawnPoint").transform.position + new Vector3(0, 15, 0);
+            currentFlagPossession.GetComponent<Flag>().canBePickedUp = true;
         }
+    }
+    GameObject fireworks;
+    [RPC]
+    void fixLetters(int ID)
+    {
+        PhotonView[] views = FindObjectsOfType<PhotonView>();
+        foreach (PhotonView view in views)
+        {
+            if(view.viewID == ID){
+                fireworks = view.gameObject;
+            }
+        }
+        fireworks.transform.Rotate(90, 0, 0);
     }
 }

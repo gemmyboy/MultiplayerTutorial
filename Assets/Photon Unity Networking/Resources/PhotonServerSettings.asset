@@ -68,4 +68,5 @@ MonoBehaviour:
   - showEmitter
   - stopParticleEmitter
   - MakePersonRock
+  - fixLetters
   DisableAutoOpenWizard: 0

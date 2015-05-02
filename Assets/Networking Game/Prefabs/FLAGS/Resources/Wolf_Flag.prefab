@@ -1633,7 +1633,7 @@ MonoBehaviour:
   maxHeight: 10
   angularSpeed: 360
   oscillationSpeed: 0
-  defaultHeight: 11
+  defaultHeight: 20
   yOrbit: 1
   orbitScale: 15
   orbitObject: {fileID: 0}

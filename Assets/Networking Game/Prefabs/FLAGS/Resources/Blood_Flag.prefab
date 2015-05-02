@@ -17,7 +17,6 @@ GameObject:
   - 114: {fileID: 11412236}
   - 135: {fileID: 13592240}
   - 114: {fileID: 11497636}
-  - 114: {fileID: 11404770}
   m_Layer: 12
   m_Name: Blood_Flag
   m_TagString: BloodFlag
@@ -68,20 +67,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 419392}
   m_RootOrder: 0
---- !u!114 &11404770
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 119392}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28b7ed8c1823cf241be8b100d90155de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  smooth: 0
-  angle: 40
 --- !u!114 &11412236
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1650,7 +1635,7 @@ MonoBehaviour:
   oscillationSpeed: 0
   defaultHeight: 11
   yOrbit: 1
-  orbitScale: 15
+  orbitScale: 20
   orbitObject: {fileID: 0}
   orbitPosition: {x: 482.621735, y: 84.4588776, z: 247.470459}
   clockwiseRotate: 1
