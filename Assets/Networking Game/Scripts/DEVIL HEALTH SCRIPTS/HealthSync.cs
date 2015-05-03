@@ -56,8 +56,6 @@ public class HealthSync : Photon.MonoBehaviour {
 
     void Update()
     {
-		Debug.Log (PhotonNetwork.player.customProperties["Kills"]);
-		Debug.Log (PhotonNetwork.player.customProperties["Deaths"]);
 
 		if(uiManagerStillNull && photonView.isOwnerActive && (photonView.ownerId == gameObject.GetPhotonView().ownerId))
 		{

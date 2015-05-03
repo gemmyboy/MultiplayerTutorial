@@ -75,53 +75,53 @@ public class PickUpFlag_CapFlag : MonoBehaviour
 
             if (other.tag == "BloodCapture")
             {
-                if (PhotonNetwork.player.customProperties["Team"].ToString() == "Angel" && !tankCanPickUp && !other.GetComponent<Flag>().canBePickedUp)
+                if (PhotonNetwork.player.customProperties["Team"].ToString() == "Angel" && !tankCanPickUp) 
                 {
                     hash.Add("Captures", (int)PhotonNetwork.player.customProperties["Captures"] + 1);
                     PhotonNetwork.player.SetCustomProperties(hash);
                     resetFlag();
                     tankCanPickUp = true;
                     UpdateUI();
-                    GameObject fireworks = PhotonNetwork.Instantiate("FireworksShow", transform.position, new Quaternion(270, 0, 0, 0), 0) as GameObject;
+                    GameObject fireworks = PhotonNetwork.Instantiate("FireworksShowBlood", transform.position, new Quaternion(270, 0, 0, 0), 0) as GameObject;
                     GetComponent<PhotonView>().RPC("fixLetters", PhotonTargets.All, fireworks.GetComponent<PhotonView>().viewID);
                 }
             }
             else if (other.tag == "EagleCapture")
             {
-                if (PhotonNetwork.player.customProperties["Team"].ToString() == "Eagles" && !tankCanPickUp) //&& !other.GetComponent<Flag>().canBePickedUp)
+                if (PhotonNetwork.player.customProperties["Team"].ToString() == "Eagles" && !tankCanPickUp) 
                 {
                     hash.Add("Captures", (int)PhotonNetwork.player.customProperties["Captures"] + 1);
                     PhotonNetwork.player.SetCustomProperties(hash);
                     resetFlag();
                     tankCanPickUp = true;
                     UpdateUI();
-                    GameObject fireworks = PhotonNetwork.Instantiate("FireworksShow", transform.position, new Quaternion(270, 0, 0, 0), 0) as GameObject;
+                    GameObject fireworks = PhotonNetwork.Instantiate("FireworksShowEagle", transform.position, new Quaternion(270, 0, 0, 0), 0) as GameObject;
                     GetComponent<PhotonView>().RPC("fixLetters", PhotonTargets.All, fireworks.GetComponent<PhotonView>().viewID);
                 }
             }
             else if (other.tag == "WolfCapture")
             {
-                if (PhotonNetwork.player.customProperties["Team"].ToString() == "Wolves" && !tankCanPickUp && !other.GetComponent<Flag>().canBePickedUp)
+                if (PhotonNetwork.player.customProperties["Team"].ToString() == "Wolves" && !tankCanPickUp) 
                 {
                     hash.Add("Captures", (int)PhotonNetwork.player.customProperties["Captures"] + 1);
                     PhotonNetwork.player.SetCustomProperties(hash);
                     resetFlag();
                     tankCanPickUp = true;
                     UpdateUI();
-                    GameObject fireworks = PhotonNetwork.Instantiate("FireworksShow", transform.position, new Quaternion(270, 0, 0, 0), 0) as GameObject;
+                    GameObject fireworks = PhotonNetwork.Instantiate("FireworksShowWolf", transform.position, new Quaternion(270, 0, 0, 0), 0) as GameObject;
                     GetComponent<PhotonView>().RPC("fixLetters", PhotonTargets.All, fireworks.GetComponent<PhotonView>().viewID);
                 }
             }
             else if (other.tag == "ExorcistCapture")
             {
-                if (PhotonNetwork.player.customProperties["Team"].ToString() == "Exorcist" && !tankCanPickUp && !other.GetComponent<Flag>().canBePickedUp)
+                if (PhotonNetwork.player.customProperties["Team"].ToString() == "Exorcist" && !tankCanPickUp) 
                 {
                     hash.Add("Captures", (int)PhotonNetwork.player.customProperties["Captures"] + 1);
                     PhotonNetwork.player.SetCustomProperties(hash);
                     resetFlag();
                     tankCanPickUp = true;
                     UpdateUI();
-                    GameObject fireworks = PhotonNetwork.Instantiate("FireworksShow", transform.position, new Quaternion(270, 0, 0, 0), 0) as GameObject;
+                    GameObject fireworks = PhotonNetwork.Instantiate("FireworksShowExorcist", transform.position, new Quaternion(270, 0, 0, 0), 0) as GameObject;
                     GetComponent<PhotonView>().RPC("fixLetters", PhotonTargets.All, fireworks.GetComponent<PhotonView>().viewID);
                 }
             }
@@ -176,6 +176,6 @@ public class PickUpFlag_CapFlag : MonoBehaviour
                 fireworks = view.gameObject;
             }
         }
-        fireworks.transform.Rotate(90, 0, 0);
+        fireworks.transform.Rotate(0, 0, 0);
     }
 }
