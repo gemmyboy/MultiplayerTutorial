@@ -48,7 +48,7 @@ public class RadarSystem : MonoBehaviour
 	{
 		//Obvious
 		updateGradient = GameObject.Find("UpdateLineThing");
-		theRadarSystem = GameObject.Find ("RadarBG");
+		theRadarSystem = GameObject.Find ("RadarSystem");
 
 		//Assign World Dimensions here
 		worldWidth = 350;
