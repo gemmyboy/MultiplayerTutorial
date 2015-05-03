@@ -1633,9 +1633,9 @@ MonoBehaviour:
   maxHeight: 10
   angularSpeed: 360
   oscillationSpeed: 0
-  defaultHeight: 20
+  defaultHeight: 11
   yOrbit: 1
-  orbitScale: 15
+  orbitScale: 20
   orbitObject: {fileID: 0}
   orbitPosition: {x: 482.621735, y: 84.4588776, z: 247.470459}
   clockwiseRotate: 1

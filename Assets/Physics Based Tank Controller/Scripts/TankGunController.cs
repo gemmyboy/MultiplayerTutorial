@@ -76,7 +76,6 @@ public class TankGunController : MonoBehaviour {
         }
 		healthRefreshTimer = Time.time;
 	}
-
 	void Update(){
         if (m_PhotonView.isMine && timeManager.IsItTimeYet)
         {
