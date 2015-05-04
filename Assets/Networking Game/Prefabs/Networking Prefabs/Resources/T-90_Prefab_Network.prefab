@@ -4938,7 +4938,7 @@ MeshCollider:
   m_GameObject: {fileID: 116718}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 1
   m_Convex: 1
@@ -5250,6 +5250,8 @@ MonoBehaviour:
   timeManager: {fileID: 0}
   BoostSpawn: {fileID: 471284}
   boostTime: 500
+  menu: {fileID: 0}
+  gameTimeManager: {fileID: 0}
 --- !u!114 &11416710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5364,6 +5366,8 @@ MonoBehaviour:
   normalExhaustGas: {fileID: 0}
   heavyExhaustGas: {fileID: 0}
   timeManager: {fileID: 0}
+  menu: {fileID: 0}
+  gameTimeManager: {fileID: 0}
 --- !u!114 &11416712
 MonoBehaviour:
   m_ObjectHideFlags: 1

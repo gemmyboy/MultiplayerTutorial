@@ -263,10 +263,10 @@ public class NetworkManager : PunBehaviour
 
             if (PhotonNetwork.isMasterClient)
             {
-                GameObject eagleFlag = PhotonNetwork.Instantiate("Eagle_Flag", GameObject.Find("EaglesSpawnPoint").transform.position + new Vector3(0,15,0), Quaternion.identity, 0);
-                GameObject exorcistFlag = PhotonNetwork.Instantiate("Exorcist_Flag", GameObject.Find("ExorcistSpawnPoint").transform.position + new Vector3(0, 15, 0), Quaternion.identity, 0);
-                GameObject wolfFlag = PhotonNetwork.Instantiate("Wolf_Flag", GameObject.Find("WolfSpawnPoint").transform.position + new Vector3(0, 15, 0), Quaternion.identity, 0);
-                GameObject bloodFlag = PhotonNetwork.Instantiate("Blood_Flag", GameObject.Find("BloodSpawnPoint").transform.position + new Vector3(0, 15, 0), Quaternion.identity, 0);
+                GameObject eagleFlag = PhotonNetwork.InstantiateSceneObject("Eagle_Flag", GameObject.Find("EaglesSpawnPoint").transform.position + new Vector3(0,15,0), Quaternion.identity, 0,null);
+                GameObject exorcistFlag = PhotonNetwork.InstantiateSceneObject("Exorcist_Flag", GameObject.Find("ExorcistSpawnPoint").transform.position + new Vector3(0, 15, 0), Quaternion.identity, 0, null);
+                GameObject wolfFlag = PhotonNetwork.InstantiateSceneObject("Wolf_Flag", GameObject.Find("WolfSpawnPoint").transform.position + new Vector3(0, 15, 0), Quaternion.identity, 0, null);
+                GameObject bloodFlag = PhotonNetwork.InstantiateSceneObject("Blood_Flag", GameObject.Find("BloodSpawnPoint").transform.position + new Vector3(0, 15, 0), Quaternion.identity, 0, null);
             }
         }
         else if (PhotonNetwork.room.customProperties["GameType"].ToString() == "Omega Tank")

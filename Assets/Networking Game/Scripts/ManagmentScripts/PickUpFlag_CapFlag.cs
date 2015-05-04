@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-public class PickUpFlag_CapFlag : MonoBehaviour
+using Photon;
+public class PickUpFlag_CapFlag : PunBehaviour
 {
     public bool tankCanPickUp = true;
     public GameObject currentFlagPossession;
@@ -96,7 +96,8 @@ public class PickUpFlag_CapFlag : MonoBehaviour
                     tankCanPickUp = true;
                     UpdateUI();
                     GameObject fireworks = PhotonNetwork.Instantiate("FireworksShowEagle", transform.position, new Quaternion(270, 0, 0, 0), 0) as GameObject;
-                    GetComponent<PhotonView>().RPC("fixLetters", PhotonTargets.All, fireworks.GetComponent<PhotonView>().viewID);
+                    photonView.RPC("fixLetters", PhotonTargets.All, fireworks.GetComponent<PhotonView>().viewID);
+                    
                 }
             }
             else if (other.tag == "WolfCapture")
@@ -165,7 +166,8 @@ public class PickUpFlag_CapFlag : MonoBehaviour
             currentFlagPossession.GetComponent<Flag>().canBePickedUp = true;
         }
     }
-    GameObject fireworks;
+
+    GameObject firework;
     [RPC]
     void fixLetters(int ID)
     {
@@ -173,9 +175,9 @@ public class PickUpFlag_CapFlag : MonoBehaviour
         foreach (PhotonView view in views)
         {
             if(view.viewID == ID){
-                fireworks = view.gameObject;
+                firework = view.gameObject;
             }
         }
-        fireworks.transform.Rotate(0, 0, 0);
+        firework.transform.Rotate(0, 0, 0);
     }
 }
