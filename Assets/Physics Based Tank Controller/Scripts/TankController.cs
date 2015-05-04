@@ -85,8 +85,13 @@
 
     PhotonView m_PhotonView;
 	public GameStartTimeManager timeManager;
+    public PauseMenu menu;
+    public GameTimeManager gameTimeManager;
 	void  Start (){
+        menu = FindObjectOfType<PauseMenu>();
         timeManager = FindObjectOfType<GameStartTimeManager>();
+        gameTimeManager = FindObjectOfType<GameTimeManager>();
+
         m_PhotonView = GetComponent<PhotonView>();
         RotationValueL = new float[WheelColliders_L.Length];
         RotationValueR = new float[WheelColliders_R.Length];
@@ -267,7 +272,7 @@
 		
 	void  FixedUpdate (){
         AnimateGears();
-        if (photonView.isMine && timeManager.IsItTimeYet)
+        if (photonView.isMine && timeManager.IsItTimeYet && !menu.pausemenuActivated && !gameTimeManager.IsItTimeYet)
         {
             Engine();
             ShiftGears();

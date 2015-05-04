@@ -15,7 +15,11 @@ public class GameTimeManager : PunBehaviour{
     public double time;
 
     UIManager uimanager;
+    LeaderBoardsDisplayer leaderBoards;
+
+    bool gameOver = false;
     void Start(){
+        leaderBoards = FindObjectOfType<LeaderBoardsDisplayer>();
         uimanager = FindObjectOfType<UIManager>();
         SecondsBeforeStart = uimanager.roundTimeLimitMins * 60 + GameObject.FindObjectOfType<GameStartTimeManager>().SecondsBeforeEnd;
         startTimer = FindObjectOfType<GameStartTimeManager>();
@@ -65,9 +69,10 @@ public class GameTimeManager : PunBehaviour{
         if(startTimer.IsItTimeYet){
             time = this.SecondsUntilItsTime;
             changeToNormalTime((int)time);
-            if ((int)time == 0)
+            if ((int)time == 0 && !gameOver)
             {
-                //Debug.Log("Ready Freddy");
+                StartCoroutine("displayLeaderboards");
+                gameOver = true;
             }
         }
     }
@@ -92,6 +97,13 @@ public class GameTimeManager : PunBehaviour{
         {
             GameTimeUI.GetComponentInChildren<Text>().text = "" + minutes + ":0" + seconds;
         }
+    }
+
+    System.Collections.IEnumerator displayLeaderboards()
+    {
+        yield return new WaitForSeconds(2.0f);
+        leaderBoards.leaderBoards.SetBool("Faded", true);
+        leaderBoards.leaderBoards.enabled = false;
     }
 
 }

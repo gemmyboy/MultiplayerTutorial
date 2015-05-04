@@ -8,14 +8,17 @@ public class PauseMenu : MonoBehaviour {
     PanelManager manager;
     public Animator menu;
     public Animator options;
+
+    public GameTimeManager gameTime;
 	// Use this for initialization
 	void Start () {
+        gameTime = FindObjectOfType<GameTimeManager>();
         manager = FindObjectOfType<PanelManager>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !gameTime.IsItTimeYet)
         {
             if(!pausemenuActivated){
                 pauseMenu.SetActive(true);
@@ -35,8 +38,6 @@ public class PauseMenu : MonoBehaviour {
                     pausemenuActivated = false;
                 }
             }
-
-
         }
 	}
 

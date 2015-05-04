@@ -55,9 +55,16 @@ public class TankGunController : MonoBehaviour {
 	public float boostTime = 500.0f;
 	private float boostReload = 500f;
 	private bool boostRegenerate = false;
-	void Start () {
+
+    public PauseMenu menu;
+    public GameTimeManager gameTimeManager;
+    void Start()
+    {
+        menu = FindObjectOfType<PauseMenu>();
         timeManager = FindObjectOfType<GameStartTimeManager>();
         guiManager = FindObjectOfType<UIManager>();
+        gameTimeManager = FindObjectOfType<GameTimeManager>();
+
         guiManager.ChangeAmmo(ammo);
 
         m_PhotonView = GetComponent<PhotonView>();
@@ -77,7 +84,7 @@ public class TankGunController : MonoBehaviour {
 		healthRefreshTimer = Time.time;
 	}
 	void Update(){
-        if (m_PhotonView.isMine && timeManager.IsItTimeYet)
+        if (m_PhotonView.isMine && timeManager.IsItTimeYet && !menu.pausemenuActivated && !gameTimeManager.IsItTimeYet)
         {
             Shooting();
 			if (boostTime >= boostReload)
@@ -89,7 +96,7 @@ public class TankGunController : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-        if (m_PhotonView.isMine && timeManager.IsItTimeYet)
+        if (m_PhotonView.isMine && timeManager.IsItTimeYet && !menu.pausemenuActivated && !gameTimeManager.IsItTimeYet)
         {
             if (transform.localEulerAngles.y > 0 && transform.localEulerAngles.y < 180)
                 rotationOfTheGun = transform.localEulerAngles.y;
