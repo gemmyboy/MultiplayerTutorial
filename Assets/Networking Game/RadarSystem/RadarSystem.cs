@@ -36,9 +36,9 @@ public class RadarSystem : MonoBehaviour
 	private List<GameObject> listCordsPosted;
 
 	//List of prefabs
-	private Object currentPlayer;
+	private GameObject currentPlayer;
 	private Object allyPlayer;
-	private Object enemyPlayer;
+	private GameObject enemyPlayer;
 
 	//List start cord
 	private float gradientYCord;
@@ -48,7 +48,7 @@ public class RadarSystem : MonoBehaviour
 	{
 		//Obvious
 		updateGradient = GameObject.Find("UpdateLineThing");
-		theRadarSystem = GameObject.Find ("RadarSystem");
+		theRadarSystem = GameObject.Find ("RadarBG");
 
 		//Assign World Dimensions here
 		worldWidth = 350;
@@ -64,9 +64,9 @@ public class RadarSystem : MonoBehaviour
 		listCordsPosted = new List<GameObject>();
 
 		//Load in all of the prefabs
-        currentPlayer = Resources.LoadAssetAtPath("Assets/Networking Game/RadarSystem/CurrentPlayer.prefab", typeof(Object));
-        allyPlayer = Resources.LoadAssetAtPath("Assets/Networking Game/RadarSystem/AllyPlayer.prefab", typeof(Object));
-		enemyPlayer = Resources.LoadAssetAtPath("Assets/Networking Game/RadarSystem/EnemyPlayer.prefab", typeof(Object));
+		currentPlayer = (GameObject) Resources.LoadAssetAtPath("Assets/Networking Game/RadarSystem/CurrentPlayer.prefab", typeof(Object));
+		allyPlayer = Resources.LoadAssetAtPath("Assets/Networking Game/RadarSystem/AllyPlayer.prefab", typeof(Object));
+		enemyPlayer = (GameObject) Resources.LoadAssetAtPath("Assets/Networking Game/RadarSystem/EnemyPlayer.prefab", typeof(Object));
 
 		//Test DEBUG CODE--vv Forces a single sweep
 		float [,] temp = new float[3,3] { {0.0f, 175.0f, 175.0f}, {1.0f, 50.0f, 50.0f}, {2.0f, 340.0f, 340.0f} };
@@ -104,6 +104,15 @@ public class RadarSystem : MonoBehaviour
 
 		gradientYCord = 0.0f;
 
+		if(listCordsPosted.Count > 0)
+		{
+			//Clear out minimap
+			foreach(Object iter in listCordsPosted)
+			{
+				Destroy(iter);
+			}//End foreach
+		}//End if
+
 	}//End RequestRadarSweep()
 
 	public bool RadarSweepisCompleted()
@@ -124,7 +133,6 @@ public class RadarSystem : MonoBehaviour
 			{
 				if(!postedList.Contains(i) && gradientYCord > (playerPositions[i,2]))
 				{
-
 
 					//Recalculate the translation needed based on Minimap
 					float xTemp;
@@ -163,17 +171,23 @@ public class RadarSystem : MonoBehaviour
 
 					GameObject temp;
 
+					Debug.Log("Making spot: " + playerPositions[i,0]);
+
 					switch((int) playerPositions[i,0])
 					{
 					//Instantiation place for current player
 					case 0:
+						Debug.Log("Making Current"); 
 						temp = GameObject.Instantiate(currentPlayer, theRadarSystem.transform.position, theRadarSystem.transform.rotation) as GameObject;
+						Debug.Log("Made Current"); 
 						temp.transform.Translate(aVector);
 						listCordsPosted.Add(temp);
 						postedList.Add(i);
 						break;
 					case 1:
+						Debug.Log("Making Ally"); 
 						temp = GameObject.Instantiate(allyPlayer, theRadarSystem.transform.position, theRadarSystem.transform.rotation) as GameObject;
+						Debug.Log("Made Ally"); 
 						temp.transform.Translate(aVector);
 						listCordsPosted.Add(temp);
 						postedList.Add(i);
